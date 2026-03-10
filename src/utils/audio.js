@@ -1,8 +1,8 @@
 const sounds = {
-  flip: '/sounds/flip.mp3',
-  match: '/sounds/match.mp3',
-  correct: '/sounds/correct.mp3',
-  wrong: '/sounds/wrong.mp3'
+  flip: '/sounds/Flip.mp3',
+  match: '/sounds/Match.mp3',
+  correct: '/sounds/Correct.mp3',
+  wrong: '/sounds/Wrong.mp3'
 };
 
 const pool = Object.fromEntries(
