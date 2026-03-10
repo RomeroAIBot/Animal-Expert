@@ -1,9 +1,11 @@
+import { breeds } from './breeds.js';
+
 const sourceByCategory = {
   dogs: 'https://www.akc.org/dog-breeds/',
   snakes: 'https://www.merckvetmanual.com/exotic-and-laboratory-animals/reptiles/management-and-husbandry-of-reptiles',
   chickens: 'https://livestockconservancy.org/heritage-breeds/',
-  cats: 'https://cfa.org/breeds/',
-  horses: 'https://www.usef.org/compete/breeds-disciplines'
+  cat: 'https://cfa.org/breeds/',
+  horse: 'https://www.usef.org/compete/breeds-disciplines'
 };
 
 const termBank = [
@@ -45,6 +47,8 @@ const termBank = [
   { id: 's16', category: 'snakes', term: 'Heat pits', definition: 'infrared-sensitive organs present in pit vipers and some boas and pythons', funFact: 'Heat pits aid prey detection in low-light conditions.' },
   { id: 's17', category: 'snakes', term: 'Defensive musk', definition: 'cloacal secretion released as a deterrent during handling stress', funFact: 'Musk release is common in many colubrid species.' },
   { id: 's18', category: 'snakes', term: 'Neurotoxic venom', definition: 'venom profile that primarily disrupts neuromuscular signaling', funFact: 'Neurotoxic effects can include progressive paralysis.' },
+  { id: 's19', category: 'snakes', term: 'Fossorial', definition: 'adapted for burrowing or spending substantial time below the substrate surface', funFact: 'Many hognose husbandry setups benefit from substrate depth that supports fossorial behavior.' },
+  { id: 's20', category: 'snakes', term: 'Arboreal', definition: 'adapted for climbing and spending significant time above the ground', funFact: 'Arboreal species typically demand more vertical structure than terrestrial setups.' },
   { id: 'c1', category: 'chickens', term: 'Fibromelanosis', definition: 'genetic hyperpigmentation causing dark skin and connective tissue in certain breeds', funFact: 'Silkie and Ayam Cemani lines are known for fibromelanosis expression.' },
   { id: 'c2', category: 'chickens', term: 'Broodiness', definition: 'hormonal behavioral state where a hen persists in nest sitting and clutch defense', funFact: 'Broody hens may reduce feed intake and egg production.' },
   { id: 'c3', category: 'chickens', term: 'Molt', definition: 'cyclical feather replacement period often associated with reduced laying', funFact: 'Autumn photoperiod change commonly triggers molt in backyard flocks.' },
@@ -63,370 +67,145 @@ const termBank = [
   { id: 'c16', category: 'chickens', term: 'Saddle feathers', definition: 'elongated pointed feathers in male back region preceding tail base', funFact: 'Saddle feather shape is a practical sexing cue in maturing birds.' },
   { id: 'c17', category: 'chickens', term: 'Scissor beak', definition: 'crossed mandible condition impairing normal feed prehension', funFact: 'Early supportive management improves long-term welfare outcomes.' },
   { id: 'c18', category: 'chickens', term: 'Dust bathing', definition: 'self-maintenance behavior using dry substrate to reduce ectoparasites and condition feathers', funFact: 'Lack of dust access increases frustration behaviors in confined flocks.' },
-  { id: 'ct1', category: 'cats', term: 'Ticking', definition: 'agouti banding on individual hairs that creates a salt-and-pepper effect without full body striping', funFact: 'Abyssinians are a classic ticked breed profile.' },
-  { id: 'ct2', category: 'cats', term: 'Rosetting', definition: 'bicolored or outlined spotting pattern associated with wild-type horizontal flow in certain breeds', funFact: 'Strong rosetting is a hallmark show goal in Bengals.' },
-  { id: 'ct3', category: 'cats', term: 'Colorpoint', definition: 'temperature-sensitive pigmentation that darkens cooler body extremities', funFact: 'Pointed breeds typically combine this with blue eyes.' },
-  { id: 'ct4', category: 'cats', term: 'Ruff', definition: 'full neck frill of longer fur especially valued in forest-type breeds', funFact: 'Maine Coons and Norwegian Forest Cats are judged for substantial ruff and coat texture.' },
-  { id: 'ct5', category: 'cats', term: 'Boning', definition: 'substance of the skeletal frame relative to body type and standard balance', funFact: 'Judges distinguish fine, medium, and substantial boning by breed standard.' },
-  { id: 'ct6', category: 'cats', term: 'Whisker break', definition: 'pronounced muzzle pad contour that creates visible indentation between cheek and whisker pads', funFact: 'Bengal type rewards a strong muzzle with clear whisker pad definition.' },
-  { id: 'ct7', category: 'cats', term: 'Profile break', definition: 'stop or curve transition between forehead and nose line in the head profile', funFact: 'Different cat standards call for distinct profile shapes rather than one universal ideal.' },
-  { id: 'ct8', category: 'cats', term: 'Outcross', definition: 'planned breeding to an unrelated line to widen genetic diversity while preserving type', funFact: 'Outcross policy is tightly controlled in registry breed programs.' },
-  { id: 'ct9', category: 'cats', term: 'Polydactyl', definition: 'having extra toes beyond the normal count on one or more feet', funFact: 'Extra toes are famous in some Maine Coon lines, though not part of the CFA show standard.' },
-  { id: 'ct10', category: 'cats', term: 'Slow maturing', definition: 'breed development pattern in which coat, body, or head type reaches full expression over several years', funFact: 'Ragdolls and Maine Coons are often described as slow-maturing breeds.' },
-  { id: 'h1', category: 'horses', term: 'Collection', definition: 'state of balance where the horse shifts weight to the hindquarters and shortens frame without losing energy', funFact: 'True collection changes balance, not just headset.' },
-  { id: 'h2', category: 'horses', term: 'Impulsion', definition: 'controlled stored energy generated from the hindquarters and transmitted through a supple back', funFact: 'Impulsion is more than speed and is judged by elasticity and thrust.' },
-  { id: 'h3', category: 'horses', term: 'Engagement', definition: 'greater flexion and stepping under of the hind limbs beneath the body mass', funFact: 'Engagement supports transitions, self-carriage, and collected work.' },
-  { id: 'h4', category: 'horses', term: 'Bascule', definition: 'arc of the horse over a fence created by rounding the back and neck use', funFact: 'A correct bascule reduces wasted motion over jumps.' },
-  { id: 'h5', category: 'horses', term: 'Feathering', definition: 'long hair growth at the lower legs typical of certain breeds', funFact: 'Friesians are recognized for notable feathering.' },
-  { id: 'h6', category: 'horses', term: 'Baroque type', definition: 'compact, powerful conformation associated with elevated action and collected work', funFact: 'Andalusians and Friesians are often discussed as baroque breeds.' },
-  { id: 'h7', category: 'horses', term: 'Cow sense', definition: 'instinctive responsiveness to cattle movement prized in stock-horse work', funFact: 'Quarter Horse breeding programs heavily value cow sense in ranch and reining lines.' },
-  { id: 'h8', category: 'horses', term: 'Foundation sire', definition: 'ancestral stallion or mare with outsized influence on a registry or breed family', funFact: 'Many closed studbooks trace heavily to a few foundation individuals.' },
-  { id: 'h9', category: 'horses', term: 'Self-carriage', definition: 'ability to maintain balance and posture without continual rider support', funFact: 'Self-carriage is a core marker of advanced training rather than cosmetic frame.' },
-  { id: 'h10', category: 'horses', term: 'Conformation', definition: 'structural build and proportional arrangement of the horse body', funFact: 'Soundness, discipline suitability, and breed type all intersect in conformation evaluation.' }
-];
-
-const breedQuestionBank = [
-  {
-    id: 'dog-breed-1',
-    category: 'dogs',
-    difficulty: 'expert',
-    type: 'multiple-choice',
-    question: 'Which Norwegian breed is documented by the AKC as having six functional toes on each foot?',
-    options: ['Norwegian Lundehund', 'Vizsla', 'Belgian Malinois', 'Doberman Pinscher'],
-    answer: 'Norwegian Lundehund',
-    funFact: 'The Lundehund was developed for puffin-hunting on steep Norwegian cliffs.',
-    source: 'https://www.akc.org/dog-breeds/norwegian-lundehund/'
-  },
-  {
-    id: 'dog-breed-2',
-    category: 'dogs',
-    difficulty: 'expert',
-    type: 'multiple-choice',
-    question: 'According to the AKC breed profile, which breed is historically tied to fishermen and water rescue work?',
-    options: ['Newfoundland', 'German Shepherd Dog', 'Border Collie', 'Australian Cattle Dog'],
-    answer: 'Newfoundland',
-    funFact: 'Newfoundlands are one of the classic giant working water dogs.',
-    source: 'https://www.akc.org/dog-breeds/newfoundland/'
-  },
-  {
-    id: 'dog-breed-3',
-    category: 'dogs',
-    difficulty: 'expert',
-    type: 'multiple-choice',
-    question: 'What working style trait is especially associated with Border Collies in stock work?',
-    options: ['Intense eye', 'Curled tail set', 'Tracking nose-only pattern', 'Silent guarding posture'],
-    answer: 'Intense eye',
-    funFact: 'The Border Collie is strongly associated with eye, balance, and biddability on stock.',
-    source: 'https://www.akc.org/dog-breeds/border-collie/'
-  },
-  {
-    id: 'dog-breed-4',
-    category: 'dogs',
-    difficulty: 'expert',
-    type: 'multiple-choice',
-    question: 'Which sporting breed is classically described by the AKC as having a golden-rust coat color?',
-    options: ['Vizsla', 'Belgian Malinois', 'Norwegian Lundehund', 'Newfoundland'],
-    answer: 'Vizsla',
-    funFact: 'Vizslas are a Hungarian pointing breed with close handler attachment.',
-    source: 'https://www.akc.org/dog-breeds/vizsla/'
-  },
-  {
-    id: 'dog-breed-5',
-    category: 'dogs',
-    difficulty: 'expert',
-    type: 'multiple-choice',
-    question: 'Which breed is commonly selected for high-drive detection and protection work while still belonging to the herding group?',
-    options: ['Belgian Malinois', 'Border Collie', 'Newfoundland', 'Vizsla'],
-    answer: 'Belgian Malinois',
-    funFact: 'Malinois selection often emphasizes nerve, athleticism, and environmental engagement.',
-    source: 'https://www.akc.org/dog-breeds/belgian-malinois/'
-  },
-  {
-    id: 'snake-breed-1',
-    category: 'snakes',
-    difficulty: 'expert',
-    type: 'multiple-choice',
-    question: 'If two heterozygous Piebald ball pythons are bred together, what percentage of offspring are expected to be visual Piebalds?',
-    options: ['25%', '50%', '75%', '100%'],
-    answer: '25%',
-    funFact: 'Punnett ratios are statistical expectations across many offspring, not guarantees per clutch.',
-    source: 'https://www.merckvetmanual.com/exotic-and-laboratory-animals/reptiles/management-and-husbandry-of-reptiles'
-  },
-  {
-    id: 'snake-breed-2',
-    category: 'snakes',
-    difficulty: 'expert',
-    type: 'multiple-choice',
-    question: 'Which of these snakes is live-bearing rather than egg-laying?',
-    options: ['Boa Constrictor', 'Corn Snake', 'California Kingsnake', 'Western Hognose Snake'],
-    answer: 'Boa Constrictor',
-    funFact: 'Boa constrictors give birth to live young rather than laying eggs externally.',
-    source: 'https://animals.sandiegozoo.org/animals/boa'
-  },
-  {
-    id: 'snake-breed-3',
-    category: 'snakes',
-    difficulty: 'expert',
-    type: 'multiple-choice',
-    question: 'Which snake is especially known for ophiophagy, the consumption of other snakes?',
-    options: ['California Kingsnake', 'Boa Constrictor', 'Gaboon Viper', 'Western Hognose Snake'],
-    answer: 'California Kingsnake',
-    funFact: 'Kingsnakes are named partly for their ability to prey on other snakes.',
-    source: 'https://animals.sandiegozoo.org/animals/king-snake'
-  },
-  {
-    id: 'snake-breed-4',
-    category: 'snakes',
-    difficulty: 'expert',
-    type: 'multiple-choice',
-    question: 'Which species is well known for dramatic bluffing that can include hooding, hissing, and death-feigning?',
-    options: ['Western Hognose Snake', 'Corn Snake', 'Boa Constrictor', 'Ball Python'],
-    answer: 'Western Hognose Snake',
-    funFact: 'Western hognoses often rely on display before they rely on flight.',
-    source: 'https://www.fws.gov/species/plains-hognose-snake-heterodon-nasicus'
-  },
-  {
-    id: 'snake-breed-5',
-    category: 'snakes',
-    difficulty: 'expert',
-    type: 'multiple-choice',
-    question: 'Which viper is famous for possessing exceptionally long fangs among venomous snakes?',
-    options: ['Gaboon Viper', 'California Kingsnake', 'Corn Snake', 'Ball Python'],
-    answer: 'Gaboon Viper',
-    funFact: 'Gaboon vipers pair cryptic camouflage with very large gape and fang length.',
-    source: 'https://animals.sandiegozoo.org/animals/gaboon-viper'
-  },
-  {
-    id: 'chicken-breed-1',
-    category: 'chickens',
-    difficulty: 'expert',
-    type: 'multiple-choice',
-    question: 'Which chicken breed is famous for fibromelanosis and also commonly has five toes?',
-    options: ['Silkie', 'Australorp', 'Welsummer', 'La Fleche'],
-    answer: 'Silkie',
-    funFact: 'Silkies also carry unusual feather structure that lacks normal barbicel hooklets.',
-    source: 'https://livestockconservancy.org/heritage-breeds/heritage-breeds-list/silkie-chicken/'
-  },
-  {
-    id: 'chicken-breed-2',
-    category: 'chickens',
-    difficulty: 'expert',
-    type: 'multiple-choice',
-    question: 'Which breed is both autosexing and known for laying blue eggs?',
-    options: ['Cream Legbar', 'Australorp', 'Welsummer', 'La Fleche'],
-    answer: 'Cream Legbar',
-    funFact: 'Cream Legbars are one of the most frequently cited blue-egg autosexing breeds.',
-    source: 'https://livestockconservancy.org/heritage-breeds/heritage-breeds-list/cream-legbar-chicken/'
-  },
-  {
-    id: 'chicken-breed-3',
-    category: 'chickens',
-    difficulty: 'expert',
-    type: 'multiple-choice',
-    question: 'Which heritage breed is especially associated with dark brown terracotta eggs?',
-    options: ['Welsummer', 'Silkie', 'Ameraucana', 'Australorp'],
-    answer: 'Welsummer',
-    funFact: 'Welsummer eggs are often used as a benchmark when discussing rich shell pigmentation.',
-    source: 'https://livestockconservancy.org/heritage-breeds/heritage-breeds-list/welsummer-chicken/'
-  },
-  {
-    id: 'chicken-breed-4',
-    category: 'chickens',
-    difficulty: 'expert',
-    type: 'multiple-choice',
-    question: 'Which breed is characterized by a V-comb sometimes described as horned?',
-    options: ['La Fleche', 'Australorp', 'Cream Legbar', 'Welsummer'],
-    answer: 'La Fleche',
-    funFact: 'La Fleche is one of the most recognizable V-comb chicken breeds.',
-    source: 'https://livestockconservancy.org/'
-  },
-  {
-    id: 'chicken-breed-5',
-    category: 'chickens',
-    difficulty: 'expert',
-    type: 'multiple-choice',
-    question: 'Which breed is particularly known for strong laying performance in dual-purpose systems?',
-    options: ['Australorp', 'Silkie', 'La Fleche', 'Ameraucana'],
-    answer: 'Australorp',
-    funFact: 'Australorps became famous in part because of historical laying-performance records.',
-    source: 'https://livestockconservancy.org/heritage-breeds/heritage-breeds-list/australorp-chicken/'
-  },
-  {
-    id: 'cat-breed-1',
-    category: 'cats',
-    difficulty: 'expert',
-    type: 'multiple-choice',
-    question: 'According to the CFA profile, what eye color range is preferred in the Chartreux?',
-    options: ['Copper to gold', 'Blue only', 'Green only', 'Odd-eyed'],
-    answer: 'Copper to gold',
-    funFact: 'The Chartreux combines dense blue coat texture with warm eye color.',
-    source: 'https://cfa.org/breed/chartreux/'
-  },
-  {
-    id: 'cat-breed-2',
-    category: 'cats',
-    difficulty: 'expert',
-    type: 'multiple-choice',
-    question: 'The Savannah achieved championship status in TICA in which year?',
-    options: ['2012', '2001', '2008', '2016'],
-    answer: '2012',
-    funFact: 'Savannah development and exhibition status were heavily shaped by registry policy.',
-    source: 'https://tica.org/breed/savannah/'
-  },
-  {
-    id: 'cat-breed-3',
-    category: 'cats',
-    difficulty: 'expert',
-    type: 'multiple-choice',
-    question: 'Which natural breed is known for a shaggy coat, substantial ruff, and large rectangular body?',
-    options: ['Maine Coon', 'Sphynx', 'Chartreux', 'Abyssinian'],
-    answer: 'Maine Coon',
-    funFact: 'Maine Coons mature slowly and develop significant coat furnishings over time.',
-    source: 'https://cfa.org/breed/maine-coon/'
-  },
-  {
-    id: 'cat-breed-4',
-    category: 'cats',
-    difficulty: 'expert',
-    type: 'multiple-choice',
-    question: 'Which breed is best known for a ticked coat rather than visible body striping or rosetting?',
-    options: ['Abyssinian', 'Bengal', 'Ragdoll', 'Savannah'],
-    answer: 'Abyssinian',
-    funFact: 'Ticking creates the warm, luminous coat effect prized in Abyssinians.',
-    source: 'https://cfa.org/breed/abyssinian/'
-  },
-  {
-    id: 'cat-breed-5',
-    category: 'cats',
-    difficulty: 'expert',
-    type: 'multiple-choice',
-    question: 'Which pointed breed is expected to have blue eyes and a slow-maturing coat?',
-    options: ['Ragdoll', 'Chartreux', 'Abyssinian', 'Bengal'],
-    answer: 'Ragdoll',
-    funFact: 'Ragdolls often take several years to reach full coat and body development.',
-    source: 'https://cfa.org/breed/ragdoll/'
-  },
-  {
-    id: 'horse-breed-1',
-    category: 'horses',
-    difficulty: 'expert',
-    type: 'multiple-choice',
-    question: 'Which breed is most classically associated with explosive quarter-mile acceleration?',
-    options: ['American Quarter Horse', 'Arabian', 'Friesian', 'Cleveland Bay'],
-    answer: 'American Quarter Horse',
-    funFact: 'The breed name itself reflects sprint dominance over a quarter-mile distance.',
-    source: 'https://www.aqha.com/'
-  },
-  {
-    id: 'horse-breed-2',
-    category: 'horses',
-    difficulty: 'expert',
-    type: 'multiple-choice',
-    question: 'Which breed is recognized for a dished profile, high tail carriage, and major endurance influence?',
-    options: ['Arabian', 'Friesian', 'Morgan', 'American Cream Draft'],
-    answer: 'Arabian',
-    funFact: 'Arabian bloodlines have influenced numerous modern riding breeds.',
-    source: 'https://www.usef.org/compete/breeds-disciplines/breeds/arabian'
-  },
-  {
-    id: 'horse-breed-3',
-    category: 'horses',
-    difficulty: 'expert',
-    type: 'multiple-choice',
-    question: 'Which breed is strongly associated with black coat color, abundant mane, and lower-leg feathering?',
-    options: ['Friesian', 'Morgan', 'Quarter Horse', 'Marsh Tacky'],
-    answer: 'Friesian',
-    funFact: 'Friesians are one of the most visually distinctive carriage and dressage breeds.',
-    source: 'https://www.usef.org/compete/breeds-disciplines/breeds/friesian'
-  },
-  {
-    id: 'horse-breed-4',
-    category: 'horses',
-    difficulty: 'expert',
-    type: 'multiple-choice',
-    question: 'Which old English horse breed is traditionally always bay in color?',
-    options: ['Cleveland Bay', 'Arabian', 'Friesian', 'Andalusian'],
-    answer: 'Cleveland Bay',
-    funFact: 'Cleveland Bays are one of the oldest established English horse breeds.',
-    source: 'https://livestockconservancy.org/heritage-breeds/heritage-breeds-list/cleveland-bay-horse/'
-  },
-  {
-    id: 'horse-breed-5',
-    category: 'horses',
-    difficulty: 'expert',
-    type: 'multiple-choice',
-    question: 'Which breed is the only draft breed developed in the United States?',
-    options: ['American Cream Draft', 'Friesian', 'Arabian', 'Morgan'],
-    answer: 'American Cream Draft',
-    funFact: 'The American Cream Draft is also a conservation-priority heritage breed.',
-    source: 'https://livestockconservancy.org/heritage-breeds/heritage-breeds-list/american-cream-draft-horse/'
-  }
+  { id: 'c19', category: 'chickens', term: 'Pullet', definition: 'young female chicken before she is considered a mature laying hen', funFact: 'Production planning changes meaningfully when pullets transition into lay.' },
+  { id: 'c20', category: 'chickens', term: 'Wry tail', definition: 'tail set deviation in which the tail twists or points off-center from the spine', funFact: 'Breed exhibition selection often treats tail faults as important type defects.' },
+  { id: 'ct1', category: 'cat', term: 'Ticking', definition: 'agouti banding on individual hairs that creates a salt-and-pepper effect without full body striping', funFact: 'Abyssinians are a classic ticked breed profile.' },
+  { id: 'ct2', category: 'cat', term: 'Rosetting', definition: 'bicolored or outlined spotting pattern associated with wild-type horizontal flow in certain breeds', funFact: 'Strong rosetting is a hallmark show goal in Bengals.' },
+  { id: 'ct3', category: 'cat', term: 'Colorpoint', definition: 'temperature-sensitive pigmentation that darkens cooler body extremities', funFact: 'Pointed breeds typically combine this with blue eyes.' },
+  { id: 'ct4', category: 'cat', term: 'Ruff', definition: 'full neck frill of longer fur especially valued in forest-type breeds', funFact: 'Maine Coons and Norwegian Forest Cats are judged for substantial ruff and coat texture.' },
+  { id: 'ct5', category: 'cat', term: 'Boning', definition: 'substance of the skeletal frame relative to body type and standard balance', funFact: 'Judges distinguish fine, medium, and substantial boning by breed standard.' },
+  { id: 'ct6', category: 'cat', term: 'Whisker break', definition: 'pronounced muzzle pad contour that creates visible indentation between cheek and whisker pads', funFact: 'Bengal type rewards a strong muzzle with clear whisker pad definition.' },
+  { id: 'ct7', category: 'cat', term: 'Profile break', definition: 'stop or curve transition between forehead and nose line in the head profile', funFact: 'Different cat standards call for distinct profile shapes rather than one universal ideal.' },
+  { id: 'ct8', category: 'cat', term: 'Outcross', definition: 'planned breeding to an unrelated line to widen genetic diversity while preserving type', funFact: 'Outcross policy is tightly controlled in registry breed programs.' },
+  { id: 'ct9', category: 'cat', term: 'Polydactyl', definition: 'having extra toes beyond the normal count on one or more feet', funFact: 'Extra toes are famous in some Maine Coon lines, though not part of the CFA show standard.' },
+  { id: 'ct10', category: 'cat', term: 'Slow maturing', definition: 'breed development pattern in which coat, body, or head type reaches full expression over several years', funFact: 'Ragdolls and Maine Coons are often described as slow-maturing breeds.' },
+  { id: 'ct11', category: 'cat', term: 'Cobby', definition: 'compact and rounded body type with short sturdy legs and broad frame', funFact: 'Cobby type contrasts strongly with foreign or semi-foreign body style.' },
+  { id: 'ct12', category: 'cat', term: 'Foreign type', definition: 'sleek body type with long lines, fine boning, and more tubular silhouette', funFact: 'Show standards use body-type language very precisely across cat breeds.' },
+  { id: 'ct13', category: 'cat', term: 'Tufting', definition: 'longer hair growth between the toes or at ear tips that contributes to breed expression', funFact: 'Forest breeds are especially known for toe tufts and ear furnishings.' },
+  { id: 'ct14', category: 'cat', term: 'Mitted', definition: 'white foot markings on a pointed cat that stop at specific glove-like boundaries', funFact: 'Precise white placement can be critical in pointed breed patterns.' },
+  { id: 'ct15', category: 'cat', term: 'Bicolor', definition: 'coat pattern category combining white with another solid or patterned color', funFact: 'Distribution of white can distinguish van, harlequin, and standard bicolor expressions.' },
+  { id: 'ct16', category: 'cat', term: 'Locket', definition: 'small isolated patch of white on an otherwise solid-colored cat', funFact: 'In some pedigreed programs, a locket is considered a fault rather than a desired marking.' },
+  { id: 'ct17', category: 'cat', term: 'Silver inhibitor', definition: 'genetic effect that suppresses pigment at the hair base to create silver or smoke expression', funFact: 'Silver genetics can dramatically alter contrast in tabby and shaded cats.' },
+  { id: 'ct18', category: 'cat', term: 'Tipping', definition: 'coat effect where only the tip of each hair is pigmented while the base remains light', funFact: 'Shaded and shell patterns depend on precise tipping distribution.' },
+  { id: 'ct19', category: 'cat', term: 'Semi-longhair', definition: 'intermediate coat category with body and tail furnishings but less bulk than a full longhair coat', funFact: 'Several natural breeds are classified as semi-longhair rather than fully longhair.' },
+  { id: 'ct20', category: 'cat', term: 'Ear furnishings', definition: 'longer hair inside the ears that contributes to breed expression and weather-protective appearance', funFact: 'Ear furnishings are common in cold-climate cat breeds.' },
+  { id: 'h1', category: 'horse', term: 'Collection', definition: 'state of balance where the horse shifts weight to the hindquarters and shortens frame without losing energy', funFact: 'True collection changes balance, not just headset.' },
+  { id: 'h2', category: 'horse', term: 'Impulsion', definition: 'controlled stored energy generated from the hindquarters and transmitted through a supple back', funFact: 'Impulsion is more than speed and is judged by elasticity and thrust.' },
+  { id: 'h3', category: 'horse', term: 'Engagement', definition: 'greater flexion and stepping under of the hind limbs beneath the body mass', funFact: 'Engagement supports transitions, self-carriage, and collected work.' },
+  { id: 'h4', category: 'horse', term: 'Bascule', definition: 'arc of the horse over a fence created by rounding the back and neck use', funFact: 'A correct bascule reduces wasted motion over jumps.' },
+  { id: 'h5', category: 'horse', term: 'Feathering', definition: 'long hair growth at the lower legs typical of certain breeds', funFact: 'Friesians are recognized for notable feathering.' },
+  { id: 'h6', category: 'horse', term: 'Baroque type', definition: 'compact, powerful conformation associated with elevated action and collected work', funFact: 'Andalusians and Friesians are often discussed as baroque breeds.' },
+  { id: 'h7', category: 'horse', term: 'Cow sense', definition: 'instinctive responsiveness to cattle movement prized in stock-horse work', funFact: 'Quarter Horse breeding programs heavily value cow sense in ranch and reining lines.' },
+  { id: 'h8', category: 'horse', term: 'Foundation sire', definition: 'ancestral stallion or mare with outsized influence on a registry or breed family', funFact: 'Many closed studbooks trace heavily to a few foundation individuals.' },
+  { id: 'h9', category: 'horse', term: 'Self-carriage', definition: 'ability to maintain balance and posture without continual rider support', funFact: 'Self-carriage is a core marker of advanced training rather than cosmetic frame.' },
+  { id: 'h10', category: 'horse', term: 'Conformation', definition: 'structural build and proportional arrangement of the horse body', funFact: 'Soundness, discipline suitability, and breed type all intersect in conformation evaluation.' },
+  { id: 'h11', category: 'horse', term: 'Cadence', definition: 'clear regularity and measured rhythm within a gait', funFact: 'Cadence is especially scrutinized in dressage movement quality.' },
+  { id: 'h12', category: 'horse', term: 'Straightness', definition: 'alignment of the horse body so hind feet follow the track of the forehand', funFact: 'Straightness is a prerequisite for true collection and even contact.' },
+  { id: 'h13', category: 'horse', term: 'Lead change', definition: 'switch from one canter lead to the other either through simple transition or flying change', funFact: 'Clean lead changes reflect balance, straightness, and response to aids.' },
+  { id: 'h14', category: 'horse', term: 'Tracking up', definition: 'hind feet stepping into or beyond the prints of the front feet at walk or trot', funFact: 'Tracking up is one visible indicator of impulsion and reach.' },
+  { id: 'h15', category: 'horse', term: 'Pastern angle', definition: 'slope of the pastern relative to the hoof and limb which affects shock absorption and durability', funFact: 'Extremes in pastern angle can predispose certain soundness issues.' },
+  { id: 'h16', category: 'horse', term: 'Withers', definition: 'ridge between the shoulder blades that influences saddle fit and silhouette', funFact: 'Breed type and conditioning both affect wither expression.' },
+  { id: 'h17', category: 'horse', term: 'Coupling', definition: 'strength and connection of the loin area between back and croup', funFact: 'Weak coupling can reduce power transfer from hindquarters to forehand.' },
+  { id: 'h18', category: 'horse', term: 'Cow-hocked', definition: 'hind limb alignment where the hocks angle inward and feet point outward', funFact: 'Some conformation faults are cosmetic while others materially affect performance risk.' },
+  { id: 'h19', category: 'horse', term: 'Over at the knee', definition: 'forelimb fault where the knee appears slightly bent forward when viewed from the side', funFact: 'Forelimb deviations are assessed carefully in conformation judging and prepurchase exams.' },
+  { id: 'h20', category: 'horse', term: 'Suspension', definition: 'moment of aerial phase and elasticity within a gait or jump effort', funFact: 'Suspension contributes strongly to perceived brilliance in movement.' }
 ];
 
 const labels = {
   dogs: 'canine behavior and training',
   snakes: 'herpetoculture and snake genetics',
   chickens: 'poultry husbandry and breed science',
-  cats: 'cat breed standards and feline husbandry',
-  horses: 'equine sport, conformation, and breed type'
+  cat: 'cat breed standards and feline husbandry',
+  horse: 'equine sport, conformation, and breed type'
 };
 
-const pickDistractors = (category, term, offset) => {
-  const pool = termBank.filter((item) => item.category === category && item.term !== term);
-  const selected = [];
+const termTemplates = [
+  (item, options) => ({ question: `Which expert term matches this definition: ${item.definition}?`, options }),
+  (item, options) => ({ question: `In ${labels[item.category]}, what is the best technical term for this concept: ${item.definition}?`, options: [options[1], options[2], options[3], options[0]] }),
+  (item, options) => ({ question: `Select the correct professional term: ${item.definition}.`, options: [options[2], options[0], options[3], options[1]] }),
+  (item, options) => ({ question: `Handlers in ${labels[item.category]} would use which term for this definition: ${item.definition}?`, options: [options[3], options[1], options[0], options[2]] }),
+  (item, options) => ({ question: `Which vocabulary word belongs with this expert description: ${item.definition}?`, options: [options[0], options[3], options[1], options[2]] }),
+  (item, options) => ({ question: `Choose the most accurate term for this advanced concept: ${item.definition}.`, options: [options[1], options[0], options[2], options[3]] })
+];
+
+const breedTemplates = [
+  (entity, options) => ({ question: `Which breed or type matches this verified fact: ${entity.funFact}`, options }),
+  (entity, options) => ({ question: `Identify the breed from this clue: ${entity.funFact}`, options: [options[1], options[2], options[3], options[0]] }),
+  (entity, options) => ({ question: `A source-backed profile describes which breed this way: ${entity.funFact}`, options: [options[2], options[0], options[3], options[1]] }),
+  (entity, options) => ({ question: `Select the correct breed associated with this fact: ${entity.funFact}`, options: [options[3], options[1], options[0], options[2]] }),
+  (entity, options) => ({ question: `Which answer best fits this breed-specific clue: ${entity.funFact}`, options: [options[0], options[2], options[1], options[3]] }),
+  (entity, options) => ({ question: `From the official source, which breed is linked to this trait: ${entity.funFact}`, options: [options[1], options[0], options[2], options[3]] }),
+  (entity, options) => ({ question: `Breed specialists would associate this description with which animal: ${entity.funFact}`, options: [options[2], options[3], options[0], options[1]] }),
+  (entity, options) => ({ question: `Which breed should an expert identify from this line: ${entity.funFact}`, options: [options[0], options[3], options[2], options[1]] }),
+  (entity, options) => ({ question: `Choose the breed that matches the following registry-style profile note: ${entity.funFact}`, options: [options[3], options[0], options[1], options[2]] }),
+  (entity, options) => ({ question: `This fact belongs to which breed or morph: ${entity.funFact}`, options: [options[1], options[3], options[0], options[2]] })
+];
+
+const pickDistractors = (items, selfId, offset) => {
+  const pool = items.filter((item) => item.id !== selfId);
+  const chosen = [];
   let cursor = offset;
-  while (selected.length < 3 && pool.length) {
-    const idx = cursor % pool.length;
-    selected.push(pool[idx].term);
-    pool.splice(idx, 1);
+
+  while (chosen.length < 3 && pool.length) {
+    const index = cursor % pool.length;
+    chosen.push(pool[index]);
+    pool.splice(index, 1);
     cursor += 3;
   }
-  return selected;
+
+  return chosen;
 };
 
-const buildVariants = (item, index) => {
-  const distractors = pickDistractors(item.category, item.term, index + 1);
-  const options = [item.term, ...distractors];
-  const rotated = options.map((_, idx) => options[(idx + (index % 4)) % 4]);
-  const source = item.source || sourceByCategory[item.category];
+const buildTermQuestions = (item, index) => {
+  const categoryTerms = termBank.filter((entry) => entry.category === item.category);
+  const distractors = pickDistractors(categoryTerms, item.id, index + 1).map((entry) => entry.term);
+  const baseOptions = [item.term, ...distractors];
 
-  return [
-    {
-      id: `${item.id}-a`,
+  return termTemplates.map((template, templateIndex) => {
+    const next = template(item, baseOptions);
+    return {
+      id: `${item.id}-term-${templateIndex + 1}`,
       category: item.category,
       difficulty: 'expert',
       type: 'multiple-choice',
-      question: `Which expert term matches this definition: ${item.definition}?`,
-      options: rotated,
+      question: next.question,
+      options: next.options,
       answer: item.term,
       funFact: item.funFact,
-      source
-    },
-    {
-      id: `${item.id}-b`,
-      category: item.category,
-      difficulty: 'expert',
-      type: 'multiple-choice',
-      question: `In ${labels[item.category]}, what is the best technical term for this concept: ${item.definition}?`,
-      options: [...rotated.slice(1), rotated[0]],
-      answer: item.term,
-      funFact: item.funFact,
-      source
-    },
-    {
-      id: `${item.id}-c`,
-      category: item.category,
-      difficulty: 'expert',
-      type: 'multiple-choice',
-      question: `Select the correct professional term: ${item.definition}.`,
-      options: [rotated[2], rotated[0], rotated[3], rotated[1]],
-      answer: item.term,
-      funFact: item.funFact,
-      source
-    }
-  ];
+      source: sourceByCategory[item.category]
+    };
+  });
 };
 
-export const triviaQuestions = [...termBank.flatMap(buildVariants), ...breedQuestionBank];
+const allBreedEntries = Object.entries(breeds).flatMap(([category, entries]) =>
+  entries.map((entity) => ({ ...entity, category }))
+);
+
+const buildBreedQuestions = (entity, index) => {
+  const categoryEntities = allBreedEntries.filter((entry) => entry.category === entity.category);
+  const distractors = pickDistractors(categoryEntities, entity.id, index + 2).map((entry) => entry.displayName);
+  const baseOptions = [entity.displayName, ...distractors];
+
+  return breedTemplates.map((template, templateIndex) => {
+    const next = template(entity, baseOptions);
+    return {
+      id: `${entity.id}-breed-${templateIndex + 1}`,
+      entityId: entity.id,
+      category: entity.category,
+      difficulty: 'expert',
+      type: 'multiple-choice',
+      question: next.question,
+      options: next.options,
+      answer: entity.displayName,
+      funFact: entity.funFact,
+      source: entity.factSource
+    };
+  });
+};
+
+export const triviaQuestions = [
+  ...termBank.flatMap(buildTermQuestions),
+  ...allBreedEntries.flatMap(buildBreedQuestions)
+];
 
 export default triviaQuestions;

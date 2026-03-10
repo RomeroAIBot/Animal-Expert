@@ -17,7 +17,7 @@ export const sourceCatalog = {
         url: 'https://unsplash.com/documentation'
       }
     ],
-    cats: [
+    cat: [
       {
         name: 'The Cat API',
         type: 'image + breed metadata',
@@ -43,7 +43,7 @@ export const sourceCatalog = {
         url: 'https://unsplash.com/documentation'
       }
     ],
-    horses: [
+    horse: [
       {
         name: 'Unsplash',
         type: 'image search',
@@ -59,7 +59,7 @@ export const sourceCatalog = {
         url: 'https://www.akc.org/dog-breeds/'
       }
     ],
-    cats: [
+    cat: [
       {
         name: "Cat Fanciers' Association",
         focus: 'breed standards and profiles',
@@ -95,7 +95,7 @@ export const sourceCatalog = {
         url: 'https://livestockconservancy.org/heritage-breeds/'
       }
     ],
-    horses: [
+    horse: [
       {
         name: 'US Equestrian',
         focus: 'recognized breed profiles',

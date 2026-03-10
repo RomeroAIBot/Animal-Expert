@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import CategoryPicker from '../components/CategoryPicker';
 import PuzzleBoard from '../components/PuzzleBoard';
 import { generatePuzzleDeck } from '../utils/gameGenerators';
+import { recordUsedIds, trackerKeys } from '../utils/questionTracker';
 import { getDateSeed } from '../utils/seed';
 import { storage, updateStreak, upsertHistory } from '../utils/storage';
 
@@ -16,6 +17,7 @@ function DailyPuzzlePage({ appContext }) {
   const handleComplete = (payload) => {
     if (result) return;
     const date = getDateSeed(new Date());
+    recordUsedIds(trackerKeys.puzzles, category, [payload.comboId || deck.comboId], new Date().toISOString());
     const entry = {
       id: `${date}:daily:puzzle:${category}:${size}`,
       date,

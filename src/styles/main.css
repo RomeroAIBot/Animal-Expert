@@ -263,6 +263,94 @@ main {
   gap: 0.75rem;
 }
 
+.identify-card,
+.identify-results {
+  display: grid;
+  gap: 1rem;
+}
+
+.identify-image {
+  width: 100%;
+  max-height: 420px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid #d6cab7;
+}
+
+.identify-result-row {
+  display: grid;
+  grid-template-columns: 88px 1fr auto;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 0.6rem 0;
+  border-top: 1px solid #ddd3c6;
+}
+
+.identify-result-row img {
+  width: 88px;
+  height: 88px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.result-icon {
+  font-weight: 800;
+  font-size: 1.4rem;
+}
+
+.result-icon.success {
+  color: var(--forest);
+}
+
+.result-icon.fail {
+  color: var(--rust);
+}
+
+.identify-crossword {
+  overflow-x: auto;
+}
+
+.identify-crossword .crossword {
+  margin-top: 0.8rem;
+}
+
+.virtual-keyboard {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(7, minmax(44px, 1fr));
+  gap: 0.45rem;
+}
+
+.vk-key {
+  min-height: 44px;
+  border: 1px solid #bea56a;
+  border-radius: 8px;
+  background: #fff8e7;
+  font-weight: 700;
+}
+
+.vk-key.wide {
+  grid-column: span 2;
+}
+
+.overlay-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 20, 20, 0.45);
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+}
+
+.modal-card {
+  max-width: 360px;
+  width: 100%;
+  background: var(--cream);
+  border-radius: 14px;
+  padding: 1rem;
+  border: 1px solid #d6cab7;
+}
+
 @media (max-width: 720px) {
   .grid-6 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -275,5 +363,14 @@ main {
   .field input,
   .field select {
     min-width: 135px;
+  }
+
+  .identify-result-row {
+    grid-template-columns: 72px 1fr auto;
+  }
+
+  .identify-result-row img {
+    width: 72px;
+    height: 72px;
   }
 }

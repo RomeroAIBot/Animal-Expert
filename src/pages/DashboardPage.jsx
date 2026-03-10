@@ -45,6 +45,10 @@ function DashboardPage({ appContext }) {
           <h3>Today's Daily Trivia</h3>
           <p>10 expert-level multiple-choice questions for the selected category.</p>
         </Link>
+        <Link className="card link-card" to="/identify-cross">
+          <h3>Identify &amp; Cross</h3>
+          <p>Identify five breeds from photos, then solve a crossword built from their clue facts.</p>
+        </Link>
         <Link className="card link-card" to="/archive">
           <h3>Past Games Archive</h3>
           <p>Replay prior daily sessions by date.</p>

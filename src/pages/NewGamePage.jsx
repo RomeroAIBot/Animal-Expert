@@ -4,6 +4,7 @@ import PuzzleBoard from '../components/PuzzleBoard';
 import TriviaQuestionCard from '../components/TriviaQuestionCard';
 import { generatePuzzleDeck, generateRandomTrivia } from '../utils/gameGenerators';
 import { playSound } from '../utils/audio';
+import { recordUsedIds, trackerKeys } from '../utils/questionTracker';
 import { storage, upsertHistory } from '../utils/storage';
 
 function NewGamePage({ appContext }) {
@@ -20,11 +21,17 @@ function NewGamePage({ appContext }) {
     () => generatePuzzleDeck(category, size, `random:${nonce}`, new Date()),
     [category, size, nonce]
   );
-  const trivia = useMemo(() => generateRandomTrivia(category), [category, nonce]);
+  const trivia = useMemo(() => generateRandomTrivia(category, new Date()), [category, nonce]);
 
   const question = trivia.questions[index];
 
   const saveTrivia = (finalScore) => {
+    recordUsedIds(
+      trackerKeys.questions,
+      category,
+      trivia.questions.map((item) => item.id),
+      new Date().toISOString()
+    );
     upsertHistory({
       id: `random:trivia:${category}:${nonce}`,
       date: new Date().toDateString(),
@@ -45,6 +52,7 @@ function NewGamePage({ appContext }) {
 
     if (index === trivia.questions.length - 1) {
       saveTrivia(nextScore);
+      setIndex((i) => i + 1);
       return;
     }
 
@@ -94,7 +102,8 @@ function NewGamePage({ appContext }) {
             storage.setImageCache(next);
           }}
           soundEnabled={appContext.soundEnabled}
-          onComplete={(payload) =>
+          onComplete={(payload) => {
+            recordUsedIds(trackerKeys.puzzles, category, [payload.comboId || puzzle.comboId], new Date().toISOString());
             upsertHistory({
               id: `random:puzzle:${category}:${nonce}`,
               date: new Date().toDateString(),
@@ -103,15 +112,15 @@ function NewGamePage({ appContext }) {
               score: payload.score,
               flips: payload.flips,
               seconds: payload.seconds
-            })
-          }
+            });
+          }}
         />
       ) : (
         <>
           {question ? (
             <>
               <p>
-                Question {index + 1}/{trivia.questions.length} | Score: {score}
+                Question {Math.min(index + 1, trivia.questions.length)}/{trivia.questions.length} | Score: {score}
               </p>
               <TriviaQuestionCard
                 question={question}

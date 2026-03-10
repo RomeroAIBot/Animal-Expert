@@ -27,7 +27,7 @@ function PuzzleBoard({ deck, category, imageCache, setImageCache, soundEnabled, 
           const url = await fetchBreedImage({ entity, category, cache: imageCache, setCache: setImageCache });
           if (!cancelled) next[entity.id] = url;
         } catch {
-          if (!cancelled) next[entity.id] = 'https://images.unsplash.com/photo-1450778869180-41d0601e046e?auto=format&fit=crop&w=800&q=80';
+          if (!cancelled) next[entity.id] = entity.fallbackUrl;
         }
       }
       if (!cancelled) setUrls(next);
@@ -42,9 +42,9 @@ function PuzzleBoard({ deck, category, imageCache, setImageCache, soundEnabled, 
     if (matched.length === deck.entities.length) {
       confetti({ particleCount: 120, spread: 65, origin: { y: 0.6 } });
       const score = Math.max(0, 1000 - flips * 8 - seconds * 2 + deck.entities.length * 50);
-      onComplete({ flips, seconds, score });
+      onComplete({ flips, seconds, score, comboId: deck.comboId });
     }
-  }, [matched.length, deck.entities.length, flips, seconds, onComplete]);
+  }, [matched.length, deck.entities.length, flips, seconds, onComplete, deck.comboId]);
 
   const handleCardClick = (card) => {
     if (flipped.length === 2 || flipped.includes(card.id) || matched.includes(card.pairId)) {

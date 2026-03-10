@@ -1,24 +1,20 @@
 // Frontend API helper for breed images.
-// Calls serverless proxy endpoints so API keys never ship to the browser.
+// Calls Netlify proxy endpoints so API keys never ship to the browser.
 export const fetchBreedImage = async ({ entity, category, cache, setCache }) => {
   const cacheKey = `${category}:${entity.id}`;
   if (cache[cacheKey]) return cache[cacheKey];
 
-  const endpoint =
-    category === 'dogs'
-      ? '/api/dog-image'
-      : category === 'cats'
-        ? '/api/cat-image'
-        : '/api/image-search';
-
+  const endpoint = category === 'dogs' ? '/api/dog-image' : '/api/image-search';
   const response = await fetch(endpoint, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      query: entity.imageQueries[0],
+      category,
+      query: entity.photoQuery,
       keywords: entity.displayName,
       breedId: entity.dogApiBreedId,
-      catBreedId: entity.catApiBreedId
+      catBreedId: entity.catApiBreedId,
+      fallbackUrl: entity.fallbackUrl
     })
   });
 

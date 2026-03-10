@@ -4,6 +4,7 @@ import TriviaQuestionCard from '../components/TriviaQuestionCard';
 import { generateDailyTrivia } from '../utils/gameGenerators';
 import { getDateSeed } from '../utils/seed';
 import { playSound } from '../utils/audio';
+import { recordUsedIds, trackerKeys } from '../utils/questionTracker';
 import { storage, updateStreak, upsertHistory } from '../utils/storage';
 
 function DailyTriviaPage({ appContext }) {
@@ -45,6 +46,12 @@ function DailyTriviaPage({ appContext }) {
     const done = index === session.questions.length - 1;
     if (done) {
       const date = getDateSeed(new Date());
+      recordUsedIds(
+        trackerKeys.questions,
+        category,
+        session.questions.map((item) => item.id),
+        new Date().toISOString()
+      );
       const entry = {
         id: `${date}:daily:trivia:${category}`,
         date,

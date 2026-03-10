@@ -6,6 +6,7 @@ const links = [
   { to: '/', label: 'Dashboard' },
   { to: '/daily-puzzle', label: 'Daily Puzzle' },
   { to: '/daily-trivia', label: 'Daily Trivia' },
+  { to: '/identify-cross', label: 'Identify & Cross' },
   { to: '/archive', label: 'Archive' },
   { to: '/new-game', label: 'Spawn New Game' },
   { to: '/leaderboard', label: 'Leaderboard' }
