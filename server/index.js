@@ -76,6 +76,41 @@ app.post('/api/dog-image', async (req, res) => {
   return res.json({ url: fallbackJson.message, source: 'dog-ceo' });
 });
 
+app.post('/api/cat-image', async (req, res) => {
+  const catKey = process.env.CAT_API_KEY;
+  const unsplashKey = process.env.UNSPLASH_ACCESS_KEY;
+  const { catBreedId, query, keywords } = req.body;
+
+  if (catKey && catBreedId) {
+    const endpoint = `https://api.thecatapi.com/v1/images/search?breed_ids=${encodeURIComponent(
+      catBreedId
+    )}&limit=1`;
+    const response = await fetch(endpoint, { headers: { 'x-api-key': catKey } });
+    if (response.ok) {
+      const [first] = await response.json();
+      if (first?.url) return res.json({ url: first.url, source: 'the-cat-api' });
+    }
+  }
+
+  if (!unsplashKey) return res.status(500).json({ error: 'Missing CAT_API_KEY and UNSPLASH_ACCESS_KEY' });
+
+  const attempts = [query, `${query} breed`, `${query} portrait`];
+  for (const candidate of attempts) {
+    const endpoint = `https://api.unsplash.com/search/photos?query=${encodeURIComponent(
+      candidate
+    )}&orientation=squarish&per_page=10&client_id=${unsplashKey}`;
+    const response = await fetch(endpoint);
+    if (!response.ok) continue;
+    const data = await response.json();
+    const photo = (data.results || []).find((item) => keywordPass(item, keywords || query));
+    if (photo?.urls?.regular) {
+      return res.json({ url: photo.urls.regular, source: 'unsplash', query: candidate });
+    }
+  }
+
+  return res.status(404).json({ error: 'No cat image found' });
+});
+
 app.listen(port, () => {
   console.log(`Animal Expert API running at http://localhost:${port}`);
 });
