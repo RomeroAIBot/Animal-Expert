@@ -218,7 +218,7 @@ function IdentifyCrossPage({ appContext }) {
                 <p>{item.correct ? 'Correct' : `Incorrect, you chose ${item.selected}`}</p>
               </div>
               <span className={item.correct ? 'result-icon success' : 'result-icon fail'}>
-                {item.correct ? '?' : 'X'}
+                {item.correct ? 'OK' : 'X'}
               </span>
             </div>
           ))}
@@ -293,3 +293,4 @@ function IdentifyCrossPage({ appContext }) {
 }
 
 export default IdentifyCrossPage;
+

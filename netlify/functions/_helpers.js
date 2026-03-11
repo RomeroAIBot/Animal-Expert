@@ -10,11 +10,17 @@ const json = (statusCode, body) => ({
 
 const normalize = (value) => String(value || '').toLowerCase();
 
+const buildKeywordList = (keywords) => {
+  const values = Array.isArray(keywords) ? keywords : [keywords];
+  return values
+    .flatMap((value) => normalize(value).split(/[\s(),|/-]+/))
+    .map((word) => word.trim())
+    .filter((word) => word.length > 3);
+};
+
 const keywordPass = (photo, keywords) => {
   const haystack = normalize(`${photo.alt_description || ''} ${photo.description || ''}`);
-  const words = normalize(keywords)
-    .split(/[\s(),-]+/)
-    .filter((word) => word.length > 3);
+  const words = buildKeywordList(keywords);
 
   if (!words.length) return true;
   return words.some((word) => haystack.includes(word));
@@ -41,4 +47,4 @@ const searchUnsplash = async (query, keywords, key) => {
   return null;
 };
 
-module.exports = { json, keywordPass, searchUnsplash };
+module.exports = { json, keywordPass, searchUnsplash, buildKeywordList };

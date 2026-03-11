@@ -119,26 +119,71 @@ const labels = {
   horse: 'equine sport, conformation, and breed type'
 };
 
+const entityClues = {
+  'norwegian-lundehund': 'A rare Nordic breed developed for puffin hunting with six functional toes and unusual spinal flexibility.',
+  'belgian-malinois': 'A high-drive Belgian shepherd variety strongly associated with detection, patrol, and protection work.',
+  'border-collie': 'A gathering stock dog known for intense eye, crouching style, and exceptional handler responsiveness.',
+  'german-shepherd': 'A large utility breed frequently discussed in service, patrol, and health-testing conversations around hips and elbows.',
+  'australian-cattle-dog': 'A compact drover bred to move cattle over long distances and famous for heel-nipping working style.',
+  'doberman-pinscher': 'A sleek guarding breed commonly linked to cardiac screening and a square athletic outline.',
+  'newfoundland': 'A giant water-working breed with a long association with lifesaving and hauling work.',
+  vizsla: 'A Hungarian pointing breed with a rust coat and unusually strong handler attachment.',
+  'ball-python-piebald': 'A recessive ball python project defined by large unpigmented white patches.',
+  'ball-python-mojave': 'An incomplete dominant ball python morph central to many blue-eyed leucistic complex discussions.',
+  'ball-python-clown': 'A recessive ball python project valued for its cleaner, reduced pattern architecture.',
+  'corn-snake': 'A commonly kept oviparous colubrid with an enormous catalog of captive color and pattern lines.',
+  'western-hognose': 'A small fossorial species famous for bluff displays like hooding, flattening, and dramatic death-feigning.',
+  'california-kingsnake': 'A commonly kept kingsnake often cited as an example of ophiophagy.',
+  'boa-constrictor': 'A heavy-bodied New World constrictor that is live-bearing rather than egg-laying.',
+  'gaboon-viper': 'A venomous African species best known for massive body, camouflage, and extremely long fangs.',
+  silkie: 'A heavily broody ornamental chicken with silk-like plumage, dark skin, crest, beard, and five toes.',
+  'ayam-cemani': 'A rare Indonesian chicken noted for extreme black pigmentation extending well beyond the feathers.',
+  'dong-tao': 'A rare breed immediately recognized by unusually thick, heavily scaled legs.',
+  'la-fleche': 'A historic French chicken strongly associated with a horned V-comb.',
+  australorp: 'A dual-purpose breed famous for high egg production records.',
+  welsummer: 'A heritage breed best known for dark terracotta-brown eggs.',
+  'cream-legbar': 'A blue-egg laying autosexing breed that can often be sexed by chick down pattern.',
+  ameraucana: 'A true blue-egg breed expected to carry muffs and beard rather than being an olive-egger cross.',
+  'maine-coon': 'A large natural breed associated with HCM screening, a shaggy coat, and a substantial ruff.',
+  chartreux: 'A French breed noted for a woolly blue coat and copper-to-gold eyes.',
+  sphynx: 'A minimally coated breed known for skin-care needs rather than traditional coat grooming.',
+  savannah: 'A long-legged spotted breed associated with hybrid-generation discussion and tall ears.',
+  bengal: 'A breed prized for horizontal flow, contrast, and rosetted or marbled pattern.',
+  'norwegian-forest-cat': 'A natural forest breed with a water-resistant outer coat and dense undercoat.',
+  abyssinian: 'A sleek breed defined by warm ticking rather than full-body striping.',
+  ragdoll: 'A blue-eyed pointed breed with slow-maturing coat and substantial size.',
+  'american-quarter-horse': 'A stock horse strongly associated with explosive sprinting and cow sense.',
+  arabian: 'A breed known for endurance influence, a dished profile, and high tail carriage.',
+  friesian: 'A black baroque breed associated with abundant feathering and animated action.',
+  'cleveland-bay': 'A historic English carriage breed traditionally always bay in color.',
+  morgan: 'An American breed celebrated for versatility across harness and saddle work.',
+  andalusian: 'An Iberian breed strongly tied to collected movement and baroque type.',
+  'american-cream-draft': 'The only draft breed developed in the United States, known for cream dilution and amber eyes.',
+  'marsh-tacky': 'A heritage horse adapted to the wet terrain of the Carolina Lowcountry.'
+};
+
+const rotateOptions = (options, shift) => options.map((_, index) => options[(index + shift) % options.length]);
+
 const termTemplates = [
-  (item, options) => ({ question: `Which expert term matches this definition: ${item.definition}?`, options }),
-  (item, options) => ({ question: `In ${labels[item.category]}, what is the best technical term for this concept: ${item.definition}?`, options: [options[1], options[2], options[3], options[0]] }),
-  (item, options) => ({ question: `Select the correct professional term: ${item.definition}.`, options: [options[2], options[0], options[3], options[1]] }),
-  (item, options) => ({ question: `Handlers in ${labels[item.category]} would use which term for this definition: ${item.definition}?`, options: [options[3], options[1], options[0], options[2]] }),
-  (item, options) => ({ question: `Which vocabulary word belongs with this expert description: ${item.definition}?`, options: [options[0], options[3], options[1], options[2]] }),
-  (item, options) => ({ question: `Choose the most accurate term for this advanced concept: ${item.definition}.`, options: [options[1], options[0], options[2], options[3]] })
+  (item, options) => ({ question: `In ${labels[item.category]}, which technical concept best fits this definition: ${item.definition}?`, options }),
+  (item, options) => ({ question: `A specialist reviewing a case note would use which term if the defining feature is ${item.definition}?`, options: rotateOptions(options, 1) }),
+  (item, options) => ({ question: `Choose the expert-level term that belongs in this scenario: ${item.definition}.`, options: rotateOptions(options, 2) }),
+  (item, options) => ({ question: `Which concept should come to mind first for an experienced professional reading ${item.definition}?`, options: rotateOptions(options, 3) }),
+  (item, options) => ({ question: `Select the most accurate vocabulary item for a case described as ${item.definition}.`, options }),
+  (item, options) => ({ question: `An advanced handler or keeper would label this as what: ${item.definition}?`, options: rotateOptions(options, 1) })
 ];
 
 const breedTemplates = [
-  (entity, options) => ({ question: `Which breed or type matches this verified fact: ${entity.funFact}`, options }),
-  (entity, options) => ({ question: `Identify the breed from this clue: ${entity.funFact}`, options: [options[1], options[2], options[3], options[0]] }),
-  (entity, options) => ({ question: `A source-backed profile describes which breed this way: ${entity.funFact}`, options: [options[2], options[0], options[3], options[1]] }),
-  (entity, options) => ({ question: `Select the correct breed associated with this fact: ${entity.funFact}`, options: [options[3], options[1], options[0], options[2]] }),
-  (entity, options) => ({ question: `Which answer best fits this breed-specific clue: ${entity.funFact}`, options: [options[0], options[2], options[1], options[3]] }),
-  (entity, options) => ({ question: `From the official source, which breed is linked to this trait: ${entity.funFact}`, options: [options[1], options[0], options[2], options[3]] }),
-  (entity, options) => ({ question: `Breed specialists would associate this description with which animal: ${entity.funFact}`, options: [options[2], options[3], options[0], options[1]] }),
-  (entity, options) => ({ question: `Which breed should an expert identify from this line: ${entity.funFact}`, options: [options[0], options[3], options[2], options[1]] }),
-  (entity, options) => ({ question: `Choose the breed that matches the following registry-style profile note: ${entity.funFact}`, options: [options[3], options[0], options[1], options[2]] }),
-  (entity, options) => ({ question: `This fact belongs to which breed or morph: ${entity.funFact}`, options: [options[1], options[3], options[0], options[2]] })
+  (entity, options) => ({ question: `${entityClues[entity.id]} Which answer best fits that description?`, options }),
+  (entity, options) => ({ question: `Breed specialists would hear this clue and think of which animal: ${entityClues[entity.id]}`, options: rotateOptions(options, 1) }),
+  (entity, options) => ({ question: `Select the breed or morph most strongly associated with this profile: ${entityClues[entity.id]}`, options: rotateOptions(options, 2) }),
+  (entity, options) => ({ question: `An expert-level identification prompt points to which answer here: ${entityClues[entity.id]}`, options: rotateOptions(options, 3) }),
+  (entity, options) => ({ question: `Which breed name closes the loop on this clue: ${entityClues[entity.id]}`, options }),
+  (entity, options) => ({ question: `If this were a standards or husbandry exam item, what would the correct answer be: ${entityClues[entity.id]}`, options: rotateOptions(options, 1) }),
+  (entity, options) => ({ question: `Which answer is most defensible from this source-backed clue: ${entityClues[entity.id]}`, options: rotateOptions(options, 2) }),
+  (entity, options) => ({ question: `An experienced judge, trainer, or keeper would identify which animal from this description: ${entityClues[entity.id]}`, options: rotateOptions(options, 3) }),
+  (entity, options) => ({ question: `Choose the correct identification for this advanced clue: ${entityClues[entity.id]}`, options }),
+  (entity, options) => ({ question: `Which one of these is the strongest match for the following description: ${entityClues[entity.id]}`, options: rotateOptions(options, 1) })
 ];
 
 const pickDistractors = (items, selfId, offset) => {

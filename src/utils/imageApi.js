@@ -1,5 +1,14 @@
 // Frontend API helper for breed images.
 // Calls Netlify proxy endpoints so API keys never ship to the browser.
+const toKeywordSet = (entity) => {
+  const raw = [entity.displayName, entity.photoQuery, ...(entity.imageQueries || [])].join(' ');
+  return raw
+    .split(/[|,]/)
+    .map((value) => value.trim())
+    .filter(Boolean)
+    .join(' ');
+};
+
 export const fetchBreedImage = async ({ entity, category, cache, setCache }) => {
   const cacheKey = `${category}:${entity.id}`;
   if (cache[cacheKey]) return cache[cacheKey];
@@ -10,9 +19,12 @@ export const fetchBreedImage = async ({ entity, category, cache, setCache }) => 
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       category,
+      entityId: entity.id,
+      breedName: entity.displayName,
       query: entity.photoQuery,
-      keywords: entity.displayName,
+      keywords: toKeywordSet(entity),
       breedId: entity.dogApiBreedId,
+      dogCeoPath: entity.dogCeoPath,
       catBreedId: entity.catApiBreedId,
       fallbackUrl: entity.fallbackUrl
     })

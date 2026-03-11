@@ -2,6 +2,7 @@ import { seededShuffle } from './seed';
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 const LOOKBACK_DAYS = 45;
+const MAX_LOG_ENTRIES = 750;
 
 const LOG_KEYS = {
   questions: 'used_questions_log',
@@ -28,9 +29,22 @@ const pruneEntries = (entries = [], now = new Date()) => {
   return entries.filter((entry) => new Date(entry.usedAt).getTime() >= cutoff);
 };
 
+const dedupeEntries = (entries) => {
+  const seen = new Set();
+  return [...entries]
+    .reverse()
+    .filter((entry) => {
+      const key = `${entry.id}:${entry.usedAt}`;
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    })
+    .reverse();
+};
+
 const getPrunedCategoryLog = (logKey, category, now = new Date()) => {
   const log = readLog(logKey);
-  const nextEntries = pruneEntries(log[category] || [], now);
+  const nextEntries = dedupeEntries(pruneEntries(log[category] || [], now));
   if ((log[category] || []).length !== nextEntries.length) {
     log[category] = nextEntries;
     writeLog(logKey, log);
@@ -43,9 +57,19 @@ export const getRecentIds = (logKey, category, now = new Date()) =>
 
 export const recordUsedIds = (logKey, category, ids, usedAt = new Date().toISOString()) => {
   const log = readLog(logKey);
-  const entries = pruneEntries(log[category] || [], new Date(usedAt));
-  const nextEntries = [...entries, ...ids.map((id) => ({ id, usedAt }))];
-  log[category] = nextEntries.slice(-500);
+  const prior = pruneEntries(log[category] || [], new Date(usedAt));
+  const uniqueIds = [...new Set(ids.filter(Boolean))];
+  const nextEntries = dedupeEntries([
+    ...prior,
+    ...uniqueIds.map((id) => ({ id, usedAt }))
+  ]);
+  log[category] = nextEntries.slice(-MAX_LOG_ENTRIES);
+  writeLog(logKey, log);
+};
+
+const clearCategoryLog = (logKey, category) => {
+  const log = readLog(logKey);
+  log[category] = [];
   writeLog(logKey, log);
 };
 
@@ -61,11 +85,10 @@ export const selectNoRepeatItems = ({
 }) => {
   const recentIds = getRecentIds(logKey, category, now);
   let available = items.filter((item) => !recentIds.has(getId(item)));
+  const resetThreshold = Math.max(count, Math.min(minimumRemaining, items.length));
 
-  if (available.length < minimumRemaining || available.length < count) {
-    const log = readLog(logKey);
-    log[category] = [];
-    writeLog(logKey, log);
+  if (available.length < resetThreshold) {
+    clearCategoryLog(logKey, category);
     available = [...items];
   }
 
@@ -80,12 +103,11 @@ export const selectNoRepeatCombination = ({
   items,
   count,
   seed,
-  minimumRemaining = 10,
   getId = (item) => item.id,
   now = new Date()
 }) => {
   const recentIds = getRecentIds(logKey, category, now);
-  const attempts = 18;
+  const attempts = Math.max(32, items.length * 4);
 
   for (let i = 0; i < attempts; i += 1) {
     const selection = seededShuffle(items, `${seed}:${i}`).slice(0, count);
@@ -95,9 +117,7 @@ export const selectNoRepeatCombination = ({
     }
   }
 
-  const log = readLog(logKey);
-  log[category] = [];
-  writeLog(logKey, log);
+  clearCategoryLog(logKey, category);
   const selection = seededShuffle(items, `${seed}:reset`).slice(0, count);
   return { items: selection, comboId: buildComboId(selection.map(getId)) };
 };

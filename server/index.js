@@ -10,12 +10,18 @@ const port = process.env.PORT || 8787;
 app.use(cors());
 app.use(express.json());
 
+const normalize = (value) => String(value || '').toLowerCase();
+const buildKeywordList = (keywords) => {
+  const values = Array.isArray(keywords) ? keywords : [keywords];
+  return values
+    .flatMap((value) => normalize(value).split(/[\s(),|/-]+/))
+    .map((word) => word.trim())
+    .filter((word) => word.length > 3);
+};
+
 const keywordPass = (photo, keywords) => {
   const haystack = `${photo.alt_description || ''} ${photo.description || ''}`.toLowerCase();
-  const words = String(keywords || '')
-    .toLowerCase()
-    .split(/[\s(),-]+/)
-    .filter((word) => word.length > 3);
+  const words = buildKeywordList(keywords);
 
   if (!words.length) return true;
   return words.some((word) => haystack.includes(word));
@@ -64,6 +70,67 @@ const searchPixabay = async (query, apiKey) => {
   return first ? { url: first.webformatURL, source: 'pixabay' } : null;
 };
 
+const DOG_CEO_PATHS = {
+  'belgian-malinois': 'malinois',
+  'border-collie': 'collie/border',
+  'german-shepherd': 'germanshepherd',
+  'doberman-pinscher': 'doberman',
+  'newfoundland': 'newfoundland',
+  vizsla: 'vizsla'
+};
+
+const toBreedSlug = (query) =>
+  normalize(query)
+    .replace(/dog|breed|standard|working|sporting|herding/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+const fetchDogApiImages = async (breedId, key) => {
+  if (!key || !breedId) return [];
+  const endpoint = `https://api.thedogapi.com/v1/images/search?breed_ids=${encodeURIComponent(
+    breedId
+  )}&limit=6&include_breeds=true&size=med`;
+  const response = await fetch(endpoint, { headers: { 'x-api-key': key } });
+  if (!response.ok) return [];
+  const payload = await response.json();
+  return (payload || []).filter((item) => {
+    if (!item?.url) return false;
+    if (!Array.isArray(item.breeds) || item.breeds.length === 0) return true;
+    return item.breeds.some((breed) => String(breed.id) === String(breedId));
+  });
+};
+
+const fetchDogApiReferenceImage = async (breedId, breedName, key) => {
+  if (!key || !breedId) return null;
+  const byIdResponse = await fetch(`https://api.thedogapi.com/v1/breeds/${encodeURIComponent(breedId)}`, {
+    headers: { 'x-api-key': key }
+  });
+  if (byIdResponse.ok) {
+    const payload = await byIdResponse.json();
+    if (payload?.reference_image_id) {
+      return `https://cdn2.thedogapi.com/images/${payload.reference_image_id}.jpg`;
+    }
+  }
+
+  const searchResponse = await fetch(
+    `https://api.thedogapi.com/v1/breeds/search?q=${encodeURIComponent(breedName || '')}`,
+    { headers: { 'x-api-key': key } }
+  );
+  if (!searchResponse.ok) return null;
+  const matches = await searchResponse.json();
+  const match = (matches || []).find((item) => item?.reference_image_id);
+  return match?.reference_image_id ? `https://cdn2.thedogapi.com/images/${match.reference_image_id}.jpg` : null;
+};
+
+const fallbackDogCeo = async (entityId, dogCeoPath, query) => {
+  const path = dogCeoPath || DOG_CEO_PATHS[entityId] || toBreedSlug(query).split(' ').join('/');
+  if (!path) return null;
+  const response = await fetch(`https://dog.ceo/api/breed/${path}/images/random`);
+  if (!response.ok) return null;
+  const payload = await response.json();
+  return payload?.message || null;
+};
+
 app.post('/api/image-search', async (req, res) => {
   const unsplashKey = process.env.UNSPLASH_ACCESS_KEY;
   const catKey = process.env.CAT_API_KEY || process.env.VITE_CAT_API_KEY;
@@ -100,33 +167,21 @@ app.post('/api/image-search', async (req, res) => {
 
 app.post('/api/dog-image', async (req, res) => {
   const key = process.env.DOG_API_KEY;
-  const { breedId, query, fallbackUrl } = req.body;
+  const { breedId, breedName, entityId, dogCeoPath, query, fallbackUrl } = req.body;
 
-  if (key && breedId) {
-    const endpoint = `https://api.thedogapi.com/v1/images/search?breed_ids=${encodeURIComponent(
-      breedId
-    )}&limit=1`;
-    const response = await fetch(endpoint, { headers: { 'x-api-key': key } });
-    if (response.ok) {
-      const [first] = await response.json();
-      if (first?.url) return res.json({ url: first.url, source: 'the-dog-api' });
-    }
+  const dogApiImages = await fetchDogApiImages(breedId, key);
+  if (dogApiImages[0]?.url) {
+    return res.json({ url: dogApiImages[0].url, source: 'the-dog-api' });
   }
 
-  const breed = String(query || '')
-    .toLowerCase()
-    .replace(/dog|breed/g, '')
-    .trim()
-    .split(' ')
-    .join('/');
-  const fallbackEndpoint = breed
-    ? `https://dog.ceo/api/breed/${breed}/images/random`
-    : 'https://dog.ceo/api/breeds/image/random';
+  const referenceImage = await fetchDogApiReferenceImage(breedId, breedName || query, key);
+  if (referenceImage) {
+    return res.json({ url: referenceImage, source: 'the-dog-api-reference' });
+  }
 
-  const fallbackRes = await fetch(fallbackEndpoint);
-  if (fallbackRes.ok) {
-    const fallbackJson = await fallbackRes.json();
-    return res.json({ url: fallbackJson.message, source: 'dog-ceo' });
+  const dogCeoImage = await fallbackDogCeo(entityId, dogCeoPath, query || breedName);
+  if (dogCeoImage) {
+    return res.json({ url: dogCeoImage, source: 'dog-ceo' });
   }
 
   if (fallbackUrl) return res.json({ url: fallbackUrl, source: 'fallback' });

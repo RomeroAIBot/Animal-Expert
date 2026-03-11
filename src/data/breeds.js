@@ -8,10 +8,13 @@ const fallbackImages = {
   horse: 'https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?auto=format&fit=crop&w=900&q=80'
 };
 
+const dogFallbackUrl = (query) =>
+  `https://source.unsplash.com/featured/900x900/?${encodeURIComponent(query)}`;
+
 const withPhotoDefaults = (category, entity) => ({
   ...entity,
   photoQuery: entity.photoQuery,
-  imageQueries: [entity.photoQuery],
+  imageQueries: entity.imageQueries || [entity.photoQuery],
   fallbackUrl: entity.fallbackUrl || fallbackImages[category]
 });
 
@@ -22,6 +25,8 @@ export const breeds = {
       displayName: 'Norwegian Lundehund',
       dogApiBreedId: 198,
       photoQuery: 'Norwegian Lundehund dog breed',
+      dogCeoPath: '',
+      fallbackUrl: dogFallbackUrl('Norwegian Lundehund dog breed'),
       funFact: 'Lundehunds are known for six functional toes on each foot.',
       factSource: 'https://www.akc.org/dog-breeds/norwegian-lundehund/'
     }),
@@ -30,6 +35,8 @@ export const breeds = {
       displayName: 'Belgian Malinois',
       dogApiBreedId: 16,
       photoQuery: 'Belgian Malinois working dog',
+      dogCeoPath: 'malinois',
+      fallbackUrl: dogFallbackUrl('Belgian Malinois working dog'),
       funFact: 'The Belgian Malinois is often selected for high-drive detection and protection work.',
       factSource: 'https://www.akc.org/dog-breeds/belgian-malinois/'
     }),
@@ -38,6 +45,8 @@ export const breeds = {
       displayName: 'Border Collie',
       dogApiBreedId: 50,
       photoQuery: 'Border Collie agility dog',
+      dogCeoPath: 'collie/border',
+      fallbackUrl: dogFallbackUrl('Border Collie agility dog'),
       funFact: 'Border Collies are widely used in stock work for intense eye and biddability.',
       factSource: 'https://www.akc.org/dog-breeds/border-collie/'
     }),
@@ -46,6 +55,8 @@ export const breeds = {
       displayName: 'German Shepherd Dog',
       dogApiBreedId: 115,
       photoQuery: 'German Shepherd Dog breed standard',
+      dogCeoPath: 'germanshepherd',
+      fallbackUrl: dogFallbackUrl('German Shepherd Dog breed'),
       funFact: 'German Shepherd Dogs are a classic utility breed in herding and service roles.',
       factSource: 'https://www.akc.org/dog-breeds/german-shepherd-dog/'
     }),
@@ -53,7 +64,9 @@ export const breeds = {
       id: 'australian-cattle-dog',
       displayName: 'Australian Cattle Dog',
       dogApiBreedId: 12,
+      dogCeoPath: '',
       photoQuery: 'Australian Cattle Dog breed',
+      fallbackUrl: dogFallbackUrl('Australian Cattle Dog breed'),
       funFact: 'Australian Cattle Dogs were developed for heel-nipping cattle control.',
       factSource: 'https://www.akc.org/dog-breeds/australian-cattle-dog/'
     }),
@@ -61,7 +74,9 @@ export const breeds = {
       id: 'doberman-pinscher',
       displayName: 'Doberman Pinscher',
       dogApiBreedId: 94,
+      dogCeoPath: 'doberman',
       photoQuery: 'Doberman Pinscher dog breed',
+      fallbackUrl: dogFallbackUrl('Doberman Pinscher dog breed'),
       funFact: 'Dobermans are known for a compact, athletic build and strong trainability.',
       factSource: 'https://www.akc.org/dog-breeds/doberman-pinscher/'
     }),
@@ -69,7 +84,9 @@ export const breeds = {
       id: 'newfoundland',
       displayName: 'Newfoundland',
       dogApiBreedId: 212,
+      dogCeoPath: 'newfoundland',
       photoQuery: 'Newfoundland dog breed',
+      fallbackUrl: dogFallbackUrl('Newfoundland dog breed'),
       funFact: 'Newfoundlands have a long history in water rescue work.',
       factSource: 'https://www.akc.org/dog-breeds/newfoundland/'
     }),
@@ -77,7 +94,9 @@ export const breeds = {
       id: 'vizsla',
       displayName: 'Vizsla',
       dogApiBreedId: 287,
+      dogCeoPath: 'vizsla',
       photoQuery: 'Vizsla sporting dog',
+      fallbackUrl: dogFallbackUrl('Vizsla sporting dog'),
       funFact: 'Vizslas are a Hungarian pointing breed with strong handler attachment.',
       factSource: 'https://www.akc.org/dog-breeds/vizsla/'
     })

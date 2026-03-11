@@ -7,6 +7,8 @@ import { playSound } from '../utils/audio';
 import { recordUsedIds, trackerKeys } from '../utils/questionTracker';
 import { storage, upsertHistory } from '../utils/storage';
 
+const toPercent = (correct, total) => Math.round((correct / Math.max(total, 1)) * 100);
+
 function NewGamePage({ appContext }) {
   const [category, setCategory] = useState('mixed');
   const [mode, setMode] = useState('puzzle');
@@ -14,7 +16,7 @@ function NewGamePage({ appContext }) {
   const [nonce, setNonce] = useState(Date.now());
   const [imageCache, setImageCache] = useState(storage.getImageCache());
   const [index, setIndex] = useState(0);
-  const [score, setScore] = useState(0);
+  const [correctCount, setCorrectCount] = useState(0);
   const [answers, setAnswers] = useState({});
 
   const puzzle = useMemo(
@@ -24,8 +26,9 @@ function NewGamePage({ appContext }) {
   const trivia = useMemo(() => generateRandomTrivia(category, new Date()), [category, nonce]);
 
   const question = trivia.questions[index];
+  const percentage = toPercent(correctCount, trivia.questions.length);
 
-  const saveTrivia = (finalScore) => {
+  const saveTrivia = (finalCorrect, finalPercentage) => {
     recordUsedIds(
       trackerKeys.questions,
       category,
@@ -37,7 +40,8 @@ function NewGamePage({ appContext }) {
       date: new Date().toDateString(),
       mode: 'new-trivia',
       category,
-      score: finalScore,
+      score: finalPercentage,
+      correct: finalCorrect,
       total: trivia.questions.length
     });
   };
@@ -45,13 +49,14 @@ function NewGamePage({ appContext }) {
   const onAnswer = (option) => {
     if (!question || answers[question.id]) return;
     const correct = option === question.answer;
-    const nextScore = correct ? score + 10 : score;
-    setScore(nextScore);
+    const nextCorrect = correct ? correctCount + 1 : correctCount;
+    const nextPercentage = toPercent(nextCorrect, trivia.questions.length);
+    setCorrectCount(nextCorrect);
     playSound(correct ? 'correct' : 'wrong', appContext.soundEnabled);
     setAnswers((prev) => ({ ...prev, [question.id]: option }));
 
     if (index === trivia.questions.length - 1) {
-      saveTrivia(nextScore);
+      saveTrivia(nextCorrect, nextPercentage);
       setIndex((i) => i + 1);
       return;
     }
@@ -62,7 +67,7 @@ function NewGamePage({ appContext }) {
   const resetSession = () => {
     setNonce(Date.now());
     setIndex(0);
-    setScore(0);
+    setCorrectCount(0);
     setAnswers({});
   };
 
@@ -120,7 +125,8 @@ function NewGamePage({ appContext }) {
           {question ? (
             <>
               <p>
-                Question {Math.min(index + 1, trivia.questions.length)}/{trivia.questions.length} | Score: {score}
+                Question {Math.min(index + 1, trivia.questions.length)}/{trivia.questions.length} | Correct:{' '}
+                {correctCount} | Score: {percentage}%
               </p>
               <TriviaQuestionCard
                 question={question}
@@ -131,7 +137,10 @@ function NewGamePage({ appContext }) {
           ) : (
             <article className="card result">
               <h3>Trivia complete</h3>
-              <p>Final score: {score}</p>
+              <p>
+                Correct answers: {correctCount}/{trivia.questions.length}
+              </p>
+              <p>Percentage: {percentage}%</p>
             </article>
           )}
         </>

@@ -380,3 +380,47 @@ main {
 }
 
 
+.trivia-meta {
+  margin: 0 0 0.35rem;
+  color: #6a624e;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.trivia-feedback {
+  margin-top: 0.9rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid #d6cdbf;
+}
+
+.trivia-feedback p {
+  margin: 0.35rem 0;
+}
+
+.trivia-source {
+  color: #6a624e;
+  font-size: 0.9rem;
+  word-break: break-word;
+}
+
+.option.correct {
+  border-color: var(--forest);
+  background: #edf5e7;
+}
+
+.facts-warning {
+  background: #fff3e6;
+  border-color: #dbb07b;
+  margin-bottom: 0.8rem;
+}
+
+.image-loading {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 0.75rem;
+  font-weight: 700;
+  color: #6a624e;
+}

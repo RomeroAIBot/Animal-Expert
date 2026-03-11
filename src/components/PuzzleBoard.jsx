@@ -9,6 +9,8 @@ function PuzzleBoard({ deck, category, imageCache, setImageCache, soundEnabled, 
   const [flips, setFlips] = useState(0);
   const [seconds, setSeconds] = useState(0);
   const [urls, setUrls] = useState({});
+  const [loadingImages, setLoadingImages] = useState(true);
+  const [loadErrors, setLoadErrors] = useState([]);
 
   const cards = deck.cards;
   const gridClass = deck.size === 6 ? 'grid-6' : 'grid-4';
@@ -20,17 +22,25 @@ function PuzzleBoard({ deck, category, imageCache, setImageCache, soundEnabled, 
 
   useEffect(() => {
     let cancelled = false;
+    setLoadingImages(true);
+    setLoadErrors([]);
     const load = async () => {
       const next = {};
+      const errors = [];
       for (const entity of deck.entities) {
         try {
           const url = await fetchBreedImage({ entity, category, cache: imageCache, setCache: setImageCache });
           if (!cancelled) next[entity.id] = url;
         } catch {
+          errors.push(entity.displayName);
           if (!cancelled) next[entity.id] = entity.fallbackUrl;
         }
       }
-      if (!cancelled) setUrls(next);
+      if (!cancelled) {
+        setUrls(next);
+        setLoadErrors(errors);
+        setLoadingImages(false);
+      }
     };
     load();
     return () => {
@@ -47,7 +57,7 @@ function PuzzleBoard({ deck, category, imageCache, setImageCache, soundEnabled, 
   }, [matched.length, deck.entities.length, flips, seconds, onComplete, deck.comboId]);
 
   const handleCardClick = (card) => {
-    if (flipped.length === 2 || flipped.includes(card.id) || matched.includes(card.pairId)) {
+    if (loadingImages || flipped.length === 2 || flipped.includes(card.id) || matched.includes(card.pairId)) {
       return;
     }
 
@@ -82,7 +92,13 @@ function PuzzleBoard({ deck, category, imageCache, setImageCache, soundEnabled, 
       <div className="stats-row">
         <span>Time: {seconds}s</span>
         <span>Flips: {flips}</span>
+        <span>{loadingImages ? 'Loading photos...' : 'Photos ready'}</span>
       </div>
+      {loadErrors.length > 0 && (
+        <div className="facts facts-warning">
+          <strong>Photo fallback used:</strong> {loadErrors.join(', ')}
+        </div>
+      )}
       <div className={`puzzle-grid ${gridClass}`}>
         {cards.map((card) => {
           const isOpen = flipped.includes(card.id) || matched.includes(card.pairId);
@@ -92,14 +108,17 @@ function PuzzleBoard({ deck, category, imageCache, setImageCache, soundEnabled, 
               type="button"
               className={`flip-card ${isOpen ? 'open' : ''}`}
               onClick={() => handleCardClick(card)}
+              disabled={loadingImages}
             >
               <span className="flip-card-inner">
                 <span className="flip-card-front">?</span>
                 <span className="flip-card-back">
                   {card.type === 'name' ? (
                     <strong>{card.entity.displayName}</strong>
-                  ) : (
+                  ) : urls[card.entity.id] ? (
                     <img src={urls[card.entity.id]} alt={card.entity.displayName} loading="lazy" />
+                  ) : (
+                    <span className="image-loading">Loading image</span>
                   )}
                 </span>
               </span>
