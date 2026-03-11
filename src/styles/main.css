@@ -217,6 +217,7 @@ main {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
 }
 
 .facts {
@@ -271,8 +272,10 @@ main {
 
 .identify-image {
   width: 100%;
-  max-height: 420px;
+  max-height: min(62vh, 420px);
+  aspect-ratio: 4 / 3;
   object-fit: cover;
+  object-position: center;
   border-radius: 12px;
   border: 1px solid #d6cab7;
 }
@@ -290,6 +293,7 @@ main {
   width: 88px;
   height: 88px;
   object-fit: cover;
+  object-position: center;
   border-radius: 10px;
 }
 
@@ -374,3 +378,5 @@ main {
     height: 72px;
   }
 }
+
+

@@ -40,9 +40,35 @@ const searchUnsplash = async (query, keywords, key) => {
   return null;
 };
 
+const searchPexels = async (query, apiKey) => {
+  if (!apiKey) return null;
+  const endpoint = `https://api.pexels.com/v1/search?query=${encodeURIComponent(
+    query
+  )}&per_page=8&orientation=square`;
+  const response = await fetch(endpoint, { headers: { Authorization: apiKey } });
+  if (!response.ok) return null;
+  const data = await response.json();
+  const first = (data.photos || []).find((item) => item?.src?.large);
+  return first ? { url: first.src.large, source: 'pexels' } : null;
+};
+
+const searchPixabay = async (query, apiKey) => {
+  if (!apiKey) return null;
+  const endpoint = `https://pixabay.com/api/?key=${encodeURIComponent(apiKey)}&q=${encodeURIComponent(
+    query
+  )}&image_type=photo&per_page=8&safesearch=true`;
+  const response = await fetch(endpoint);
+  if (!response.ok) return null;
+  const data = await response.json();
+  const first = (data.hits || []).find((item) => item?.webformatURL);
+  return first ? { url: first.webformatURL, source: 'pixabay' } : null;
+};
+
 app.post('/api/image-search', async (req, res) => {
   const unsplashKey = process.env.UNSPLASH_ACCESS_KEY;
   const catKey = process.env.CAT_API_KEY || process.env.VITE_CAT_API_KEY;
+  const pexelsKey = process.env.PEXELS_API_KEY;
+  const pixabayKey = process.env.PIXABAY_API_KEY;
   const { category, query, keywords, catBreedId, fallbackUrl } = req.body;
 
   if (category === 'cat' && catBreedId && catKey) {
@@ -61,6 +87,12 @@ app.post('/api/image-search', async (req, res) => {
     const result = await searchUnsplash(query, keywords, unsplashKey);
     if (result) return res.json(result);
   }
+
+  const pexels = await searchPexels(query, pexelsKey);
+  if (pexels) return res.json(pexels);
+
+  const pixabay = await searchPixabay(query, pixabayKey);
+  if (pixabay) return res.json(pixabay);
 
   if (fallbackUrl) return res.json({ url: fallbackUrl, source: 'fallback' });
   return res.status(404).json({ error: 'No suitable image found' });
