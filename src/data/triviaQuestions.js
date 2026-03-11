@@ -1,4 +1,5 @@
 import { breeds } from './breeds.js';
+import { importedTriviaQuestions } from './importedTriviaQuestions.js';
 
 const sourceByCategory = {
   dogs: 'https://www.akc.org/dog-breeds/',
@@ -250,7 +251,9 @@ const buildBreedQuestions = (entity, index) => {
 
 export const triviaQuestions = [
   ...termBank.flatMap(buildTermQuestions),
-  ...allBreedEntries.flatMap(buildBreedQuestions)
+  ...allBreedEntries.flatMap(buildBreedQuestions),
+  ...importedTriviaQuestions
 ];
 
 export default triviaQuestions;
+

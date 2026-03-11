@@ -191,3 +191,4 @@ app.post('/api/dog-image', async (req, res) => {
 app.listen(port, () => {
   console.log(`Animal Expert API running at http://localhost:${port}`);
 });
+

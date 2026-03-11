@@ -83,3 +83,4 @@ exports.handler = async (event) => {
     return json(500, { error: 'Unexpected image-search failure' });
   }
 };
+
