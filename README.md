@@ -115,8 +115,11 @@ display name and opt in appear on the Rankings page, which ranks official daily 
 Supabase dashboard settings that the app needs (Authentication section):
 - **URL Configuration**: Site URL `https://animalexpert.netlify.app`; Redirect URLs
   `https://animalexpert.netlify.app/**` and `http://localhost:5173/**`.
-- **Emails (SMTP)**: Supabase's built-in sender only emails members of the Supabase team, a few per
-  hour. Public sign-ups need a custom SMTP sender.
+- **Emails (SMTP)**: sign-in emails go out through Gmail (`romeroaibot@gmail.com`, sender name
+  "Animal Expert", `smtp.gmail.com` port 465, a Google app password). Supabase allows 30 emails an
+  hour once custom SMTP is on (Authentication, Rate Limits); Gmail allows about 500 a day. Supabase
+  warns that Gmail is meant for personal mail, so if sign-in emails start landing in spam, move to a
+  transactional email service.
 
 ## Sound files
 
