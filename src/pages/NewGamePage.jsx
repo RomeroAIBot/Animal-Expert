@@ -1,11 +1,12 @@
-import { useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import CategoryPicker from '../components/CategoryPicker';
 import PuzzleBoard from '../components/PuzzleBoard';
 import TriviaQuestionCard from '../components/TriviaQuestionCard';
 import { generatePuzzleDeck, generateRandomTrivia } from '../utils/gameGenerators';
 import { playSound } from '../utils/audio';
 import { recordUsedIds, trackerKeys } from '../utils/questionTracker';
-import { storage, upsertHistory } from '../utils/storage';
+import { getDateKey } from '../utils/seed';
+import { upsertHistory } from '../utils/storage';
 
 const toPercent = (correct, total) => Math.round((correct / Math.max(total, 1)) * 100);
 
@@ -14,71 +15,81 @@ function NewGamePage({ appContext }) {
   const [mode, setMode] = useState('puzzle');
   const [size, setSize] = useState(4);
   const [nonce, setNonce] = useState(Date.now());
-  const [imageCache, setImageCache] = useState(storage.getImageCache());
   const [index, setIndex] = useState(0);
   const [correctCount, setCorrectCount] = useState(0);
   const [answers, setAnswers] = useState({});
+  const [puzzleResult, setPuzzleResult] = useState(null);
 
   const puzzle = useMemo(
-    () => generatePuzzleDeck(category, size, `random:${nonce}`, new Date()),
+    () => generatePuzzleDeck(category, size, `random:${nonce}`),
     [category, size, nonce]
   );
-  const trivia = useMemo(() => generateRandomTrivia(category, new Date()), [category, nonce]);
+  const trivia = useMemo(() => generateRandomTrivia(category), [category, nonce]);
 
   const question = trivia.questions[index];
-  const percentage = toPercent(correctCount, trivia.questions.length);
+  const total = trivia.questions.length;
+  const finishedTrivia = index >= total;
 
-  const saveTrivia = (finalCorrect, finalPercentage) => {
-    recordUsedIds(
-      trackerKeys.questions,
-      category,
-      trivia.questions.map((item) => item.id),
-      new Date().toISOString()
-    );
-    upsertHistory({
-      id: `random:trivia:${category}:${nonce}`,
-      date: new Date().toDateString(),
-      mode: 'new-trivia',
-      category,
-      score: finalPercentage,
-      correct: finalCorrect,
-      total: trivia.questions.length
-    });
+  const newSession = () => {
+    setNonce(Date.now());
+    setIndex(0);
+    setCorrectCount(0);
+    setAnswers({});
+    setPuzzleResult(null);
   };
 
   const onAnswer = (option) => {
     if (!question || answers[question.id]) return;
     const correct = option === question.answer;
-    const nextCorrect = correct ? correctCount + 1 : correctCount;
-    const nextPercentage = toPercent(nextCorrect, trivia.questions.length);
-    setCorrectCount(nextCorrect);
+    setCorrectCount((n) => (correct ? n + 1 : n));
     playSound(correct ? 'correct' : 'wrong', appContext.soundEnabled);
     setAnswers((prev) => ({ ...prev, [question.id]: option }));
+  };
 
-    if (index === trivia.questions.length - 1) {
-      saveTrivia(nextCorrect, nextPercentage);
-      setIndex((i) => i + 1);
-      return;
+  const onNext = () => {
+    if (index === total - 1) {
+      recordUsedIds(trackerKeys.questions, category, trivia.questions.map((item) => item.id));
+      upsertHistory({
+        id: `random:trivia:${category}:${nonce}`,
+        date: getDateKey(),
+        mode: 'new-trivia',
+        category,
+        score: toPercent(correctCount, total),
+        correct: correctCount,
+        total
+      });
     }
-
-    setTimeout(() => setIndex((i) => i + 1), 300);
+    setIndex((i) => i + 1);
   };
 
-  const resetSession = () => {
-    setNonce(Date.now());
-    setIndex(0);
-    setCorrectCount(0);
-    setAnswers({});
-  };
+  const onPuzzleComplete = useCallback(
+    (payload) => {
+      recordUsedIds(trackerKeys.puzzles, category, [payload.comboId]);
+      upsertHistory({
+        id: `random:puzzle:${category}:${nonce}`,
+        date: getDateKey(),
+        mode: 'new-puzzle',
+        category,
+        size,
+        pairs: payload.pairs,
+        score: payload.score,
+        flips: payload.flips,
+        seconds: payload.seconds
+      });
+      setPuzzleResult(payload);
+    },
+    [category, nonce, size]
+  );
 
   return (
     <section>
-      <h2>Spawn New Game</h2>
+      <h2>Practice</h2>
+      <p className="muted">Fresh random games any time. Questions you've seen recently are held back.</p>
       <div className="controls">
-        <CategoryPicker value={category} onChange={setCategory} />
+        <CategoryPicker value={category} onChange={(value) => { setCategory(value); newSession(); }} />
         <label className="field">
           <span>Mode</span>
-          <select value={mode} onChange={(event) => setMode(event.target.value)}>
+          <select value={mode} onChange={(event) => { setMode(event.target.value); newSession(); }}>
             <option value="puzzle">Puzzle</option>
             <option value="trivia">Trivia</option>
           </select>
@@ -86,64 +97,54 @@ function NewGamePage({ appContext }) {
         {mode === 'puzzle' && (
           <label className="field">
             <span>Grid</span>
-            <select value={size} onChange={(event) => setSize(Number(event.target.value))}>
+            <select value={size} onChange={(event) => { setSize(Number(event.target.value)); newSession(); }}>
               <option value={4}>4x4</option>
               <option value={6}>6x6</option>
             </select>
           </label>
         )}
-        <button type="button" className="button" onClick={resetSession}>
-          Reroll Session
+        <button type="button" className="button" onClick={newSession}>
+          New game
         </button>
       </div>
 
       {mode === 'puzzle' ? (
-        <PuzzleBoard
-          deck={puzzle}
-          category={category}
-          imageCache={imageCache}
-          setImageCache={(next) => {
-            setImageCache(next);
-            storage.setImageCache(next);
-          }}
-          soundEnabled={appContext.soundEnabled}
-          onComplete={(payload) => {
-            recordUsedIds(trackerKeys.puzzles, category, [payload.comboId || puzzle.comboId], new Date().toISOString());
-            upsertHistory({
-              id: `random:puzzle:${category}:${nonce}`,
-              date: new Date().toDateString(),
-              mode: 'new-puzzle',
-              category,
-              score: payload.score,
-              flips: payload.flips,
-              seconds: payload.seconds
-            });
-          }}
-        />
-      ) : (
         <>
-          {question ? (
-            <>
-              <p>
-                Question {Math.min(index + 1, trivia.questions.length)}/{trivia.questions.length} | Correct:{' '}
-                {correctCount} | Score: {percentage}%
-              </p>
-              <TriviaQuestionCard
-                question={question}
-                selected={answers[question.id]}
-                onAnswer={onAnswer}
-              />
-            </>
-          ) : (
-            <article className="card result">
-              <h3>Trivia complete</h3>
-              <p>
-                Correct answers: {correctCount}/{trivia.questions.length}
-              </p>
-              <p>Percentage: {percentage}%</p>
-            </article>
+          <PuzzleBoard
+            key={puzzle.seed}
+            deck={puzzle}
+            soundEnabled={appContext.soundEnabled}
+            onComplete={onPuzzleComplete}
+          />
+          {puzzleResult && (
+            <p className="result">
+              Complete! Score {puzzleResult.score}, {puzzleResult.flips} flips, {puzzleResult.seconds}s.
+            </p>
           )}
         </>
+      ) : !finishedTrivia && question ? (
+        <>
+          <p>
+            Question {index + 1}/{total} | Correct: {correctCount}/{Object.keys(answers).length}
+          </p>
+          <TriviaQuestionCard
+            question={question}
+            selected={answers[question.id]}
+            onAnswer={onAnswer}
+            onNext={onNext}
+            nextLabel={index === total - 1 ? 'See results' : 'Next question'}
+          />
+        </>
+      ) : (
+        <article className="card result">
+          <h3>Trivia complete</h3>
+          <p>
+            Correct answers: {correctCount}/{total} ({toPercent(correctCount, total)}%)
+          </p>
+          <button type="button" className="button" onClick={newSession}>
+            New game
+          </button>
+        </article>
       )}
     </section>
   );

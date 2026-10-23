@@ -1,7 +1,33 @@
-import { getEntitiesForCategory } from '../data/breeds';
+import crosswordLayoutGenerator from 'crossword-layout-generator';
+import { entityClues, getEntitiesForCategory } from '../data/breeds';
 import { triviaQuestions } from '../data/triviaQuestions';
-import { getDateSeed, seededShuffle } from './seed';
+import { hasUsablePhoto } from './imageApi';
+import { getDateKey, seededShuffle, selectDailyItems } from './seed';
 import { selectNoRepeatCombination, selectNoRepeatItems, trackerKeys } from './questionTracker';
+
+const TRIVIA_COUNT = 10;
+const CROSSWORD_ATTEMPTS = 25;
+
+const { generateLayout } = crosswordLayoutGenerator;
+
+// Converts clues into react-crossword data. Returns null if any word could not be placed,
+// because the layout generator silently drops words that share no letters with the rest.
+const buildCrosswordData = (clues) => {
+  const layout = generateLayout(clues.map((item) => ({ clue: item.clue, answer: item.answer })));
+  const placed = (layout.result || []).filter((entry) => entry.orientation && entry.orientation !== 'none');
+  if (placed.length !== clues.length) return null;
+
+  const data = { across: {}, down: {} };
+  placed.forEach((entry) => {
+    data[entry.orientation][String(entry.position)] = {
+      clue: entry.clue,
+      answer: entry.answer,
+      row: entry.starty - 1,
+      col: entry.startx - 1
+    };
+  });
+  return data;
+};
 
 const normalizeCategory = (category) => {
   if (category === 'cats') return 'cat';
@@ -15,26 +41,36 @@ const filterTrivia = (category) => {
   return triviaQuestions.filter((item) => item.category === normalized);
 };
 
-const buildRoundOptions = (entity, category, seed) => {
-  const entities = getEntitiesForCategory(category).filter((item) => item.id !== entity.id);
+// Distractors always come from the photographed animal's own category, so a dog photo
+// is never paired with snake or horse options in Mixed mode.
+const buildRoundOptions = (entity, seed) => {
+  const entities = getEntitiesForCategory(entity.category).filter((item) => item.id !== entity.id);
   const distractors = seededShuffle(entities, seed).slice(0, 3).map((item) => item.displayName);
   return seededShuffle([entity.displayName, ...distractors], `${seed}:options`);
 };
 
 const sanitizeAnswer = (value) => value.toUpperCase().replace(/[^A-Z]/g, '');
 
+const escapeRegExp = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+// Blanks out any word of the answer (and simple plurals) so a clue never gives itself away.
+export const maskAnswerInText = (text, displayName) => {
+  const words = displayName
+    .split(/[\s()/-]+/)
+    .map((word) => word.replace(/[^A-Za-z']/g, ''))
+    .filter((word) => word.length > 2);
+  return words.reduce(
+    (result, word) => result.replace(new RegExp(`\\b${escapeRegExp(word)}(s|es)?\\b`, 'gi'), '____'),
+    text
+  );
+};
+
 export const generateDailyTrivia = (category, date = new Date()) => {
   const normalized = normalizeCategory(category);
-  const seed = `${getDateSeed(date)}:trivia:${normalized}`;
-  const selected = selectNoRepeatItems({
-    logKey: trackerKeys.questions,
-    category: normalized,
-    items: filterTrivia(normalized),
-    count: 10,
-    seed,
-    now: date
-  });
-  return { seed, questions: selected };
+  const dateKey = getDateKey(date);
+  const seed = `${dateKey}:trivia:${normalized}`;
+  const questions = selectDailyItems(filterTrivia(normalized), TRIVIA_COUNT, dateKey, `trivia:${normalized}`);
+  return { seed, dateKey, questions };
 };
 
 export const generateRandomTrivia = (category, date = new Date()) => {
@@ -44,19 +80,42 @@ export const generateRandomTrivia = (category, date = new Date()) => {
     logKey: trackerKeys.questions,
     category: normalized,
     items: filterTrivia(normalized),
-    count: 10,
+    count: TRIVIA_COUNT,
     seed,
     now: date
   });
   return { seed, questions: selected };
 };
 
-export const generatePuzzleDeck = (category, size = 4, seedPrefix = 'daily', date = new Date()) => {
+const buildDeck = (entities, seed, size, comboId, category) => {
+  const cards = seededShuffle(
+    entities.flatMap((entity) => [
+      { id: `${entity.id}-photo`, pairId: entity.id, type: 'photo', entity },
+      { id: `${entity.id}-name`, pairId: entity.id, type: 'name', entity }
+    ]),
+    `${seed}:deck`
+  );
+  return { seed, entities, cards, size, comboId, category };
+};
+
+const pairsForSize = (size) => (size === 6 ? 18 : 8);
+
+export const generateDailyPuzzleDeck = (category, size = 4, date = new Date()) => {
   const normalized = normalizeCategory(category);
-  const pairs = size === 6 ? 18 : 8;
-  const pool = getEntitiesForCategory(normalized);
-  const count = Math.min(pairs, pool.length);
-  const seed = `${seedPrefix}:${getDateSeed(date)}:puzzle:${normalized}:${size}`;
+  const dateKey = getDateKey(date);
+  const pool = getEntitiesForCategory(normalized).filter(hasUsablePhoto);
+  const count = Math.min(pairsForSize(size), pool.length);
+  const seed = `daily:${dateKey}:puzzle:${normalized}:${size}`;
+  const entities = selectDailyItems(pool, count, dateKey, `puzzle:${normalized}:${size}`);
+  const comboId = [...entities.map((item) => item.id)].sort().join('|');
+  return buildDeck(entities, seed, size, comboId, normalized);
+};
+
+export const generatePuzzleDeck = (category, size = 4, seedPrefix = 'random', date = new Date()) => {
+  const normalized = normalizeCategory(category);
+  const pool = getEntitiesForCategory(normalized).filter(hasUsablePhoto);
+  const count = Math.min(pairsForSize(size), pool.length);
+  const seed = `${seedPrefix}:${getDateKey(date)}:puzzle:${normalized}:${size}`;
   const selection = selectNoRepeatCombination({
     logKey: trackerKeys.puzzles,
     category: normalized,
@@ -65,64 +124,51 @@ export const generatePuzzleDeck = (category, size = 4, seedPrefix = 'daily', dat
     seed,
     now: date
   });
-  const entities = selection.items;
-
-  const cards = seededShuffle(
-    entities.flatMap((entity) => [
-      { id: `${entity.id}-photo`, pairId: entity.id, type: 'photo', entity },
-      { id: `${entity.id}-name`, pairId: entity.id, type: 'name', entity }
-    ]),
-    `${seed}:deck`
-  );
-
-  return { seed, entities, cards, size, comboId: selection.comboId, category: normalized };
+  return buildDeck(selection.items, seed, size, selection.comboId, normalized);
 };
 
-export const generateIdentifyCrossSession = (category, seedPrefix = 'daily', date = new Date()) => {
+export const generateIdentifyCrossSession = (category, seedPrefix = 'random', date = new Date()) => {
   const normalized = normalizeCategory(category);
-  const seed = `${seedPrefix}:${getDateSeed(date)}:identify-cross:${normalized}`;
-  const pool = getEntitiesForCategory(normalized);
-  const selection = selectNoRepeatCombination({
-    logKey: trackerKeys.hybrids,
-    category: normalized,
-    items: pool,
-    count: Math.min(5, pool.length),
-    seed,
-    now: date
-  });
+  const seed = `${seedPrefix}:${getDateKey(date)}:identify-cross:${normalized}`;
+  // Only animals with a written clue can appear, so every crossword entry has a real clue.
+  const pool = getEntitiesForCategory(normalized).filter(
+    (entity) => entityClues[entity.id] && hasUsablePhoto(entity)
+  );
 
-  const rounds = selection.items.map((entity, index) => ({
-    id: `${entity.id}:round`,
-    entity,
-    options: buildRoundOptions(entity, normalized, `${seed}:round:${index}`)
-  }));
-
-  const clueQuestions = rounds.map((round, index) => {
-    const available = triviaQuestions.filter((item) => item.entityId === round.entity.id);
-    const chosen = selectNoRepeatItems({
-      logKey: trackerKeys.crosswordClues,
+  let session = null;
+  for (let attempt = 0; attempt < CROSSWORD_ATTEMPTS && !session?.crossword; attempt += 1) {
+    const selection = selectNoRepeatCombination({
+      logKey: trackerKeys.hybrids,
       category: normalized,
-      items: available,
-      count: 1,
-      seed: `${seed}:clue:${index}`,
-      minimumRemaining: 1,
+      items: pool,
+      count: Math.min(5, pool.length),
+      seed: `${seed}:${attempt}`,
       now: date
-    })[0];
+    });
 
-    return {
-      clueId: chosen?.id || `${round.entity.id}:fallback-clue`,
-      clue: chosen?.funFact || round.entity.funFact,
+    const rounds = selection.items.map((entity, index) => ({
+      id: `${entity.id}:round`,
+      entity,
+      options: buildRoundOptions(entity, `${seed}:round:${index}`)
+    }));
+
+    const clueQuestions = rounds.map((round) => ({
+      clueId: `${round.entity.id}:clue`,
+      clue: maskAnswerInText(entityClues[round.entity.id], round.entity.displayName),
       answer: sanitizeAnswer(round.entity.displayName),
       displayName: round.entity.displayName,
       entityId: round.entity.id
-    };
-  });
+    }));
 
-  return {
-    seed,
-    category: normalized,
-    rounds,
-    clueQuestions,
-    comboId: selection.comboId
-  };
+    session = {
+      seed,
+      category: normalized,
+      rounds,
+      clueQuestions,
+      crossword: buildCrosswordData(clueQuestions),
+      comboId: selection.comboId
+    };
+  }
+
+  return session;
 };

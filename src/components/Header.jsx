@@ -8,11 +8,12 @@ const links = [
   { to: '/daily-trivia', label: 'Daily Trivia' },
   { to: '/identify-cross', label: 'Identify & Cross' },
   { to: '/archive', label: 'Archive' },
-  { to: '/new-game', label: 'Spawn New Game' },
-  { to: '/leaderboard', label: 'Leaderboard' }
+  { to: '/new-game', label: 'Practice' },
+  { to: '/leaderboard', label: 'My Stats' },
+  { to: '/rankings', label: 'Rankings' }
 ];
 
-function Header({ streak, soundEnabled, onToggleSound }) {
+function Header({ streak, signedIn, soundEnabled, onToggleSound }) {
   return (
     <header className="site-header">
       <div>
@@ -31,6 +32,9 @@ function Header({ streak, soundEnabled, onToggleSound }) {
             {link.label}
           </NavLink>
         ))}
+        <NavLink to="/account" className={({ isActive }) => (isActive ? 'active' : '')}>
+          {signedIn ? 'Account' : 'Sign in'}
+        </NavLink>
       </nav>
     </header>
   );

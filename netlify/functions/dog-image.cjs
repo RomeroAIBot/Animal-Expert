@@ -1,4 +1,4 @@
-const { json } = require('./_helpers');
+const { json } = require('./_helpers.cjs');
 
 const DOG_CEO_PATHS = {
   'belgian-malinois': 'malinois',

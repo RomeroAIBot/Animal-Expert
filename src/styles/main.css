@@ -114,8 +114,16 @@ main {
 }
 
 .button.ghost {
+  background: transparent;
+  color: var(--forest);
+  border: 1px solid currentColor;
+}
+
+/* On the dark header, ghost buttons are light. */
+.site-header .button.ghost {
   background: rgba(255, 255, 255, 0.18);
   color: #fff;
+  border-color: transparent;
 }
 
 .controls {
@@ -423,4 +431,234 @@ main {
   padding: 0.75rem;
   font-weight: 700;
   color: #6a624e;
+}
+.button:focus-visible,
+.option:focus-visible,
+.flip-card:focus-visible,
+.vk-key:focus-visible,
+nav a:focus-visible,
+.field input:focus-visible,
+.field select:focus-visible {
+  outline: 3px solid rgba(212, 160, 23, 0.45);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 3px rgba(45, 80, 22, 0.2);
+}
+
+.button:hover,
+.button:focus-visible,
+.button:active {
+  background: #e2b43a;
+}
+
+.button:active,
+.option:active,
+.flip-card:active,
+.vk-key:active,
+nav a:active {
+  background: #f0ddad;
+  border-color: var(--rust);
+  transform: translateY(1px);
+}
+
+.flip-card:focus-visible .flip-card-front,
+.flip-card:active .flip-card-front {
+  background: linear-gradient(130deg, #3b6a20, #547f34);
+}
+
+nav a:focus-visible,
+nav a:active {
+  background: #ead08a;
+  color: #1b1b1b;
+}
+
+.field input:focus-visible,
+.field select:focus-visible {
+  border-color: var(--amber);
+  background: #fff9ed;
+}
+
+.card-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.75rem;
+}
+
+.button-reset {
+  background: #d9b85d;
+}
+
+.option.wrong {
+  border-color: var(--rust);
+  background: #f8e9e6;
+}
+
+.muted {
+  color: #6a624e;
+  margin-top: -0.4rem;
+}
+
+.photo-placeholder {
+  display: grid;
+  place-items: center;
+  background: var(--cream);
+  color: #6a624e;
+  min-height: 12rem;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.identify-result-row .photo-placeholder {
+  min-height: 0;
+  width: 88px;
+  height: 88px;
+  font-size: 0.7rem;
+}
+
+.stats-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.stats-table th,
+.stats-table td {
+  text-align: left;
+  padding: 0.45rem 0.5rem;
+  border-bottom: 1px solid #e4dccb;
+}
+
+.review-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 0.8rem;
+}
+
+.review-candidate {
+  margin: 0;
+  border: 2px solid #e4dccb;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fffdf7;
+}
+
+.review-candidate.chosen {
+  border-color: var(--forest);
+  box-shadow: 0 0 0 2px var(--forest);
+}
+
+.review-candidate img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.review-candidate figcaption {
+  display: grid;
+  gap: 0.2rem;
+  padding: 0.5rem;
+  font-size: 0.8rem;
+}
+
+.review-candidate figcaption span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #6a624e;
+}
+
+.review-badge {
+  font-size: 0.75rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  background: #edf5e7;
+  color: var(--forest);
+  vertical-align: middle;
+}
+
+.contact-sheet {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: #111;
+  color: #fff;
+  overflow: auto;
+}
+
+.contact-sheet-title {
+  margin: 0;
+  padding: 2px 6px;
+  font-size: 13px;
+}
+
+.contact-sheet-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 3px;
+}
+
+.contact-sheet-grid figure {
+  position: relative;
+  margin: 0;
+}
+
+.contact-sheet-grid img {
+  display: block;
+  width: 100%;
+  height: 140px;
+  object-fit: contain;
+  background: #222;
+}
+
+.contact-sheet-grid span {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  padding: 0 5px;
+  background: #ffd84d;
+  color: #000;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+/* Account and rankings */
+.account-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  max-width: 420px;
+}
+
+.account-form input[type='email'],
+.account-form input[type='text'] {
+  width: 100%;
+  border: 1px solid #b8ae9f;
+  border-radius: 8px;
+  padding: 0.55rem;
+  font-size: 1rem;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.status-error {
+  color: var(--rust);
+  font-weight: 600;
+}
+
+.stats-table caption {
+  text-align: left;
+  font-weight: 600;
+  padding-bottom: 0.4rem;
+}
+
+.card p a,
+section > p a {
+  text-decoration: underline;
 }

@@ -7,7 +7,10 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "server": "node server/index.js"
+    "server": "node server/index.js",
+    "validate:trivia": "node scripts/validate-trivia.mjs",
+    "photos:candidates": "node scripts/fetch-photo-candidates.mjs",
+    "check:sources": "node scripts/check-trivia-sources.mjs"
   },
   "dependencies": {
     "@jaredreisinger/react-crossword": "^5.2.0",

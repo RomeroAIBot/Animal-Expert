@@ -25,12 +25,32 @@ Full-stack interactive daily animal game app using React + Vite, Node.js + Expre
    npm.cmd run server
    ```
 
-## Image and fact sources
+## Photos
 
-### Images
-- Dogs: The Dog API, dog.ceo fallback, Unsplash fallback
-- Cats: The Cat API, Unsplash fallback
-- Snakes, chickens, horses: Unsplash with breed-specific queries and keyword validation
+Every animal's photo is chosen by a person once and pinned in `src/data/photoManifest.json`.
+The games serve that photo directly, with no API call at play time. Animals marked "none suitable"
+are left out of photo games. Animals nobody has reviewed yet fall back to a live search that
+requires the full breed name in the photo's description.
+
+To review photos:
+1. Put `UNSPLASH_ACCESS_KEY` (and optionally `CAT_API_KEY`) in `.env`.
+2. Gather candidates: `npm run photos:candidates`. It pulls from the breed's Wikipedia article,
+   Wikimedia Commons, Unsplash and The Cat API into `data/photo-candidates.json`. (Dog CEO is
+   opt-in with `--providers=dogceo`; its photos have no clear reuse license, so don't approve them.)
+   Unsplash demo keys allow 50 requests/hour, so the script stops at the limit; run it again later
+   and it continues where it left off.
+3. Run `npm run server` and `npm run dev`, then open http://localhost:5173/review-photos.
+4. For each animal, approve the photo that clearly shows that exact breed or morph, or choose
+   "None are right". Each decision is saved to the manifest immediately, with a short description
+   of the photo that never names the breed. Games use it as the photo's screen-reader text.
+   `/review-photos?sheet=<animal-id>` shows one animal's candidates as a numbered grid.
+5. Restart `npm run dev` to see new approvals in the games, then commit the manifest.
+
+Credit is shown under every photo (photographer, license, link), as Wikimedia's licenses and
+Unsplash's API terms require. Approving an Unsplash photo also registers the download with
+Unsplash, which their terms require.
+
+## Fact sources
 
 ### Facts and question sources
 - Dogs: AKC breed profiles and standards
@@ -77,6 +97,26 @@ When adding more questions, keep each item shaped like:
   - `UNSPLASH_ACCESS_KEY`
   - `DOG_API_KEY`
   - `CAT_API_KEY`
+
+## Accounts, sync and rankings (Supabase)
+
+Players can play without an account; progress then stays in that browser. Signing in (Account page,
+emailed link, no password) uploads that history and syncs it across devices. Players who choose a
+display name and opt in appear on the Rankings page, which ranks official daily scores only.
+
+- Project: `Animal Expert` (`kyyhplnqebmvvsbxqazd`), free plan. Database setup lives in `supabase/migrations/`.
+- The app talks to Supabase with plain `fetch` (`src/utils/cloud.js`); sync logic is in `src/utils/storage.js`.
+- The project URL and publishable key are built in as defaults. They are safe in browser code;
+  row-level security limits each player to their own rows.
+- The database enforces the game rules: a daily game's first saved result is official and can't be
+  overwritten, and scores that don't match their flips, time or correct answers are rejected.
+- Players can delete their account (and all saved results) from the Account page.
+
+Supabase dashboard settings that the app needs (Authentication section):
+- **URL Configuration**: Site URL `https://animalexpert.netlify.app`; Redirect URLs
+  `https://animalexpert.netlify.app/**` and `http://localhost:5173/**`.
+- **Emails (SMTP)**: Supabase's built-in sender only emails members of the Supabase team, a few per
+  hour. Public sign-ups need a custom SMTP sender.
 
 ## Sound files
 

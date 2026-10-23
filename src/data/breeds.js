@@ -1,21 +1,15 @@
+import { breedClues } from './trivia/breedClues.js';
+
 export const categories = ['dogs', 'snakes', 'chickens', 'cat', 'horse'];
 
-const fallbackImages = {
-  dogs: 'https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=900&q=80',
-  snakes: 'https://images.unsplash.com/photo-1531386151447-fd76ad50012f?auto=format&fit=crop&w=900&q=80',
-  chickens: 'https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?auto=format&fit=crop&w=900&q=80',
-  cat: 'https://images.unsplash.com/photo-1519052537078-e6302a4968d4?auto=format&fit=crop&w=900&q=80',
-  horse: 'https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?auto=format&fit=crop&w=900&q=80'
-};
-
-const dogFallbackUrl = (query) =>
-  `https://source.unsplash.com/featured/900x900/?${encodeURIComponent(query)}`;
-
+// fallbackUrl is only kept when it is a specific photo of this exact breed. A generic
+// category photo would show the wrong animal, so the UI shows "photo unavailable" instead.
 const withPhotoDefaults = (category, entity) => ({
   ...entity,
+  category,
   photoQuery: entity.photoQuery,
   imageQueries: entity.imageQueries || [entity.photoQuery],
-  fallbackUrl: entity.fallbackUrl || fallbackImages[category]
+  fallbackUrl: entity.fallbackUrl || null
 });
 
 export const breeds = {
@@ -26,7 +20,6 @@ export const breeds = {
       dogApiBreedId: 198,
       photoQuery: 'Norwegian Lundehund dog breed',
       dogCeoPath: '',
-      fallbackUrl: dogFallbackUrl('Norwegian Lundehund dog breed'),
       funFact: 'Lundehunds are known for six functional toes on each foot.',
       factSource: 'https://www.akc.org/dog-breeds/norwegian-lundehund/'
     }),
@@ -36,7 +29,6 @@ export const breeds = {
       dogApiBreedId: 16,
       photoQuery: 'Belgian Malinois working dog',
       dogCeoPath: 'malinois',
-      fallbackUrl: dogFallbackUrl('Belgian Malinois working dog'),
       funFact: 'The Belgian Malinois is often selected for high-drive detection and protection work.',
       factSource: 'https://www.akc.org/dog-breeds/belgian-malinois/'
     }),
@@ -46,7 +38,6 @@ export const breeds = {
       dogApiBreedId: 50,
       photoQuery: 'Border Collie agility dog',
       dogCeoPath: 'collie/border',
-      fallbackUrl: dogFallbackUrl('Border Collie agility dog'),
       funFact: 'Border Collies are widely used in stock work for intense eye and biddability.',
       factSource: 'https://www.akc.org/dog-breeds/border-collie/'
     }),
@@ -56,7 +47,6 @@ export const breeds = {
       dogApiBreedId: 115,
       photoQuery: 'German Shepherd Dog breed standard',
       dogCeoPath: 'germanshepherd',
-      fallbackUrl: dogFallbackUrl('German Shepherd Dog breed'),
       funFact: 'German Shepherd Dogs are a classic utility breed in herding and service roles.',
       factSource: 'https://www.akc.org/dog-breeds/german-shepherd-dog/'
     }),
@@ -66,7 +56,6 @@ export const breeds = {
       dogApiBreedId: 12,
       dogCeoPath: '',
       photoQuery: 'Australian Cattle Dog breed',
-      fallbackUrl: dogFallbackUrl('Australian Cattle Dog breed'),
       funFact: 'Australian Cattle Dogs were developed for heel-nipping cattle control.',
       factSource: 'https://www.akc.org/dog-breeds/australian-cattle-dog/'
     }),
@@ -76,7 +65,6 @@ export const breeds = {
       dogApiBreedId: 94,
       dogCeoPath: 'doberman',
       photoQuery: 'Doberman Pinscher dog breed',
-      fallbackUrl: dogFallbackUrl('Doberman Pinscher dog breed'),
       funFact: 'Dobermans are known for a compact, athletic build and strong trainability.',
       factSource: 'https://www.akc.org/dog-breeds/doberman-pinscher/'
     }),
@@ -86,7 +74,6 @@ export const breeds = {
       dogApiBreedId: 212,
       dogCeoPath: 'newfoundland',
       photoQuery: 'Newfoundland dog breed',
-      fallbackUrl: dogFallbackUrl('Newfoundland dog breed'),
       funFact: 'Newfoundlands have a long history in water rescue work.',
       factSource: 'https://www.akc.org/dog-breeds/newfoundland/'
     }),
@@ -96,9 +83,59 @@ export const breeds = {
       dogApiBreedId: 287,
       dogCeoPath: 'vizsla',
       photoQuery: 'Vizsla sporting dog',
-      fallbackUrl: dogFallbackUrl('Vizsla sporting dog'),
       funFact: 'Vizslas are a Hungarian pointing breed with strong handler attachment.',
       factSource: 'https://www.akc.org/dog-breeds/vizsla/'
+    }),
+    withPhotoDefaults('dogs', {
+      id: 'australian-shepherd',
+      displayName: 'Australian Shepherd',
+      photoQuery: 'Australian Shepherd herding dog',
+      funFact: 'Australian Shepherds are a herding breed known for merle coat patterns and intense working drive.',
+      factSource: 'https://www.akc.org/dog-breeds/australian-shepherd/'
+    }),
+    withPhotoDefaults('dogs', {
+      id: 'rottweiler',
+      displayName: 'Rottweiler',
+      photoQuery: 'Rottweiler dog breed',
+      funFact: 'Rottweilers are a large working breed with a guarding history and cardiac health focus in responsible breeding.',
+      factSource: 'https://www.akc.org/dog-breeds/rottweiler/'
+    }),
+    withPhotoDefaults('dogs', {
+      id: 'siberian-husky',
+      displayName: 'Siberian Husky',
+      photoQuery: 'Siberian Husky sled dog',
+      funFact: 'Siberian Huskies are a sled breed known for endurance, double coat, and pack-oriented social behavior.',
+      factSource: 'https://www.akc.org/dog-breeds/siberian-husky/'
+    }),
+    withPhotoDefaults('dogs', {
+      id: 'dutch-shepherd',
+      displayName: 'Dutch Shepherd',
+      photoQuery: 'Dutch Shepherd working dog brindle',
+      funFact: 'Dutch Shepherds are a brindle-coated working breed closely associated with police and military selection.',
+      factSource: 'https://www.akc.org/dog-breeds/dutch-shepherd/'
+    }),
+    withPhotoDefaults('dogs', {
+      id: 'cane-corso',
+      displayName: 'Cane Corso',
+      photoQuery: 'Cane Corso mastiff dog breed',
+      funFact: 'Cane Corsos are a large Italian mastiff-type breed with a background in guarding and estate protection.',
+      factSource: 'https://www.akc.org/dog-breeds/cane-corso/'
+    }),
+    withPhotoDefaults('dogs', {
+      id: 'alaskan-malamute',
+      displayName: 'Alaskan Malamute',
+      photoQuery: 'Alaskan Malamute arctic sled dog',
+      funFact: 'Alaskan Malamutes are a heavy-boned arctic draft breed developed for freight hauling rather than sprint racing.',
+      factSource: 'https://www.akc.org/dog-breeds/alaskan-malamute/'
+    }),
+    withPhotoDefaults('dogs', {
+      id: 'beagle',
+      displayName: 'Beagle',
+      dogApiBreedId: 28,
+      dogCeoPath: 'beagle',
+      photoQuery: 'Beagle scenthound dog breed',
+      funFact: 'Beagles are a pack scenthound breed with strong olfactory drive commonly used in detection work.',
+      factSource: 'https://www.akc.org/dog-breeds/beagle/'
     })
   ],
   snakes: [
@@ -157,6 +194,48 @@ export const breeds = {
       photoQuery: 'Gaboon viper species',
       funFact: 'Gaboon vipers have very long fangs among venomous snakes.',
       factSource: 'https://animals.sandiegozoo.org/animals/gaboon-viper'
+    }),
+    withPhotoDefaults('snakes', {
+      id: 'carpet-python',
+      displayName: 'Carpet Python',
+      photoQuery: 'Carpet python Morelia spilota',
+      funFact: 'Carpet pythons are Australian semi-arboreal pythons with wide regional pattern variation.',
+      factSource: 'https://animals.sandiegozoo.org/animals/carpet-python'
+    }),
+    withPhotoDefaults('snakes', {
+      id: 'green-tree-python',
+      displayName: 'Green Tree Python',
+      photoQuery: 'Green tree python Morelia viridis',
+      funFact: 'Green tree pythons are arboreal pythons known for vivid adult green coloration and coiled perch resting posture.',
+      factSource: 'https://animals.sandiegozoo.org/animals/green-tree-python'
+    }),
+    withPhotoDefaults('snakes', {
+      id: 'rosy-boa',
+      displayName: 'Rosy Boa',
+      photoQuery: 'Rosy boa Lichanura trivirgata',
+      funFact: 'Rosy boas are small western North American constrictors known for docile temperament and ease of captive care.',
+      factSource: 'https://www.fws.gov/'
+    }),
+    withPhotoDefaults('snakes', {
+      id: 'ball-python-banana',
+      displayName: 'Ball Python Banana',
+      photoQuery: 'Ball python Banana morph yellow lavender',
+      funFact: 'Banana is a co-dominant ball python morph producing yellow and lavender coloration with freckling.',
+      factSource: 'https://www.merckvetmanual.com/exotic-and-laboratory-animals/reptiles/management-and-husbandry-of-reptiles'
+    }),
+    withPhotoDefaults('snakes', {
+      id: 'milk-snake',
+      displayName: 'Milk Snake',
+      photoQuery: 'Milk snake Lampropeltis triangulum',
+      funFact: 'Milk snakes display tricolor banding that mimics the aposematic pattern of coral snakes.',
+      factSource: 'https://animals.sandiegozoo.org/animals/milk-snake'
+    }),
+    withPhotoDefaults('snakes', {
+      id: 'dumerils-boa',
+      displayName: "Dumeril's Boa",
+      photoQuery: "Dumeril's boa Acrantophis dumerili Madagascar",
+      funFact: "Dumeril's boas are ground-dwelling Madagascar constrictors known for earthy patterning and calm captive temperament.",
+      factSource: 'https://animals.sandiegozoo.org/animals/dumerils-boa'
     })
   ],
   chickens: [
@@ -215,6 +294,55 @@ export const breeds = {
       photoQuery: 'Ameraucana chicken breed',
       funFact: 'Ameraucanas carry the blue egg gene and should have muffs and beard.',
       factSource: 'https://livestockconservancy.org/heritage-breeds/heritage-breeds-list/ameraucana-chicken/'
+    }),
+    withPhotoDefaults('chickens', {
+      id: 'orpington',
+      displayName: 'Orpington',
+      photoQuery: 'Buff Orpington chicken breed',
+      funFact: 'Orpingtons are large soft-feathered heritage birds known for a rounded silhouette, calm temperament, and broodiness.',
+      factSource: 'https://livestockconservancy.org/heritage-breeds/heritage-breeds-list/orpington-chicken/'
+    }),
+    withPhotoDefaults('chickens', {
+      id: 'plymouth-rock',
+      displayName: 'Plymouth Rock',
+      photoQuery: 'Barred Plymouth Rock chicken breed',
+      funFact: 'Plymouth Rocks are an American heritage breed in barred and other varieties that helped establish dual-purpose production flocks.',
+      factSource: 'https://livestockconservancy.org/heritage-breeds/heritage-breeds-list/plymouth-rock-chicken/'
+    }),
+    withPhotoDefaults('chickens', {
+      id: 'rhode-island-red',
+      displayName: 'Rhode Island Red',
+      photoQuery: 'Rhode Island Red chicken breed',
+      funFact: 'Rhode Island Reds are a single-comb American heritage breed known for strong laying performance and rich mahogany plumage.',
+      factSource: 'https://livestockconservancy.org/heritage-breeds/heritage-breeds-list/rhode-island-red-chicken/'
+    }),
+    withPhotoDefaults('chickens', {
+      id: 'marans',
+      displayName: 'Marans',
+      photoQuery: 'Black Copper Marans chicken breed',
+      funFact: 'Marans are a French breed prized by fanciers for extremely dark chocolate-brown eggs.',
+      factSource: 'https://livestockconservancy.org/heritage-breeds/heritage-breeds-list/marans-chicken/'
+    }),
+    withPhotoDefaults('chickens', {
+      id: 'polish',
+      displayName: 'Polish',
+      photoQuery: 'Polish chicken crested breed',
+      funFact: 'Polish chickens are immediately recognized by a large vault crest and are commonly shown in V-comb varieties.',
+      factSource: 'https://livestockconservancy.org/heritage-breeds/heritage-breeds-list/polish-chicken/'
+    }),
+    withPhotoDefaults('chickens', {
+      id: 'sussex',
+      displayName: 'Sussex',
+      photoQuery: 'Speckled Sussex chicken breed',
+      funFact: 'Sussex is a British heritage breed available in speckled and other varieties, known for dual-purpose production.',
+      factSource: 'https://livestockconservancy.org/heritage-breeds/heritage-breeds-list/sussex-chicken/'
+    }),
+    withPhotoDefaults('chickens', {
+      id: 'cochin',
+      displayName: 'Cochin',
+      photoQuery: 'Cochin chicken feathered legs',
+      funFact: 'Cochins are large Chinese-origin birds known for heavily feathered legs, extreme broodiness, and exhibition influence.',
+      factSource: 'https://livestockconservancy.org/heritage-breeds/heritage-breeds-list/cochin-chicken/'
     })
   ],
   cat: [
@@ -281,6 +409,54 @@ export const breeds = {
       photoQuery: 'Ragdoll cat breed',
       funFact: 'Ragdolls are pointed cats with blue eyes and a slow-maturing coat.',
       factSource: 'https://cfa.org/breed/ragdoll/'
+    }),
+    withPhotoDefaults('cat', {
+      id: 'scottish-fold',
+      displayName: 'Scottish Fold',
+      catApiBreedId: 'sfol',
+      photoQuery: 'Scottish Fold cat breed folded ears',
+      funFact: 'Scottish Folds are recognized by folded ears caused by a cartilage mutation associated with joint concerns.',
+      factSource: 'https://cfa.org/breed/scottish-fold/'
+    }),
+    withPhotoDefaults('cat', {
+      id: 'siamese',
+      displayName: 'Siamese',
+      catApiBreedId: 'siam',
+      photoQuery: 'Siamese cat breed pointed',
+      funFact: 'Siamese are a pointed breed known for vocal temperament and a long history distinguished by traditional versus modern head types.',
+      factSource: 'https://cfa.org/breed/siamese/'
+    }),
+    withPhotoDefaults('cat', {
+      id: 'burmese',
+      displayName: 'Burmese',
+      catApiBreedId: 'bure',
+      photoQuery: 'Burmese cat breed sable',
+      funFact: 'Burmese are a cobby semi-foreign breed known for satin coat texture, round head, and strong companion bonding.',
+      factSource: 'https://cfa.org/breed/burmese/'
+    }),
+    withPhotoDefaults('cat', {
+      id: 'russian-blue',
+      displayName: 'Russian Blue',
+      catApiBreedId: 'rblu',
+      photoQuery: 'Russian Blue cat breed',
+      funFact: 'Russian Blues are valued for a dense plush blue-gray coat, green eyes, and a reserved temperament.',
+      factSource: 'https://cfa.org/breed/russian-blue/'
+    }),
+    withPhotoDefaults('cat', {
+      id: 'turkish-van',
+      displayName: 'Turkish Van',
+      catApiBreedId: 'tvan',
+      photoQuery: 'Turkish Van cat breed van pattern',
+      funFact: 'Turkish Vans are a semi-longhair breed known for the van marking pattern and an unusual affinity for water.',
+      factSource: 'https://cfa.org/breed/turkish-van/'
+    }),
+    withPhotoDefaults('cat', {
+      id: 'birman',
+      displayName: 'Birman',
+      catApiBreedId: 'birm',
+      photoQuery: 'Birman cat breed mitted pointed',
+      funFact: 'Birmans are a pointed semi-longhair breed recognized by precisely mitted white feet and a single silky coat layer.',
+      factSource: 'https://cfa.org/breed/birman/'
     })
   ],
   horse: [
@@ -339,6 +515,48 @@ export const breeds = {
       photoQuery: 'Marsh Tacky horse breed',
       funFact: 'Marsh Tackies developed in the Carolina Lowcountry and are adapted to wetlands terrain.',
       factSource: 'https://livestockconservancy.org/heritage-breeds/heritage-breeds-list/marsh-tacky-horse/'
+    }),
+    withPhotoDefaults('horse', {
+      id: 'thoroughbred',
+      displayName: 'Thoroughbred',
+      photoQuery: 'Thoroughbred racehorse breed',
+      funFact: 'Thoroughbreds are a racing breed central to flat racing and a major influence on warmblood sport horse breeding.',
+      factSource: 'https://www.jockeyclub.com/'
+    }),
+    withPhotoDefaults('horse', {
+      id: 'appaloosa',
+      displayName: 'Appaloosa',
+      photoQuery: 'Appaloosa horse leopard spotting',
+      funFact: 'Appaloosas are an American stock breed known for leopard complex coat patterning.',
+      factSource: 'https://www.appaloosa.com/'
+    }),
+    withPhotoDefaults('horse', {
+      id: 'tennessee-walking-horse',
+      displayName: 'Tennessee Walking Horse',
+      photoQuery: 'Tennessee Walking Horse gaited breed',
+      funFact: 'Tennessee Walking Horses are a gaited breed known for the running walk and associated with flat-shod and performance show divisions.',
+      factSource: 'https://www.twhbea.com/'
+    }),
+    withPhotoDefaults('horse', {
+      id: 'clydesdale',
+      displayName: 'Clydesdale',
+      photoQuery: 'Clydesdale draft horse feathering',
+      funFact: 'Clydesdales are a Scottish heavy draft breed known for substantial feathering and high-stepping action.',
+      factSource: 'https://www.clydesdalehorsesociety.com/'
+    }),
+    withPhotoDefaults('horse', {
+      id: 'hanoverian',
+      displayName: 'Hanoverian',
+      photoQuery: 'Hanoverian warmblood sport horse',
+      funFact: 'Hanoverians are a German warmblood registry breed known for sport performance across dressage, jumping, and eventing.',
+      factSource: 'https://www.hanoverian.org/'
+    }),
+    withPhotoDefaults('horse', {
+      id: 'mustang',
+      displayName: 'Mustang',
+      photoQuery: 'Mustang wild horse American',
+      funFact: 'Mustangs are feral-origin North American horses descended from Spanish stock, managed on public lands by the BLM.',
+      factSource: 'https://www.blm.gov/programs/wild-horse-and-burro'
     })
   ]
 };
@@ -356,3 +574,9 @@ export const getEntitiesForCategory = (category) => {
 
   return breeds[category] || [];
 };
+
+
+// Hand-checked clues that describe each animal without naming it; used for trivia and crossword clues.
+export const entityClues = Object.fromEntries(
+  Object.entries(breedClues).map(([id, { clue }]) => [id, clue])
+);

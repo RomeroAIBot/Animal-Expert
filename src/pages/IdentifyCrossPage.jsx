@@ -1,36 +1,26 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import confetti from 'canvas-confetti';
 import Crossword from '@jaredreisinger/react-crossword';
-import crosswordLayoutGenerator from 'crossword-layout-generator';
 import CategoryPicker from '../components/CategoryPicker';
 import { playSound } from '../utils/audio';
 import { generateIdentifyCrossSession } from '../utils/gameGenerators';
-import { fetchBreedImage } from '../utils/imageApi';
+import { fetchImagesForEntities } from '../utils/imageApi';
 import { recordUsedIds, trackerKeys } from '../utils/questionTracker';
-import { storage, upsertHistory } from '../utils/storage';
-
-const { generateLayout } = crosswordLayoutGenerator;
+import { getDateKey } from '../utils/seed';
+import { upsertHistory } from '../utils/storage';
 
 const keyboardLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+const PHOTO_POINTS = 100;
+const CROSSWORD_POINTS = 300;
 
-const toCrosswordData = (clues) => {
-  const layout = generateLayout(
-    clues.map((item) => ({ clue: item.clue, answer: item.answer }))
+function AnimalPhoto({ image, loading, className }) {
+  if (image) {
+    return <img className={className} src={image.url} alt={image.description || 'Mystery animal photo'} />;
+  }
+  return (
+    <div className={`${className} photo-placeholder`}>{loading ? 'Loading photo...' : 'Photo unavailable'}</div>
   );
-
-  const data = { across: {}, down: {} };
-  (layout.result || []).forEach((entry) => {
-    if (!entry.orientation || entry.orientation === 'none') return;
-    data[entry.orientation][String(entry.position)] = {
-      clue: entry.clue,
-      answer: entry.answer,
-      row: entry.starty - 1,
-      col: entry.startx - 1
-    };
-  });
-
-  return data;
-};
+}
 
 function IdentifyCrossPage({ appContext }) {
   const [category, setCategory] = useState('dogs');
@@ -38,23 +28,26 @@ function IdentifyCrossPage({ appContext }) {
   const [phase, setPhase] = useState('identify');
   const [roundIndex, setRoundIndex] = useState(0);
   const [answers, setAnswers] = useState([]);
-  const [imageCache, setImageCache] = useState(storage.getImageCache());
-  const [imageUrls, setImageUrls] = useState({});
+  const [images, setImages] = useState({});
+  const [loadingImages, setLoadingImages] = useState(true);
   const [phaseTwoStart, setPhaseTwoStart] = useState(null);
   const [phaseTwoSeconds, setPhaseTwoSeconds] = useState(0);
-  const [summaryOpen, setSummaryOpen] = useState(false);
+  const [outcome, setOutcome] = useState(null);
   const [selectedClue, setSelectedClue] = useState({ direction: 'across', number: '1' });
   const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth < 768 : false);
   const crosswordRef = useRef(null);
   const touchRef = useRef(null);
+  const guessLockRef = useRef(false);
+  const finishedRef = useRef(false);
 
   const session = useMemo(
-    () => generateIdentifyCrossSession(category, `identify:${nonce}`, new Date()),
+    () => generateIdentifyCrossSession(category, `identify:${nonce}`),
     [category, nonce]
   );
 
-  const crosswordData = useMemo(() => toCrosswordData(session.clueQuestions), [session.clueQuestions]);
+  const crosswordData = session.crossword;
   const currentRound = session.rounds[roundIndex];
+  const currentAnswer = answers.find((item) => item.roundId === currentRound?.id);
   const phaseOneScore = answers.filter((item) => item.correct).length;
 
   useEffect(() => {
@@ -65,39 +58,24 @@ function IdentifyCrossPage({ appContext }) {
 
   useEffect(() => {
     let cancelled = false;
-    const load = async () => {
-      const next = {};
-      for (const round of session.rounds) {
-        try {
-          const url = await fetchBreedImage({
-            entity: round.entity,
-            category,
-            cache: imageCache,
-            setCache: (value) => {
-              setImageCache(value);
-              storage.setImageCache(value);
-            }
-          });
-          if (!cancelled) next[round.entity.id] = url;
-        } catch {
-          if (!cancelled) next[round.entity.id] = round.entity.fallbackUrl;
-        }
-      }
-      if (!cancelled) setImageUrls(next);
-    };
-    load();
+    setLoadingImages(true);
+    fetchImagesForEntities(session.rounds.map((round) => round.entity)).then((next) => {
+      if (cancelled) return;
+      setImages(next);
+      setLoadingImages(false);
+    });
     return () => {
       cancelled = true;
     };
-  }, [session.rounds, category, imageCache]);
+  }, [session.rounds]);
 
   useEffect(() => {
-    if (!phaseTwoStart) return;
+    if (!phaseTwoStart || outcome) return undefined;
     const timer = setInterval(() => {
       setPhaseTwoSeconds(Math.floor((Date.now() - phaseTwoStart) / 1000));
     }, 1000);
     return () => clearInterval(timer);
-  }, [phaseTwoStart]);
+  }, [phaseTwoStart, outcome]);
 
   const reroll = () => {
     setNonce(Date.now());
@@ -106,35 +84,37 @@ function IdentifyCrossPage({ appContext }) {
     setAnswers([]);
     setPhaseTwoStart(null);
     setPhaseTwoSeconds(0);
-    setSummaryOpen(false);
+    setOutcome(null);
     setSelectedClue({ direction: 'across', number: '1' });
+    guessLockRef.current = false;
+    finishedRef.current = false;
   };
 
   const handleGuess = (option) => {
-    if (!currentRound) return;
+    // Ignore extra clicks while the answer is showing, so one round can't be scored twice.
+    if (!currentRound || guessLockRef.current) return;
+    guessLockRef.current = true;
     const correct = option === currentRound.entity.displayName;
     setAnswers((prev) => [
       ...prev,
-      {
-        roundId: currentRound.id,
-        entity: currentRound.entity,
-        selected: option,
-        correct
-      }
+      { roundId: currentRound.id, entity: currentRound.entity, selected: option, correct }
     ]);
     playSound(correct ? 'correct' : 'wrong', appContext.soundEnabled);
+  };
 
+  const nextRound = () => {
+    guessLockRef.current = false;
     if (roundIndex === session.rounds.length - 1) {
       setPhase('results');
-      setTimeout(() => {
-        setPhase('crossword');
-        setPhaseTwoStart(Date.now());
-        setTimeout(() => crosswordRef.current?.focus(), 50);
-      }, 1800);
       return;
     }
+    setRoundIndex((value) => value + 1);
+  };
 
-    setTimeout(() => setRoundIndex((value) => value + 1), 800);
+  const startCrossword = () => {
+    setPhase('crossword');
+    setPhaseTwoStart(Date.now());
+    setTimeout(() => crosswordRef.current?.focus(), 50);
   };
 
   const sendVirtualKey = (key) => {
@@ -145,6 +125,7 @@ function IdentifyCrossPage({ appContext }) {
   };
 
   const clueOrder = useMemo(() => {
+    if (!crosswordData) return [];
     const across = Object.keys(crosswordData.across).map((number) => ({ direction: 'across', number }));
     const down = Object.keys(crosswordData.down).map((number) => ({ direction: 'down', number }));
     return [...across, ...down];
@@ -160,69 +141,115 @@ function IdentifyCrossPage({ appContext }) {
     target?.click();
   };
 
-  const handleCrosswordComplete = (isCorrect) => {
-    if (!isCorrect) return;
-    recordUsedIds(trackerKeys.hybrids, category, [session.comboId], new Date().toISOString());
-    recordUsedIds(
-      trackerKeys.crosswordClues,
-      category,
-      session.clueQuestions.map((item) => item.clueId),
-      new Date().toISOString()
-    );
-    confetti({ particleCount: 140, spread: 70, origin: { y: 0.65 } });
+  const finishSession = (solved) => {
+    // Revealing fills the grid, which fires the "correct" callback; only the first finish counts.
+    if (finishedRef.current) return;
+    finishedRef.current = true;
+    const seconds = Math.floor((Date.now() - phaseTwoStart) / 1000);
+    const score = phaseOneScore * PHOTO_POINTS + (solved ? CROSSWORD_POINTS : 0);
+    recordUsedIds(trackerKeys.hybrids, category, [session.comboId]);
     upsertHistory({
       id: `identify-cross:${category}:${nonce}`,
-      date: new Date().toDateString(),
+      date: getDateKey(),
       mode: 'identify-cross',
       category,
-      score: phaseOneScore,
-      seconds: phaseTwoSeconds
+      score,
+      identified: phaseOneScore,
+      total: session.rounds.length,
+      crosswordSolved: solved,
+      seconds
     });
-    setSummaryOpen(true);
+    if (solved) confetti({ particleCount: 140, spread: 70, origin: { y: 0.65 } });
+    setPhaseTwoSeconds(seconds);
+    setOutcome({ solved, score });
+  };
+
+  const revealAnswers = () => {
+    finishSession(false);
+    crosswordRef.current?.fillAllAnswers();
   };
 
   return (
     <section>
       <h2>Identify &amp; Cross</h2>
+      <p className="muted">
+        Phase 1: name the animal in each photo ({PHOTO_POINTS} pts each). Phase 2: solve a crossword of the same
+        animals from description clues ({CROSSWORD_POINTS} pts).
+      </p>
       <div className="controls">
         <CategoryPicker value={category} onChange={(value) => { setCategory(value); reroll(); }} />
-        <button type="button" className="button" onClick={reroll}>Reroll Session</button>
+        <button type="button" className="button" onClick={reroll}>New session</button>
       </div>
 
       {phase === 'identify' && currentRound && (
         <article className="card identify-card">
           <p>Round {roundIndex + 1} / {session.rounds.length}</p>
-          <img
+          <AnimalPhoto
             className="identify-image"
-            src={imageUrls[currentRound.entity.id] || currentRound.entity.fallbackUrl}
-            alt={currentRound.entity.displayName}
+            image={images[currentRound.entity.id]}
+            loading={loadingImages}
           />
           <div className="options-grid">
-            {currentRound.options.map((option) => (
-              <button key={option} type="button" className="option" onClick={() => handleGuess(option)}>
-                {option}
-              </button>
-            ))}
+            {currentRound.options.map((option) => {
+              const isAnswer = currentAnswer && option === currentRound.entity.displayName;
+              const isWrongPick = currentAnswer && option === currentAnswer.selected && !currentAnswer.correct;
+              return (
+                <button
+                  key={option}
+                  type="button"
+                  className={`option ${isAnswer ? 'correct' : ''} ${isWrongPick ? 'wrong' : ''}`.trim()}
+                  onClick={() => handleGuess(option)}
+                  disabled={Boolean(currentAnswer)}
+                >
+                  {option}
+                </button>
+              );
+            })}
           </div>
+          {currentAnswer && (
+            <div className="trivia-feedback" role="status">
+              <p>
+                <strong>{currentAnswer.correct ? 'Correct!' : 'Not quite.'}</strong> Answer:{' '}
+                {currentRound.entity.displayName}.
+              </p>
+              {images[currentRound.entity.id]?.credit && (
+                <p className="trivia-source">
+                  Photo:{' '}
+                  {images[currentRound.entity.id].creditUrl ? (
+                    <a href={images[currentRound.entity.id].creditUrl} target="_blank" rel="noreferrer">
+                      {images[currentRound.entity.id].credit}
+                    </a>
+                  ) : (
+                    images[currentRound.entity.id].credit
+                  )}
+                </p>
+              )}
+              <button type="button" className="button" onClick={nextRound} autoFocus>
+                {roundIndex === session.rounds.length - 1 ? 'See results' : 'Next photo'}
+              </button>
+            </div>
+          )}
         </article>
       )}
 
       {phase === 'results' && (
         <article className="card identify-results">
-          <h3>Phase 1 Results</h3>
+          <h3>Phase 1 Results: {phaseOneScore} / {session.rounds.length}</h3>
           {answers.map((item) => (
             <div key={item.roundId} className="identify-result-row">
-              <img src={imageUrls[item.entity.id] || item.entity.fallbackUrl} alt={item.entity.displayName} />
+              <AnimalPhoto image={images[item.entity.id]} loading={false} className="" />
               <div>
                 <strong>{item.entity.displayName}</strong>
-                <p>{item.correct ? 'Correct' : `Incorrect, you chose ${item.selected}`}</p>
+                <p>{item.correct ? 'Correct' : `You chose ${item.selected}`}</p>
               </div>
               <span className={item.correct ? 'result-icon success' : 'result-icon fail'}>
-                {item.correct ? 'OK' : 'X'}
+                {item.correct ? '✓' : '✗'}
               </span>
             </div>
           ))}
-          <p>Loading crossword...</p>
+          <button type="button" className="button" onClick={startCrossword}>
+            Start the crossword
+          </button>
         </article>
       )}
 
@@ -230,67 +257,76 @@ function IdentifyCrossPage({ appContext }) {
         <article className="card">
           <h3>Phase 2 Crossword</h3>
           <p>Phase 1 score: {phaseOneScore} / {session.rounds.length} | Time: {phaseTwoSeconds}s</p>
-          <div
-            className="identify-crossword"
-            style={{ touchAction: 'manipulation' }}
-            onTouchStart={(event) => {
-              touchRef.current = event.changedTouches[0].clientX;
-            }}
-            onTouchEnd={(event) => {
-              const startX = touchRef.current;
-              const endX = event.changedTouches[0].clientX;
-              const delta = endX - startX;
-              if (Math.abs(delta) < 40) return;
-              swipeToClue(delta < 0 ? 1 : -1);
-            }}
-          >
-            <Crossword
-              ref={crosswordRef}
-              data={crosswordData}
-              onClueSelected={(direction, number) => setSelectedClue({ direction, number })}
-              onCrosswordCorrect={handleCrosswordComplete}
-              theme={{
-                columnBreakpoint: '768px',
-                gridBackground: '#2d5016',
-                cellBackground: '#fffdf7',
-                cellBorder: '#8b3a3a',
-                textColor: '#1f241b',
-                numberColor: '#8b3a3a',
-                focusBackground: '#d4a017',
-                highlightBackground: '#f5f0e8'
-              }}
-            />
-          </div>
-          {isMobile && (
-            <div className="virtual-keyboard">
-              {keyboardLetters.map((letter) => (
-                <button key={letter} type="button" className="vk-key" onClick={() => sendVirtualKey(letter)}>
-                  {letter}
+          {crosswordData ? (
+            <>
+              <div
+                className="identify-crossword"
+                style={{ touchAction: 'manipulation' }}
+                onTouchStart={(event) => {
+                  touchRef.current = event.changedTouches[0].clientX;
+                }}
+                onTouchEnd={(event) => {
+                  const delta = event.changedTouches[0].clientX - touchRef.current;
+                  if (Math.abs(delta) < 40) return;
+                  swipeToClue(delta < 0 ? 1 : -1);
+                }}
+              >
+                <Crossword
+                  ref={crosswordRef}
+                  data={crosswordData}
+                  useStorage={false}
+                  onClueSelected={(direction, number) => setSelectedClue({ direction, number })}
+                  onCrosswordCorrect={(isCorrect) => isCorrect && finishSession(true)}
+                  theme={{
+                    columnBreakpoint: '768px',
+                    gridBackground: '#2d5016',
+                    cellBackground: '#fffdf7',
+                    cellBorder: '#8b3a3a',
+                    textColor: '#1f241b',
+                    numberColor: '#8b3a3a',
+                    focusBackground: '#d4a017',
+                    highlightBackground: '#f5f0e8'
+                  }}
+                />
+              </div>
+              {isMobile && !outcome && (
+                <div className="virtual-keyboard">
+                  {keyboardLetters.map((letter) => (
+                    <button key={letter} type="button" className="vk-key" onClick={() => sendVirtualKey(letter)}>
+                      {letter}
+                    </button>
+                  ))}
+                  <button type="button" className="vk-key wide" onClick={() => sendVirtualKey('Backspace')}>
+                    Del
+                  </button>
+                </div>
+              )}
+              {!outcome && (
+                <button type="button" className="button ghost" onClick={revealAnswers}>
+                  Give up and reveal answers
                 </button>
-              ))}
-              <button type="button" className="vk-key wide" onClick={() => sendVirtualKey('Backspace')}>
-                Del
-              </button>
+              )}
+            </>
+          ) : (
+            <p>
+              These names couldn't be fitted into a crossword grid.{' '}
+              <button type="button" className="button small" onClick={reroll}>Try a new session</button>
+            </p>
+          )}
+          {outcome && (
+            <div className="result">
+              <p>
+                {outcome.solved ? 'Crossword solved!' : 'Answers revealed.'} Final score: {outcome.score} (
+                {phaseOneScore}/{session.rounds.length} photos{outcome.solved ? ', crossword solved' : ''}) in{' '}
+                {phaseTwoSeconds}s.
+              </p>
+              <button type="button" className="button" onClick={reroll}>Play again</button>
             </div>
           )}
         </article>
-      )}
-
-      {summaryOpen && (
-        <div className="overlay-modal" onClick={() => setSummaryOpen(false)}>
-          <div className="modal-card" onClick={(event) => event.stopPropagation()}>
-            <h3>Identify &amp; Cross Complete</h3>
-            <p>Phase 1 score: {phaseOneScore} / {session.rounds.length}</p>
-            <p>Phase 2 time: {phaseTwoSeconds}s</p>
-            <button type="button" className="button" onClick={() => setSummaryOpen(false)}>
-              Close
-            </button>
-          </div>
-        </div>
       )}
     </section>
   );
 }
 
 export default IdentifyCrossPage;
-

@@ -1,73 +1,73 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import confetti from 'canvas-confetti';
-import { fetchBreedImage } from '../utils/imageApi';
+import { fetchImagesForEntities } from '../utils/imageApi';
 import { playSound } from '../utils/audio';
 
-function PuzzleBoard({ deck, category, imageCache, setImageCache, soundEnabled, onComplete }) {
+// Score rewards accuracy first, then speed. A perfect game uses one flip per card.
+export const scorePuzzle = ({ flips, seconds, pairs }) => {
+  const minimumFlips = pairs * 2;
+  const extraFlips = Math.max(0, flips - minimumFlips);
+  const accuracy = Math.max(0, 600 - extraFlips * 15);
+  const speed = Math.max(0, 400 - Math.max(0, seconds - pairs * 4) * 2);
+  return Math.round(accuracy + speed);
+};
+
+// Remount this component (via `key`) to start a new game; it does not reset itself when `deck` changes.
+function PuzzleBoard({ deck, soundEnabled, onComplete }) {
   const [flipped, setFlipped] = useState([]);
   const [matched, setMatched] = useState([]);
   const [flips, setFlips] = useState(0);
   const [seconds, setSeconds] = useState(0);
-  const [urls, setUrls] = useState({});
+  const [started, setStarted] = useState(false);
+  const [images, setImages] = useState({});
   const [loadingImages, setLoadingImages] = useState(true);
-  const [loadErrors, setLoadErrors] = useState([]);
+  const completedRef = useRef(false);
 
   const cards = deck.cards;
   const gridClass = deck.size === 6 ? 'grid-6' : 'grid-4';
+  const finished = matched.length === deck.entities.length && deck.entities.length > 0;
 
+  // The clock starts on the first flip and stops when the last pair is matched.
   useEffect(() => {
+    if (!started || finished) return undefined;
     const timer = setInterval(() => setSeconds((s) => s + 1), 1000);
     return () => clearInterval(timer);
-  }, []);
+  }, [started, finished]);
 
   useEffect(() => {
     let cancelled = false;
     setLoadingImages(true);
-    setLoadErrors([]);
-    const load = async () => {
-      const next = {};
-      const errors = [];
-      for (const entity of deck.entities) {
-        try {
-          const url = await fetchBreedImage({ entity, category, cache: imageCache, setCache: setImageCache });
-          if (!cancelled) next[entity.id] = url;
-        } catch {
-          errors.push(entity.displayName);
-          if (!cancelled) next[entity.id] = entity.fallbackUrl;
-        }
-      }
-      if (!cancelled) {
-        setUrls(next);
-        setLoadErrors(errors);
-        setLoadingImages(false);
-      }
-    };
-    load();
+    fetchImagesForEntities(deck.entities).then((next) => {
+      if (cancelled) return;
+      setImages(next);
+      setLoadingImages(false);
+    });
     return () => {
       cancelled = true;
     };
-  }, [deck.entities, category, imageCache, setImageCache]);
+  }, [deck.entities]);
 
   useEffect(() => {
-    if (matched.length === deck.entities.length) {
-      confetti({ particleCount: 120, spread: 65, origin: { y: 0.6 } });
-      const score = Math.max(0, 1000 - flips * 8 - seconds * 2 + deck.entities.length * 50);
-      onComplete({ flips, seconds, score, comboId: deck.comboId });
-    }
-  }, [matched.length, deck.entities.length, flips, seconds, onComplete, deck.comboId]);
+    if (!finished || completedRef.current) return;
+    completedRef.current = true;
+    confetti({ particleCount: 120, spread: 65, origin: { y: 0.6 } });
+    const score = scorePuzzle({ flips, seconds, pairs: deck.entities.length });
+    onComplete({ flips, seconds, score, pairs: deck.entities.length, comboId: deck.comboId });
+  }, [finished, flips, seconds, deck.entities.length, deck.comboId, onComplete]);
 
   const handleCardClick = (card) => {
-    if (loadingImages || flipped.length === 2 || flipped.includes(card.id) || matched.includes(card.pairId)) {
+    if (finished || flipped.length === 2 || flipped.includes(card.id) || matched.includes(card.pairId)) {
       return;
     }
 
     playSound('flip', soundEnabled);
+    setStarted(true);
     setFlipped((prev) => [...prev, card.id]);
     setFlips((n) => n + 1);
   };
 
   useEffect(() => {
-    if (flipped.length !== 2) return;
+    if (flipped.length !== 2) return undefined;
     const [firstId, secondId] = flipped;
     const firstCard = cards.find((card) => card.id === firstId);
     const secondCard = cards.find((card) => card.id === secondId);
@@ -75,11 +75,12 @@ function PuzzleBoard({ deck, category, imageCache, setImageCache, soundEnabled, 
     if (firstCard.pairId === secondCard.pairId) {
       playSound('match', soundEnabled);
       setMatched((prev) => [...prev, firstCard.pairId]);
-      setTimeout(() => setFlipped([]), 380);
-      return;
+      const timer = setTimeout(() => setFlipped([]), 380);
+      return () => clearTimeout(timer);
     }
 
-    setTimeout(() => setFlipped([]), 900);
+    const timer = setTimeout(() => setFlipped([]), 900);
+    return () => clearTimeout(timer);
   }, [flipped, cards, soundEnabled]);
 
   const matchedEntities = useMemo(
@@ -87,38 +88,50 @@ function PuzzleBoard({ deck, category, imageCache, setImageCache, soundEnabled, 
     [matched, deck.entities]
   );
 
+  const missingPhotos = loadingImages
+    ? []
+    : deck.entities.filter((entity) => !images[entity.id]).map((entity) => entity.displayName);
+
   return (
     <section>
       <div className="stats-row">
         <span>Time: {seconds}s</span>
         <span>Flips: {flips}</span>
+        <span>Pairs: {matched.length}/{deck.entities.length}</span>
         <span>{loadingImages ? 'Loading photos...' : 'Photos ready'}</span>
       </div>
-      {loadErrors.length > 0 && (
+      {missingPhotos.length > 0 && (
         <div className="facts facts-warning">
-          <strong>Photo fallback used:</strong> {loadErrors.join(', ')}
+          <strong>Photo unavailable:</strong> {missingPhotos.join(', ')}
         </div>
       )}
       <div className={`puzzle-grid ${gridClass}`}>
         {cards.map((card) => {
           const isOpen = flipped.includes(card.id) || matched.includes(card.pairId);
+          const image = images[card.entity.id];
           return (
             <button
               key={card.id}
               type="button"
               className={`flip-card ${isOpen ? 'open' : ''}`}
               onClick={() => handleCardClick(card)}
-              disabled={loadingImages}
+              aria-label={
+                isOpen
+                  ? card.type === 'name'
+                    ? card.entity.displayName
+                    : `Photo: ${image?.description || 'animal photo'}`
+                  : 'Hidden card'
+              }
             >
               <span className="flip-card-inner">
                 <span className="flip-card-front">?</span>
                 <span className="flip-card-back">
                   {card.type === 'name' ? (
                     <strong>{card.entity.displayName}</strong>
-                  ) : urls[card.entity.id] ? (
-                    <img src={urls[card.entity.id]} alt={card.entity.displayName} loading="lazy" />
+                  ) : image ? (
+                    <img src={image.url} alt="" loading="lazy" />
                   ) : (
-                    <span className="image-loading">Loading image</span>
+                    <span className="image-loading">{loadingImages ? 'Loading photo' : 'Photo unavailable'}</span>
                   )}
                 </span>
               </span>
@@ -136,6 +149,24 @@ function PuzzleBoard({ deck, category, imageCache, setImageCache, soundEnabled, 
             </p>
           ))}
         </div>
+      )}
+
+      {Object.values(images).some((image) => image?.credit) && (
+        <p className="trivia-source">
+          Photos:{' '}
+          {Object.values(images)
+            .filter((image) => image?.credit)
+            .map((image, index) => (
+              <span key={image.url}>
+                {index > 0 && ', '}
+                {image.creditUrl ? (
+                  <a href={image.creditUrl} target="_blank" rel="noreferrer">{image.credit}</a>
+                ) : (
+                  image.credit
+                )}
+              </span>
+            ))}
+        </p>
       )}
     </section>
   );
