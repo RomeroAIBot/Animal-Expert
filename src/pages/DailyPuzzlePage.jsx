@@ -13,7 +13,8 @@ function DailyPuzzlePage({ appContext }) {
 
   const dateKey = getDateKey();
   const entryId = `${dateKey}:daily:puzzle:${category}:${size}`;
-  const deck = useMemo(() => generateDailyPuzzleDeck(category, size), [category, size]);
+  // `attempt` is a dependency so every replay deals a fresh layout.
+  const deck = useMemo(() => generateDailyPuzzleDeck(category, size), [category, size, attempt]);
   const [official, setOfficial] = useState(() => getOfficialDailyResult(entryId));
 
   const startOver = (nextCategory, nextSize) => {
@@ -54,7 +55,7 @@ function DailyPuzzlePage({ appContext }) {
     <section>
       <h2>Daily Matching Puzzle</h2>
       <p className="muted">
-        Match each photo to its breed name. Everyone gets the same board today. Your first finish is your official
+        Match each photo to its breed name. Everyone gets the same animals today, with the cards shuffled each time you play. Your first finish is your official
         score; replays are practice.
       </p>
       <div className="controls">

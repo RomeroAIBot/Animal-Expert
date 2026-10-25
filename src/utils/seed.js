@@ -20,6 +20,9 @@ export const seededShuffle = (arr, seedValue) => {
   return list;
 };
 
+// A fresh seed for anything that should differ on every load, such as answer order.
+export const randomSeed = () => `${Date.now()}:${Math.random()}`;
+
 const pad = (value) => String(value).padStart(2, '0');
 
 // Local calendar day as YYYY-MM-DD. Used for daily seeds, history and streaks.

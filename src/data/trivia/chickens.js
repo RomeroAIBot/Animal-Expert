@@ -1017,6 +1017,87 @@ export const chickenQuestions = [
     funFact: 'Welfare groups criticize the practice, and it is banned in several European countries.',
     source: 'https://en.wikipedia.org/wiki/Debeaking',
     evidence: 'cannibalism, feather pecking and aggression'
+  },
+  // Added from "Trivia Questions to add to the database.txt" (October 2026), checked the same way.
+  {
+    id: 'chickens-n01',
+    topic: 'Breeds',
+    question: 'Which American breed, created in the late 1800s to replace the turkey as a meat bird, is among the heaviest of all chicken breeds?',
+    options: ['Jersey Giant', 'Brahma', 'Cochin', 'Orpington'],
+    answer: 'Jersey Giant',
+    funFact: 'It was created by John and Thomas Black in Burlington County, New Jersey.',
+    source: 'https://en.wikipedia.org/wiki/Jersey_Giant',
+    evidence: 'with the intent of replacing the turkey'
+  },
+  {
+    id: 'chickens-n02',
+    topic: 'Breeds',
+    question: 'The Leghorn, a prolific layer of white eggs, comes from which region of Italy?',
+    options: ['Tuscany', 'Sicily', 'Lombardy', 'Sardinia'],
+    answer: 'Tuscany',
+    funFact: 'Hens average about 280 white eggs a year. Birds were shipped to North America from the port of Livorno around 1828.',
+    source: 'https://en.wikipedia.org/wiki/Leghorn_chicken',
+    evidence: 'italian breed of chicken originating in tuscany'
+  },
+  {
+    id: 'chickens-n03',
+    topic: 'Anatomy',
+    question: 'In birds, what is the single rear opening shared by the digestive, urinary and reproductive tracts?',
+    options: ['Cloaca', 'Crop', 'Gizzard', 'Proventriculus'],
+    answer: 'Cloaca',
+    funFact: 'Amphibians, reptiles and a few mammals, such as monotremes, have one too.',
+    source: 'https://en.wikipedia.org/wiki/Cloaca',
+    evidence: 'serves as the only opening for the digestive'
+  },
+  {
+    id: 'chickens-n04',
+    topic: 'Eggs',
+    question: 'What lets gases pass through a chicken\'s eggshell?',
+    options: ['Narrow pores through the shell', 'Gaps in the outer cuticle', 'The yolk membrane', 'A valve in the air cell'],
+    answer: 'Narrow pores through the shell',
+    funFact: 'The pores run between the shell\'s columns; the cuticle is a final coat over the outside.',
+    source: 'https://en.wikipedia.org/wiki/Eggshell',
+    evidence: 'narrow pores that traverse the eggshell and allow gaseous exchange'
+  },
+  {
+    id: 'chickens-n05',
+    topic: 'Biology',
+    question: 'Birds, chickens included, are a group of which kind of dinosaurs?',
+    options: ['Theropods', 'Sauropods', 'Ornithopods', 'Ceratopsians'],
+    answer: 'Theropods',
+    funFact: 'More precisely, birds are maniraptoran theropods that arose in the Mesozoic era.',
+    source: 'https://en.wikipedia.org/wiki/Origin_of_birds',
+    evidence: 'birds are a group of maniraptoran theropod dinosaurs'
+  },
+  {
+    id: 'chickens-n06',
+    topic: 'Biology',
+    question: 'Chickens can see lights flicker faster than people can. Their flicker threshold is above what?',
+    options: ['100 Hz', '25 Hz', '50 Hz', '10 Hz'],
+    answer: '100 Hz',
+    funFact: 'Budgerigars and pigeons can too, so a light that looks steady to us may flicker for them.',
+    source: 'https://en.wikipedia.org/wiki/Bird_vision',
+    evidence: 'budgerigars, chickens and pigeons all have light-flicker thresholds exceeding 100 hz'
+  },
+  {
+    id: 'chickens-n07',
+    topic: 'Terms',
+    question: 'What is a young male chicken called?',
+    options: ['Cockerel', 'Pullet', 'Capon', 'Poult'],
+    answer: 'Cockerel',
+    funFact: 'A fertile adult male is a cock, or in North America a rooster.',
+    source: 'https://en.wikipedia.org/wiki/Chicken',
+    evidence: 'cockerel: a young male chicken'
+  },
+  {
+    id: 'chickens-n08',
+    topic: 'Terms',
+    question: 'What is a young female chicken less than a year old called?',
+    options: ['Pullet', 'Cockerel', 'Bantam', 'Poult'],
+    answer: 'Pullet',
+    funFact: 'In the poultry industry, a pullet is a hen that hasn\'t reached laying age.',
+    source: 'https://en.wikipedia.org/wiki/Chicken',
+    evidence: 'pullet: a young female chicken less than a year old'
   }
 ];
 

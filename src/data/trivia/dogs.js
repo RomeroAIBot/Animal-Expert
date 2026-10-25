@@ -1331,6 +1331,327 @@ export const dogQuestions = [
     funFact: 'Fenzi Dog Sports Academy teaches obedience, agility, nosework and more through online classes.',
     source: 'https://www.fenzidogsportsacademy.com/',
     evidence: 'exceptional online classes teaching you to train your dog'
+  },
+  // Added from "Trivia Questions to add to the database.txt" (October 2026), checked the same way.
+  {
+    id: 'dogs-n01',
+    topic: 'Breeds',
+    question: 'Which extinct water dog from the Anglo-Scottish border helped develop the Golden Retriever and the Curly-coated Retriever?',
+    options: ['Tweed Water Spaniel', 'English Water Spaniel', 'Irish Water Spaniel', 'Norfolk Spaniel'],
+    answer: 'Tweed Water Spaniel',
+    funFact: 'It was a brown, athletic water dog from around Berwick-upon-Tweed, and died out in the 19th century.',
+    source: 'https://en.wikipedia.org/wiki/Tweed_Water_Spaniel',
+    evidence: 'early development of the modern curly coated retriever and golden retriever breeds'
+  },
+  {
+    id: 'dogs-n02',
+    topic: 'Breeds',
+    question: 'Which sighthound is raised throughout the Sahel of Mali, Niger and Burkina Faso?',
+    options: ['Azawakh', 'Saluki', 'Sloughi', 'Afghan Hound'],
+    answer: 'Azawakh',
+    funFact: 'It is named after the Azawagh valley in that region.',
+    source: 'https://en.wikipedia.org/wiki/Azawakh',
+    evidence: 'raised throughout the sahelian zone of mali, niger, and burkina faso'
+  },
+  {
+    id: 'dogs-n03',
+    topic: 'Breeds',
+    question: 'Which livestock guardian breed must have double dewclaws on its hind legs, with their absence a disqualifying fault in the show ring?',
+    options: ['Great Pyrenees', 'Maremma Sheepdog', 'Kuvasz', 'Anatolian Shepherd Dog'],
+    answer: 'Great Pyrenees',
+    funFact: 'Outside the US it is called the Pyrenean Mountain Dog, and in France the Patou.',
+    source: 'https://en.wikipedia.org/wiki/Great_Pyrenees',
+    evidence: 'double dewclaws on the hind legs; their absence is considered a disqualifying fault'
+  },
+  {
+    id: 'dogs-n04',
+    topic: 'Breeds',
+    question: 'Which white spitz breed takes its name from Siberian peoples who used it for herding, hunting and pulling sleds?',
+    options: ['Samoyed', 'Yakutian Laika', 'East Siberian Laika', 'Alaskan Malamute'],
+    answer: 'Samoyed',
+    funFact: 'It descends from the Nenets Herding Laika, a reindeer-herding spitz.',
+    source: 'https://en.wikipedia.org/wiki/Samoyed_dog',
+    evidence: 'take their name from the samoyedic peoples'
+  },
+  {
+    id: 'dogs-n05',
+    topic: 'Breeds',
+    question: 'The name of which small German breed comes from the German word for "ape" or "monkey"?',
+    options: ['Affenpinscher', 'Miniature Pinscher', 'Brussels Griffon', 'Miniature Schnauzer'],
+    answer: 'Affenpinscher',
+    funFact: 'It was once a farm and stable dog that caught mice and rats.',
+    source: 'https://en.wikipedia.org/wiki/Affenpinscher',
+    evidence: 'derives from affe, german for'
+  },
+  {
+    id: 'dogs-n06',
+    topic: 'Genetics',
+    question: 'What happens to a Chinese Crested pup that inherits two copies of the hairless gene?',
+    options: ['It dies before birth', 'It is born fully coated', 'It is born deaf', 'It grows a double coat'],
+    answer: 'It dies before birth',
+    funFact: 'So every hairless Crested carries one copy, and coated Powderpuffs can turn up in the same litter. Hairless dogs often lack some premolars.',
+    source: 'https://en.wikipedia.org/wiki/Chinese_Crested_Dog',
+    evidence: 'gene has a prenatal lethal effect when homozygous'
+  },
+  {
+    id: 'dogs-n07',
+    topic: 'Breeds',
+    question: 'Which giant breed was originally bred for rescue work by a hospice on a mountain pass between Italy and Switzerland?',
+    options: ['Saint Bernard', 'Leonberger', 'Bernese Mountain Dog', 'Newfoundland'],
+    answer: 'Saint Bernard',
+    funFact: 'Switzerland is recognized as its country of origin.',
+    source: 'https://en.wikipedia.org/wiki/St._Bernard_(dog)',
+    evidence: 'originally bred for rescue work by the hospice of the great st bernard pass'
+  },
+  {
+    id: 'dogs-n08',
+    topic: 'History',
+    question: 'The famous image of rescue dogs carrying brandy barrels around their necks is traced back to what?',
+    options: [
+      'An 1820 painting by Edwin Landseer',
+      'Rescue records kept by the monks',
+      'A Swiss army equipment order',
+      'Photographs taken in the 1890s'
+    ],
+    answer: 'An 1820 painting by Edwin Landseer',
+    funFact: 'The painting became a popular engraving in 1831, and cartoons kept the barrel alive.',
+    source: 'https://en.wikipedia.org/wiki/St._Bernard_(dog)',
+    evidence: 'attribute the image to an 1820 painting by edwin landseer'
+  },
+  {
+    id: 'dogs-n09',
+    topic: 'Behavior',
+    question: 'By about what age do puppies begin socializing with other dogs?',
+    options: ['3 to 8 weeks', '1 to 2 days', '16 to 20 weeks', '6 to 9 months'],
+    answer: '3 to 8 weeks',
+    funFact: 'Many puppies also go through a fear period at about 8 to 12 weeks, when they may briefly turn cautious.',
+    source: 'https://en.wikipedia.org/wiki/Dog',
+    evidence: 'dogs begin socializing with other dogs by the time they reach the ages of 3 to 8 weeks'
+  },
+  {
+    id: 'dogs-n10',
+    topic: 'Behavior',
+    question: 'Research on dog communication found that dogs can judge what from another dog\'s growl?',
+    options: ['Its body size', 'Its age', 'Its family ties', 'Its last meal'],
+    answer: 'Its body size',
+    funFact: 'Dogs also communicate with barks, howls, whines, pants and sighs, as well as scent and posture.',
+    source: 'https://en.wikipedia.org/wiki/Dog_communication',
+    evidence: 'able to tell from a growl how big the dog is'
+  },
+  {
+    id: 'dogs-n11',
+    topic: 'Anatomy',
+    question: 'In animals that show the Flehmen response, what connects the mouth to the vomeronasal organ?',
+    options: ['The incisive papilla and ducts', 'The nasolacrimal ducts', 'The auditory tubes', 'The ethmoid turbinates'],
+    answer: 'The incisive papilla and ducts',
+    funFact: 'They sit just behind the front teeth. Dogs, cats, cattle and pigs all have a vomeronasal organ.',
+    source: 'https://en.wikipedia.org/wiki/Vomeronasal_organ',
+    evidence: 'animals that present flehmen behavior have incisive papilla and ducts'
+  },
+  {
+    id: 'dogs-n12',
+    topic: 'Behavior',
+    question: 'Stanley Coren\'s breed rankings in The Intelligence of Dogs came from surveying whom?',
+    options: ['Obedience trial judges', 'Veterinarians', 'Police dog handlers', 'Dog owners online'],
+    answer: 'Obedience trial judges',
+    funFact: 'Border Collies ranked at the top, and Afghan Hounds were consistently near the bottom.',
+    source: 'https://en.wikipedia.org/wiki/The_Intelligence_of_Dogs',
+    evidence: 'representing about 50 percent of obedience judges'
+  },
+  {
+    id: 'dogs-n13',
+    topic: 'Anatomy',
+    question: 'What reflective layer behind a dog\'s retina helps it see in dim light?',
+    options: ['The tapetum lucidum', 'The nictitating membrane', 'The fovea centralis', 'The ciliary body'],
+    answer: 'The tapetum lucidum',
+    funFact: 'Dogs also have very large pupils and many rod cells for low-light vision.',
+    source: 'https://en.wikipedia.org/wiki/Dog_anatomy',
+    evidence: 'the tapetum is a reflective surface behind the retina'
+  },
+  {
+    id: 'dogs-n14',
+    topic: 'Anatomy',
+    question: 'How does panting cool a dog?',
+    options: [
+      'It moves air over the moist tongue and lungs',
+      'It pushes sweat out through the skin',
+      'It slows the heart to cut body heat',
+      'It sends warm blood into the ears'
+    ],
+    answer: 'It moves air over the moist tongue and lungs',
+    funFact: 'Dogs also sweat through their paws, but have few sweat glands elsewhere in the skin.',
+    source: 'https://en.wikipedia.org/wiki/Dog_anatomy',
+    evidence: 'panting moves cooling air over the moist surfaces of the tongue and lungs'
+  },
+  {
+    id: 'dogs-n15',
+    topic: 'Training',
+    question: 'In clicker training, the click acts as what kind of reinforcer?',
+    options: ['A conditioned reinforcer', 'A primary reinforcer', 'A negative reinforcer', 'A punisher'],
+    answer: 'A conditioned reinforcer',
+    funFact: 'A trainer can deliver a click faster and more precisely than food, then follow it with the treat.',
+    source: 'https://en.wikipedia.org/wiki/Clicker_training',
+    evidence: 'the system uses conditioned reinforcers'
+  },
+  {
+    id: 'dogs-n16',
+    topic: 'Training',
+    question: 'When a behavior that used to be rewarded stops paying off, it often gets stronger for a while before fading. What is that spike called?',
+    options: ['An extinction burst', 'Spontaneous recovery', 'Stimulus generalization', 'Habituation'],
+    answer: 'An extinction burst',
+    funFact: 'If the behavior gets rewarded again during the burst, it tends to return.',
+    source: 'https://en.wikipedia.org/wiki/Extinction_(psychology)',
+    evidence: 'extinction burst'
+  },
+  {
+    id: 'dogs-n17',
+    topic: 'Training',
+    question: 'Letting a dog chase its ball only after it sits uses which principle?',
+    options: ['The Premack principle', 'The matching law', 'The law of effect', 'Drive-reduction theory'],
+    answer: 'The Premack principle',
+    funFact: 'It says more probable behaviors will reinforce less probable ones. It grew out of studies of capuchin monkeys.',
+    source: 'https://en.wikipedia.org/wiki/Premack%27s_principle',
+    evidence: 'more probable behaviors will reinforce less probable behaviors'
+  },
+  {
+    id: 'dogs-n18',
+    topic: 'History',
+    question: 'When did dog domestication happen, compared with the start of farming?',
+    options: ['Before agriculture began', 'Alongside the first wheat farms', 'Soon after cattle were tamed', 'During the Bronze Age'],
+    answer: 'Before agriculture began',
+    funFact: 'The gray wolf is the dog\'s nearest living relative; an extinct Late Pleistocene wolf may have been its ancestor.',
+    source: 'https://en.wikipedia.org/wiki/Domestication_of_the_dog',
+    evidence: 'the domestication of the dog predates agriculture'
+  },
+  {
+    id: 'dogs-n19',
+    topic: 'History',
+    question: 'Dmitry Belyaev\'s long-running experiment, started in 1959 in Novosibirsk, bred which animal for tameness?',
+    options: ['Silver foxes', 'Gray wolves', 'Golden jackals', 'Raccoon dogs'],
+    answer: 'Silver foxes',
+    funFact: 'Tameness rose in every generation after the second, and tail wagging soon appeared.',
+    source: 'https://en.wikipedia.org/wiki/Domesticated_silver_fox',
+    evidence: 'the experiment at the institute of cytology and genetics in novosibirsk'
+  },
+  {
+    id: 'dogs-n20',
+    topic: 'History',
+    question: 'The ancient Molossus dog was kept by a tribe that lived in which region of Greece?',
+    options: ['Epirus', 'Laconia', 'Attica', 'Thessaly'],
+    answer: 'Epirus',
+    funFact: 'Molossian dogs were famous across the ancient world for their size.',
+    source: 'https://en.wikipedia.org/wiki/Molossus_(dog)',
+    evidence: 'the molossians, who inhabited the region of epirus'
+  },
+  {
+    id: 'dogs-n21',
+    topic: 'History',
+    question: 'In 1758, Carl Linnaeus placed the dog, the wolf and the golden jackal in which genus?',
+    options: ['Canis', 'Vulpes', 'Lycaon', 'Cuon'],
+    answer: 'Canis',
+    funFact: 'Canis is simply the Latin word for "dog".',
+    source: 'https://en.wikipedia.org/wiki/Dog',
+    evidence: 'carl linnaeus assigned the genus name canis'
+  },
+  {
+    id: 'dogs-n22',
+    topic: 'Breeds',
+    question: 'The Cairn Terrier is named after cairns, piles of stones in the Scottish Highlands. What did it do there?',
+    options: ['Flushed out vermin', 'Guarded sheep', 'Retrieved shot birds', 'Pulled carts'],
+    answer: 'Flushed out vermin',
+    funFact: 'It is recognized as one of Scotland\'s earliest working dogs.',
+    source: 'https://en.wikipedia.org/wiki/Cairn_Terrier',
+    evidence: 'where the terriers often flushed out vermin'
+  },
+  {
+    id: 'dogs-n23',
+    topic: 'Breeds',
+    question: 'The Labrador Retriever was developed in Britain from which dogs imported from Newfoundland?',
+    options: ["St. John's water dogs", 'Newfoundland dogs', 'Irish Water Spaniels', 'Chesapeake Bay Retrievers'],
+    answer: "St. John's water dogs",
+    funFact: 'It was named after the Labrador region of that colony.',
+    source: 'https://en.wikipedia.org/wiki/Labrador_Retriever',
+    evidence: "developed in the united kingdom from st. john's water dogs"
+  },
+  {
+    id: 'dogs-n24',
+    topic: 'Breeds',
+    question: 'Which breed from southern China, traditionally a property guardian, is known in the West for its deep wrinkles?',
+    options: ['Shar Pei', 'Chow Chow', 'Pug', 'Shih Tzu'],
+    answer: 'Shar Pei',
+    funFact: 'Like the Chow Chow, it has a blue-black tongue. It nearly went extinct in the 20th century.',
+    source: 'https://en.wikipedia.org/wiki/Shar_Pei',
+    evidence: 'traditionally kept as a property guardian'
+  },
+  {
+    id: 'dogs-n25',
+    topic: 'Breeds',
+    question: 'How does a Nova Scotia Duck Tolling Retriever help hunters?',
+    options: [
+      'It lures ducks within gunshot range',
+      'It points silently at hidden birds',
+      'It flushes birds out of tall grass',
+      'It tracks wounded deer by scent'
+    ],
+    answer: 'It lures ducks within gunshot range',
+    funFact: 'It plays at the water\'s edge to draw the ducks in, then retrieves them after the shot.',
+    source: 'https://en.wikipedia.org/wiki/Nova_Scotia_Duck_Tolling_Retriever',
+    evidence: 'lure waterfowl within gunshot range'
+  },
+  {
+    id: 'dogs-n26',
+    topic: 'Breeds',
+    question: 'The Staffordshire Bull Terrier descends from 19th-century crosses between bulldogs and what?',
+    options: ['Various terriers', 'Mastiffs', 'Pointers', 'Greyhounds'],
+    answer: 'Various terriers',
+    funFact: 'These "bull and terriers" went by names such as the "patched fighting terrier".',
+    source: 'https://en.wikipedia.org/wiki/Staffordshire_Bull_Terrier',
+    evidence: 'developed by crossing bulldogs with various terriers'
+  },
+  {
+    id: 'dogs-n27',
+    topic: 'Genetics',
+    question: 'What is the set of an animal\'s observable characteristics, such as coat color and ear shape, called?',
+    options: ['Phenotype', 'Genotype', 'Karyotype', 'Allele'],
+    answer: 'Phenotype',
+    funFact: 'The genotype is the genetic makeup behind those traits; environment shapes the phenotype too.',
+    source: 'https://en.wikipedia.org/wiki/Phenotype',
+    evidence: 'is the set of observable characteristics or traits of an organism'
+  },
+  {
+    id: 'dogs-n28',
+    topic: 'Genetics',
+    question: 'Why does inbreeding raise the risk of inherited disease?',
+    options: [
+      'It increases homozygosity, exposing recessive traits',
+      'It creates new mutations in every generation',
+      'It switches off the dominant genes entirely',
+      'It shortens the chromosomes over generations'
+    ],
+    answer: 'It increases homozygosity, exposing recessive traits',
+    funFact: 'Closely related parents are more likely to pass on the same hidden recessive variant.',
+    source: 'https://en.wikipedia.org/wiki/Inbreeding',
+    evidence: 'inbreeding results in homozygosity which can increase the chances of offspring being affected by recessive traits'
+  },
+  {
+    id: 'dogs-n29',
+    topic: 'Genetics',
+    question: 'What is another name for heterosis?',
+    options: ['Hybrid vigor', 'Genetic drift', 'Linebreeding', 'The founder effect'],
+    answer: 'Hybrid vigor',
+    funFact: 'It means improved function of some trait in hybrid offspring. Crossbreeding doesn\'t guarantee it for every trait.',
+    source: 'https://en.wikipedia.org/wiki/Heterosis',
+    evidence: 'heterosis, hybrid vigor, or outbreeding enhancement'
+  },
+  {
+    id: 'dogs-n30',
+    topic: 'Breeding',
+    question: 'How often does a female dog typically go into heat?',
+    options: ['Twice a year', 'Every month', 'Every three months', 'Every two years'],
+    answer: 'Twice a year',
+    funFact: 'Some breeds typically cycle only once a year.',
+    source: 'https://en.wikipedia.org/wiki/Estrous_cycle',
+    evidence: 'goes into heat typically twice per year'
   }
 ];
 

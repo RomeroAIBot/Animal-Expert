@@ -725,6 +725,179 @@ export const catQuestions = [
     funFact: 'Sterilized colony cats are often ear-tipped so they can be recognized at a distance.',
     source: 'https://en.wikipedia.org/wiki/Trap%E2%80%93neuter%E2%80%93return',
     evidence: 'then returns it to where it was found'
+  },
+  // Added from "Trivia Questions to add to the database.txt" (October 2026), checked the same way.
+  {
+    id: 'cat-n01',
+    topic: 'Breeds',
+    question: 'On the Isle of Man, what is a Manx cat with no tail at all called?',
+    options: ['Rumpy', 'Stumpy', 'Stubbin', 'Longy'],
+    answer: 'Rumpy',
+    funFact: 'A stubbin has a short tail, and a stumpy has a partial tail of fused vertebrae.',
+    source: 'https://en.wikipedia.org/wiki/Manx_cat',
+    evidence: 'rumpy (those with no tail)'
+  },
+  {
+    id: 'cat-n02',
+    topic: 'Breeds',
+    question: 'The short-legged Munchkin breed began with a cat found in 1983 in which town?',
+    options: ['Rayville, Louisiana', 'Lakewood, California', 'Austin, Texas', 'Phoenix, Arizona'],
+    answer: 'Rayville, Louisiana',
+    funFact: 'Some registries refuse to recognize the Munchkin, calling its short legs a genetic disease (achondroplasia).',
+    source: 'https://en.wikipedia.org/wiki/Munchkin_cat',
+    evidence: 'sandra hochenedel, a music teacher in rayville, louisiana'
+  },
+  {
+    id: 'cat-n03',
+    topic: 'Breeds',
+    question: 'British breeders created the Havana Brown in the 1950s by crossing chocolate-carrying Siamese with what?',
+    options: ['Black domestic shorthairs', 'Russian Blues', 'Burmese', 'Abyssinians'],
+    answer: 'Black domestic shorthairs',
+    funFact: 'Its eyes must be green and its whiskers brown.',
+    source: 'https://en.wikipedia.org/wiki/Havana_Brown',
+    evidence: 'chocolate-carrying siamese and domestic shorthair black cats',
+    // A crossbreeding question, so breed names are the right kind of wrong option.
+    allowChecks: ['off-topic-distractor']
+  },
+  {
+    id: 'cat-n04',
+    topic: 'Breeds',
+    question: 'Which silver-tipped blue-grey breed is probably first mentioned in the Thai Tamra Maew, or cat-book poems?',
+    options: ['Korat', 'Russian Blue', 'Chartreux', 'Nebelung'],
+    answer: 'Korat',
+    funFact: 'It is named after its home province, Nakhon Ratchasima, which Thais call Korat.',
+    source: 'https://en.wikipedia.org/wiki/Korat',
+    evidence: 'probable first allusion to the breed is in the thai tamra maew'
+  },
+  {
+    id: 'cat-n05',
+    topic: 'Anatomy',
+    question: 'The backward-facing spines on a cat\'s tongue are stiffened by which material?',
+    options: ['Keratin', 'Collagen', 'Cartilage', 'Enamel'],
+    answer: 'Keratin',
+    funFact: 'The spines, called filiform papillae, work like a hairbrush during grooming.',
+    source: 'https://en.wikipedia.org/wiki/Cat',
+    evidence: 'called filiform papillae, which contain keratin making them rigid'
+  },
+  {
+    id: 'cat-n06',
+    topic: 'Anatomy',
+    question: 'Thanks to free-floating collarbones, a cat can squeeze through any opening that fits what?',
+    options: ['Its head', 'Its whiskers', 'Its front paw', 'Its tail'],
+    answer: 'Its head',
+    funFact: 'A cat\'s forelimbs are attached to the shoulders only by these free-floating clavicle bones.',
+    source: 'https://en.wikipedia.org/wiki/Cat',
+    evidence: 'pass their body through any space into which they can fit their head'
+  },
+  {
+    id: 'cat-n07',
+    topic: 'Anatomy',
+    question: 'A falling cat works out which way is down with its eyes or with which part of its inner ear?',
+    options: ['The vestibular apparatus', 'The cochlea', 'The eardrum', 'The Eustachian tube'],
+    answer: 'The vestibular apparatus',
+    funFact: 'This cat righting reflex needs a fall of at least about 90 cm (3 feet) to work.',
+    source: 'https://en.wikipedia.org/wiki/Cat_righting_reflex',
+    evidence: 'after determining down from up visually or with their vestibular apparatus'
+  },
+  {
+    id: 'cat-n08',
+    topic: 'Behavior',
+    question: 'What is a cat signalling when it blinks slowly?',
+    options: ['Relaxation and comfort', 'A challenge to fight', 'Pain in its eyes', 'That it is hungry'],
+    answer: 'Relaxation and comfort',
+    funFact: 'Domestic cats rely a great deal on visual signals like this.',
+    source: 'https://en.wikipedia.org/wiki/Cat_communication',
+    evidence: 'slowly blinking to signal relaxation and comfort'
+  },
+  {
+    id: 'cat-n09',
+    topic: 'Behavior',
+    question: 'Kneading in adult cats is thought to come from which kitten behavior?',
+    options: [
+      'Kneading the mother\'s teat to start milk',
+      'Digging a hole to bury waste',
+      'Flattening grass before sleeping',
+      'Sharpening the claws on bark'
+    ],
+    answer: 'Kneading the mother\'s teat to start milk',
+    funFact: 'Kittens taken from their mothers before weaning may keep the habit of kneading and suckling.',
+    source: 'https://en.wikipedia.org/wiki/Kneading_(cats)',
+    evidence: 'kneading of the mother\'s teat to stimulate milk secretion'
+  },
+  {
+    id: 'cat-n10',
+    topic: 'Behavior',
+    question: 'Which feline facial pheromone do cats commonly leave when they rub their face on objects?',
+    options: ['F3', 'F4', 'Feline appeasing pheromone', 'MMB'],
+    answer: 'F3',
+    funFact: 'Scientists have identified facial pheromones F1 to F5, plus a feline appeasing pheromone.',
+    source: 'https://en.wikipedia.org/wiki/Cat_pheromone',
+    evidence: 'feline facial pheromone f3 is a chemical commonly released through object rubbing'
+  },
+  {
+    id: 'cat-n11',
+    topic: 'Health',
+    question: 'Feline herpesvirus 1 targets the surface of the eye. What shape are the corneal ulcers it often causes?',
+    options: ['Pinpoint or dendritic (branching)', 'Large and perfectly round', 'Ring-shaped around the pupil', 'Triangular at the eye corner'],
+    answer: 'Pinpoint or dendritic (branching)',
+    funFact: 'The virus can also cause conjunctivitis and other inflammation of the eye.',
+    source: 'https://en.wikipedia.org/wiki/Feline_viral_rhinotracheitis',
+    evidence: 'corneal ulcers, often pinpoint or dendritic in shape'
+  },
+  {
+    id: 'cat-n12',
+    topic: 'Kittens',
+    question: 'Why must foster carers gently stimulate very young kittens after feeding?',
+    options: [
+      'They can\'t urinate or defecate on their own',
+      'It helps their eyes and ears open',
+      'It stops them from getting hiccups',
+      'It teaches them where the litter box is'
+    ],
+    answer: 'They can\'t urinate or defecate on their own',
+    funFact: 'Newborn kittens also can\'t regulate their body temperature for the first three weeks.',
+    source: 'https://en.wikipedia.org/wiki/Kitten',
+    evidence: 'kittens cannot urinate or defecate without being stimulated by their mother'
+  },
+  {
+    id: 'cat-n13',
+    topic: 'History',
+    question: 'The domestic cat descends from which wild cat?',
+    options: ['African wildcat', 'European wildcat', 'Sand cat', 'Pallas\'s cat'],
+    answer: 'African wildcat',
+    funFact: 'Some African wildcats were domesticated about 10,000 years ago in the Near East.',
+    source: 'https://en.wikipedia.org/wiki/African_wildcat',
+    evidence: 'the african wildcat is the ancestor of the domestic cat'
+  },
+  {
+    id: 'cat-n14',
+    topic: 'History',
+    question: 'A cat buried beside a person at a Neolithic farming site shows early farmers took cats to which island?',
+    options: ['Cyprus', 'Crete', 'Malta', 'Sicily'],
+    answer: 'Cyprus',
+    funFact: 'Cats had to be carried there by boat, so people were already keeping them closely.',
+    source: 'https://en.wikipedia.org/wiki/Domestication_of_the_cat',
+    evidence: 'transport them to cyprus'
+  },
+  {
+    id: 'cat-n15',
+    topic: 'History',
+    question: 'According to the historian Diodorus Siculus, how did ancient Egyptians regard killing a cat?',
+    options: ['As a serious crime', 'As a minor offence', 'As a religious duty', 'As acceptable in famine'],
+    answer: 'As a serious crime',
+    funFact: 'Egyptian deities shown with cat-like heads include Bastet, Sekhmet and Mafdet.',
+    source: 'https://en.wikipedia.org/wiki/Cats_in_ancient_Egypt',
+    evidence: 'killing a cat was regarded as a serious crime'
+  },
+  {
+    id: 'cat-n16',
+    topic: 'History',
+    question: 'Who proposed the scientific name Felis catus for the domestic cat in 1758?',
+    options: ['Carl Linnaeus', 'Johann Erxleben', 'Georges Cuvier', 'Charles Darwin'],
+    answer: 'Carl Linnaeus',
+    funFact: 'Erxleben proposed Felis catus domesticus in 1777.',
+    source: 'https://en.wikipedia.org/wiki/Cat',
+    evidence: 'felis catus was proposed by carl linnaeus in 1758'
   }
 ];
 

@@ -2,7 +2,7 @@ import crosswordLayoutGenerator from 'crossword-layout-generator';
 import { entityClues, getEntitiesForCategory } from '../data/breeds';
 import { triviaQuestions } from '../data/triviaQuestions';
 import { hasUsablePhoto } from './imageApi';
-import { getDateKey, seededShuffle, selectDailyItems } from './seed';
+import { getDateKey, randomSeed, seededShuffle, selectDailyItems } from './seed';
 import { selectNoRepeatCombination, selectNoRepeatItems, trackerKeys } from './questionTracker';
 
 const TRIVIA_COUNT = 10;
@@ -65,17 +65,26 @@ export const maskAnswerInText = (text, displayName) => {
   );
 };
 
+// Each game gets its own question order and answer order, so a replay never repeats a layout.
+const shuffleForSession = (questions, sessionSeed) =>
+  seededShuffle(questions, `${sessionSeed}:order`).map((question) => ({
+    ...question,
+    options: seededShuffle(question.options, `${sessionSeed}:${question.id}`)
+  }));
+
+// Everyone gets the same ten questions on a given day (needed for fair rankings); only the
+// order of questions and answers changes from load to load.
 export const generateDailyTrivia = (category, date = new Date()) => {
   const normalized = normalizeCategory(category);
   const dateKey = getDateKey(date);
   const seed = `${dateKey}:trivia:${normalized}`;
   const questions = selectDailyItems(filterTrivia(normalized), TRIVIA_COUNT, dateKey, `trivia:${normalized}`);
-  return { seed, dateKey, questions };
+  return { seed, dateKey, questions: shuffleForSession(questions, randomSeed()) };
 };
 
 export const generateRandomTrivia = (category, date = new Date()) => {
   const normalized = normalizeCategory(category);
-  const seed = `${Date.now()}:trivia:${normalized}`;
+  const seed = `${randomSeed()}:trivia:${normalized}`;
   const selected = selectNoRepeatItems({
     logKey: trackerKeys.questions,
     category: normalized,
@@ -84,16 +93,16 @@ export const generateRandomTrivia = (category, date = new Date()) => {
     seed,
     now: date
   });
-  return { seed, questions: selected };
+  return { seed, questions: shuffleForSession(selected, seed) };
 };
 
-const buildDeck = (entities, seed, size, comboId, category) => {
+const buildDeck = (entities, seed, size, comboId, category, layoutSeed = seed) => {
   const cards = seededShuffle(
     entities.flatMap((entity) => [
       { id: `${entity.id}-photo`, pairId: entity.id, type: 'photo', entity },
       { id: `${entity.id}-name`, pairId: entity.id, type: 'name', entity }
     ]),
-    `${seed}:deck`
+    `${layoutSeed}:deck`
   );
   return { seed, entities, cards, size, comboId, category };
 };
@@ -108,7 +117,8 @@ export const generateDailyPuzzleDeck = (category, size = 4, date = new Date()) =
   const seed = `daily:${dateKey}:puzzle:${normalized}:${size}`;
   const entities = selectDailyItems(pool, count, dateKey, `puzzle:${normalized}:${size}`);
   const comboId = [...entities.map((item) => item.id)].sort().join('|');
-  return buildDeck(entities, seed, size, comboId, normalized);
+  // Same animals for everyone today; the cards land in new places on every load and replay.
+  return buildDeck(entities, seed, size, comboId, normalized, `${seed}:${randomSeed()}`);
 };
 
 export const generatePuzzleDeck = (category, size = 4, seedPrefix = 'random', date = new Date()) => {

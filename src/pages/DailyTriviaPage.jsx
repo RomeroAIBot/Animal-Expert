@@ -15,8 +15,10 @@ function DailyTriviaPage({ appContext }) {
   const [answers, setAnswers] = useState({});
   const [finished, setFinished] = useState(false);
   const [practice, setPractice] = useState(false);
+  const [round, setRound] = useState(0);
 
-  const session = useMemo(() => generateDailyTrivia(category), [category]);
+  // `round` is a dependency so each replay reshuffles the questions and answers.
+  const session = useMemo(() => generateDailyTrivia(category), [category, round]);
   const entryId = `${session.dateKey}:daily:trivia:${category}`;
   const [official, setOfficial] = useState(() => getOfficialDailyResult(entryId));
   const question = session.questions[index];
@@ -29,6 +31,7 @@ function DailyTriviaPage({ appContext }) {
     setStreak(0);
     setAnswers({});
     setFinished(false);
+    setRound((n) => n + 1);
     setOfficial(getOfficialDailyResult(`${session.dateKey}:daily:trivia:${nextCategory}`));
   };
 
@@ -79,7 +82,7 @@ function DailyTriviaPage({ appContext }) {
     <section>
       <h2>Daily Trivia</h2>
       <p className="muted">
-        {total} questions, the same for everyone today. Your first complete run is your official score.
+        {total} questions, the same for everyone today, in a new order each time. Your first complete run is your official score.
       </p>
       <div className="controls">
         <CategoryPicker value={category} onChange={onCategoryChange} />
