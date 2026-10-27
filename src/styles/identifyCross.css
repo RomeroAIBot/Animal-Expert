@@ -1,0 +1,339 @@
+/* Identify & Cross page. Kept separate from main.css so the game's styles live with the game. */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.identify-cross h3[tabindex='-1']:focus {
+  outline: none;
+}
+
+.ic-setup {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.ic-setup h3 {
+  margin: 0;
+}
+
+.ic-setup-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  align-items: start;
+}
+
+.ic-choice {
+  border: 1px solid #d6cdbf;
+  border-radius: 10px;
+  padding: 0.5rem 0.75rem 0.75rem;
+  margin: 0;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.ic-choice legend {
+  font-weight: 700;
+  padding: 0 0.25rem;
+}
+
+.ic-choice label {
+  cursor: pointer;
+}
+
+.ic-help {
+  display: block;
+  margin-left: 1.5rem;
+  font-size: 0.85rem;
+  color: #6a624e;
+}
+
+.ic-pool {
+  margin: 0;
+  font-weight: 700;
+  color: var(--forest);
+}
+
+.ic-rules {
+  margin: 0;
+  padding-left: 1.2rem;
+  display: grid;
+  gap: 0.3rem;
+}
+
+.ic-setup > .button {
+  justify-self: start;
+  font-size: 1.05rem;
+  padding: 0.75rem 1.4rem;
+}
+
+.ic-scorebar {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.ic-scorebar h3,
+.ic-scorebar p {
+  margin: 0;
+}
+
+.ic-scorebar p {
+  font-weight: 700;
+  color: var(--forest);
+}
+
+.ic-progress {
+  height: 8px;
+  border-radius: 999px;
+  background: #e6dccb;
+  overflow: hidden;
+}
+
+.ic-progress span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--forest), var(--amber));
+  transition: width 0.3s ease;
+}
+
+/* Show the whole animal: never crop a photo the player has to identify. */
+.identify-cross .identify-image {
+  justify-self: center;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: min(60vh, 460px);
+  aspect-ratio: auto;
+  object-fit: contain;
+}
+
+.identify-cross .identify-image.photo-placeholder {
+  width: 100%;
+  min-height: 16rem;
+}
+
+.ic-prompt {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.ic-hint {
+  justify-self: start;
+}
+
+.ic-clue {
+  margin: 0;
+  padding: 0.6rem 0.75rem;
+  background: #fff3d6;
+  border-left: 4px solid var(--amber);
+  border-radius: 8px;
+}
+
+.ic-mark {
+  font-weight: 700;
+}
+
+.ic-result-list,
+.ic-entries,
+.ic-guide {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ic-list-help {
+  margin-top: 0;
+}
+
+.ic-entries {
+  display: grid;
+  gap: 0.6rem;
+  margin-bottom: 1.25rem;
+}
+
+.ic-entry {
+  border: 1px solid #d6cdbf;
+  border-radius: 10px;
+  padding: 0.6rem 0.75rem;
+  background: #fffaf0;
+}
+
+.ic-entry.solved {
+  border-color: var(--forest);
+  background: #edf5e7;
+}
+
+.ic-entry p {
+  margin: 0.25rem 0;
+}
+
+.ic-pattern {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+}
+
+.ic-tile {
+  width: 1.6rem;
+  height: 1.6rem;
+  display: grid;
+  place-items: center;
+  border: 1px solid #b8ae9f;
+  border-radius: 4px;
+  background: #fff;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.ic-entry.solved .ic-tile {
+  border-color: var(--forest);
+}
+
+.ic-entry-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  align-items: center;
+}
+
+.ic-entry-form input {
+  border: 1px solid #b8ae9f;
+  border-radius: 8px;
+  padding: 0.45rem 0.6rem;
+  min-width: 12rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.ic-entry-form input:focus-visible {
+  outline: 3px solid rgba(212, 160, 23, 0.45);
+  border-color: var(--amber);
+}
+
+.ic-entry-feedback:empty {
+  display: none;
+}
+
+.ic-entry-feedback {
+  color: var(--rust);
+  font-weight: 600;
+}
+
+.ic-solved {
+  color: var(--forest);
+  font-weight: 700;
+}
+
+.ic-giveup {
+  margin-top: 1rem;
+}
+
+.ic-done {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.ic-done h3,
+.ic-done h4 {
+  margin: 0;
+}
+
+.ic-best {
+  margin: 0;
+  font-weight: 700;
+  color: var(--rust);
+}
+
+.ic-breakdown {
+  margin: 0;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.ic-breakdown div {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.ic-breakdown dt {
+  font-weight: 700;
+  min-width: 6rem;
+}
+
+.ic-breakdown dd {
+  margin: 0;
+}
+
+.ic-actions {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.ic-guide {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 0.8rem;
+}
+
+.ic-guide-card {
+  display: grid;
+  gap: 0.5rem;
+  background: #fffaf0;
+  border: 1px solid #d6cdbf;
+  border-radius: 12px;
+  padding: 0.6rem;
+}
+
+.ic-guide-card h5 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.ic-guide-card p {
+  margin: 0.25rem 0;
+}
+
+.ic-guide-photo {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+@media (max-width: 720px) {
+  .ic-entry-form input {
+    min-width: 0;
+    flex: 1 1 10rem;
+  }
+}
+
+.ic-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.ic-paused h3 {
+  margin-top: 0;
+}
+
+#ic-setup-heading:focus {
+  outline: none;
+}

@@ -6,6 +6,9 @@ import { storage } from './storage';
 // Animals a reviewer marked as having no accurate photo are left out of photo-based games.
 export const hasUsablePhoto = (entity) => photoManifest[entity.id]?.status !== 'none';
 
+// True only for a photo a reviewer approved (never a live-search fallback).
+export const hasApprovedPhoto = (entity) => photoManifest[entity.id]?.status === 'approved';
+
 const apiBase = import.meta.env.VITE_API_BASE_URL || '';
 const IMAGE_REQUEST_TIMEOUT_MS = 8000;
 
