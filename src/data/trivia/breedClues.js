@@ -334,7 +334,7 @@ export const breedClues = {
     distractors: ['Peterbald', 'Donskoy', 'Devon Rex'],
     funFact: 'Without fur, these cats lose heat quickly and seek out warm places.',
     source: wiki('Sphynx_cat'),
-    evidence: 'the skin of these cats has a texture of chamois leather'
+    evidence: 'the skin of these cats has the texture of chamois leather'
   },
   savannah: {
     clue: 'A hybrid breed from a serval crossed with a domestic cat; an early-generation male once held the record for tallest cat.',
@@ -512,6 +512,261 @@ export const breedClues = {
     funFact: 'The Bureau of Land Management manages and protects the herds.',
     source: wiki('Mustang'),
     evidence: 'they are formally classified as feral horses'
+  },
+
+  // Dogs (added)
+  'shiba-inu': {
+    clue: 'The smallest of the six original dog breeds native to Japan; its name translates as "brushwood dog".',
+    distractors: ['Akita', 'Hokkaido', 'Kishu'],
+    funFact: 'Its cream underside markings are called urajiro, meaning "underside white".',
+    source: wiki('Shiba_Inu'),
+    evidence: 'it is the smallest of the six original dog breeds native to japan'
+  },
+  dalmatian: {
+    clue: 'A white dog marked with dark spots, once used as a carriage dog by firefighters in the days of horse-drawn carriages.',
+    distractors: ['English Pointer', 'Great Dane', 'English Setter'],
+    funFact: 'Puppies are born plain white; their first spots usually appear within 10 days.',
+    source: wiki('Dalmatian_dog'),
+    evidence: 'used as a carriage dog by firefighters'
+  },
+  basenji: {
+    clue: 'A Central African hunting breed that does not bark in the usual way, making an unusual yodel-like sound instead.',
+    distractors: ['Pharaoh Hound', 'Ibizan Hound', 'Shiba Inu'],
+    funFact: 'Its unusually shaped larynx earns it the nickname of "barkless" dog.',
+    source: wiki('Basenji'),
+    evidence: 'the breed does not bark in the traditional manner of most dogs'
+  },
+  samoyed: {
+    clue: 'A spitz-type herding dog with a thick white double coat, descended from the Nenets Herding Laika and taken on Arctic and Antarctic expeditions.',
+    distractors: ['American Eskimo Dog', 'Japanese Spitz', 'Siberian Husky'],
+    funFact: 'Its double-layer coat is naturally dirt-repellent.',
+    source: wiki('Samoyed_dog'),
+    evidence: 'descending from the nenets herding laika'
+  },
+  weimaraner: {
+    clue: 'A German gun dog named for the city where it originated; from 1879 it was considered a blue variant of the German Short-haired Pointer.',
+    distractors: ['Vizsla', 'German Shorthaired Pointer', 'Labrador Retriever'],
+    funFact: 'Silver-grey dogs like it appear in 17th-century paintings by Antoon van Dyck.',
+    source: wiki('Weimaraner'),
+    evidence: 'the dogs were considered to be a blue variant of the german short-haired pointer'
+  },
+  saluki: {
+    clue: 'A deep-chested, long-legged sighthound from the Fertile Crescent, once used by nomadic tribes to run down game; also called the gazelle hound.',
+    distractors: ['Afghan Hound', 'Sloughi', 'Greyhound'],
+    funFact: 'It is one possible explanation for the mythical Egyptian Set animal.',
+    source: wiki('Saluki'),
+    evidence: 'has also been called the gazelle hound'
+  },
+  bloodhound: {
+    clue: 'A large scent hound believed to descend from hounds kept at the Abbey of Saint-Hubert in Belgium, and used by police to track fugitives.',
+    distractors: ['Basset Hound', 'Black and Tan Coonhound', 'Dogue de Bordeaux'],
+    funFact: 'It can weigh from 36 to 72 kg (80 to 160 lb).',
+    source: wiki('Bloodhound'),
+    evidence: 'believed to be descended from hounds once kept at the abbey of saint-hubert'
+  },
+
+  // Snakes (added)
+  'king-cobra': {
+    clue: "The world's longest venomous snake, which chiefly hunts other snakes and is the only snake that builds an above-ground nest for its eggs.",
+    distractors: ['Indian Cobra', 'Monocled Cobra', 'Black Mamba'],
+    funFact: 'Despite its common name, it is not a true cobra.',
+    source: wiki('King_cobra'),
+    evidence: "it is the world's longest venomous snake"
+  },
+  'black-mamba': {
+    clue: 'An African elapid named not for its grey-to-brown body but for the inky lining of its mouth; the second-longest venomous snake.',
+    distractors: ['Eastern Green Mamba', 'Cape Cobra', 'Boomslang'],
+    funFact: 'Over suitable surfaces it can move at up to 16 km/h for short distances.',
+    source: wiki('Black_mamba'),
+    evidence: 'the colour name describes rather the inside of its mouth'
+  },
+  'reticulated-python': {
+    clue: "The world's longest snake, native to South and Southeast Asia, whose Latin species name means \"net-like\".",
+    distractors: ['Burmese Python', 'Green Anaconda', 'Boa Constrictor'],
+    funFact: 'It is an excellent swimmer and has been reported far out at sea.',
+    source: wiki('Reticulated_python'),
+    evidence: "it is the world's longest snake"
+  },
+  'green-anaconda': {
+    clue: 'A non-venomous South American boa, one of the longest and heaviest snakes, that spends most of its time in slow-moving water.',
+    distractors: ['Yellow Anaconda', 'Reticulated Python', 'Boa Constrictor'],
+    funFact: 'Other common names for it include common water boa, akayima and sucuri.',
+    source: wiki('Green_anaconda'),
+    evidence: 'it spends most of its time in the water'
+  },
+  'emerald-tree-boa': {
+    clue: 'A South American rainforest constrictor with a white zigzag "lightning bolt" stripe on its green back; its young are orange or brick-red.',
+    distractors: ['Green Tree Python', 'Amazon Tree Boa', 'Annulated Tree Boa'],
+    funFact: 'Its front teeth are likely proportionately larger than those of any other non-venomous snake.',
+    source: wiki('Emerald_tree_boa'),
+    evidence: 'white irregular interrupted zigzag stripe'
+  },
+  'eastern-indigo-snake': {
+    clue: 'A large, nonvenomous colubrid of the Southeastern United States, the longest native serpent in that country; its genus name means "lord of the forest".',
+    distractors: ['Black Racer', 'Black Rat Snake', 'Texas Indigo Snake'],
+    funFact: 'Its species name honours the planter James Hamilton Couper.',
+    source: wiki('Eastern_indigo_snake'),
+    evidence: 'it is the longest native snake species in the country'
+  },
+  copperhead: {
+    clue: 'A venomous pit viper of the eastern United States with dark brown hourglass-shaped markings; its newborn young have green or yellow tail tips.',
+    distractors: ['Cottonmouth', 'Timber Rattlesnake', 'Corn Snake'],
+    funFact: 'In winter it often hibernates in dens together with timber rattlesnakes and black rat snakes.',
+    source: wiki('Agkistrodon_contortrix'),
+    evidence: 'neonates are born with green or yellow tail tips'
+  },
+
+  // Chickens (added)
+  brahma: {
+    clue: 'An American breed developed from heavily feathered-legged "Shanghai" birds, and the principal American meat breed from the 1850s until about 1930.',
+    distractors: ['Cochin', 'Langshan', 'Jersey Giant'],
+    funFact: 'In 1852 nine of the birds were sent to Queen Victoria as a gift.',
+    source: wiki('Brahma_chicken'),
+    evidence: 'was the principal american meat breed from the 1850s until about 1930'
+  },
+  leghorn: {
+    clue: 'An Italian breed from Tuscany, named after the traditional English name of the port of Livorno; its white variety is a common commercial layer.',
+    distractors: ['Ancona', 'Minorca', 'Hamburg'],
+    funFact: 'In North America the birds were at first called "Italians".',
+    source: wiki('Leghorn_chicken'),
+    evidence: 'white leghorns are commonly used as layer chickens'
+  },
+  wyandotte: {
+    clue: 'An American dual-purpose breed of the 1870s, named for an indigenous people of North America and originally known as the American Sebright.',
+    distractors: ['Orpington', 'Plymouth Rock', 'Barnevelder'],
+    funFact: 'The silver-laced type came first, entering the American Standard of Perfection in 1883.',
+    source: wiki('Wyandotte_chicken'),
+    evidence: 'it was originally known as the american sebright'
+  },
+  faverolles: {
+    clue: 'A French heavy breed from near Houdan with a beard, muffs, feathered feet and five toes per foot.',
+    distractors: ['Houdan', 'Dorking', 'Silkie'],
+    funFact: 'The final "s" of its name is silent in French, and the singular keeps the "s".',
+    source: wiki('Faverolles_chicken'),
+    evidence: 'have a beard, muffs, feathered feet and five toes per foot'
+  },
+  sebright: {
+    clue: 'A true bantam with no large version, created in the early nineteenth century by a baronet who was Member of Parliament for Hertfordshire.',
+    distractors: ['Rosecomb', 'Dutch Bantam', 'Pekin'],
+    funFact: 'It was the first poultry breed to have its own specialist club.',
+    source: wiki('Sebright_chicken'),
+    evidence: 'a miniature bird with no corresponding large version'
+  },
+  barnevelder: {
+    clue: 'A Dutch breed from local chickens crossed with "Shanghai" birds, whose hens lay large brown eggs and keep laying well in winter.',
+    distractors: ['Welsummer', 'Marans', 'Wyandotte'],
+    funFact: 'It is named for a town in Gelderland in the central Netherlands.',
+    source: wiki('Barnevelder'),
+    evidence: 'continue to lay well during winter'
+  },
+  serama: {
+    clue: 'A bantam from Malaysia, developed within the last 50 years, and the smallest breed of chicken in the world.',
+    distractors: ['Japanese Bantam', 'Sebright', 'Pekin'],
+    funFact: 'Its breeder named it after Rama, the title of the Kings of Thailand.',
+    source: wiki('Serama'),
+    evidence: 'it is the smallest breed of chicken in the world'
+  },
+
+  // Cats (added)
+  persian: {
+    clue: 'A long-haired breed with a round face; the very short flat nose of many modern lines was created in the US through in-breeding.',
+    distractors: ['Himalayan', 'Exotic Shorthair', 'Turkish Angora'],
+    funFact: 'The first such cats may have reached Italy from Khorasan as early as 1620.',
+    source: wiki('Persian_cat'),
+    evidence: 'the short flat nose was created in the us from in-breeding'
+  },
+  'british-shorthair': {
+    clue: "A stocky, broad-faced pedigree cat whose most familiar colour is solid grey-blue with copper eyes; it inspired Tenniel's Cheshire Cat.",
+    distractors: ['Chartreux', 'Russian Blue', 'Scottish Fold'],
+    funFact: 'Half of all kittens registered with the GCCF each year belong to this breed.',
+    source: wiki('British_Shorthair'),
+    evidence: "the inspiration for john tenniel's famous illustration of the cheshire cat"
+  },
+  'devon-rex': {
+    clue: 'A tall-eared breed with a short, wavy coat that emerged in England after a curly-coated kitten named Kirlee was found in 1960.',
+    distractors: ['Cornish Rex', 'Selkirk Rex', 'Sphynx'],
+    funFact: 'Its oddly shaped head gives it a "pixie-like" appearance.',
+    source: wiki('Devon_Rex'),
+    evidence: 'a novel curly-coated kitten'
+  },
+  'egyptian-mau': {
+    clue: 'One of the few naturally spotted tabby breeds of domestic cat; a cat obtained from Cairo in the 1950s helped found it.',
+    distractors: ['Bengal', 'Ocicat', 'Savannah'],
+    funFact: 'Its spots occur only on the tips of the hairs of its coat.',
+    source: wiki('Egyptian_Mau'),
+    evidence: 'one of the few naturally spotted tabby breeds of domesticated cat'
+  },
+  manx: {
+    clue: 'A breed from an island in the Irish Sea, best known for being entirely tailless, along with long hind legs and a rounded head.',
+    distractors: ['Japanese Bobtail', 'Cymric', 'American Bobtail'],
+    funFact: 'On its home island, tailless cats are called "rumpy" and short-tailed ones "stubbin".',
+    source: wiki('Manx_cat'),
+    evidence: 'cats are best known as being entirely tailless'
+  },
+  'turkish-angora': {
+    clue: 'An ancient, natural long-haired breed from central Anatolia, often simply called the Ankara cat outside the United States.',
+    distractors: ['Turkish Van', 'Persian', 'Norwegian Forest Cat'],
+    funFact: 'Its ancestors were among the cats first domesticated in the Fertile Crescent.',
+    source: wiki('Turkish_Angora'),
+    evidence: 'having originated in central anatolia'
+  },
+  ocicat: {
+    clue: 'A spotted all-domestic breed with no recent wild ancestry, first bred in 1964 from Siamese and Abyssinian cats and named for the ocelot.',
+    distractors: ['Bengal', 'Egyptian Mau', 'Savannah'],
+    funFact: 'American Shorthair bloodlines were later added to the breed.',
+    source: wiki('Ocicat'),
+    evidence: 'named for its resemblance to the ocelot'
+  },
+
+  // Horses (added)
+  'akhal-teke': {
+    clue: 'A Turkmen breed known for speed, endurance, thin manes and a metallic sheen that earned it the nickname "Golden Horses".',
+    distractors: ['Arabian', 'Thoroughbred', 'Marwari'],
+    funFact: 'About 6,600 exist worldwide, mostly in Turkmenistan.',
+    source: wiki('Akhal-Teke'),
+    evidence: 'distinctive metallic sheen which led to their nickname'
+  },
+  shire: {
+    clue: "An English draught breed that once towed canal barges and pulled brewers' drays, and has held world records for the largest and tallest horse.",
+    distractors: ['Clydesdale', 'Suffolk Punch', 'Belgian Draught'],
+    funFact: 'Its breed society and stud-book were set up in the 1870s.',
+    source: wiki('Shire_horse'),
+    evidence: "pulling brewer's drays for delivery of beer"
+  },
+  percheron: {
+    clue: 'A draft breed from the Huisne river valley in western France, usually grey or black, believed to descend from war horses.',
+    distractors: ['Boulonnais', 'Ardennes', 'Shire'],
+    funFact: 'Arabian blood was added to the breed in the late 18th and early 19th centuries.',
+    source: wiki('Percheron'),
+    evidence: 'usually gray or black in color'
+  },
+  haflinger: {
+    clue: 'A small breed from Austria and northern Italy, developed for mountainous terrain, that is always chestnut with a flaxen mane and tail.',
+    distractors: ['Norwegian Fjord', 'Suffolk Punch', 'Icelandic Horse'],
+    funFact: 'Every one traces back to the foundation sire 249 Folie, born in 1874.',
+    source: wiki('Haflinger'),
+    evidence: 'are always chestnut with flaxen mane and tail'
+  },
+  lipizzan: {
+    clue: 'A muscular, slow-maturing, long-lived riding breed named for a village in Slovenia and closely tied to the Spanish Riding School of Vienna.',
+    distractors: ['Andalusian', 'Kladruber', 'Lusitano'],
+    funFact: 'Its rescue in World War II inspired the Disney film Miracle of the White Stallions.',
+    source: wiki('Lipizzan'),
+    evidence: 'it is a muscular horse, powerful, slow to mature and long-lived'
+  },
+  'icelandic-horse': {
+    clue: 'A hardy, long-lived breed descended from ponies brought by Norse settlers; many can tölt and do the flying pace, and exported animals may never return.',
+    distractors: ['Faroese Pony', 'Norwegian Fjord', 'Shetland Pony'],
+    funFact: 'It is the only breed of horse in its native country.',
+    source: wiki('Icelandic_horse'),
+    evidence: 'exported animals are not permitted to return'
+  },
+  'shetland-pony': {
+    clue: 'A small, hardy breed from Scottish islands, known for its strength and dense coat, once used to carry peat and seaweed and to work in coal mines.',
+    distractors: ['Exmoor Pony', 'Welsh Pony', 'Falabella'],
+    funFact: 'It has been present on its home islands since at least the Bronze Age.',
+    source: wiki('Shetland_pony'),
+    evidence: 'shetland ponies were used for farm work, carrying peat and seaweed'
   }
 };
 // No clue for ball-python-banana: no source we can check states its genetics.

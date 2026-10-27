@@ -47,9 +47,10 @@ const checks = [
   {
     id: 'off-topic-distractor',
     severity: 'error',
-    // Questions that ask for a breed may use breeds outside the app's photo list.
+    // Questions that ask for a breed (or a breed type, e.g. "which sighthound") may use breeds outside
+    // the app's photo list.
     test: (q) =>
-      !/\bbreeds?\b/i.test(q.question) &&
+      !/\b(breeds?|sighthounds?|scenthounds?|hounds?|terriers?|spitz|retrievers?|spaniels?|mastiffs?)\b/i.test(q.question) &&
       !breedNames.has(q.answer) &&
       q.options.some((option) => option !== q.answer && breedNames.has(option)),
     message: 'a wrong option is a breed name but the answer is not a breed'
