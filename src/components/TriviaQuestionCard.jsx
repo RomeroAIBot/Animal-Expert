@@ -1,4 +1,7 @@
-function TriviaQuestionCard({ question, selected, onAnswer, onNext, nextLabel = 'Next question' }) {
+import ReportProblem from './ReportProblem';
+import { getSignedInUser } from '../utils/cloud';
+
+function TriviaQuestionCard({ question, selected, onAnswer, onNext, nextLabel = 'Next question', game = 'trivia' }) {
   const answeredCorrectly = selected === question.answer;
   const hasLinkSource = /^https?:\/\//.test(question.source || '');
 
@@ -38,6 +41,15 @@ function TriviaQuestionCard({ question, selected, onAnswer, onNext, nextLabel = 
               </a>
             </p>
           )}
+          <ReportProblem
+            key={question.id}
+            game={game}
+            questionId={question.id}
+            category={question.category}
+            question={question.question}
+            answer={question.answer}
+            signedInEmail={getSignedInUser()?.email}
+          />
           {onNext && (
             <button type="button" className="button" onClick={onNext} autoFocus>
               {nextLabel}

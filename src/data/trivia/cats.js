@@ -898,6 +898,327 @@ export const catQuestions = [
     funFact: 'Erxleben proposed Felis catus domesticus in 1777.',
     source: 'https://en.wikipedia.org/wiki/Cat',
     evidence: 'felis catus was proposed by carl linnaeus in 1758'
+  },
+  // Added from "cat_trivia_master_file (2).md" (October 2026), checked the same way.
+  {
+    id: 'cat-c01',
+    topic: 'Breeds',
+    question: 'The Egyptian Mau is one of the few domestic breeds with which naturally occurring coat pattern?',
+    options: ['Spotted tabby', 'Ticked tabby', 'Colorpoint', 'Marbled tabby'],
+    answer: 'Spotted tabby',
+    funFact: 'Its spots appear only on the tips of the hairs.',
+    source: 'https://en.wikipedia.org/wiki/Egyptian_Mau',
+    evidence: 'one of the few naturally spotted tabby breeds'
+  },
+  {
+    id: 'cat-c02',
+    topic: 'Breeds',
+    question: 'Which curly-coated breed began in Montana in 1987 with a litter born to a rescued cat?',
+    options: ['Selkirk Rex', 'Devon Rex', 'Cornish Rex', 'LaPerm'],
+    answer: 'Selkirk Rex',
+    funFact: 'Its curly coat is autosomal dominant, and every Selkirk Rex traces back to one cat, Miss DePesto.',
+    source: 'https://en.wikipedia.org/wiki/Selkirk_Rex',
+    evidence: 'originated in montana, usa in 1987'
+  },
+  {
+    id: 'cat-c03',
+    topic: 'Breeds',
+    question: 'The Japanese Bobtail\'s short tail comes from what kind of gene, one not linked to spine or bone problems?',
+    options: ['A recessive gene', 'A dominant gene', 'An X-linked gene', 'A mitochondrial gene'],
+    answer: 'A recessive gene',
+    funFact: 'Its tail looks more like a rabbit\'s than a typical cat\'s. The breed was officially registered in the 1960s.',
+    source: 'https://en.wikipedia.org/wiki/Japanese_Bobtail',
+    evidence: 'the recessive gene paired with the shortened tails is not associated with any spinal or bone abnormalities'
+  },
+  {
+    id: 'cat-c04',
+    topic: 'Breeds',
+    question: 'The Russian Blue is believed to have come from which Russian port?',
+    options: ['Arkhangelsk', 'Saint Petersburg', 'Murmansk', 'Vladivostok'],
+    answer: 'Arkhangelsk',
+    funFact: 'That is why they are sometimes called Archangel Blues. Sailors are thought to have taken them to Britain in the 1860s.',
+    source: 'https://en.wikipedia.org/wiki/Russian_Blue',
+    evidence: 'may have originated in the port of arkhangelsk'
+  },
+  {
+    id: 'cat-c05',
+    topic: 'Breeds',
+    question: 'Which breed is essentially a long-haired Siamese, with point coloring and sapphire-blue eyes?',
+    options: ['Balinese', 'Birman', 'Himalayan', 'Ragdoll'],
+    answer: 'Balinese',
+    funFact: 'It is also known as the purebred long-haired Siamese.',
+    source: 'https://en.wikipedia.org/wiki/Balinese_cat',
+    evidence: 'is a long-haired breed of domestic cat with siamese-style point coloration'
+  },
+  {
+    id: 'cat-c06',
+    topic: 'Breeds',
+    question: 'The hairless Peterbald was created in St. Petersburg in 1994 by crossing a Don Sphynx with which breed?',
+    options: ['Oriental Shorthair', 'Sphynx', 'Siamese', 'Cornish Rex'],
+    answer: 'Oriental Shorthair',
+    funFact: 'Peterbalds have the slim, long-legged build of Oriental breeds.',
+    source: 'https://en.wikipedia.org/wiki/Peterbald',
+    evidence: 'from an experimental cross of a don sphynx and an oriental shorthair'
+  },
+  {
+    id: 'cat-c07',
+    topic: 'Breeds',
+    question: 'Judy Sugden began breeding striped tabbies in the 1980s to create which tiger-like breed?',
+    options: ['Toyger', 'Bengal', 'Ocicat', 'Pixie-bob'],
+    answer: 'Toyger',
+    funFact: 'The name comes from "toy tiger".',
+    source: 'https://en.wikipedia.org/wiki/Toyger',
+    evidence: "the breed's originator, judy sugden"
+  },
+  {
+    id: 'cat-c08',
+    topic: 'Breeds',
+    question: 'The spotted Ocicat, named for its resemblance to the ocelot, was first bred from which two breeds?',
+    options: ['Siamese and Abyssinian', 'Bengal and Savannah', 'Egyptian Mau and Bengal', 'Burmese and Persian'],
+    answer: 'Siamese and Abyssinian',
+    funFact: 'American Shorthairs were added to the breed later.',
+    source: 'https://en.wikipedia.org/wiki/Ocicat',
+    evidence: 'established by crossbreeding the siamese and abyssinian'
+  },
+  {
+    id: 'cat-c09',
+    topic: 'Kittens',
+    question: 'At about what age do kittens normally open their eyes?',
+    options: ['7 to 10 days', '1 to 2 days', '3 to 4 weeks', '6 to 8 weeks'],
+    answer: '7 to 10 days',
+    funFact: 'After about two weeks, kittens develop quickly and start exploring beyond the nest.',
+    source: 'https://en.wikipedia.org/wiki/Kitten',
+    evidence: 'they normally do not open their eyes for seven to ten days'
+  },
+  {
+    id: 'cat-c10',
+    topic: 'Kittens',
+    question: 'At about what age do kittens begin eating solid food and growing baby teeth?',
+    options: ['3 to 4 weeks', '1 week', '8 to 10 weeks', '4 months'],
+    answer: '3 to 4 weeks',
+    funFact: 'Weaning is usually complete by six to eight weeks.',
+    source: 'https://en.wikipedia.org/wiki/Kitten',
+    evidence: 'three to four weeks, they begin to eat solid food and grow baby teeth'
+  },
+  {
+    id: 'cat-c11',
+    topic: 'Kittens',
+    question: 'In the first two days after birth, what do kittens gain from their mother\'s milk?',
+    options: ['Passive immunity', 'Their eyesight', 'Their baby teeth', 'Body-heat control'],
+    answer: 'Passive immunity',
+    funFact: 'The milk carries antibodies that protect kittens against infectious diseases.',
+    source: 'https://en.wikipedia.org/wiki/Kitten',
+    evidence: 'within the first two days after birth, kittens acquire passive immunity'
+  },
+  {
+    id: 'cat-c12',
+    topic: 'Nutrition',
+    question: 'Why does milk often upset adult cats\' stomachs?',
+    options: [
+      'Most adult cats are lactose intolerant',
+      'Milk is toxic to the feline liver',
+      'Cats cannot digest any animal fat',
+      'Milk blocks their uptake of taurine'
+    ],
+    answer: 'Most adult cats are lactose intolerant',
+    funFact: 'The sugar in milk is hard for them to digest and can cause soft stools or diarrhea.',
+    source: 'https://en.wikipedia.org/wiki/Cat',
+    evidence: 'most adult cats are lactose intolerant'
+  },
+  {
+    id: 'cat-c13',
+    topic: 'Senses',
+    question: 'Why can\'t cats taste sweetness?',
+    options: [
+      'A taste receptor gene mutation',
+      'They have no taste buds at all',
+      'Their saliva breaks down sugar',
+      'Their sense of smell overrides taste'
+    ],
+    answer: 'A taste receptor gene mutation',
+    funFact: 'The mutation keeps their sweet taste buds from binding to sugary molecules.',
+    source: 'https://en.wikipedia.org/wiki/Cat',
+    evidence: 'share a taste receptor gene mutation that keeps their sweet taste buds from binding'
+  },
+  {
+    id: 'cat-c14',
+    topic: 'Behavior',
+    question: 'How long do cats usually sleep each day?',
+    options: ['12 to 16 hours', '6 to 8 hours', '8 to 10 hours', '20 to 22 hours'],
+    answer: '12 to 16 hours',
+    funFact: '13 to 14 hours is average, and some cats sleep as much as 20 hours.',
+    source: 'https://en.wikipedia.org/wiki/Cat',
+    evidence: 'usually between 12 and 16 hours, with 13 to 14 being the average'
+  },
+  {
+    id: 'cat-c15',
+    topic: 'Senses',
+    question: 'What range of sound frequencies can a cat hear?',
+    options: ['55 Hz to 79 kHz', '20 Hz to 20 kHz', '45 Hz to 45 kHz', '100 Hz to 10 kHz'],
+    answer: '55 Hz to 79 kHz',
+    funFact: 'People hear about 20 Hz to 20 kHz. A cat\'s hearing is sharpest between 500 Hz and 32 kHz.',
+    source: 'https://en.wikipedia.org/wiki/Cat',
+    evidence: 'ranging from 55 hz to 79 khz'
+  },
+  {
+    id: 'cat-c16',
+    topic: 'Anatomy',
+    question: 'Where are most of a cat\'s sweat glands?',
+    options: ['In its paw pads', 'Under its front legs', 'On its nose', 'Along its back'],
+    answer: 'In its paw pads',
+    funFact: 'Cats can barely sweat, and they pant for heat relief only at very high temperatures.',
+    source: 'https://en.wikipedia.org/wiki/Cat_anatomy',
+    evidence: 'with glands located primarily in their paw pads'
+  },
+  {
+    id: 'cat-c17',
+    topic: 'Anatomy',
+    question: 'How many toes, each with a claw, does a typical cat have in total?',
+    options: ['18', '16', '20', '22'],
+    answer: '18',
+    funFact: 'Five on each front foot, counting the dewclaw, and four on each hind foot.',
+    source: 'https://en.wikipedia.org/wiki/Cat_anatomy',
+    evidence: 'most cats have a total of 18 digits and claws'
+  },
+  {
+    id: 'cat-c18',
+    topic: 'Breeding',
+    question: 'At about what age do female cats (queens) usually reach sexual maturity?',
+    options: ['5 to 10 months', '2 to 3 months', '18 months', '2 years'],
+    answer: '5 to 10 months',
+    funFact: 'Males usually mature at 5 to 7 months. The age varies by breed.',
+    source: 'https://en.wikipedia.org/wiki/Cat',
+    evidence: 'queens normally reach sexual maturity at 5-10 months'
+  },
+  {
+    id: 'cat-c19',
+    topic: 'Terms',
+    question: 'A male cat is a tom. What is a neutered male cat sometimes called?',
+    options: ['A gib', 'A molly', 'A queen', 'A jack'],
+    answer: 'A gib',
+    funFact: 'A female is a queen, and a spayed female is sometimes called a molly.',
+    source: 'https://en.wikipedia.org/wiki/Cat',
+    evidence: '(or a gib, if neutered)'
+  },
+  {
+    id: 'cat-c20',
+    topic: 'Behavior',
+    question: 'Studies show that domestic cats meow much more than which cats?',
+    options: ['Feral cats', 'Kittens', 'Pedigree show cats', 'Senior cats'],
+    answer: 'Feral cats',
+    funFact: 'Cats rarely meow to communicate with other cats or animals; meowing is largely aimed at people.',
+    source: 'https://en.wikipedia.org/wiki/Cat_communication',
+    evidence: 'domestic cats tend to meow much more than feral cats'
+  },
+  {
+    id: 'cat-c21',
+    topic: 'Anatomy',
+    question: 'Where are a cat\'s carpal vibrissae (whiskers) found?',
+    options: [
+      'On the underside of the leg, just above the paw',
+      'Just above the eyes, on the brow',
+      'Under the chin, near the lower lip',
+      'Along the base of the tail, on top'
+    ],
+    answer: 'On the underside of the leg, just above the paw',
+    funFact: 'Whiskers on the face, above the eyes and on the legs are all sensitive touch hairs.',
+    source: 'https://en.wikipedia.org/wiki/Whiskers',
+    evidence: 'on the underside of the leg just above the paws (called carpal vibrissae)'
+  },
+  {
+    id: 'cat-c22',
+    topic: 'Behavior',
+    question: 'A cat\'s purr has a fundamental frequency of around what?',
+    options: ['25 Hz', '250 Hz', '2,500 Hz', '25 kHz'],
+    answer: '25 Hz',
+    funFact: 'The purr is felt as a vibration on the surface of the body.',
+    source: 'https://en.wikipedia.org/wiki/Purr',
+    evidence: 'with a fundamental frequency of around 25 hz'
+  },
+  {
+    id: 'cat-c23',
+    topic: 'Health',
+    question: 'True lilies are highly toxic to cats. Which organ do they damage?',
+    options: ['The kidneys', 'The liver', 'The heart', 'The lungs'],
+    answer: 'The kidneys',
+    funFact: 'They damage the kidney tubules and can cause acute kidney failure, so veterinary help is urgent.',
+    source: 'https://en.wikipedia.org/wiki/Lilium',
+    evidence: 'which can cause acute kidney failure'
+  },
+  {
+    id: 'cat-c24',
+    topic: 'Behavior',
+    question: 'About what share of cats are strongly attracted to catnip?',
+    options: ['About two-thirds', 'Nearly all of them', 'About one-quarter', 'About one in ten'],
+    answer: 'About two-thirds',
+    funFact: 'The chemical responsible is nepetalactone, and whether a cat responds is hereditary.',
+    source: 'https://en.wikipedia.org/wiki/Catnip',
+    evidence: 'about two-thirds of cats have to the plant due to the terpene nepetalactone'
+  },
+  {
+    id: 'cat-c25',
+    topic: 'Health',
+    question: 'Acetaminophen (paracetamol), garlic and onions can damage a cat\'s red blood cells, forming what?',
+    options: ['Heinz bodies', 'Howell-Jolly bodies', 'Blood clots', 'Urine crystals'],
+    answer: 'Heinz bodies',
+    funFact: 'Never give a cat human painkillers or food seasoned with onion or garlic.',
+    source: 'https://en.wikipedia.org/wiki/Heinz_body',
+    evidence: 'the consumption of paracetamol (acetaminophen), garlic, and onions by cats'
+  },
+  {
+    id: 'cat-c26',
+    topic: 'Health',
+    question: 'Severe infestations of which parasite can cause anemia from blood loss?',
+    options: ['Cat fleas', 'Ear mites', 'Roundworms', 'Ringworm'],
+    answer: 'Cat fleas',
+    funFact: 'Cat fleas can also pass on other parasites.',
+    source: 'https://en.wikipedia.org/wiki/Cat_flea',
+    evidence: 'severe flea infestations can result in anemia due to blood loss'
+  },
+  {
+    id: 'cat-c27',
+    topic: 'Health',
+    question: 'Feline hyperesthesia syndrome is also known by which name?',
+    options: ['Rolling skin disease', 'Fading kitten syndrome', 'Pica', 'Petting and biting syndrome'],
+    answer: 'Rolling skin disease',
+    funFact: 'Episodes can include rippling skin along the lower back and over-grooming near the base of the tail.',
+    source: 'https://en.wikipedia.org/wiki/Feline_hyperesthesia_syndrome',
+    evidence: 'also known as rolling skin disease'
+  },
+  {
+    id: 'cat-c28',
+    topic: 'Senses',
+    question: 'What reflective layer behind a cat\'s retina helps it see in dim light?',
+    options: ['The tapetum lucidum', 'The nictitating membrane', 'The cornea', 'The fovea'],
+    answer: 'The tapetum lucidum',
+    funFact: 'It sends light that passed through the retina back for a second chance, which is why cats\' eyes shine at night.',
+    source: 'https://en.wikipedia.org/wiki/Cat_senses',
+    evidence: 'cats have a tapetum lucidum, which is a reflective layer behind the retina'
+  },
+  {
+    id: 'cat-c29',
+    topic: 'Senses',
+    question: 'What does a cat\'s slit-shaped pupil do in very bright light?',
+    options: [
+      'Closes very narrowly to protect the retina',
+      'Opens wide to take in more color',
+      'Turns sideways to block glare',
+      'Stays the same size as in the dark'
+    ],
+    answer: 'Closes very narrowly to protect the retina',
+    funFact: 'Narrowing the pupil also sharpens depth of field.',
+    source: 'https://en.wikipedia.org/wiki/Cat_senses',
+    evidence: 'the slit-like pupil closes very narrowly over the eye'
+  },
+  {
+    id: 'cat-c30',
+    topic: 'Kittens',
+    question: 'By about what age is a kitten\'s weaning usually complete?',
+    options: ['6 to 8 weeks', '2 to 3 weeks', '12 to 14 weeks', '6 months'],
+    answer: '6 to 8 weeks',
+    funFact: 'Kittens are commonly sent to new homes at about six to eight weeks.',
+    source: 'https://en.wikipedia.org/wiki/Kitten',
+    evidence: 'with weaning usually complete by six to eight weeks'
   }
 ];
 

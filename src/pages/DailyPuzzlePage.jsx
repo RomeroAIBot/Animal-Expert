@@ -1,37 +1,29 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useState } from 'react';
 import CategoryPicker from '../components/CategoryPicker';
-import PuzzleBoard from '../components/PuzzleBoard';
+import PuzzleRun from '../components/PuzzleRun';
 import { generateDailyPuzzleDeck } from '../utils/gameGenerators';
+import { markDailyAttempted, wasDailyAttempted } from '../utils/savedGames';
 import { getDateKey } from '../utils/seed';
 import { getCurrentStreak, getOfficialDailyResult, updateStreak, upsertHistory } from '../utils/storage';
 
 function DailyPuzzlePage({ appContext }) {
   const [category, setCategory] = useState('dogs');
   const [size, setSize] = useState(4);
-  const [attempt, setAttempt] = useState(0);
-  const [result, setResult] = useState(null);
+  const [, refresh] = useState(0);
 
   const dateKey = getDateKey();
   const entryId = `${dateKey}:daily:puzzle:${category}:${size}`;
-  // `attempt` is a dependency so every replay deals a fresh layout.
-  const deck = useMemo(() => generateDailyPuzzleDeck(category, size), [category, size, attempt]);
-  const [official, setOfficial] = useState(() => getOfficialDailyResult(entryId));
+  const official = getOfficialDailyResult(entryId);
 
-  const startOver = (nextCategory, nextSize) => {
-    setCategory(nextCategory);
-    setSize(nextSize);
-    setResult(null);
-    setOfficial(getOfficialDailyResult(`${dateKey}:daily:puzzle:${nextCategory}:${nextSize}`));
-    setAttempt((n) => n + 1);
-  };
-
-  const handleComplete = useCallback(
+  const onFinish = useCallback(
     (payload) => {
-      // Only the first completion of today's board counts; later plays are practice.
-      const practice = Boolean(getOfficialDailyResult(entryId));
-      setResult({ ...payload, practice });
-      if (practice) return;
-      const entry = {
+      // Only the first completion counts, and not if an earlier run was abandoned after flipping.
+      const current = getOfficialDailyResult(entryId);
+      if (current) return `Practice round. Your official score today is ${current.score}.`;
+      if (wasDailyAttempted(entryId)) {
+        return 'Practice round: an earlier run today was ended or restarted after flipping cards, so this one is not official.';
+      }
+      upsertHistory({
         id: entryId,
         date: dateKey,
         mode: 'daily-puzzle',
@@ -42,56 +34,50 @@ function DailyPuzzlePage({ appContext }) {
         score: payload.score,
         flips: payload.flips,
         seconds: payload.seconds
-      };
-      upsertHistory(entry);
+      });
       updateStreak(dateKey);
       appContext.setStreak(getCurrentStreak());
-      setOfficial(entry);
+      refresh((n) => n + 1);
+      return 'This is your official score for today.';
     },
     [entryId, dateKey, category, size, appContext]
   );
+
+  const note = official
+    ? `Today's official score: ${official.score} (${official.flips} flips, ${official.seconds}s). Playing again is practice.`
+    : wasDailyAttempted(entryId)
+      ? 'You ended or restarted a run today after flipping cards, so runs today are practice.'
+      : 'Your first complete run is your official score. Ending or restarting after you flip a card makes later runs practice.';
 
   return (
     <section>
       <h2>Daily Matching Puzzle</h2>
       <p className="muted">
-        Match each photo to its breed name. Everyone gets the same animals today, with the cards shuffled each time you play. Your first finish is your official
-        score; replays are practice.
+        Match each photo to its breed name. Everyone gets the same animals today, with the cards shuffled each time
+        you play.
       </p>
       <div className="controls">
-        <CategoryPicker value={category} onChange={(value) => startOver(value, size)} />
+        <CategoryPicker value={category} onChange={setCategory} />
         <label className="field">
           <span>Grid</span>
-          <select value={size} onChange={(event) => startOver(category, Number(event.target.value))}>
+          <select value={size} onChange={(event) => setSize(Number(event.target.value))}>
             <option value={4}>4x4</option>
             <option value={6}>6x6</option>
           </select>
         </label>
       </div>
-      {official && !result && (
-        <p className="result">
-          Today's official score: {official.score} ({official.flips} flips, {official.seconds}s). Playing again is
-          practice.
-        </p>
-      )}
-      <PuzzleBoard
-        key={`${entryId}:${attempt}`}
-        deck={deck}
+      <p className="result">{note}</p>
+      <PuzzleRun
+        key={entryId}
+        gameKey={`daily-puzzle:${entryId}`}
+        createDeck={() => generateDailyPuzzleDeck(category, size)}
+        onFinish={onFinish}
+        onAbandon={() => {
+          if (!getOfficialDailyResult(entryId)) markDailyAttempted(entryId);
+          refresh((n) => n + 1);
+        }}
         soundEnabled={appContext.soundEnabled}
-        onComplete={handleComplete}
       />
-      {result && (
-        <div className="result">
-          <p>
-            {result.practice ? 'Practice round: ' : 'Complete! '}
-            Score {result.score}, {result.flips} flips, {result.seconds}s.
-            {result.practice && ` Official score today: ${official.score}.`}
-          </p>
-          <button type="button" className="button" onClick={() => startOver(category, size)}>
-            Play again (practice)
-          </button>
-        </div>
-      )}
     </section>
   );
 }

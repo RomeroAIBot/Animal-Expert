@@ -82,15 +82,29 @@ export const generateDailyTrivia = (category, date = new Date()) => {
   return { seed, dateKey, questions: shuffleForSession(questions, randomSeed()) };
 };
 
+const DAILY_CATEGORIES = ['dogs', 'snakes', 'chickens', 'cat', 'horse', 'mixed'];
+const DAY_MS = 24 * 60 * 60 * 1000;
+
+// Question ids that are (or will be) a daily question in the coming week, so practice never spoils them.
+const getUpcomingDailyIds = (category, date) => {
+  const relevant = category === 'mixed' ? DAILY_CATEGORIES : [category, 'mixed'];
+  const ids = new Set();
+  for (let offset = 0; offset < 7; offset += 1) {
+    const day = new Date(date.getTime() + offset * DAY_MS);
+    relevant.forEach((cat) => generateDailyTrivia(cat, day).questions.forEach((question) => ids.add(question.id)));
+  }
+  return ids;
+};
+
+// Practice avoids anything shown in the last week and this week's daily questions.
 export const generateRandomTrivia = (category, date = new Date()) => {
   const normalized = normalizeCategory(category);
   const seed = `${randomSeed()}:trivia:${normalized}`;
   const selected = selectNoRepeatItems({
-    logKey: trackerKeys.questions,
-    category: normalized,
     items: filterTrivia(normalized),
     count: TRIVIA_COUNT,
     seed,
+    exclude: getUpcomingDailyIds(normalized, date),
     now: date
   });
   return { seed, questions: shuffleForSession(selected, seed) };

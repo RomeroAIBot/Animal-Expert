@@ -2,6 +2,8 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import confetti from 'canvas-confetti';
 import { fetchImagesForEntities } from '../utils/imageApi';
 import { playSound } from '../utils/audio';
+import { getSignedInUser } from '../utils/cloud';
+import ReportProblem from './ReportProblem';
 
 // Score rewards accuracy first, then speed. A perfect game uses one flip per card.
 export const scorePuzzle = ({ flips, seconds, pairs }) => {
@@ -13,12 +15,13 @@ export const scorePuzzle = ({ flips, seconds, pairs }) => {
 };
 
 // Remount this component (via `key`) to start a new game; it does not reset itself when `deck` changes.
-function PuzzleBoard({ deck, soundEnabled, onComplete }) {
+// `initialState` resumes a saved game; `onProgress` reports each change so it can be saved.
+function PuzzleBoard({ deck, soundEnabled, onComplete, initialState, onProgress }) {
   const [flipped, setFlipped] = useState([]);
-  const [matched, setMatched] = useState([]);
-  const [flips, setFlips] = useState(0);
-  const [seconds, setSeconds] = useState(0);
-  const [started, setStarted] = useState(false);
+  const [matched, setMatched] = useState(initialState?.matched || []);
+  const [flips, setFlips] = useState(initialState?.flips || 0);
+  const [seconds, setSeconds] = useState(initialState?.seconds || 0);
+  const [started, setStarted] = useState(Boolean(initialState?.started));
   const [images, setImages] = useState({});
   const [loadingImages, setLoadingImages] = useState(true);
   const completedRef = useRef(false);
@@ -46,6 +49,10 @@ function PuzzleBoard({ deck, soundEnabled, onComplete }) {
       cancelled = true;
     };
   }, [deck.entities]);
+
+  useEffect(() => {
+    onProgress?.({ matched, flips, seconds, started });
+  }, [matched, flips, seconds, started, onProgress]);
 
   useEffect(() => {
     if (!finished || completedRef.current) return;
@@ -144,9 +151,19 @@ function PuzzleBoard({ deck, soundEnabled, onComplete }) {
         <div className="facts">
           <h3>Matched Fun Facts</h3>
           {matchedEntities.slice(-4).map((entity) => (
-            <p key={entity.id}>
-              <strong>{entity.displayName}:</strong> {entity.funFact}
-            </p>
+            <div key={entity.id}>
+              <p>
+                <strong>{entity.displayName}:</strong> {entity.funFact}
+              </p>
+              <ReportProblem
+                game="puzzle-fact"
+                questionId={`breed:${entity.id}`}
+                category={entity.category}
+                question={`Fun fact about the ${entity.displayName}`}
+                answer={entity.funFact}
+                signedInEmail={getSignedInUser()?.email}
+              />
+            </div>
           ))}
         </div>
       )}

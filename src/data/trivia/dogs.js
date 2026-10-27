@@ -1652,6 +1652,292 @@ export const dogQuestions = [
     funFact: 'Some breeds typically cycle only once a year.',
     source: 'https://en.wikipedia.org/wiki/Estrous_cycle',
     evidence: 'goes into heat typically twice per year'
+  },
+  // Added from "simple_dog_breed_trivia_corrected_40.md" (October 2026), checked the same way.
+  {
+    id: 'dogs-b01',
+    topic: 'Breeds',
+    question: 'Which breed did Sir Dudley Marjoribanks develop in the late 1800s at Guisachan, his Scottish estate?',
+    options: ['Golden Retriever', 'Labrador Retriever', 'Flat-Coated Retriever', 'Nova Scotia Duck Tolling Retriever'],
+    answer: 'Golden Retriever',
+    funFact: 'It is a Scottish breed known for its gentle, affectionate nature.',
+    source: 'https://en.wikipedia.org/wiki/Golden_Retriever',
+    evidence: 'bred by sir dudley marjoribanks at his scottish estate guisachan'
+  },
+  {
+    id: 'dogs-b02',
+    topic: 'Breeds',
+    question: 'Which breed descends from a now-extinct dog used for bull-baiting in England until the sport was banned in 1835?',
+    options: ['Bulldog', 'French Bulldog', 'Bullmastiff', 'Boxer'],
+    answer: 'Bulldog',
+    funFact: "The Cruelty to Animals Act of 1835 outlawed bull-baiting, and today's Bulldog is a companion dog.",
+    source: 'https://en.wikipedia.org/wiki/Bulldog',
+    evidence: 'used for bull-baiting until the sport was outlawed under the cruelty to animals act of 1835'
+  },
+  {
+    id: 'dogs-b03',
+    topic: 'Breeds',
+    question: 'Silver-grey dogs like which German hunting breed appear in 17th-century paintings by Anthony van Dyck?',
+    options: ['Weimaraner', 'German Shorthaired Pointer', 'Vizsla', 'Rhodesian Ridgeback'],
+    answer: 'Weimaraner',
+    funFact: 'In Germany it is not considered suitable for keeping as a companion dog.',
+    source: 'https://en.wikipedia.org/wiki/Weimaraner',
+    evidence: 'silver-grey dogs are shown in paintings by antoon van dyck'
+  },
+  {
+    id: 'dogs-b04',
+    topic: 'Breeds',
+    question: 'The Basset Hound gets its name from the French word "bas". What does "bas" mean?',
+    options: ['Low', 'Slow', 'Long', 'Hound'],
+    answer: 'Low',
+    funFact: 'It was bred to hunt rabbit and hare on foot, slowly enough that hunters needed no horses.',
+    source: 'https://en.wikipedia.org/wiki/Basset_Hound',
+    evidence: 'derived from the french word bas, meaning'
+  },
+  {
+    id: 'dogs-b05',
+    topic: 'Breeds',
+    question: 'Lassie, the famous film dog, was played by a line of which breed?',
+    options: ['Rough Collie', 'Shetland Sheepdog', 'Border Collie', 'Smooth Collie'],
+    answer: 'Rough Collie',
+    funFact: 'Rough Collies were bred for herding sheep in Scotland.',
+    source: 'https://en.wikipedia.org/wiki/Rough_Collie',
+    evidence: 'lassie, a line of rough collies'
+  },
+  {
+    id: 'dogs-b06',
+    topic: 'Breeds',
+    question: 'Which herding breed was the favorite of Queen Elizabeth II, who owned more than 30 during her reign?',
+    options: ['Pembroke Welsh Corgi', 'Cardigan Welsh Corgi', 'Shetland Sheepdog', 'Swedish Vallhund'],
+    answer: 'Pembroke Welsh Corgi',
+    funFact: 'It began as a cattle-herding dog in Pembrokeshire, Wales.',
+    source: 'https://en.wikipedia.org/wiki/Pembroke_Welsh_Corgi',
+    evidence: 'the preferred breed of queen elizabeth ii'
+  },
+  {
+    id: 'dogs-b07',
+    topic: 'Breeds',
+    question: 'Which tri-coloured Swiss farm dog once pulled carts and drove dairy cattle to alpine pastures?',
+    options: ['Bernese Mountain Dog', 'Greater Swiss Mountain Dog', 'Appenzeller Sennenhund', 'Saint Bernard'],
+    answer: 'Bernese Mountain Dog',
+    funFact: 'Its coat is black with a white chest and rust markings. The breed was formally recognized in 1912.',
+    source: 'https://en.wikipedia.org/wiki/Bernese_Mountain_Dog',
+    evidence: 'drive dairy cattle long distances from the farm to the alpine pastures'
+  },
+  {
+    id: 'dogs-b08',
+    topic: 'Breeds',
+    question: 'Which white livestock guardian breed is native to central Italy, especially Tuscany and Lazio?',
+    options: ['Maremma Sheepdog', 'Kuvasz', 'Great Pyrenees', 'Akbash'],
+    answer: 'Maremma Sheepdog',
+    funFact: 'Ancient Roman writers such as Columella and Varro described white flock-guarding dogs.',
+    source: 'https://en.wikipedia.org/wiki/Maremma_Sheepdog',
+    evidence: 'indigenous to central italy, especially to the maremma region of tuscany and lazio'
+  },
+  {
+    id: 'dogs-b09',
+    topic: 'Breeds',
+    question: 'Which Hungarian livestock guardian has a long white corded coat that earns it the nickname "mop dog"?',
+    options: ['Komondor', 'Puli', 'Kuvasz', 'Bergamasco Sheepdog'],
+    answer: 'Komondor',
+    funFact: 'Its cords take about two years to form.',
+    source: 'https://en.wikipedia.org/wiki/Komondor',
+    evidence: "sometimes referred to as 'mop dogs'"
+  },
+  {
+    id: 'dogs-b10',
+    topic: 'Breeds',
+    question: 'Early Scottish Terrier standards called for grey, grizzle or brindle coats. When did black become the favored color?',
+    options: ['In the 20th century', 'In the 1600s', 'In the 1700s', 'Only after 2000'],
+    answer: 'In the 20th century',
+    funFact: 'Scotties were originally bred to hunt and kill vermin. Wheaten coats sometimes occur too.',
+    source: 'https://en.wikipedia.org/wiki/Scottish_Terrier',
+    evidence: 'the typically black colouring of scotties did not become fashionable'
+  },
+  {
+    id: 'dogs-b11',
+    topic: 'Breeds',
+    question: 'The story goes that West Highland White Terriers were bred white after a reddish terrier was mistaken for what and shot?',
+    options: ['A fox', 'A hare', 'A badger', 'A deer'],
+    answer: 'A fox',
+    funFact: 'Edward Donald Malcolm, 16th Laird of Poltalloch, is credited with creating the modern breed.',
+    source: 'https://en.wikipedia.org/wiki/West_Highland_White_Terrier',
+    evidence: 'a reddish-brown terrier was mistaken for a fox and shot'
+  },
+  {
+    id: 'dogs-b12',
+    topic: 'Breeds',
+    question: 'Which toy terrier\'s early standard said its coat "ought to be a deep steel blue"?',
+    options: ['Yorkshire Terrier', 'Silky Terrier', 'Australian Terrier', 'Skye Terrier'],
+    answer: 'Yorkshire Terrier',
+    funFact: 'An early dog named Huddersfield Ben is famous in the breed\'s history.',
+    source: 'https://en.wikipedia.org/wiki/Yorkshire_Terrier',
+    evidence: 'it ought to be a deep steel blue'
+  },
+  {
+    id: 'dogs-b13',
+    topic: 'Breeds',
+    question: 'In which century were Pugs brought from China to Europe?',
+    options: ['The 16th century', 'The 10th century', 'The 19th century', 'The 20th century'],
+    answer: 'The 16th century',
+    funFact: 'The Dutch House of Orange helped make them popular in western Europe.',
+    source: 'https://en.wikipedia.org/wiki/Pug',
+    evidence: 'pugs were brought from china to europe in the sixteenth century'
+  },
+  {
+    id: 'dogs-b14',
+    topic: 'Breeds',
+    question: 'About how much does a modern Maltese weigh at most?',
+    options: ['3 to 4 kg (7 to 9 lb)', '1 kg (2 lb)', '8 to 10 kg (18 to 22 lb)', '12 to 15 kg (26 to 33 lb)'],
+    answer: '3 to 4 kg (7 to 9 lb)',
+    funFact: 'It has a silky pure-white coat, hanging ears and a tail curving over its back.',
+    source: 'https://en.wikipedia.org/wiki/Maltese_dog',
+    evidence: 'weighs up to 3-4 kg (7-9 lb)'
+  },
+  {
+    id: 'dogs-b15',
+    topic: 'Breeds',
+    question: 'Which bichon-type breed is the national dog of Cuba?',
+    options: ['Havanese', 'Bichon Frise', 'Bolognese', 'Coton de Tulear'],
+    answer: 'Havanese',
+    funFact: 'It developed from the now-extinct Blanquito de la Habana, the "little white dog of Havana".',
+    source: 'https://en.wikipedia.org/wiki/Havanese_dog',
+    evidence: 'is the national dog of cuba'
+  },
+  {
+    id: 'dogs-b16',
+    topic: 'Breeds',
+    question: 'The Papillon is named for its butterfly-like upright ears. What is the drop-eared variety called?',
+    options: ['Phalène', 'Löwchen', 'Bolognese', 'Griffon'],
+    answer: 'Phalène',
+    funFact: 'Phalène is French for "moth". Apart from the ears, the two varieties are identical.',
+    source: 'https://en.wikipedia.org/wiki/Papillon_dog',
+    evidence: 'those of the phalène'
+  },
+  {
+    id: 'dogs-b17',
+    topic: 'Breeds',
+    question: 'In 1926, American Roswell Eldridge offered prizes for spaniels that looked like those in old paintings. Which breed grew from this?',
+    options: ['Cavalier King Charles Spaniel', 'King Charles Spaniel', 'Sussex Spaniel', 'Papillon'],
+    answer: 'Cavalier King Charles Spaniel',
+    funFact: 'The Cavalier\'s muzzle tends to be longer than that of the King Charles Spaniel, its cousin.',
+    source: 'https://en.wikipedia.org/wiki/Cavalier_King_Charles_Spaniel',
+    evidence: 'in 1926, the american roswell eldridge offered a dog show class prize'
+  },
+  {
+    id: 'dogs-b18',
+    topic: 'Breeds',
+    question: 'Bloodhounds are believed to descend from hounds once kept at which abbey?',
+    options: ['Saint-Hubert, Belgium', 'Westminster, England', 'Cluny, France', 'Melk, Austria'],
+    answer: 'Saint-Hubert, Belgium',
+    funFact: 'Bloodhounds have been used for tracking people since the Middle Ages.',
+    source: 'https://en.wikipedia.org/wiki/Bloodhound',
+    evidence: 'descended from hounds once kept at the abbey of saint-hubert'
+  },
+  {
+    id: 'dogs-b19',
+    topic: 'Breeds',
+    question: 'What is the "ridge" of a Rhodesian Ridgeback?',
+    options: [
+      'Hair growing the opposite way along its back',
+      'A raised line of bone along its spine',
+      'A stripe of darker fur down its back',
+      'A fold of loose skin over its shoulders'
+    ],
+    answer: 'Hair growing the opposite way along its back',
+    funFact: 'Early settlers in the Cape Colony used these dogs to hold lions at bay.',
+    source: 'https://en.wikipedia.org/wiki/Rhodesian_Ridgeback',
+    evidence: 'ridge of hair running along its back in the opposite direction'
+  },
+  {
+    id: 'dogs-b20',
+    topic: 'Breeds',
+    question: 'Poodles come in standard, miniature and toy sizes. Which fourth size is not recognized everywhere?',
+    options: ['Medium', 'Giant', 'Teacup', 'Pocket'],
+    answer: 'Medium',
+    funFact: 'The Poodle began as a water dog; its French name is Caniche.',
+    source: 'https://en.wikipedia.org/wiki/Poodle',
+    evidence: 'although the medium poodle is not universally recognised'
+  },
+  {
+    id: 'dogs-b21',
+    topic: 'Breeds',
+    question: 'The Irish Setter\'s Irish name, sotar rua, literally means what?',
+    options: ['Red setter', 'Fast hunter', 'Bird finder', 'Field dog'],
+    answer: 'Red setter',
+    funFact: 'It is a gundog from Ireland, also kept widely as a family dog.',
+    source: 'https://en.wikipedia.org/wiki/Irish_Setter',
+    evidence: 'irish: sotar rua'
+  },
+  {
+    id: 'dogs-b22',
+    topic: 'Breeds',
+    question: 'Hachikō, born in 1923, helped make which Japanese breed famous around the world?',
+    options: ['Akita', 'Shiba Inu', 'Kishu Ken', 'Hokkaido'],
+    answer: 'Akita',
+    funFact: 'Akitas were used to hunt bear, wild boar and serow in snowy mountains.',
+    source: 'https://en.wikipedia.org/wiki/Akita_(dog_breed)',
+    evidence: 'the story of hachikō helped push the akita into the international dog world'
+  },
+  {
+    id: 'dogs-b23',
+    topic: 'Breeds',
+    question: 'Which is the smallest of Japan\'s six original native dog breeds?',
+    options: ['Shiba Inu', 'Akita', 'Kai Ken', 'Shikoku'],
+    answer: 'Shiba Inu',
+    funFact: 'Its name translates to "brushwood dog". It was originally bred for hunting.',
+    source: 'https://en.wikipedia.org/wiki/Shiba_Inu',
+    evidence: 'it is the smallest of the six original dog breeds native to japan'
+  },
+  {
+    id: 'dogs-b24',
+    topic: 'Breeds',
+    question: 'Which Mexican toy breed is the smallest recognized dog breed in the world?',
+    options: ['Chihuahua', 'Pomeranian', 'Toy Fox Terrier', 'Papillon'],
+    answer: 'Chihuahua',
+    funFact: 'It comes in both short-coated and long-coated varieties.',
+    source: 'https://en.wikipedia.org/wiki/Chihuahua_(dog_breed)',
+    evidence: 'the smallest recognized dog breed in the world'
+  },
+  {
+    id: 'dogs-b25',
+    topic: 'Breeds',
+    question: 'What does the German name "Dachshund" mean?',
+    options: ['Badger dog', 'Low hound', 'Sausage dog', 'Burrow digger'],
+    answer: 'Badger dog',
+    funFact: 'It was bred to scent, chase and flush out badgers and other burrowing animals.',
+    source: 'https://en.wikipedia.org/wiki/Dachshund',
+    evidence: 'bred to scent, chase, and flush out badgers'
+  },
+  {
+    id: 'dogs-b26',
+    topic: 'Breeds',
+    question: 'Which US president had two Portuguese Water Dogs named Bo and Sunny?',
+    options: ['Barack Obama', 'Joe Biden', 'George W. Bush', 'Bill Clinton'],
+    answer: 'Barack Obama',
+    funFact: "On Portugal's coast the breed herded fish into nets, retrieved lost tackle and carried messages between boats.",
+    source: 'https://en.wikipedia.org/wiki/Portuguese_Water_Dog',
+    evidence: 'the chosen breed of us president barack obama'
+  },
+  {
+    id: 'dogs-b27',
+    topic: 'Breeds',
+    question: 'English Mastiffs always show black on the muzzle, ears and nose. Which coat color is accepted?',
+    options: ['Apricot-fawn', 'Solid white', 'Blue merle', 'Black and tan'],
+    answer: 'Apricot-fawn',
+    funFact: 'Silver-fawn, fawn and dark fawn-brindle are accepted as well.',
+    source: 'https://en.wikipedia.org/wiki/English_Mastiff',
+    evidence: 'english mastiff colours are apricot-fawn'
+  },
+  {
+    id: 'dogs-b28',
+    topic: 'Breeds',
+    question: 'What was the Shetland Sheepdog originally called, before Rough Collie breeders objected?',
+    options: ['Shetland Collie', 'Shetland Terrier', 'Toy Collie', 'Island Sheepdog'],
+    answer: 'Shetland Collie',
+    funFact: 'The Kennel Club formally recognized the breed in 1909.',
+    source: 'https://en.wikipedia.org/wiki/Shetland_Sheepdog',
+    evidence: 'it was originally called the shetland collie'
   }
 ];
 

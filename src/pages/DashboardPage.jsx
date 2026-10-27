@@ -40,26 +40,44 @@ function DashboardPage({ appContext }) {
         </p>
       </article>
 
+      <h2>How the games work</h2>
       <div className="panel-grid">
-        <Link className="card link-card" to="/daily-puzzle">
-          <h3>Today's Daily Puzzle</h3>
-          <p>Match photos to breed names. Same board for everyone today.</p>
-        </Link>
         <Link className="card link-card" to="/daily-trivia">
-          <h3>Today's Daily Trivia</h3>
-          <p>10 multiple-choice questions for the selected category.</p>
+          <h3>Daily Trivia</h3>
+          <p>
+            Ten multiple-choice questions in the category you pick. Everyone gets the same questions each day, in a
+            shuffled order. Your first complete run is your official score; after each answer you get a fun fact
+            and its source.
+          </p>
+        </Link>
+        <Link className="card link-card" to="/daily-puzzle">
+          <h3>Daily Puzzle</h3>
+          <p>
+            A memory matching game: flip cards to pair each animal photo with its breed name. Fewer flips and a
+            faster time score higher. Every photo has a spoken description.
+          </p>
         </Link>
         <Link className="card link-card" to="/identify-cross">
           <h3>Identify &amp; Cross</h3>
-          <p>Identify five animals from photos, then solve a crossword of their names.</p>
-        </Link>
-        <Link className="card link-card" to="/archive">
-          <h3>Game History</h3>
-          <p>Every result you've recorded, newest first.</p>
+          <p>
+            Name five animals from their photos, then solve a crossword made from clues about those same animals.
+          </p>
         </Link>
         <Link className="card link-card" to="/new-game">
           <h3>Practice</h3>
-          <p>Fresh random puzzles or trivia any time. Doesn't affect your streak.</p>
+          <p>Fresh trivia or puzzles any time, with no effect on your streak or official scores.</p>
+        </Link>
+        <Link className="card link-card" to="/rankings">
+          <h3>Rankings</h3>
+          <p>Today's and yesterday's top official daily scores from players who chose to appear.</p>
+        </Link>
+        <Link className="card link-card" to="/leaderboard">
+          <h3>My Stats and Game History</h3>
+          <p>Your streak, best and average scores for each game, and every result you've recorded.</p>
+        </Link>
+        <Link className="card link-card" to="/account">
+          <h3>Account</h3>
+          <p>Optional. Sign in with an emailed link to keep your progress on every device and join the Rankings.</p>
         </Link>
       </div>
     </section>

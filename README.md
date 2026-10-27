@@ -121,6 +121,24 @@ Supabase dashboard settings that the app needs (Authentication section):
   warns that Gmail is meant for personal mail, so if sign-in emails start landing in spam, move to a
   transactional email service.
 
+## Question reports
+
+Under each answer explanation (and each puzzle fun fact) players can report inaccurate information.
+The `report-question` Supabase Edge Function (`supabase/functions/report-question`) saves the report in
+`public.question_reports` and emails it to romeroaibot@gmail.com through Gmail, limited to 5 reports per
+visitor per hour. Emailing needs a function secret: Supabase dashboard, Edge Functions, Secrets,
+`GMAIL_APP_PASSWORD` (a Google app password for romeroaibot@gmail.com). Without it, reports are still saved.
+
+## No-repeat rules
+
+- Every trivia question is logged the moment it is shown and held back for 7 days in Practice.
+- Practice also skips the questions scheduled for the next 7 days of daily games, so a daily question is
+  new to the player that day.
+- Daily games give everyone the same questions; the schedule never repeats a question within about a
+  week (categories with fewer than about 80 questions can repeat a little sooner).
+- Practice puzzle boards and Identify & Cross sessions avoid any combination dealt in the last 7 days.
+- In-progress games are saved on the device; players can pause, resume later, start over or end a game.
+
 ## Sound files
 
 Place sound files in `public/sounds/`.

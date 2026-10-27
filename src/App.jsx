@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Header from './components/Header';
 import DashboardPage from './pages/DashboardPage';
@@ -23,6 +23,18 @@ function App() {
   const [sync, setSync] = useState({ status: 'idle', message: '', version: 0 });
   const [signInError, setSignInError] = useState('');
   const syncingRef = useRef(false);
+  const mainRef = useRef(null);
+  const location = useLocation();
+
+  // After moving to another page, start screen readers and keyboards at the game, not the header.
+  const firstRender = useRef(true);
+  useEffect(() => {
+    if (firstRender.current) {
+      firstRender.current = false;
+      return;
+    }
+    mainRef.current?.focus();
+  }, [location.pathname]);
 
   useEffect(() => {
     storage.setSettings(settings);
@@ -107,7 +119,7 @@ function App() {
         soundEnabled={soundEnabled}
         onToggleSound={() => setSettings((prev) => ({ ...prev, soundEnabled: !prev.soundEnabled }))}
       />
-      <main>
+      <main id="main" tabIndex={-1} ref={mainRef}>
         <Routes>
           <Route path="/" element={<DashboardPage appContext={context} />} />
           <Route path="/daily-puzzle" element={<DailyPuzzlePage appContext={context} />} />
