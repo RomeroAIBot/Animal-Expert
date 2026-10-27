@@ -7,7 +7,7 @@ import { generateIdentifyCrossSession, getIdentifyCrossPool, identifyCrossRoundC
 import { fetchImagesForEntities } from '../utils/imageApi';
 import { recordUsedIds, trackerKeys } from '../utils/questionTracker';
 import { getDateKey } from '../utils/seed';
-import { storage, upsertHistory } from '../utils/storage';
+import { readJson, storage, upsertHistory, writeJson } from '../utils/storage';
 import '../styles/identifyCross.css';
 
 const keyboardLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
@@ -95,26 +95,54 @@ function PhotoCredit({ image }) {
   );
 }
 
+// An unfinished game is saved here after every move, so leaving the page never loses it.
+const PROGRESS_KEY = 'animalExpert:v1:identify-cross-progress';
+const activePhases = ['identify', 'bridge', 'crossword'];
+
+const loadProgress = () => {
+  const saved = readJson(PROGRESS_KEY, null);
+  return saved?.session?.rounds?.length && activePhases.includes(saved.phase) ? saved : null;
+};
+
+const clearProgress = () => {
+  try {
+    localStorage.removeItem(PROGRESS_KEY);
+  } catch {
+    // Storage blocked; nothing to clear.
+  }
+};
+
 function IdentifyCrossPage({ appContext }) {
-  const [category, setCategory] = useState('dogs');
-  const [roundCount, setRoundCount] = useState(6);
-  const [difficulty, setDifficulty] = useState('standard');
-  const [session, setSession] = useState(null);
-  const [gameId, setGameId] = useState(null);
-  const [phase, setPhase] = useState('setup');
-  const [roundIndex, setRoundIndex] = useState(0);
-  const [answers, setAnswers] = useState([]);
-  const [hintShown, setHintShown] = useState(false);
+  const [saved] = useState(loadProgress);
+  const [category, setCategory] = useState(saved?.category ?? 'dogs');
+  const [roundCount, setRoundCount] = useState(saved?.roundCount ?? 6);
+  const [difficulty, setDifficulty] = useState(saved?.difficulty ?? 'standard');
+  const [session, setSession] = useState(saved?.session ?? null);
+  const [gameId, setGameId] = useState(saved?.gameId ?? null);
+  const [phase, setPhase] = useState(saved?.phase ?? 'setup');
+  const [roundIndex, setRoundIndex] = useState(saved?.roundIndex ?? 0);
+  const [answers, setAnswers] = useState(saved?.answers ?? []);
+  const [hintShown, setHintShown] = useState(saved?.hintShown ?? false);
   const [images, setImages] = useState({});
   const [loadingImages, setLoadingImages] = useState(true);
-  const [crosswordStart, setCrosswordStart] = useState(null);
-  const [seconds, setSeconds] = useState(0);
-  const [guesses, setGuesses] = useState({});
-  const [typed, setTyped] = useState({});
+  // Crossword time is kept as finished stretches (elapsedMs) plus the stretch running now
+  // (timerStart), so pausing or leaving the page stops the clock.
+  const [paused, setPaused] = useState(saved?.paused ?? false);
+  const [elapsedMs, setElapsedMs] = useState(saved?.elapsedMs ?? 0);
+  const [timerStart, setTimerStart] = useState(
+    saved?.phase === 'crossword' && !saved.paused ? Date.now() : null
+  );
+  const [seconds, setSeconds] = useState(Math.floor((saved?.elapsedMs ?? 0) / 1000));
+  const [guesses, setGuesses] = useState(saved?.guesses ?? {});
+  const [typed, setTyped] = useState(saved?.typed ?? {});
   const [entryFeedback, setEntryFeedback] = useState({});
-  const [revealedLetters, setRevealedLetters] = useState(0);
-  const [announcement, setAnnouncement] = useState('');
+  const [revealedLetters, setRevealedLetters] = useState(saved?.revealedLetters ?? 0);
+  const [announcement, setAnnouncement] = useState(
+    saved ? 'Welcome back. Your unfinished game was restored where you left off.' : ''
+  );
   const [outcome, setOutcome] = useState(null);
+  const guessesRef = useRef(guesses);
+  guessesRef.current = guesses;
   const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth < 768 : false);
   const crosswordRef = useRef(null);
   const touchRef = useRef(null);
@@ -171,16 +199,79 @@ function IdentifyCrossPage({ appContext }) {
     };
   }, [session]);
 
+  const elapsedNow = () => elapsedMs + (timerStart ? Date.now() - timerStart : 0);
+
   useEffect(() => {
-    if (!crosswordStart || outcome) return undefined;
-    const timer = setInterval(() => setSeconds(Math.floor((Date.now() - crosswordStart) / 1000)), 1000);
+    if (!timerStart || outcome) return undefined;
+    const timer = setInterval(() => setSeconds(Math.floor((elapsedMs + Date.now() - timerStart) / 1000)), 1000);
     return () => clearInterval(timer);
-  }, [crosswordStart, outcome]);
+  }, [timerStart, elapsedMs, outcome]);
+
+  // Saves the game after every change (and each tick of the crossword clock); a finished,
+  // ended or not-yet-started game leaves nothing behind.
+  useEffect(() => {
+    if (!session || !activePhases.includes(phase)) {
+      clearProgress();
+      return;
+    }
+    writeJson(PROGRESS_KEY, {
+      category,
+      roundCount,
+      difficulty,
+      session,
+      gameId,
+      phase,
+      roundIndex,
+      answers,
+      hintShown,
+      guesses,
+      typed,
+      revealedLetters,
+      paused,
+      elapsedMs: elapsedNow()
+    });
+    // elapsedNow reads timerStart and elapsedMs, both listed.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [category, roundCount, difficulty, session, gameId, phase, roundIndex, answers, hintShown, guesses, typed, revealedLetters, paused, elapsedMs, timerStart, seconds]);
 
   // Each new screen moves keyboard and screen-reader focus to its heading.
   useEffect(() => {
-    if (phase !== 'setup') headingRef.current?.focus();
-  }, [phase, roundIndex]);
+    if (phase === 'setup') return;
+    if (paused) document.getElementById('ic-resume')?.focus();
+    else headingRef.current?.focus();
+  }, [phase, roundIndex, paused]);
+
+  const pauseGame = () => {
+    if (timerStart) {
+      setElapsedMs((value) => value + Date.now() - timerStart);
+      setTimerStart(null);
+    }
+    setPaused(true);
+    setAnnouncement(`Game paused${phase === 'crossword' ? ', timer stopped' : ''}. Choose Resume to carry on.`);
+    setTimeout(() => document.getElementById('ic-resume')?.focus(), 0);
+  };
+
+  const resumeGame = () => {
+    setPaused(false);
+    if (phase === 'crossword') setTimerStart(Date.now());
+    setAnnouncement('Game resumed.');
+  };
+
+  const startOver = () => {
+    startGame();
+    setAnnouncement('Started over with a fresh set of photos.');
+    // The screen may not change (still photo 1), so move focus to its heading explicitly.
+    setTimeout(() => headingRef.current?.focus(), 0);
+  };
+
+  const endGame = () => {
+    clearProgress();
+    setPaused(false);
+    setTimerStart(null);
+    backToSetup();
+    setAnnouncement('Game ended. No result was saved.');
+    setTimeout(() => document.getElementById('ic-setup-heading')?.focus(), 0);
+  };
 
   const startGame = (settings = {}) => {
     const next = {
@@ -201,7 +292,9 @@ function IdentifyCrossPage({ appContext }) {
     setAnswers([]);
     setHintShown(false);
     setImages({});
-    setCrosswordStart(null);
+    setPaused(false);
+    setTimerStart(null);
+    setElapsedMs(0);
     setSeconds(0);
     setGuesses({});
     setTyped({});
@@ -222,7 +315,7 @@ function IdentifyCrossPage({ appContext }) {
 
   const handleGuess = (option) => {
     // Ignore extra clicks while the answer is showing, so one round can't be scored twice.
-    if (!currentRound || guessLockRef.current) return;
+    if (!currentRound || currentAnswer || guessLockRef.current) return;
     guessLockRef.current = true;
     const correct = option === currentRound.entity.displayName;
     const base = hintShown ? HINT_POINTS : PHOTO_POINTS;
@@ -272,19 +365,32 @@ function IdentifyCrossPage({ appContext }) {
   }, [answers, entries]);
 
   const startCrossword = () => {
+    setGuesses((prev) => {
+      const next = { ...prev };
+      headStartCells.forEach((cell) => {
+        next[cellKey(cell.row, cell.col)] = cell.letter;
+      });
+      return next;
+    });
     setPhase('crossword');
-    setCrosswordStart(Date.now());
+    setElapsedMs(0);
+    setTimerStart(Date.now());
     setSeconds(0);
   };
 
+  // The grid keeps its own letters, so whenever it appears (crossword opened, resumed after a
+  // pause or a page reload) copy in every letter known so far, head-start letters included.
   useEffect(() => {
-    if (phase !== 'crossword' || !crosswordData) return undefined;
-    // Give the grid a moment to build its cells before writing the head-start letters.
-    const timer = setTimeout(() => fillCells(headStartCells), 150);
+    if (phase !== 'crossword' || paused || !crosswordData) return undefined;
+    // Give the grid a moment to build its cells first.
+    const timer = setTimeout(() => {
+      Object.entries(guessesRef.current).forEach(([key, letter]) => {
+        const [row, col] = key.split(',').map(Number);
+        if (letter) crosswordRef.current?.setGuess(row, col, letter);
+      });
+    }, 150);
     return () => clearTimeout(timer);
-    // Only once, when the crossword opens.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [phase, crosswordData]);
+  }, [phase, paused, crosswordData]);
 
   const crosswordPoints = (solvedCount, solved, elapsed) =>
     Math.max(
@@ -298,7 +404,9 @@ function IdentifyCrossPage({ appContext }) {
     // Revealing fills the grid, which can fire the "correct" callback; only the first finish counts.
     if (finishedRef.current) return;
     finishedRef.current = true;
-    const elapsed = Math.floor((Date.now() - crosswordStart) / 1000);
+    const elapsed = Math.floor(elapsedNow() / 1000);
+    setTimerStart(null);
+    setElapsedMs(elapsed * 1000);
     const wordsSolved = solved ? entries.length : solvedKeys.size;
     const gridPoints = crosswordPoints(wordsSolved, solved, elapsed);
     const score = photoScore + gridPoints;
@@ -398,10 +506,47 @@ function IdentifyCrossPage({ appContext }) {
         Name the animal in each photo, then solve a crossword of the same animals from expert clues. Every animal you
         name correctly gives you its first letter in the grid.
       </p>
+      <p className="sr-only" role="status" aria-live="polite">
+        {announcement}
+      </p>
+
+      {activePhases.includes(phase) && (
+        <div className="ic-controls" role="group" aria-label="Game controls">
+          {paused ? (
+            <button type="button" className="button small" id="ic-resume" onClick={resumeGame}>
+              Resume
+            </button>
+          ) : (
+            <button type="button" className="button ghost small" onClick={pauseGame}>
+              Pause
+            </button>
+          )}
+          <button type="button" className="button ghost small" onClick={startOver}>
+            Start over
+          </button>
+          <button type="button" className="button ghost small" onClick={endGame}>
+            End game
+          </button>
+        </div>
+      )}
+
+      {paused && activePhases.includes(phase) && (
+        <article className="card ic-paused">
+          <h3>Game paused</h3>
+          <p>
+            {phase === 'crossword'
+              ? `The clock is stopped at ${seconds} seconds. `
+              : `You're on ${phase === 'identify' ? `photo ${roundIndex + 1} of ${rounds.length}` : 'the photo results'}. `}
+            Your progress is saved, even if you leave this page.
+          </p>
+        </article>
+      )}
 
       {phase === 'setup' && (
         <article className="card ic-setup">
-          <h3>Set up your game</h3>
+          <h3 id="ic-setup-heading" tabIndex={-1}>
+            Set up your game
+          </h3>
           <div className="ic-setup-grid">
             <CategoryPicker value={category} onChange={setCategory} />
             <fieldset className="ic-choice">
@@ -461,7 +606,7 @@ function IdentifyCrossPage({ appContext }) {
         </article>
       )}
 
-      {phase === 'identify' && currentRound && (
+      {!paused && phase === 'identify' && currentRound && (
         <article className="card identify-card">
           <div className="ic-scorebar">
             <h3 ref={headingRef} tabIndex={-1}>
@@ -553,7 +698,7 @@ function IdentifyCrossPage({ appContext }) {
         </article>
       )}
 
-      {phase === 'bridge' && (
+      {!paused && phase === 'bridge' && (
         <article className="card identify-results">
           <h3 ref={headingRef} tabIndex={-1}>
             Photo round complete: {identifiedCount} of {rounds.length} named, {photoScore} points
@@ -595,7 +740,7 @@ function IdentifyCrossPage({ appContext }) {
         </article>
       )}
 
-      {phase === 'crossword' && (
+      {!paused && phase === 'crossword' && (
         <article className="card">
           <div className="ic-scorebar">
             <h3 ref={headingRef} tabIndex={-1}>
@@ -606,9 +751,6 @@ function IdentifyCrossPage({ appContext }) {
               {revealedLetters ? ` · ${plural(revealedLetters, 'letter')} revealed` : ''}
             </p>
           </div>
-          <p className="sr-only" role="status" aria-live="polite">
-            {announcement}
-          </p>
           {crosswordData ? (
             <>
               <h4>Answer list</h4>
