@@ -45,6 +45,36 @@ export const getDayNumber = (dateKey) => {
 
 export const getDateSeed = (date = new Date()) => getDateKey(date);
 
+const REPEAT_GAP_DAYS = 7;
+const cycleCache = new Map();
+
+// The order for one cycle. Items used in the last week of the previous cycle move to the end,
+// so a question never comes back within a week of its last daily appearance (when the pool
+// is large enough; a pool under about eight days of items will still repeat sooner).
+const getCycleOrder = (items, count, salt, cycle, perCycle) => {
+  const cacheKey = `${salt}:${items.length}:${count}`;
+  let cache = cycleCache.get(cacheKey);
+  if (!cache) {
+    cache = new Map();
+    cycleCache.set(cacheKey, cache);
+  }
+  let start = cycle;
+  while (start > 0 && !cache.has(start - 1)) start -= 1;
+  for (let c = start; c <= cycle; c += 1) {
+    if (cache.has(c)) continue;
+    const order = seededShuffle(items, `${salt}:cycle:${c}`);
+    const previous = cache.get(c - 1);
+    if (!previous) {
+      cache.set(c, order);
+      continue;
+    }
+    const tailDays = Math.min(REPEAT_GAP_DAYS, perCycle);
+    const recent = new Set(previous.slice((perCycle - tailDays) * count, perCycle * count));
+    cache.set(c, [...order.filter((item) => !recent.has(item)), ...order.filter((item) => recent.has(item))]);
+  }
+  return cache.get(cycle);
+};
+
 // Picks `count` items for a given day so that every item is used once before any repeats,
 // and every player gets the same set on the same day.
 export const selectDailyItems = (items, count, dateKey, salt) => {
@@ -53,6 +83,5 @@ export const selectDailyItems = (items, count, dateKey, salt) => {
   const perCycle = Math.floor(items.length / count);
   const cycle = Math.floor(day / perCycle);
   const position = day % perCycle;
-  const shuffled = seededShuffle(items, `${salt}:cycle:${cycle}`);
-  return shuffled.slice(position * count, position * count + count);
+  return getCycleOrder(items, count, salt, cycle, perCycle).slice(position * count, position * count + count);
 };

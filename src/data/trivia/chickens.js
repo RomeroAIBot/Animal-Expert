@@ -1098,6 +1098,273 @@ export const chickenQuestions = [
     funFact: 'In the poultry industry, a pullet is a hen that hasn\'t reached laying age.',
     source: 'https://en.wikipedia.org/wiki/Chicken',
     evidence: 'pullet: a young female chicken less than a year old'
+  },
+  // Added from "chicken_trivia_master_file.md" (October 2026), checked the same way; disease facts
+  // also cross-checked against the Merck Veterinary Manual and breeds against The Livestock Conservancy.
+  {
+    id: 'chickens-k01',
+    topic: 'Breeds',
+    question: 'The Wyandotte, an American breed from the 1870s, got its rose comb from which breed?',
+    options: ['Spangled Hamburg', 'Dark Brahma', 'Rhode Island Red', 'Leghorn'],
+    answer: 'Spangled Hamburg',
+    funFact: 'The Dark Brahma supplied its color pattern. The breed is named for the Wyandot people.',
+    source: 'https://en.wikipedia.org/wiki/Wyandotte_chicken',
+    evidence: 'the hamburg for the rose comb and the brahma for the color pattern'
+  },
+  {
+    id: 'chickens-k02',
+    topic: 'Breeds',
+    question: 'The crested, bearded Sultan chicken\'s original Turkish name, sarai-tavuk, means what?',
+    options: ['Fowls of the sultan', 'Palace guards', 'Snow hens', 'Garden birds'],
+    answer: 'Fowls of the sultan',
+    funFact: 'Legend says they were kept for ornament in the palace gardens of Ottoman sultans. The breed is now endangered.',
+    source: 'https://en.wikipedia.org/wiki/Sultan_chicken',
+    evidence: 'the original turkish name of sarai-tavuk'
+  },
+  {
+    id: 'chickens-k03',
+    topic: 'Breeds',
+    question: 'The Brahma was developed in the US from large feather-legged birds imported from which Chinese port?',
+    options: ['Shanghai', 'Canton', 'Hong Kong', 'Tianjin'],
+    answer: 'Shanghai',
+    funFact: 'It was the main American meat breed from the 1850s until about 1930.',
+    source: 'https://en.wikipedia.org/wiki/Brahma_chicken',
+    evidence: 'imported in the 1840s from the chinese port of shanghai'
+  },
+  {
+    id: 'chickens-k04',
+    topic: 'Breeds',
+    question: 'The crested Appenzeller Spitzhauben comes from which country?',
+    options: ['Switzerland', 'Austria', 'Germany', 'The Netherlands'],
+    answer: 'Switzerland',
+    funFact: 'Spitzhauben means "pointed bonnet", after a ceremonial headdress.',
+    source: 'https://en.wikipedia.org/wiki/Appenzeller_Spitzhauben',
+    evidence: 'originating in the historical appenzell region of switzerland'
+  },
+  {
+    id: 'chickens-k05',
+    topic: 'Breeds',
+    question: 'Which bantam from Malaysia is the smallest chicken breed in the world?',
+    options: ['Serama', 'Sebright', 'Japanese Bantam', 'Rosecomb'],
+    answer: 'Serama',
+    funFact: 'Seramas stand very upright, with a full breast and tail feathers held vertically.',
+    source: 'https://en.wikipedia.org/wiki/Serama',
+    evidence: 'it is the smallest breed of chicken in the world'
+  },
+  {
+    id: 'chickens-k06',
+    topic: 'Genetics',
+    question: 'The Naked Neck\'s bare neck comes from what kind of gene?',
+    options: ['A single dominant gene', 'A single recessive gene', 'A sex-linked gene', 'Several genes together'],
+    answer: 'A single dominant gene',
+    funFact: 'It is also called the Turken, from the mistaken idea that it is a chicken-turkey cross. The gene can reduce heat stress.',
+    source: 'https://en.wikipedia.org/wiki/Naked_Neck',
+    evidence: 'the trait for a naked neck is a dominant one controlled by one gene'
+  },
+  {
+    id: 'chickens-k07',
+    topic: 'Breeds',
+    question: 'Which is the only chicken breed that originated in Canada?',
+    options: ['Chantecler', 'Buckeye', 'Dominique', 'Wyandotte'],
+    answer: 'Chantecler',
+    funFact: 'A monk, Wilfrid Châtelain, bred it from 1908 in Oka, Quebec. Its tiny comb and wattles resist frostbite.',
+    source: 'https://en.wikipedia.org/wiki/Chantecler_chicken',
+    evidence: 'it is the only chicken breed originating in canada'
+  },
+  {
+    id: 'chickens-k08',
+    topic: 'Breeds',
+    question: 'The Sebright is a "true bantam". What does that mean?',
+    options: [
+      'It has no large-fowl version',
+      'It weighs under one pound',
+      'It was bred only for shows',
+      'It cannot fly at all'
+    ],
+    answer: 'It has no large-fowl version',
+    funFact: 'Sir John Sebright set out to create a tiny bantam with laced plumage like the laced Polish.',
+    source: 'https://en.wikipedia.org/wiki/Sebright_chicken',
+    evidence: 'a miniature bird with no corresponding large version'
+  },
+  {
+    id: 'chickens-k09',
+    topic: 'Anatomy',
+    question: 'What is a chicken\'s crop used for?',
+    options: ['Storing food before digestion', 'Grinding food with grit', 'Secreting stomach acid', 'Absorbing water'],
+    answer: 'Storing food before digestion',
+    funFact: 'Chickens, turkeys, ducks and geese all have a crop; buttonquail do not.',
+    source: 'https://en.wikipedia.org/wiki/Crop_(anatomy)',
+    evidence: 'which is used for the storage of food before digestion'
+  },
+  {
+    id: 'chickens-k10',
+    topic: 'Terms',
+    question: 'What is a capon?',
+    options: ['A castrated male chicken', 'A hen past laying age', 'A rooster kept for breeding', 'A chicken-pheasant hybrid'],
+    answer: 'A castrated male chicken',
+    funFact: 'Capon meat is more moist, tender and flavorful than a cockerel\'s.',
+    source: 'https://en.wikipedia.org/wiki/Capon',
+    evidence: 'is a male chicken that has been castrated or neutered'
+  },
+  {
+    id: 'chickens-k11',
+    topic: 'Health',
+    question: 'Marek\'s disease is caused by what kind of virus?',
+    options: ['An alphaherpesvirus', 'A coronavirus', 'A retrovirus', 'A paramyxovirus'],
+    answer: 'An alphaherpesvirus',
+    funFact: 'It causes tumors, and its classic form brings paralysis of one or more legs.',
+    source: "https://en.wikipedia.org/wiki/Marek%27s_disease",
+    evidence: "marek's disease is caused by an alphaherpesvirus"
+  },
+  {
+    id: 'chickens-k12',
+    topic: 'Anatomy',
+    question: 'What is a bird\'s uropygial (preen) gland for?',
+    options: ['Spreading oil over its feathers', 'Releasing an alarm scent', 'Storing water', 'Digesting fat'],
+    answer: 'Spreading oil over its feathers',
+    funFact: 'It is especially large in waterbirds such as ducks, where the oil helps with waterproofing.',
+    source: 'https://en.wikipedia.org/wiki/Uropygial_gland',
+    evidence: "used to distribute the gland's oil"
+  },
+  {
+    id: 'chickens-k13',
+    topic: 'Genetics',
+    question: 'In the ZW sex-determination system of birds, which chromosome pair makes a female?',
+    options: ['ZW', 'ZZ', 'XX', 'XY'],
+    answer: 'ZW',
+    funFact: 'Males are ZZ, so in birds it is the mother whose egg settles the chick\'s sex.',
+    source: 'https://en.wikipedia.org/wiki/ZW_sex-determination_system',
+    evidence: 'in the zw system, females have a pair of dissimilar zw chromosomes'
+  },
+  {
+    id: 'chickens-k14',
+    topic: 'Health',
+    question: 'Avian infectious bronchitis is caused by which kind of virus?',
+    options: ['A coronavirus', 'An alphaherpesvirus', 'A retrovirus', 'A paramyxovirus'],
+    answer: 'A coronavirus',
+    funFact: 'It affects the respiratory tract, gut, kidneys and reproductive system; chicks infected early can suffer lasting oviduct damage.',
+    source: 'https://en.wikipedia.org/wiki/Avian_infectious_bronchitis_virus',
+    evidence: 'is a species of virus from the genus gammacoronavirus that infects birds'
+  },
+  {
+    id: 'chickens-k15',
+    topic: 'Anatomy',
+    question: 'What does a chicken\'s proventriculus, its glandular stomach, secrete?',
+    options: [
+      'Hydrochloric acid and digestive enzymes',
+      'Bile to break down fat',
+      'Mucus to coat swallowed grit',
+      'Saliva to soften whole seeds'
+    ],
+    answer: 'Hydrochloric acid and digestive enzymes',
+    funFact: 'Food then moves on to the gizzard to be ground up.',
+    source: 'https://en.wikipedia.org/wiki/Proventriculus',
+    evidence: 'secrete hydrochloric acid (hcl) and digestive enzymes'
+  },
+  {
+    id: 'chickens-k16',
+    topic: 'Health',
+    question: 'Which bacterium causes chronic respiratory disease (CRD) in chickens?',
+    options: ['Mycoplasma gallisepticum', 'Avibacterium paragallinarum', 'Salmonella Pullorum', 'Pasteurella multocida'],
+    answer: 'Mycoplasma gallisepticum',
+    funFact: 'Infected birds remain carriers for life, which makes quarantine of new birds important.',
+    source: 'https://en.wikipedia.org/wiki/Mycoplasma_gallisepticum',
+    evidence: 'it causes chronic respiratory disease (crd) in chickens'
+  },
+  {
+    id: 'chickens-k17',
+    topic: 'Health',
+    question: 'How deadly can the most virulent (velogenic) strains of Newcastle disease be?',
+    options: ['Up to 90% mortality', 'About 1% mortality', 'About 10% mortality', 'No deaths, only fewer eggs'],
+    answer: 'Up to 90% mortality',
+    funFact: 'The disease is caused by avian paramyxovirus type 1 and has no treatment; vaccines reduce signs but not infection.',
+    source: 'https://en.wikipedia.org/wiki/Newcastle_disease',
+    evidence: 'spread rapidly, and cause up to 90% mortality'
+  },
+  {
+    id: 'chickens-k18',
+    topic: 'Health',
+    question: 'Avian leukosis virus, the cause of lymphoid leukosis, is what kind of virus?',
+    options: ['A retrovirus', 'A coronavirus', 'An alphaherpesvirus', 'A poxvirus'],
+    answer: 'A retrovirus',
+    funFact: 'Peyton Rous showed chicken tumors could be passed on by a virus, and won a Nobel Prize for it in 1966.',
+    source: 'https://en.wikipedia.org/wiki/Avian_leukosis_virus',
+    evidence: 'avian leukosis virus (alv) is a retrovirus that infects chickens'
+  },
+  {
+    id: 'chickens-k19',
+    topic: 'Anatomy',
+    question: 'The bursa of Fabricius, found only in birds, is needed for the development of which immune cells?',
+    options: ['B cells', 'T cells', 'Red blood cells', 'Platelets'],
+    answer: 'B cells',
+    funFact: 'Mammals generally have no equivalent organ.',
+    source: 'https://en.wikipedia.org/wiki/Bursa_of_Fabricius',
+    evidence: 'is necessary for b cell (part of the immune system) development in birds'
+  },
+  {
+    id: 'chickens-k20',
+    topic: 'Health',
+    question: 'Infectious laryngotracheitis is named for severe inflammation of which parts?',
+    options: ['The larynx and trachea', 'The crop and gizzard', 'The liver and kidneys', 'The comb and wattles'],
+    answer: 'The larynx and trachea',
+    funFact: 'It is caused by Gallid herpesvirus 1, and a membrane can form in the windpipe and block it.',
+    source: 'https://en.wikipedia.org/wiki/Infectious_laryngotracheitis',
+    evidence: 'the name comes from the severe inflammation of the larynx and trachea'
+  },
+  {
+    id: 'chickens-k21',
+    topic: 'Health',
+    question: 'How is the dry form of fowlpox mainly spread?',
+    options: [
+      'By biting insects such as mosquitoes',
+      'By breathing in infected dust',
+      'Through contaminated drinking water',
+      'Through eggs from an infected hen'
+    ],
+    answer: 'By biting insects such as mosquitoes',
+    funFact: 'The dry form causes scabs on the comb, wattles and beak; the wet form, caught from dust, affects the mouth and throat.',
+    source: 'https://en.wikipedia.org/wiki/Fowlpox',
+    evidence: 'the first (dry form) is spread by biting insects (especially mosquitoes)'
+  },
+  {
+    id: 'chickens-k22',
+    topic: 'Health',
+    question: 'Ascaridia galli, an intestinal parasite of chickens, is the largest what in birds?',
+    options: ['Nematode (roundworm)', 'Cestode (tapeworm)', 'Trematode (fluke)', 'Arachnid (mite)'],
+    answer: 'Nematode (roundworm)',
+    funFact: 'Females can be 72 to 112 mm long, and the worms occasionally turn up inside eggs.',
+    source: 'https://en.wikipedia.org/wiki/Ascaridia_galli',
+    evidence: 'it is the largest nematode in birds'
+  },
+  {
+    id: 'chickens-k23',
+    topic: 'Anatomy',
+    question: 'How many working ovaries does a hen usually have?',
+    options: ['One, on the left', 'One, on the right', 'Two', 'Four'],
+    answer: 'One, on the left',
+    funFact: 'Female birds have two ovaries as embryos, but usually only the left one develops.',
+    source: 'https://en.wikipedia.org/wiki/Bird_anatomy',
+    evidence: 'only one functional ovary (the left one)'
+  },
+  {
+    id: 'chickens-k24',
+    topic: 'Anatomy',
+    question: 'Many bird bones are hollow. What keeps them strong?',
+    options: ['Criss-crossing internal struts', 'Extra layers of calcium', 'Fluid-filled centers', 'Cartilage cores'],
+    answer: 'Criss-crossing internal struts',
+    funFact: 'These air-filled bones are called pneumatized bones.',
+    source: 'https://en.wikipedia.org/wiki/Bird_anatomy',
+    evidence: 'hollow (pneumatized) with criss-crossing struts or trusses'
+  },
+  {
+    id: 'chickens-k25',
+    topic: 'Eggs',
+    question: 'Which part of the oviduct contains the glands that secrete the eggshell?',
+    options: ['The uterus (shell gland)', 'The infundibulum', 'The magnum', 'The isthmus'],
+    answer: 'The uterus (shell gland)',
+    funFact: 'Its thick smooth muscle also pushes the finished egg along.',
+    source: 'https://en.wikipedia.org/wiki/Oviduct',
+    evidence: 'contains the glands that secrete the egg shell'
   }
 ];
 

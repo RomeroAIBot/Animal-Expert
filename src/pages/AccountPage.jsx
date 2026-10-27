@@ -6,6 +6,7 @@ const NAME_PATTERN = /^[A-Za-z0-9 _.-]{2,24}$/;
 
 function SignInForm({ signInError }) {
   const [email, setEmail] = useState('');
+  const [displayName, setDisplayName] = useState('');
   const [status, setStatus] = useState(null);
   const [sending, setSending] = useState(false);
 
@@ -16,10 +17,15 @@ function SignInForm({ signInError }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    const name = displayName.trim();
+    if (name && !NAME_PATTERN.test(name)) {
+      setStatus({ kind: 'error', text: 'Display names are 2 to 24 letters, numbers, spaces, dots, dashes or underscores.' });
+      return;
+    }
     setSending(true);
     setStatus({ kind: 'info', text: 'Sending...' });
     try {
-      await sendSignInLink(email.trim());
+      await sendSignInLink(email.trim(), name);
       setStatus({
         kind: 'success',
         text: `Check your email at ${email.trim()} for a sign-in link. Opening it signs you in on that device. The link works once and expires after an hour.`
@@ -52,6 +58,20 @@ function SignInForm({ signInError }) {
           value={email}
           onChange={(event) => setEmail(event.target.value)}
         />
+        <label htmlFor="account-display-name">Display name (optional, for new accounts)</label>
+        <input
+          id="account-display-name"
+          type="text"
+          maxLength={24}
+          autoComplete="nickname"
+          aria-describedby="account-display-name-hint"
+          value={displayName}
+          onChange={(event) => setDisplayName(event.target.value)}
+        />
+        <p id="account-display-name-hint" className="muted">
+          Shown with your email on your account. You can change it later. 2 to 24 letters, numbers, spaces, dots,
+          dashes or underscores.
+        </p>
         <button type="submit" className="button" disabled={sending}>
           Email me a sign-in link
         </button>
@@ -64,7 +84,7 @@ function SignInForm({ signInError }) {
   );
 }
 
-function ProfileForm() {
+function ProfileForm({ onSaved }) {
   const [profile, setProfile] = useState(null);
   const [displayName, setDisplayName] = useState('');
   const [showOnLeaderboard, setShowOnLeaderboard] = useState(false);
@@ -94,6 +114,7 @@ function ProfileForm() {
     setStatus({ kind: 'info', text: 'Saving...' });
     try {
       await updateProfile({ displayName: name, showOnLeaderboard });
+      onSaved?.(name);
       setStatus({
         kind: 'success',
         text: showOnLeaderboard
@@ -180,6 +201,11 @@ function DeleteAccount({ onDeleted }) {
 
 function AccountPage({ appContext }) {
   const { user, setUser, sync, syncNow, signOut, signInError } = appContext;
+  const [displayName, setDisplayName] = useState('');
+
+  useEffect(() => {
+    if (user) getProfile().then((data) => setDisplayName(data?.display_name || '')).catch(() => {});
+  }, [user]);
 
   if (!user) {
     return (
@@ -195,7 +221,9 @@ function AccountPage({ appContext }) {
       <h2>Account</h2>
       <article className="card">
         <h3>Signed in</h3>
-        <p>You're signed in as {user.email}.</p>
+        <p>
+          You're signed in as {displayName ? `${displayName} (${user.email})` : user.email}.
+        </p>
         <p role="status" className={sync.status === 'error' ? 'status-error' : 'muted'}>
           {sync.message}
         </p>
@@ -211,7 +239,7 @@ function AccountPage({ appContext }) {
           <Link to="/rankings">See today's rankings</Link>
         </p>
       </article>
-      <ProfileForm />
+      <ProfileForm onSaved={setDisplayName} />
       <DeleteAccount onDeleted={() => setUser(null)} />
     </section>
   );

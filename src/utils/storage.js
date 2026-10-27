@@ -1,5 +1,6 @@
 import { getDateKey, getDayNumber, toDateKey } from './seed';
 import { fetchResults, saveResults } from './cloud';
+import { trackerStorageKeys } from './questionTracker';
 
 const STORAGE_VERSION = 'v1';
 
@@ -12,12 +13,7 @@ const keys = {
   imageCache: `animalExpert:${STORAGE_VERSION}:image-cache`
 };
 
-const trackerLogKeys = [
-  'used_questions_log',
-  'used_puzzle_log',
-  'used_hybrid_log',
-  'used_crossword_clues_log'
-];
+const trackerLogKeys = [...trackerStorageKeys, 'animalExpert:v1:saved-games'];
 
 export const readJson = (key, fallback) => {
   try {

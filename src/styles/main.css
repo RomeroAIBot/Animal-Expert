@@ -35,26 +35,46 @@ a {
   z-index: 10;
 }
 
-.site-header h1 {
-  margin: 0;
+.header-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
 }
 
-.subtitle {
-  margin: 0.25rem 0 0.75rem;
+.site-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-right: auto;
+}
+
+.streak {
   opacity: 0.9;
 }
 
-.header-meta {
-  display: flex;
-  gap: 0.75rem;
-  align-items: center;
-  margin-bottom: 0.75rem;
+.skip-link {
+  position: absolute;
+  left: 0.5rem;
+  top: -3rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--amber);
+  color: #1b1b1b;
+  border-radius: 8px;
+  z-index: 20;
+}
+
+.skip-link:focus {
+  top: 0.5rem;
 }
 
 nav {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+nav[hidden] {
+  display: none;
 }
 
 nav a {
@@ -661,4 +681,40 @@ nav a:active {
 .card p a,
 section > p a {
   text-decoration: underline;
+}
+
+/* Focus moves to main on page change; no outline needed for that programmatic focus. */
+main:focus {
+  outline: none;
+}
+
+.game-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  margin: 0.5rem 0 1rem;
+}
+
+.report-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin: 0.75rem 0;
+  padding: 0.75rem;
+  border: 1px solid #d8cfbd;
+  border-radius: 8px;
+  background: #fffaf0;
+}
+
+.report-form textarea,
+.report-form input {
+  border: 1px solid #b8ae9f;
+  border-radius: 8px;
+  padding: 0.5rem;
+  font: inherit;
+}
+
+.report-toggle {
+  margin: 0.5rem 0;
 }

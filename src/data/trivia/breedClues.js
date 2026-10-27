@@ -334,7 +334,7 @@ export const breedClues = {
     distractors: ['Peterbald', 'Donskoy', 'Devon Rex'],
     funFact: 'Without fur, these cats lose heat quickly and seek out warm places.',
     source: wiki('Sphynx_cat'),
-    evidence: 'the skin of these cats has the texture of chamois leather'
+    evidence: 'texture of chamois leather'
   },
   savannah: {
     clue: 'A hybrid breed from a serval crossed with a domestic cat; an early-generation male once held the record for tallest cat.',

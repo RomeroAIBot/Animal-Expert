@@ -54,10 +54,11 @@ const toSession = ({ access_token, refresh_token, expires_in, expires_at, user }
 
 // --- Sign-in ---
 
-export const sendSignInLink = (email) =>
+// A display name given here is used when the link creates a new account.
+export const sendSignInLink = (email, displayName) =>
   request(`/auth/v1/otp?redirect_to=${encodeURIComponent(`${window.location.origin}/account`)}`, {
     method: 'POST',
-    body: { email, create_user: true }
+    body: { email, create_user: true, data: displayName ? { display_name: displayName } : {} }
   });
 
 // The emailed link returns here with the session (or an error) in the URL fragment.
@@ -226,3 +227,15 @@ export const getDailyLeaderboard = ({ date, mode, category, size }) =>
     method: 'POST',
     body: { p_date: date, p_mode: mode, p_category: category, p_size: size ?? null, p_limit: 50 }
   });
+
+// --- Reports of inaccurate questions ---
+
+// Saved in Supabase and emailed to the site owner by the report-question function.
+export const sendReport = async (report) => {
+  const session = await getSession().catch(() => null);
+  return request('/functions/v1/report-question', {
+    method: 'POST',
+    token: session?.accessToken,
+    body: report
+  });
+};
