@@ -1938,6 +1938,197 @@ export const dogQuestions = [
     funFact: 'The Kennel Club formally recognized the breed in 1909.',
     source: 'https://en.wikipedia.org/wiki/Shetland_Sheepdog',
     evidence: 'it was originally called the shetland collie'
+  },
+  // Added from the user's October 2026 list after dedupe and source checks.
+  {
+    id: 'dogs-d01',
+    topic: 'Breeds',
+    question: 'Why could the Hungarian Puli fight off wolves?',
+    options: [
+      'Its thick coat protected its skin from bites',
+      'It always worked in packs of twenty',
+      'It could outrun any wolf',
+      'Wolves feared its bark'
+    ],
+    answer: 'Its thick coat protected its skin from bites',
+    funFact: 'By day the Puli herded the flock; at night the larger Komondor guarded it.',
+    source: 'https://en.wikipedia.org/wiki/Puli_dog',
+    evidence: 'pulis can be good at fighting off wolves, because the thick coat protects their skin from being bitten'
+  },
+  {
+    id: 'dogs-d02',
+    topic: 'Breeds',
+    question: 'Which German hunting breed is nicknamed the "Gray Ghost"?',
+    options: ['Weimaraner', 'Vizsla', 'German Shorthaired Pointer', 'Rhodesian Ridgeback'],
+    answer: 'Weimaraner',
+    funFact: 'It is named after the city of Weimar, where the breed originated.',
+    source: 'https://www.akc.org/dog-breeds/weimaraner/',
+    evidence: 'gray ghost'
+  },
+  {
+    id: 'dogs-d03',
+    topic: 'Breeds',
+    question: 'How many toes does a Norwegian Lundehund normally have on each foot?',
+    options: ['Six', 'Four', 'Five', 'Seven'],
+    answer: 'Six',
+    funFact: 'Its name means "puffin dog"; the extra toes helped it hunt puffins on steep cliffs.',
+    source: 'https://en.wikipedia.org/wiki/Norwegian_Lundehund',
+    evidence: 'the lundehund normally has six toes'
+  },
+  {
+    id: 'dogs-d04',
+    topic: 'Breeds',
+    question: 'Early Rhodesian Ridgebacks were bred to bay, or hold at bay, which animal?',
+    options: ['Lions', 'Wild boar', 'Bears', 'Wolves'],
+    answer: 'Lions',
+    funFact: 'The dogs harassed a lion by darting in and out, rather than attacking it outright.',
+    source: 'https://en.wikipedia.org/wiki/Rhodesian_Ridgeback',
+    evidence: 'for the baying of lions'
+  },
+  {
+    id: 'dogs-d05',
+    topic: 'Breeds',
+    question: 'Helped by webbed feet and a thick double coat, Newfoundlands excel at what kind of work?',
+    options: ['Water rescue', 'Truffle hunting', 'Sheep herding', 'Sled racing'],
+    answer: 'Water rescue',
+    funFact: 'Their muscular build also makes them strong swimmers.',
+    source: 'https://en.wikipedia.org/wiki/Newfoundland_dog',
+    evidence: 'excel at water rescue and lifesaving'
+  },
+  {
+    id: 'dogs-d06',
+    topic: 'Breeds',
+    question: 'Which breed "blushes" when excited or happy, its ears and nose turning bright pink?',
+    options: ['Pharaoh Hound', 'Saluki', 'Whippet', 'Ibizan Hound'],
+    answer: 'Pharaoh Hound',
+    funFact: 'The Pharaoh Hound also has amber-colored eyes.',
+    source: 'https://en.wikipedia.org/wiki/Pharaoh_Hound',
+    evidence: 'with their ears and noses becoming bright pink'
+  },
+  {
+    id: 'dogs-d07',
+    topic: 'Research',
+    question: 'Researcher Brian Hare showed that domestic dogs can do what to find hidden food?',
+    options: [
+      'Follow human pointing gestures',
+      'Count the number of cups',
+      'Read written words',
+      'Use sticks as tools'
+    ],
+    answer: 'Follow human pointing gestures',
+    funFact: 'Hare went on to study both primate and dog cognition at Harvard University.',
+    source: 'https://en.wikipedia.org/wiki/Brian_Hare',
+    evidence: 'gestures to find food'
+  },
+  {
+    id: 'dogs-d08',
+    topic: 'Research',
+    question: 'In The Intelligence of Dogs, Stanley Coren lists adaptive and working/obedience intelligence. What is the third kind?',
+    options: ['Instinctive intelligence', 'Emotional intelligence', 'Spatial intelligence', 'Musical intelligence'],
+    answer: 'Instinctive intelligence',
+    funFact: 'Instinctive intelligence is what a dog was bred to do, such as herding or retrieving.',
+    source: 'https://en.wikipedia.org/wiki/The_Intelligence_of_Dogs',
+    evidence: 'instinctive intelligence, adaptive intelligence, and working and obedience intelligence'
+  },
+  {
+    id: 'dogs-d09',
+    topic: 'Research',
+    question: 'In Belyaev\'s silver foxes, bred only for tameness, which dog-like trait appeared by the tenth generation?',
+    options: ['Floppy ears', 'Webbed feet', 'Longer legs', 'Extra teeth'],
+    answer: 'Floppy ears',
+    funFact: 'Piebald patches of white and brown also appeared on some tame cubs.',
+    source: 'https://en.wikipedia.org/wiki/Domesticated_silver_fox',
+    evidence: 'in the tenth generation (1969), floppy'
+  },
+  {
+    id: 'dogs-d10',
+    topic: 'Anatomy',
+    question: 'Dogs have dichromatic vision. Which colors make up their visual world?',
+    options: ['Yellows, blues and grays', 'Reds, greens and grays', 'Only black and white', 'Every color humans see'],
+    answer: 'Yellows, blues and grays',
+    funFact: 'Dogs have trouble telling red from green.',
+    source: 'https://en.wikipedia.org/wiki/Dog',
+    evidence: 'their visual world consists of yellows, blues, and grays'
+  },
+  {
+    id: 'dogs-d11',
+    topic: 'Behavior',
+    question: 'Studies show that dogs and humans both release which hormone while spending time together?',
+    options: ['Oxytocin', 'Adrenaline', 'Cortisol', 'Melatonin'],
+    answer: 'Oxytocin',
+    funFact: 'Oxytocin is linked to social bonding in both species.',
+    source: 'https://en.wikipedia.org/wiki/Human-canine_bond',
+    evidence: 'both dogs and humans release oxytocin while spending quality time together'
+  },
+  {
+    id: 'dogs-d12',
+    topic: 'Medicine',
+    question: 'Chocolate poisoning in dogs is caused mainly by which compound?',
+    options: ['Theobromine', 'Tannin', 'Lactose', 'Capsaicin'],
+    answer: 'Theobromine',
+    funFact: 'Dogs are the most common victims of theobromine poisoning, and it can be fatal.',
+    source: 'https://en.wikipedia.org/wiki/Theobromine_poisoning',
+    evidence: 'the most common victims of theobromine poisoning are dogs'
+  },
+  {
+    id: 'dogs-d13',
+    topic: 'Genetics',
+    question: 'The merle coat pattern comes from alleles of which gene?',
+    options: ['PMEL', 'MITF', 'MLPH', 'FGF5'],
+    answer: 'PMEL',
+    funFact: 'Breeding two merle dogs together can produce "double merles" with health problems.',
+    source: 'https://en.wikipedia.org/wiki/Merle_(dog_coat)',
+    evidence: 'alleles of the pmel gene'
+  },
+  {
+    id: 'dogs-d14',
+    topic: 'Training',
+    question: 'A guide dog refuses its handler\'s command to cross because a car is coming. What is this trained behavior called?',
+    options: ['Intelligent disobedience', 'Learned helplessness', 'Extinction burst', 'Stimulus control'],
+    answer: 'Intelligent disobedience',
+    funFact: 'It is a deliberate part of service-dog training and central to the dog\'s success on the job.',
+    source: 'https://en.wikipedia.org/wiki/Intelligent_disobedience',
+    evidence: 'goes directly against the owner\'s instructions in an effort to make a better decision'
+  },
+  {
+    id: 'dogs-d15',
+    topic: 'Breeds',
+    question: 'What were larger Poodles originally used for?',
+    options: [
+      'Retrieving game from water for wildfowl hunters',
+      'Herding sheep in the Alps',
+      'Guarding royal palaces',
+      'Hunting badgers underground'
+    ],
+    answer: 'Retrieving game from water for wildfowl hunters',
+    funFact: 'Smaller Poodles were once commonly used as circus performers.',
+    source: 'https://en.wikipedia.org/wiki/Poodle',
+    evidence: 'larger poodles were originally used by wildfowl hunters to retrieve game from water'
+  },
+  {
+    id: 'dogs-d16',
+    topic: 'Body language',
+    question: 'Why do dogs use signals like the play bow during rough play?',
+    options: [
+      'To show that nips and growls are play, not aggression',
+      'To stretch their legs before running',
+      'To beg for food',
+      'To mark territory with scent'
+    ],
+    answer: 'To show that nips and growls are play, not aggression',
+    funFact: 'Other play signals include a "face-paw" and an open-mouthed play face.',
+    source: 'https://en.wikipedia.org/wiki/Dog_behavior',
+    evidence: 'place these behaviors in the context of the play, rather than aggression'
+  },
+  {
+    id: 'dogs-d17',
+    topic: 'History',
+    question: 'Most modern dog breeds come from controlled breeding during which era?',
+    options: ['The Victorian era', 'The Roman Republic', 'The Renaissance', 'The years after World War II'],
+    answer: 'The Victorian era',
+    funFact: 'The Kennel Club, which keeps breed pedigrees in the UK, was founded in 1873.',
+    source: 'https://en.wikipedia.org/wiki/Dog_breed',
+    evidence: 'most modern dog breeds are the products of the controlled breeding practices of the victorian era'
   }
 ];
 
