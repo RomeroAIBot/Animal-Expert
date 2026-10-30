@@ -1219,6 +1219,142 @@ export const catQuestions = [
     funFact: 'Kittens are commonly sent to new homes at about six to eight weeks.',
     source: 'https://en.wikipedia.org/wiki/Kitten',
     evidence: 'with weaning usually complete by six to eight weeks'
+  },
+  // Added from the user's October 2026 list after dedupe and source checks.
+  {
+    id: 'cat-d01',
+    topic: 'Breeds',
+    question: 'Which Maine Coon feature helps it walk on snow, and is often compared to snowshoes?',
+    options: ['Its large, fur-tufted paws', 'Its folded ears', 'Its short, stiff tail', 'Its hairless belly'],
+    answer: 'Its large, fur-tufted paws',
+    funFact: 'Its dense, water-resistant coat and bushy tail, which it can curl around its face, also help in harsh winters.',
+    source: 'https://en.wikipedia.org/wiki/Maine_Coon',
+    evidence: 'large paws facilitate walking on snow and are often compared to snowshoes'
+  },
+  {
+    id: 'cat-d02',
+    topic: 'Breeds',
+    question: 'What does the skin of a Sphynx cat feel like?',
+    options: ['Chamois leather', 'Coarse wire', 'Smooth plastic', 'Fish scales'],
+    answer: 'Chamois leather',
+    funFact: 'Sphynx cats may have very fine hairs or be completely hairless.',
+    source: 'https://en.wikipedia.org/wiki/Sphynx_cat',
+    evidence: 'texture of chamois leather'
+  },
+  {
+    id: 'cat-d03',
+    topic: 'Breeds',
+    question: 'The native Van cats of Turkey are nicknamed what, because of their fascination with water?',
+    options: ['The swimming cats', 'The fishing cats', 'The rain cats', 'The lake cats'],
+    answer: 'The swimming cats',
+    funFact: 'The Turkish Van has no obvious undercoat, only one coat layer, so its fur feels like cashmere.',
+    source: 'https://en.wikipedia.org/wiki/Turkish_Van',
+    evidence: 'have been nicknamed the "swimming cats"'
+  },
+  {
+    id: 'cat-d04',
+    topic: 'Genetics',
+    question: 'The Abyssinian has a "ticked" tabby coat. What is special about each hair?',
+    options: [
+      'It is banded with different colors',
+      'It is a single solid color',
+      'It is white at the tip only',
+      'It curls in a tight spiral'
+    ],
+    answer: 'It is banded with different colors',
+    funFact: 'The ticked coat gives Abyssinians their wildcat look.',
+    source: 'https://en.wikipedia.org/wiki/Abyssinian_cat',
+    evidence: 'individual agouti hairs are banded with different colours'
+  },
+  {
+    id: 'cat-d05',
+    topic: 'Breeds',
+    question: 'How did the Ragdoll breed get its name?',
+    options: [
+      'It tends to go limp and relaxed when picked up',
+      'Its first owner sewed rag dolls',
+      'Its coat looks like patchwork fabric',
+      'It loves to carry toys in its mouth'
+    ],
+    answer: 'It tends to go limp and relaxed when picked up',
+    funFact: 'The breed is especially popular in the United Kingdom and the United States.',
+    source: 'https://en.wikipedia.org/wiki/Ragdoll',
+    evidence: 'the name ragdoll is derived from the tendency to go limp and relaxed when picked up'
+  },
+  {
+    id: 'cat-d06',
+    topic: 'Senses',
+    question: 'When a cat makes the Flehmen grimace, it is directing scents to which organ?',
+    options: ['The vomeronasal (Jacobson\'s) organ', 'The cochlea', 'The tonsils', 'The thyroid gland'],
+    answer: 'The vomeronasal (Jacobson\'s) organ',
+    funFact: 'The organ was described by Ludwig Jacobson in 1813, which is why it carries his name.',
+    source: 'https://en.wikipedia.org/wiki/Vomeronasal_organ',
+    evidence: 'use a distinctive facial movement called the flehmen response to direct inhaled compounds to the vno'
+  },
+  {
+    id: 'cat-d07',
+    topic: 'History',
+    question: 'Archaeology and genetics show that cat domestication began in the Near East around when?',
+    options: ['7500 BC', '30,000 BC', '1500 BC', '500 AD'],
+    answer: '7500 BC',
+    funFact: 'Farming villages stored grain, which drew mice, and the mice drew wildcats.',
+    source: 'https://en.wikipedia.org/wiki/Cat',
+    evidence: 'the domestication of the cat started in the near east around 7500'
+  },
+  {
+    id: 'cat-d08',
+    topic: 'Health',
+    question: 'What is the medical name for a hairball?',
+    options: ['Trichobezoar', 'Lipoma', 'Granuloma', 'Polyp'],
+    answer: 'Trichobezoar',
+    funFact: 'A bezoar is any mass trapped in the gut; "tricho" means hair.',
+    source: 'https://en.wikipedia.org/wiki/Hairball',
+    evidence: 'a trichobezoar is a bezoar'
+  },
+  {
+    id: 'cat-d09',
+    topic: 'Health',
+    question: 'What is the most common hormone (endocrine) disorder in cats?',
+    options: ['Hyperthyroidism', 'Addison\'s disease', 'Hypothyroidism', 'Cushing\'s disease'],
+    answer: 'Hyperthyroidism',
+    funFact: 'Most cases come from benign tumors of the thyroid gland, usually in older cats.',
+    source: 'https://en.wikipedia.org/wiki/Feline_hyperthyroidism',
+    evidence: 'hyperthyroidism is the most common endocrinopathy of cats'
+  },
+  {
+    id: 'cat-d10',
+    topic: 'Genetics',
+    question: 'Why are a Siamese cat\'s face, ears, paws and tail darker than its body?',
+    options: [
+      'A heat-sensitive pigment enzyme only works in cooler skin',
+      'Those areas get more sunlight',
+      'Kittens are born with dark points that never fade',
+      'Those areas have more hair follicles'
+    ],
+    answer: 'A heat-sensitive pigment enzyme only works in cooler skin',
+    funFact: 'The enzyme becomes active in skin cooler than about 33 °C (91 °F).',
+    source: 'https://en.wikipedia.org/wiki/Siamese_cat',
+    evidence: 'the mutated tyrosinase enzyme is heat-sensitive'
+  },
+  {
+    id: 'cat-d11',
+    topic: 'Terms',
+    question: 'What is the term for having two eyes of different colors, as many odd-eyed white cats do?',
+    options: ['Heterochromia', 'Anisocoria', 'Nystagmus', 'Albinism'],
+    answer: 'Heterochromia',
+    funFact: 'It is common in some breeds of cats, dogs, cattle and horses, but uncommon in humans.',
+    source: 'https://en.wikipedia.org/wiki/Heterochromia_iridum',
+    evidence: 'heterochromia of the eye is called heterochromia iridum'
+  },
+  {
+    id: 'cat-d12',
+    topic: 'Behavior',
+    question: 'What is the general rule for how many litter boxes a home with cats needs?',
+    options: ['One per cat, plus one extra', 'One for every two cats', 'One per room', 'One shared box is enough'],
+    answer: 'One per cat, plus one extra',
+    funFact: 'Placing them in different areas helps every cat feel safe using a box.',
+    source: 'https://www.humanesociety.org/resources/preventing-litter-box-problems',
+    evidence: 'one litter box per cat, plus one extra'
   }
 ];
 
