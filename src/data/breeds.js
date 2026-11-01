@@ -136,6 +136,55 @@ export const breeds = {
       photoQuery: 'Beagle scenthound dog breed',
       funFact: 'Beagles are a pack scenthound breed with strong olfactory drive commonly used in detection work.',
       factSource: 'https://www.akc.org/dog-breeds/beagle/'
+    }),
+    withPhotoDefaults('dogs', {
+      id: 'shiba-inu',
+      displayName: 'Shiba Inu',
+      photoQuery: 'Shiba Inu dog',
+      funFact: 'The Shiba Inu is the smallest of the six original Japanese spitz breeds.',
+      factSource: 'https://en.wikipedia.org/wiki/Shiba_Inu'
+    }),
+    withPhotoDefaults('dogs', {
+      id: 'dalmatian',
+      displayName: 'Dalmatian',
+      photoQuery: 'Dalmatian dog',
+      funFact: 'Dalmatian puppies are born plain white; their spots appear as they grow.',
+      factSource: 'https://en.wikipedia.org/wiki/Dalmatian_dog'
+    }),
+    withPhotoDefaults('dogs', {
+      id: 'basenji',
+      displayName: 'Basenji',
+      photoQuery: 'Basenji dog',
+      funFact: 'Basenjis rarely bark; they make an unusual yodel-like sound instead.',
+      factSource: 'https://en.wikipedia.org/wiki/Basenji'
+    }),
+    withPhotoDefaults('dogs', {
+      id: 'samoyed',
+      displayName: 'Samoyed',
+      photoQuery: 'Samoyed dog',
+      funFact: 'Samoyeds were bred to herd reindeer and pull sleds in Siberia.',
+      factSource: 'https://en.wikipedia.org/wiki/Samoyed_dog'
+    }),
+    withPhotoDefaults('dogs', {
+      id: 'weimaraner',
+      displayName: 'Weimaraner',
+      photoQuery: 'Weimaraner dog',
+      funFact: 'Weimaraners were bred by German nobility to hunt large game such as boar and deer.',
+      factSource: 'https://en.wikipedia.org/wiki/Weimaraner'
+    }),
+    withPhotoDefaults('dogs', {
+      id: 'saluki',
+      displayName: 'Saluki',
+      photoQuery: 'Saluki dog',
+      funFact: 'Salukis are sighthounds built for chasing game by sight across open desert.',
+      factSource: 'https://en.wikipedia.org/wiki/Saluki'
+    }),
+    withPhotoDefaults('dogs', {
+      id: 'bloodhound',
+      displayName: 'Bloodhound',
+      photoQuery: 'Bloodhound dog',
+      funFact: 'Bloodhounds are famous for following human scent trails days old.',
+      factSource: 'https://en.wikipedia.org/wiki/Bloodhound'
     })
   ],
   snakes: [
@@ -236,6 +285,55 @@ export const breeds = {
       photoQuery: "Dumeril's boa Acrantophis dumerili Madagascar",
       funFact: "Dumeril's boas are ground-dwelling Madagascar constrictors known for earthy patterning and calm captive temperament.",
       factSource: 'https://animals.sandiegozoo.org/animals/dumerils-boa'
+    }),
+    withPhotoDefaults('snakes', {
+      id: 'king-cobra',
+      displayName: 'King Cobra',
+      photoQuery: 'King cobra Ophiophagus hannah',
+      funFact: 'King cobras are the longest venomous snakes in the world.',
+      factSource: 'https://en.wikipedia.org/wiki/King_cobra'
+    }),
+    withPhotoDefaults('snakes', {
+      id: 'black-mamba',
+      displayName: 'Black Mamba',
+      photoQuery: 'Black mamba Dendroaspis polylepis',
+      funFact: 'Black mambas are named for the inky black lining of their mouths, not their body color.',
+      factSource: 'https://en.wikipedia.org/wiki/Black_mamba'
+    }),
+    withPhotoDefaults('snakes', {
+      id: 'reticulated-python',
+      displayName: 'Reticulated Python',
+      photoQuery: 'Reticulated python Malayopython reticulatus',
+      funFact: 'Reticulated pythons are among the longest snakes in the world.',
+      factSource: 'https://en.wikipedia.org/wiki/Reticulated_python'
+    }),
+    withPhotoDefaults('snakes', {
+      id: 'green-anaconda',
+      displayName: 'Green Anaconda',
+      photoQuery: 'Green anaconda Eunectes murinus',
+      funFact: 'Green anacondas are among the heaviest snakes in the world.',
+      factSource: 'https://en.wikipedia.org/wiki/Green_anaconda'
+    }),
+    withPhotoDefaults('snakes', {
+      id: 'emerald-tree-boa',
+      displayName: 'Emerald Tree Boa',
+      photoQuery: 'Emerald tree boa Corallus caninus',
+      funFact: 'Emerald tree boas are born orange or red and turn green as they mature.',
+      factSource: 'https://en.wikipedia.org/wiki/Emerald_tree_boa'
+    }),
+    withPhotoDefaults('snakes', {
+      id: 'eastern-indigo-snake',
+      displayName: 'Eastern Indigo Snake',
+      photoQuery: 'Eastern indigo snake Drymarchon couperi',
+      funFact: 'Eastern indigo snakes are the longest native snakes in the United States.',
+      factSource: 'https://en.wikipedia.org/wiki/Eastern_indigo_snake'
+    }),
+    withPhotoDefaults('snakes', {
+      id: 'copperhead',
+      displayName: 'Copperhead',
+      photoQuery: 'Agkistrodon contortrix copperhead',
+      funFact: 'Copperheads are pit vipers with hourglass-shaped crossbands.',
+      factSource: 'https://en.wikipedia.org/wiki/Agkistrodon_contortrix'
     })
   ],
   chickens: [
@@ -343,6 +441,55 @@ export const breeds = {
       photoQuery: 'Cochin chicken feathered legs',
       funFact: 'Cochins are large Chinese-origin birds known for heavily feathered legs, extreme broodiness, and exhibition influence.',
       factSource: 'https://livestockconservancy.org/heritage-breeds/heritage-breeds-list/cochin-chicken/'
+    }),
+    withPhotoDefaults('chickens', {
+      id: 'brahma',
+      displayName: 'Brahma',
+      photoQuery: 'Brahma chicken',
+      funFact: 'Brahmas are one of the largest chicken breeds, with feathered feet.',
+      factSource: 'https://en.wikipedia.org/wiki/Brahma_chicken'
+    }),
+    withPhotoDefaults('chickens', {
+      id: 'leghorn',
+      displayName: 'Leghorn',
+      photoQuery: 'Leghorn chicken',
+      funFact: 'Leghorns are prolific layers of white eggs.',
+      factSource: 'https://en.wikipedia.org/wiki/Leghorn_chicken'
+    }),
+    withPhotoDefaults('chickens', {
+      id: 'wyandotte',
+      displayName: 'Wyandotte',
+      photoQuery: 'Wyandotte chicken',
+      funFact: 'Wyandottes have a rose comb that resists frostbite.',
+      factSource: 'https://en.wikipedia.org/wiki/Wyandotte_chicken'
+    }),
+    withPhotoDefaults('chickens', {
+      id: 'faverolles',
+      displayName: 'Faverolles',
+      photoQuery: 'Faverolles chicken',
+      funFact: 'Faverolles have five toes, a beard, muffs and feathered feet.',
+      factSource: 'https://en.wikipedia.org/wiki/Faverolles_chicken'
+    }),
+    withPhotoDefaults('chickens', {
+      id: 'sebright',
+      displayName: 'Sebright',
+      photoQuery: 'Sebright chicken bantam',
+      funFact: 'Sebrights are true bantams with laced feathers, and the roosters are hen-feathered.',
+      factSource: 'https://en.wikipedia.org/wiki/Sebright_chicken'
+    }),
+    withPhotoDefaults('chickens', {
+      id: 'barnevelder',
+      displayName: 'Barnevelder',
+      photoQuery: 'Barnevelder chicken',
+      funFact: 'Barnevelders lay dark brown eggs.',
+      factSource: 'https://en.wikipedia.org/wiki/Barnevelder'
+    }),
+    withPhotoDefaults('chickens', {
+      id: 'serama',
+      displayName: 'Serama',
+      photoQuery: 'Serama chicken bantam',
+      funFact: 'Seramas are among the smallest chickens in the world.',
+      factSource: 'https://en.wikipedia.org/wiki/Serama'
     })
   ],
   cat: [
@@ -457,6 +604,55 @@ export const breeds = {
       photoQuery: 'Birman cat breed mitted pointed',
       funFact: 'Birmans are a pointed semi-longhair breed recognized by precisely mitted white feet and a single silky coat layer.',
       factSource: 'https://cfa.org/breed/birman/'
+    }),
+    withPhotoDefaults('cat', {
+      id: 'persian',
+      displayName: 'Persian',
+      photoQuery: 'Persian cat',
+      funFact: 'Persian cats have a long coat and, in show lines, a very flat face.',
+      factSource: 'https://en.wikipedia.org/wiki/Persian_cat'
+    }),
+    withPhotoDefaults('cat', {
+      id: 'british-shorthair',
+      displayName: 'British Shorthair',
+      photoQuery: 'British Shorthair cat',
+      funFact: 'The blue British Shorthair is the best-known color of the breed.',
+      factSource: 'https://en.wikipedia.org/wiki/British_Shorthair'
+    }),
+    withPhotoDefaults('cat', {
+      id: 'devon-rex',
+      displayName: 'Devon Rex',
+      photoQuery: 'Devon Rex cat',
+      funFact: 'Devon Rex cats have a soft, wavy coat and very large ears.',
+      factSource: 'https://en.wikipedia.org/wiki/Devon_Rex'
+    }),
+    withPhotoDefaults('cat', {
+      id: 'egyptian-mau',
+      displayName: 'Egyptian Mau',
+      photoQuery: 'Egyptian Mau cat',
+      funFact: 'Egyptian Maus are one of the few naturally spotted domestic cat breeds.',
+      factSource: 'https://en.wikipedia.org/wiki/Egyptian_Mau'
+    }),
+    withPhotoDefaults('cat', {
+      id: 'manx',
+      displayName: 'Manx',
+      photoQuery: 'Manx cat tailless',
+      funFact: 'Manx cats are known for being born without a tail, or with a short one.',
+      factSource: 'https://en.wikipedia.org/wiki/Manx_cat'
+    }),
+    withPhotoDefaults('cat', {
+      id: 'turkish-angora',
+      displayName: 'Turkish Angora',
+      photoQuery: 'Turkish Angora cat',
+      funFact: 'Turkish Angoras are a long-haired breed often seen in pure white.',
+      factSource: 'https://en.wikipedia.org/wiki/Turkish_Angora'
+    }),
+    withPhotoDefaults('cat', {
+      id: 'ocicat',
+      displayName: 'Ocicat',
+      photoQuery: 'Ocicat cat',
+      funFact: 'Ocicats look wild but have no wild ancestry.',
+      factSource: 'https://en.wikipedia.org/wiki/Ocicat'
     })
   ],
   horse: [
@@ -557,6 +753,55 @@ export const breeds = {
       photoQuery: 'Mustang wild horse American',
       funFact: 'Mustangs are feral-origin North American horses descended from Spanish stock, managed on public lands by the BLM.',
       factSource: 'https://www.blm.gov/programs/wild-horse-and-burro'
+    }),
+    withPhotoDefaults('horse', {
+      id: 'akhal-teke',
+      displayName: 'Akhal-Teke',
+      photoQuery: 'Akhal-Teke horse',
+      funFact: 'Akhal-Tekes are famous for a metallic sheen on their coats.',
+      factSource: 'https://en.wikipedia.org/wiki/Akhal-Teke'
+    }),
+    withPhotoDefaults('horse', {
+      id: 'shire',
+      displayName: 'Shire',
+      photoQuery: 'Shire horse',
+      funFact: 'Shires are a British draught breed that has held records for the tallest horse.',
+      factSource: 'https://en.wikipedia.org/wiki/Shire_horse'
+    }),
+    withPhotoDefaults('horse', {
+      id: 'percheron',
+      displayName: 'Percheron',
+      photoQuery: 'Percheron horse',
+      funFact: 'Percherons are a French draft breed, usually grey or black.',
+      factSource: 'https://en.wikipedia.org/wiki/Percheron'
+    }),
+    withPhotoDefaults('horse', {
+      id: 'haflinger',
+      displayName: 'Haflinger',
+      photoQuery: 'Haflinger horse',
+      funFact: 'Haflingers are always chestnut with a flaxen mane and tail.',
+      factSource: 'https://en.wikipedia.org/wiki/Haflinger'
+    }),
+    withPhotoDefaults('horse', {
+      id: 'lipizzan',
+      displayName: 'Lipizzan',
+      photoQuery: 'Lipizzaner horse',
+      funFact: 'Lipizzans are born dark and turn grey or white as they age.',
+      factSource: 'https://en.wikipedia.org/wiki/Lipizzan'
+    }),
+    withPhotoDefaults('horse', {
+      id: 'icelandic-horse',
+      displayName: 'Icelandic Horse',
+      photoQuery: 'Icelandic horse',
+      funFact: 'Icelandic horses have two extra gaits beyond walk, trot and canter.',
+      factSource: 'https://en.wikipedia.org/wiki/Icelandic_horse'
+    }),
+    withPhotoDefaults('horse', {
+      id: 'shetland-pony',
+      displayName: 'Shetland Pony',
+      photoQuery: 'Shetland pony',
+      funFact: 'Shetland ponies are very strong for their small size.',
+      factSource: 'https://en.wikipedia.org/wiki/Shetland_pony'
     })
   ]
 };
@@ -575,6 +820,9 @@ export const getEntitiesForCategory = (category) => {
   return breeds[category] || [];
 };
 
+
+// Full clue entries (look-alike names, fun fact, source) for games that need more than the clue text.
+export const breedClueDetails = breedClues;
 
 // Hand-checked clues that describe each animal without naming it; used for trivia and crossword clues.
 export const entityClues = Object.fromEntries(

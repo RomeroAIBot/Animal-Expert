@@ -12,6 +12,19 @@
     "reviewer": "claude",
     "reviewedAt": "2026-10-22T02:34:57.942Z"
   },
+  "akhal-teke": {
+    "status": "approved",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/8/83/Dagat-Geli.jpg",
+    "provider": "wikipedia",
+    "credit": "Artur Baboev · CC BY-SA 3.0 · Wikimedia Commons",
+    "creditUrl": "https://commons.wikimedia.org/wiki/File:Dagat-Geli.jpg",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Dagat-Geli.jpg",
+    "description": "A lean, long-necked horse with a shining metallic golden coat and black mane, standing side-on on sand.",
+    "reviewer": "claude",
+    "reviewedAt": "2026-10-27T08:41:51.387Z"
+  },
   "alaskan-malamute": {
     "status": "approved",
     "url": "https://upload.wikimedia.org/wikipedia/commons/c/c4/Red-White_Alaskan_Malamute_female.JPG",
@@ -185,6 +198,32 @@
     "reviewer": "claude",
     "reviewedAt": "2026-10-22T02:31:22.471Z"
   },
+  "barnevelder": {
+    "status": "approved",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3b/28_7_lizziecoop.jpg/960px-28_7_lizziecoop.jpg",
+    "provider": "commons",
+    "credit": "Daharja · CC BY-SA 3.0 · Wikimedia Commons",
+    "creditUrl": "https://commons.wikimedia.org/wiki/File:28_7_lizziecoop.jpg",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:28_7_lizziecoop.jpg",
+    "description": "A reddish-brown hen with dark-edged feathers and a small red comb, standing on a wooden ledge.",
+    "reviewer": "claude",
+    "reviewedAt": "2026-10-27T08:41:51.387Z"
+  },
+  "basenji": {
+    "status": "approved",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/a/a9/KinzicaGiotto_02.jpg",
+    "provider": "wikipedia",
+    "credit": "cri_supe · Public domain · Wikimedia Commons",
+    "creditUrl": "https://commons.wikimedia.org/wiki/File:KinzicaGiotto_02.jpg",
+    "license": "Public domain",
+    "licenseUrl": null,
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:KinzicaGiotto_02.jpg",
+    "description": "A small, short-coated red-and-white dog with upright ears and a tightly curled tail, standing side-on on grass.",
+    "reviewer": "claude",
+    "reviewedAt": "2026-10-27T08:41:51.387Z"
+  },
   "beagle": {
     "status": "approved",
     "url": "https://upload.wikimedia.org/wikipedia/commons/5/55/Beagle_600.jpg",
@@ -239,6 +278,32 @@
     "reviewer": "claude",
     "reviewedAt": "2026-10-22T02:34:58.216Z"
   },
+  "black-mamba": {
+    "status": "approved",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/76/Dendroaspis_polylepis_%2814%29.jpg/960px-Dendroaspis_polylepis_%2814%29.jpg",
+    "provider": "wikipedia",
+    "credit": "TimVickers · Public domain · Wikimedia Commons",
+    "creditUrl": "https://commons.wikimedia.org/wiki/File:Dendroaspis_polylepis_(14).jpg",
+    "license": "Public domain",
+    "licenseUrl": null,
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Dendroaspis_polylepis_(14).jpg",
+    "description": "A slender olive-grey snake with a long coffin-shaped head and a dark eye, resting along a branch.",
+    "reviewer": "claude",
+    "reviewedAt": "2026-10-27T08:41:51.387Z"
+  },
+  "bloodhound": {
+    "status": "approved",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/22/Bloodhound_black_and_tan.jpg/960px-Bloodhound_black_and_tan.jpg",
+    "provider": "wikipedia",
+    "credit": "Cleanboot · Public domain · Wikimedia Commons",
+    "creditUrl": "https://commons.wikimedia.org/wiki/File:Bloodhound_black_and_tan.jpg",
+    "license": "Public domain",
+    "licenseUrl": null,
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Bloodhound_black_and_tan.jpg",
+    "description": "A large black-and-tan hound with very long drooping ears and loose skin on its face, standing side-on.",
+    "reviewer": "claude",
+    "reviewedAt": "2026-10-27T08:41:51.387Z"
+  },
   "boa-constrictor": {
     "status": "approved",
     "url": "https://upload.wikimedia.org/wikipedia/commons/7/7c/Boa_constrictor_constrictor_-_Flickr_-_Dick_Culbert.jpg",
@@ -264,6 +329,32 @@
     "description": "A black-and-white medium-sized herding dog with a white blaze and collar, standing side-on on dirt.",
     "reviewer": "claude",
     "reviewedAt": "2026-10-22T02:29:48.897Z"
+  },
+  "brahma": {
+    "status": "approved",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f9/Light_Brahma_chicken.JPG/960px-Light_Brahma_chicken.JPG",
+    "provider": "commons",
+    "credit": "Ryan Zierke at English Wikipedia · CC BY-SA 3.0 · Wikimedia Commons",
+    "creditUrl": "https://commons.wikimedia.org/wiki/File:Light_Brahma_chicken.JPG",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Light_Brahma_chicken.JPG",
+    "description": "A large, heavy white hen with black-striped neck feathers, a black tail and feathered legs, standing on grass.",
+    "reviewer": "claude",
+    "reviewedAt": "2026-10-27T08:41:51.387Z"
+  },
+  "british-shorthair": {
+    "status": "approved",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2d/Mystica_from_British_Empire_Cattery.jpg/960px-Mystica_from_British_Empire_Cattery.jpg",
+    "provider": "wikipedia",
+    "credit": "BritishEmpire · CC BY-SA 3.0 · Wikimedia Commons",
+    "creditUrl": "https://commons.wikimedia.org/wiki/File:Mystica_from_British_Empire_Cattery.jpg",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Mystica_from_British_Empire_Cattery.jpg",
+    "description": "A stocky, round-faced blue-grey cat with a dense plush coat and copper eyes, sitting on a white background.",
+    "reviewer": "claude",
+    "reviewedAt": "2026-10-27T08:41:51.387Z"
   },
   "burmese": {
     "status": "approved",
@@ -370,6 +461,19 @@
     "reviewer": "claude",
     "reviewedAt": "2026-10-22T02:33:12.760Z"
   },
+  "copperhead": {
+    "status": "approved",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/9/96/Agkistrodon_contortrix_contortrix_CDC-a.png",
+    "provider": "wikipedia",
+    "credit": "US Centers for Disease Control and Prevention · Public domain · Wikimedia Commons",
+    "creditUrl": "https://commons.wikimedia.org/wiki/File:Agkistrodon_contortrix_contortrix_CDC-a.png",
+    "license": "Public domain",
+    "licenseUrl": null,
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Agkistrodon_contortrix_contortrix_CDC-a.png",
+    "description": "A coiled snake with a copper-colored head and bold chestnut hourglass-shaped bands on a pinkish-tan body.",
+    "reviewer": "claude",
+    "reviewedAt": "2026-10-27T08:41:51.387Z"
+  },
   "corn-snake": {
     "status": "approved",
     "url": "https://upload.wikimedia.org/wikipedia/commons/4/40/Corn_Snake_Adult.jpg",
@@ -395,6 +499,32 @@
     "description": "A crested hen with grey-cream barred plumage, standing on grass.",
     "reviewer": "claude",
     "reviewedAt": "2026-10-22T02:33:12.441Z"
+  },
+  "dalmatian": {
+    "status": "approved",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/b/b2/Prunella_Fitzgerald_de_Puech_Barrayre.jpg",
+    "provider": "commons",
+    "credit": "Le dalmatien · CC BY-SA 3.0 · Wikimedia Commons",
+    "creditUrl": "https://commons.wikimedia.org/wiki/File:Prunella_Fitzgerald_de_Puech_Barrayre.jpg",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Prunella_Fitzgerald_de_Puech_Barrayre.jpg",
+    "description": "A lean, muscular white dog covered in round black spots, standing side-on on a patio.",
+    "reviewer": "claude",
+    "reviewedAt": "2026-10-27T08:41:51.387Z"
+  },
+  "devon-rex": {
+    "status": "approved",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ad/Devon_Rex_Cassini.jpeg/960px-Devon_Rex_Cassini.jpeg",
+    "provider": "wikipedia",
+    "credit": "Anna Belial · CC BY 4.0 · Wikimedia Commons",
+    "creditUrl": "https://commons.wikimedia.org/wiki/File:Devon_Rex_Cassini.jpeg",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Devon_Rex_Cassini.jpeg",
+    "description": "A slim grey cat with enormous low-set ears, a short fine coat and wide eyes, sitting indoors.",
+    "reviewer": "claude",
+    "reviewedAt": "2026-10-27T08:41:51.387Z"
   },
   "doberman-pinscher": {
     "status": "approved",
@@ -450,6 +580,58 @@
     "reviewer": "claude",
     "reviewedAt": "2026-10-22T02:29:49.243Z"
   },
+  "eastern-indigo-snake": {
+    "status": "approved",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/db/Eastern_Indigo_Snake.jpg/960px-Eastern_Indigo_Snake.jpg",
+    "provider": "wikipedia",
+    "credit": "Dirk Stevenson · Public domain · Wikimedia Commons",
+    "creditUrl": "https://commons.wikimedia.org/wiki/File:Eastern_Indigo_Snake.jpg",
+    "license": "Public domain",
+    "licenseUrl": null,
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Eastern_Indigo_Snake.jpg",
+    "description": "A large, glossy blue-black snake coiled on dry leaves and sand.",
+    "reviewer": "claude",
+    "reviewedAt": "2026-10-27T08:41:51.387Z"
+  },
+  "egyptian-mau": {
+    "status": "approved",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/72/RoyalNefertt_Serket_of_AchetAton.jpg/960px-RoyalNefertt_Serket_of_AchetAton.jpg",
+    "provider": "wikipedia",
+    "credit": "Achet Aton · CC BY-SA 4.0 · Wikimedia Commons",
+    "creditUrl": "https://commons.wikimedia.org/wiki/File:RoyalNefertt_Serket_of_AchetAton.jpg",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:RoyalNefertt_Serket_of_AchetAton.jpg",
+    "description": "A slender silver cat with scattered dark spots and a banded tail, standing side-on against a blue backdrop.",
+    "reviewer": "claude",
+    "reviewedAt": "2026-10-27T08:41:51.387Z"
+  },
+  "emerald-tree-boa": {
+    "status": "approved",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/16/Emerald_Tree_Boa_Wrapped_on_a_Branch_2480px.jpg/960px-Emerald_Tree_Boa_Wrapped_on_a_Branch_2480px.jpg",
+    "provider": "wikipedia",
+    "credit": "Photo by Derek Ramsey (Ram-Man) · CC BY-SA 2.5 · Wikimedia Commons",
+    "creditUrl": "https://commons.wikimedia.org/wiki/File:Emerald_Tree_Boa_Wrapped_on_a_Branch_2480px.jpg",
+    "license": "CC BY-SA 2.5",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.5",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Emerald_Tree_Boa_Wrapped_on_a_Branch_2480px.jpg",
+    "description": "A bright green snake with white zigzag marks along its back, draped in neat loops over a branch.",
+    "reviewer": "claude",
+    "reviewedAt": "2026-10-27T08:41:51.387Z"
+  },
+  "faverolles": {
+    "status": "approved",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/9/99/Salmon_Faverolles_cock_and_hen.jpg",
+    "provider": "commons",
+    "credit": "stephen jones from uk · CC BY 2.0 · Wikimedia Commons",
+    "creditUrl": "https://commons.wikimedia.org/wiki/File:Salmon_Faverolles_cock_and_hen.jpg",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Salmon_Faverolles_cock_and_hen.jpg",
+    "description": "A bearded rooster with a straw-and-black coat beside a fluffy cream-and-salmon hen, both with feathered feet.",
+    "reviewer": "claude",
+    "reviewedAt": "2026-10-27T08:41:51.387Z"
+  },
   "friesian": {
     "status": "approved",
     "url": "https://upload.wikimedia.org/wikipedia/commons/7/7c/Friesian_Horse_Side_View_3.jpg",
@@ -491,6 +673,19 @@
     "reviewer": "claude",
     "reviewedAt": "2026-10-22T02:29:48.933Z"
   },
+  "green-anaconda": {
+    "status": "approved",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b4/Sucuri_verde.jpg/960px-Sucuri_verde.jpg",
+    "provider": "wikipedia",
+    "credit": "MKAMPIS · CC BY-SA 4.0 · Wikimedia Commons",
+    "creditUrl": "https://commons.wikimedia.org/wiki/File:Sucuri_verde.jpg",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Sucuri_verde.jpg",
+    "description": "A heavy olive-green snake with large round black spots, coiled on bare ground.",
+    "reviewer": "claude",
+    "reviewedAt": "2026-10-27T08:41:51.387Z"
+  },
   "green-tree-python": {
     "status": "approved",
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/ff/Morelia-viridis.jpg/1280px-Morelia-viridis.jpg",
@@ -503,6 +698,19 @@
     "description": "A vivid green snake coiled in neat loops over a branch, head resting in the center.",
     "reviewer": "claude",
     "reviewedAt": "2026-10-22T02:31:22.784Z"
+  },
+  "haflinger": {
+    "status": "approved",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/87/Haflinger_3607_by_Flominator.jpg/960px-Haflinger_3607_by_Flominator.jpg",
+    "provider": "commons",
+    "credit": "Flominator · CC BY-SA 3.0 · Wikimedia Commons",
+    "creditUrl": "https://commons.wikimedia.org/wiki/File:Haflinger_3607_by_Flominator.jpg",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Haflinger_3607_by_Flominator.jpg",
+    "description": "A compact chestnut horse with a long flaxen mane and tail, standing in a meadow.",
+    "reviewer": "claude",
+    "reviewedAt": "2026-10-27T08:41:51.387Z"
   },
   "hanoverian": {
     "status": "approved",
@@ -517,6 +725,32 @@
     "reviewer": "claude",
     "reviewedAt": "2026-10-22T02:36:32.723Z"
   },
+  "icelandic-horse": {
+    "status": "approved",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e6/IcelandicHorseInWinter.jpg/960px-IcelandicHorseInWinter.jpg",
+    "provider": "wikipedia",
+    "credit": "Andreas Tille · CC BY-SA 3.0 · Wikimedia Commons",
+    "creditUrl": "https://commons.wikimedia.org/wiki/File:IcelandicHorseInWinter.jpg",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:IcelandicHorseInWinter.jpg",
+    "description": "A stocky, shaggy chestnut horse with a thick long mane, standing on snowy hills.",
+    "reviewer": "claude",
+    "reviewedAt": "2026-10-27T08:41:51.387Z"
+  },
+  "king-cobra": {
+    "status": "approved",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/4/4d/12_-_The_Mystical_King_Cobra_and_Coffee_Forests.jpg",
+    "provider": "wikipedia",
+    "credit": "Michael Allen Smith from Seattle, USA · CC BY-SA 2.0 · Wikimedia Commons",
+    "creditUrl": "https://commons.wikimedia.org/wiki/File:12_-_The_Mystical_King_Cobra_and_Coffee_Forests.jpg",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:12_-_The_Mystical_King_Cobra_and_Coffee_Forests.jpg",
+    "description": "A long dark snake with pale crossbands, rearing up with a narrow hood spread, on bare red earth.",
+    "reviewer": "claude",
+    "reviewedAt": "2026-10-27T08:41:51.387Z"
+  },
   "la-fleche": {
     "status": "approved",
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/07/Coq_la_fl%C3%A8che_noir_%28detail%29.jpg/1280px-Coq_la_fl%C3%A8che_noir_%28detail%29.jpg",
@@ -530,6 +764,32 @@
     "reviewer": "claude",
     "reviewedAt": "2026-10-22T02:33:12.324Z"
   },
+  "leghorn": {
+    "status": "approved",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/Brown_Leghorn_rooster_in_Australia.jpg/960px-Brown_Leghorn_rooster_in_Australia.jpg",
+    "provider": "wikipedia",
+    "credit": "Fernando de Sousa from Melbourne, Australia · CC BY-SA 2.0 · Wikimedia Commons",
+    "creditUrl": "https://commons.wikimedia.org/wiki/File:Brown_Leghorn_rooster_in_Australia.jpg",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Brown_Leghorn_rooster_in_Australia.jpg",
+    "description": "A slim rooster with a tall red single comb, gold neck feathers and a sweeping glossy green-black tail, in a farmyard.",
+    "reviewer": "claude",
+    "reviewedAt": "2026-10-27T08:41:51.387Z"
+  },
+  "lipizzan": {
+    "status": "approved",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1f/Mare_%26_Foal_3_%287361664544%29.jpg/960px-Mare_%26_Foal_3_%287361664544%29.jpg",
+    "provider": "wikipedia",
+    "credit": "Keith Roper · CC BY 2.0 · Wikimedia Commons",
+    "creditUrl": "https://commons.wikimedia.org/wiki/File:Mare_%26_Foal_3_(7361664544).jpg",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Mare_%26_Foal_3_(7361664544).jpg",
+    "description": "A white-grey mare standing beside her dark brown foal on a sandy yard.",
+    "reviewer": "claude",
+    "reviewedAt": "2026-10-27T08:41:51.387Z"
+  },
   "maine-coon": {
     "status": "approved",
     "url": "https://upload.wikimedia.org/wikipedia/commons/d/d3/MaineCoonSilverTabby.jpg",
@@ -542,6 +802,19 @@
     "description": "A large, shaggy silver tabby cat with a thick neck ruff and bushy tail, standing in snow.",
     "reviewer": "claude",
     "reviewedAt": "2026-10-22T02:34:57.649Z"
+  },
+  "manx": {
+    "status": "approved",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/7/7b/Manx_Minus_rumpy.jpg",
+    "provider": "commons",
+    "credit": "EliasAlucard at English Wikipedia · CC BY-SA 3.0 · Wikimedia Commons",
+    "creditUrl": "https://commons.wikimedia.org/wiki/File:Manx_Minus_rumpy.jpg",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Manx_Minus_rumpy.jpg",
+    "description": "A black-and-white cat with a rounded rump and no tail at all, standing on a carpet.",
+    "reviewer": "claude",
+    "reviewedAt": "2026-10-27T08:41:51.387Z"
   },
   "marans": {
     "status": "approved",
@@ -649,6 +922,19 @@
     "reviewer": "claude",
     "reviewedAt": "2026-10-22T02:29:48.815Z"
   },
+  "ocicat": {
+    "status": "approved",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/b/bc/Moosegrove_%C3%8Dcaro_Id%C3%ADlico%2C_JW_%28Ikaro%29_OCI_n_24_young_male_EX1_BIV_NOM.JPG",
+    "provider": "wikipedia",
+    "credit": "Heikki Siltala - catza.net · CC BY 3.0 · Wikimedia Commons",
+    "creditUrl": "https://commons.wikimedia.org/wiki/File:Moosegrove_%C3%8Dcaro_Id%C3%ADlico,_JW_(Ikaro)_OCI_n_24_young_male_EX1_BIV_NOM.JPG",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Moosegrove_%C3%8Dcaro_Id%C3%ADlico,_JW_(Ikaro)_OCI_n_24_young_male_EX1_BIV_NOM.JPG",
+    "description": "A muscular tawny cat covered in bold dark thumbprint-shaped spots, standing at a cat show.",
+    "reviewer": "claude",
+    "reviewedAt": "2026-10-27T08:41:51.387Z"
+  },
   "orpington": {
     "status": "approved",
     "url": "https://upload.wikimedia.org/wikipedia/commons/3/32/Buff_Orpington_chicken%2C_UK.jpg",
@@ -661,6 +947,32 @@
     "description": "A large, soft-feathered golden-buff hen standing on grass.",
     "reviewer": "claude",
     "reviewedAt": "2026-10-22T02:33:12.522Z"
+  },
+  "percheron": {
+    "status": "approved",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/07/Cheval-percheron-gris_SDA2014_%28cropped%29.jpg/960px-Cheval-percheron-gris_SDA2014_%28cropped%29.jpg",
+    "provider": "wikipedia",
+    "credit": "Eponimm · CC BY-SA 3.0 · Wikimedia Commons",
+    "creditUrl": "https://commons.wikimedia.org/wiki/File:Cheval-percheron-gris_SDA2014_(cropped).jpg",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Cheval-percheron-gris_SDA2014_(cropped).jpg",
+    "description": "A heavy, dappled grey draft horse with a thick arched neck and clean lower legs, standing at a show.",
+    "reviewer": "claude",
+    "reviewedAt": "2026-10-27T08:41:51.387Z"
+  },
+  "persian": {
+    "status": "approved",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/25/Chocolate_Persian.jpg/960px-Chocolate_Persian.jpg",
+    "provider": "wikipedia",
+    "credit": "Cindy See · CC BY-SA 2.0 · Wikimedia Commons",
+    "creditUrl": "https://commons.wikimedia.org/wiki/File:Chocolate_Persian.jpg",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Chocolate_Persian.jpg",
+    "description": "A long-haired chocolate-brown cat with a very flat face, copper eyes and a huge plumed tail, against a purple backdrop.",
+    "reviewer": "claude",
+    "reviewedAt": "2026-10-27T08:41:51.387Z"
   },
   "plymouth-rock": {
     "status": "approved",
@@ -700,6 +1012,19 @@
     "description": "A large, semi-longhaired cat with a white body, dark brown face mask, ears and tail, and blue eyes, sitting.",
     "reviewer": "claude",
     "reviewedAt": "2026-10-22T02:34:57.981Z"
+  },
+  "reticulated-python": {
+    "status": "approved",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/8/83/Retic3.jpg",
+    "provider": "wikipedia",
+    "credit": "Kyle Zimmerman · CC BY-SA 4.0 · Wikimedia Commons",
+    "creditUrl": "https://commons.wikimedia.org/wiki/File:Retic3.jpg",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Retic3.jpg",
+    "description": "Thick coils of a snake patterned with a net of black lines enclosing gold and pale grey patches.",
+    "reviewer": "claude",
+    "reviewedAt": "2026-10-27T08:41:51.387Z"
   },
   "rhode-island-red": {
     "status": "approved",
@@ -753,6 +1078,32 @@
     "reviewer": "claude",
     "reviewedAt": "2026-10-22T02:34:58.137Z"
   },
+  "saluki": {
+    "status": "approved",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/80/Cream_saluki_on_grass.jpg/960px-Cream_saluki_on_grass.jpg",
+    "provider": "wikipedia",
+    "credit": "SALUKIWORLD · CC BY-SA 4.0 · Wikimedia Commons",
+    "creditUrl": "https://commons.wikimedia.org/wiki/File:Cream_saluki_on_grass.jpg",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Cream_saluki_on_grass.jpg",
+    "description": "A slender cream-colored sighthound with long silky fringes on its ears, standing on grass.",
+    "reviewer": "claude",
+    "reviewedAt": "2026-10-27T08:41:51.387Z"
+  },
+  "samoyed": {
+    "status": "approved",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/18/Samojed00.jpg/960px-Samojed00.jpg",
+    "provider": "wikipedia",
+    "credit": "Pleple2000 · CC BY-SA 3.0 · Wikimedia Commons",
+    "creditUrl": "https://commons.wikimedia.org/wiki/File:Samojed00.jpg",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Samojed00.jpg",
+    "description": "A fluffy pure-white dog with a thick coat, an upturned smiling mouth and a plumed tail, standing outdoors.",
+    "reviewer": "claude",
+    "reviewedAt": "2026-10-27T08:41:51.387Z"
+  },
   "savannah": {
     "status": "approved",
     "url": "https://upload.wikimedia.org/wikipedia/commons/1/10/Savannah-Kater.jpg",
@@ -779,6 +1130,71 @@
     "note": "Candidates 7, 11 and 13 were straight-eared cats.",
     "reviewer": "claude",
     "reviewedAt": "2026-10-22T02:34:58.020Z"
+  },
+  "sebright": {
+    "status": "approved",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/0/02/Silver_Sebright_hen.jpg",
+    "provider": "wikipedia",
+    "credit": "Mark Robinson from Williton, UK · CC BY 2.0 · Wikimedia Commons",
+    "creditUrl": "https://commons.wikimedia.org/wiki/File:Silver_Sebright_hen.jpg",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Silver_Sebright_hen.jpg",
+    "description": "A tiny hen with silvery-white feathers, each edged in crisp black lacing, standing on dark soil.",
+    "reviewer": "claude",
+    "reviewedAt": "2026-10-27T08:41:51.387Z"
+  },
+  "serama": {
+    "status": "approved",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ab/Fidel_a_Jerry_Schexnayder_Traditional_Serama_2013.jpg/960px-Fidel_a_Jerry_Schexnayder_Traditional_Serama_2013.jpg",
+    "provider": "wikipedia",
+    "credit": "Rsteagall · CC BY-SA 3.0 · Wikimedia Commons",
+    "creditUrl": "https://commons.wikimedia.org/wiki/File:Fidel_a_Jerry_Schexnayder_Traditional_Serama_2013.jpg",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Fidel_a_Jerry_Schexnayder_Traditional_Serama_2013.jpg",
+    "description": "A tiny upright rooster with a puffed-out chest, an upright tail and wings held low, posing on a table.",
+    "reviewer": "claude",
+    "reviewedAt": "2026-10-27T08:41:51.387Z"
+  },
+  "shetland-pony": {
+    "status": "approved",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/8/83/Bressay_Shetland_Pony.jpg",
+    "provider": "commons",
+    "credit": "ken taylor · CC BY-SA 2.0 · Wikimedia Commons",
+    "creditUrl": "https://commons.wikimedia.org/wiki/File:Bressay_Shetland_Pony.jpg",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Bressay_Shetland_Pony.jpg",
+    "description": "A very small, round-bodied black-and-white horse with a thick mane, grazing on a green field.",
+    "reviewer": "claude",
+    "reviewedAt": "2026-10-27T08:41:51.387Z"
+  },
+  "shiba-inu": {
+    "status": "approved",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/6/6b/Taka_Shiba.jpg",
+    "provider": "wikipedia",
+    "credit": "Takashiba at English Wikipedia · Public domain · Wikimedia Commons",
+    "creditUrl": "https://commons.wikimedia.org/wiki/File:Taka_Shiba.jpg",
+    "license": "Public domain",
+    "licenseUrl": null,
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Taka_Shiba.jpg",
+    "description": "A red-and-cream dog with small pricked ears and a tail curled over its back, standing side-on on a grass field.",
+    "reviewer": "claude",
+    "reviewedAt": "2026-10-27T08:41:51.387Z"
+  },
+  "shire": {
+    "status": "approved",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/e/e2/Aa_shirehorse.jpg",
+    "provider": "wikipedia",
+    "credit": "Anthony Appleyard at English Wikipedia · CC BY-SA 3.0 · Wikimedia Commons",
+    "creditUrl": "https://commons.wikimedia.org/wiki/File:Aa_shirehorse.jpg",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Aa_shirehorse.jpg",
+    "description": "A massive dark-bay draft horse with a white blaze and heavy white feathering on its lower legs, standing side-on.",
+    "reviewer": "claude",
+    "reviewedAt": "2026-10-27T08:41:51.387Z"
   },
   "siamese": {
     "status": "approved",
@@ -873,6 +1289,19 @@
     "reviewer": "claude",
     "reviewedAt": "2026-10-22T02:36:32.566Z"
   },
+  "turkish-angora": {
+    "status": "approved",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/14/Angora_Turc_blanche_KEWELL_grande_Championne.jpg/960px-Angora_Turc_blanche_KEWELL_grande_Championne.jpg",
+    "provider": "wikipedia",
+    "credit": "Vinydeluz · CC BY-SA 4.0 · Wikimedia Commons",
+    "creditUrl": "https://commons.wikimedia.org/wiki/File:Angora_Turc_blanche_KEWELL_grande_Championne.jpg",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Angora_Turc_blanche_KEWELL_grande_Championne.jpg",
+    "description": "A fine-boned pure-white cat with a long silky coat, large pointed ears and a plumed tail, sitting upright.",
+    "reviewer": "claude",
+    "reviewedAt": "2026-10-27T08:41:51.387Z"
+  },
   "turkish-van": {
     "status": "approved",
     "url": "https://upload.wikimedia.org/wikipedia/commons/a/ad/Red_Turkish_Van_Male_Tom.png",
@@ -900,6 +1329,19 @@
     "reviewer": "claude",
     "reviewedAt": "2026-10-22T02:29:49.089Z"
   },
+  "weimaraner": {
+    "status": "approved",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/59/Weimaraner_Freika-2.jpg/960px-Weimaraner_Freika-2.jpg",
+    "provider": "wikipedia",
+    "credit": "Rufus46 · CC BY-SA 3.0 · Wikimedia Commons",
+    "creditUrl": "https://commons.wikimedia.org/wiki/File:Weimaraner_Freika-2.jpg",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Weimaraner_Freika-2.jpg",
+    "description": "A sleek silver-grey hunting dog with long ears and a red collar, standing on a gravel path.",
+    "reviewer": "claude",
+    "reviewedAt": "2026-10-27T08:41:51.387Z"
+  },
   "welsummer": {
     "status": "approved",
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/02/Welsummer_Bantam_Cockerel.jpg/1280px-Welsummer_Bantam_Cockerel.jpg",
@@ -925,5 +1367,18 @@
     "description": "A stout, tan-and-brown blotched snake with an upturned, shovel-like snout, resting on sand.",
     "reviewer": "claude",
     "reviewedAt": "2026-10-22T02:31:22.590Z"
+  },
+  "wyandotte": {
+    "status": "approved",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/4/40/Silver-laced_Wyandotte_rooster.jpg",
+    "provider": "commons",
+    "credit": "ripperda · CC BY 2.0 · Wikimedia Commons",
+    "creditUrl": "https://commons.wikimedia.org/wiki/File:Silver-laced_Wyandotte_rooster.jpg",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Silver-laced_Wyandotte_rooster.jpg",
+    "description": "A round-bodied rooster with white feathers edged in black lacing and a low red comb, standing on grass.",
+    "reviewer": "claude",
+    "reviewedAt": "2026-10-27T08:41:51.387Z"
   }
 }

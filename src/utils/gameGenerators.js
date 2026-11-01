@@ -1,7 +1,7 @@
 import crosswordLayoutGenerator from 'crossword-layout-generator';
-import { entityClues, getEntitiesForCategory } from '../data/breeds';
+import { breedClueDetails, entityClues, getEntitiesForCategory } from '../data/breeds';
 import { triviaQuestions } from '../data/triviaQuestions';
-import { hasUsablePhoto } from './imageApi';
+import { hasApprovedPhoto, hasUsablePhoto } from './imageApi';
 import { getDateKey, randomSeed, seededShuffle, selectDailyItems } from './seed';
 import { selectNoRepeatCombination, selectNoRepeatItems, trackerKeys } from './questionTracker';
 
@@ -23,7 +23,9 @@ const buildCrosswordData = (clues) => {
       clue: entry.clue,
       answer: entry.answer,
       row: entry.starty - 1,
-      col: entry.startx - 1
+      col: entry.startx - 1,
+      // Lets the page link each grid entry back to its photo round.
+      entityId: clues.find((item) => item.answer === entry.answer)?.entityId
     };
   });
   return data;
@@ -42,10 +44,19 @@ const filterTrivia = (category) => {
 };
 
 // Distractors always come from the photographed animal's own category, so a dog photo
-// is never paired with snake or horse options in Mixed mode.
-const buildRoundOptions = (entity, seed) => {
-  const entities = getEntitiesForCategory(entity.category).filter((item) => item.id !== entity.id);
-  const distractors = seededShuffle(entities, seed).slice(0, 3).map((item) => item.displayName);
+// is never paired with snake or horse options in Mixed mode. Expert rounds use the
+// hand-picked look-alikes from the animal's clue instead (e.g. Dutch Shepherd for a Malinois).
+const buildRoundOptions = (entity, seed, difficulty = 'standard') => {
+  const lookalikes = breedClueDetails[entity.id]?.distractors;
+  const distractors =
+    difficulty === 'expert' && lookalikes?.length === 3
+      ? lookalikes
+      : seededShuffle(
+          getEntitiesForCategory(entity.category).filter((item) => item.id !== entity.id),
+          seed
+        )
+          .slice(0, 3)
+          .map((item) => item.displayName);
   return seededShuffle([entity.displayName, ...distractors], `${seed}:options`);
 };
 
@@ -151,13 +162,24 @@ export const generatePuzzleDeck = (category, size = 4, seedPrefix = 'random', da
   return buildDeck(selection.items, seed, size, selection.comboId, normalized);
 };
 
-export const generateIdentifyCrossSession = (category, seedPrefix = 'random', date = new Date()) => {
+export const identifyCrossRoundCounts = [4, 6, 8];
+
+// Animals that can appear in Identify & Cross: a hand-checked clue for the crossword and a
+// human-approved photo, so no round ever shows a placeholder or a live-search guess.
+export const getIdentifyCrossPool = (category) =>
+  getEntitiesForCategory(normalizeCategory(category)).filter(
+    (entity) => entityClues[entity.id] && hasApprovedPhoto(entity) && hasUsablePhoto(entity)
+  );
+
+export const generateIdentifyCrossSession = (
+  category,
+  seedPrefix = 'random',
+  date = new Date(),
+  { roundCount = 6, difficulty = 'standard' } = {}
+) => {
   const normalized = normalizeCategory(category);
   const seed = `${seedPrefix}:${getDateKey(date)}:identify-cross:${normalized}`;
-  // Only animals with a written clue can appear, so every crossword entry has a real clue.
-  const pool = getEntitiesForCategory(normalized).filter(
-    (entity) => entityClues[entity.id] && hasUsablePhoto(entity)
-  );
+  const pool = getIdentifyCrossPool(normalized);
 
   let session = null;
   for (let attempt = 0; attempt < CROSSWORD_ATTEMPTS && !session?.crossword; attempt += 1) {
@@ -165,20 +187,27 @@ export const generateIdentifyCrossSession = (category, seedPrefix = 'random', da
       logKey: trackerKeys.hybrids,
       category: normalized,
       items: pool,
-      count: Math.min(5, pool.length),
+      count: Math.min(roundCount, pool.length),
       seed: `${seed}:${attempt}`,
       now: date
     });
 
-    const rounds = selection.items.map((entity, index) => ({
-      id: `${entity.id}:round`,
-      entity,
-      options: buildRoundOptions(entity, `${seed}:round:${index}`)
-    }));
+    const rounds = selection.items.map((entity, index) => {
+      const details = breedClueDetails[entity.id];
+      return {
+        id: `${entity.id}:round`,
+        entity,
+        options: buildRoundOptions(entity, `${seed}:round:${index}`, difficulty),
+        // Shown as an optional hint during the photo round, so it never names the animal.
+        clue: maskAnswerInText(details.clue, entity.displayName),
+        funFact: details.funFact,
+        source: details.source
+      };
+    });
 
     const clueQuestions = rounds.map((round) => ({
       clueId: `${round.entity.id}:clue`,
-      clue: maskAnswerInText(entityClues[round.entity.id], round.entity.displayName),
+      clue: round.clue,
       answer: sanitizeAnswer(round.entity.displayName),
       displayName: round.entity.displayName,
       entityId: round.entity.id
@@ -187,6 +216,7 @@ export const generateIdentifyCrossSession = (category, seedPrefix = 'random', da
     session = {
       seed,
       category: normalized,
+      difficulty,
       rounds,
       clueQuestions,
       crossword: buildCrosswordData(clueQuestions),
