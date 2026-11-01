@@ -85,8 +85,15 @@ const withEvidence = triviaQuestions
   .filter((q) => q.evidence);
 const textCache = new Map();
 const unsupported = [];
+// Sites occasionally drop a request; one retry stops a dropped page from reading as missing evidence.
+const fetchTextWithRetry = async (url) => {
+  const first = await pageText(url).catch(() => '');
+  if (first) return first;
+  await sleep(3000);
+  return pageText(url).catch(() => '');
+};
 for (const q of withEvidence) {
-  if (!textCache.has(q.source)) textCache.set(q.source, normalizeText(await pageText(q.source).catch(() => '')));
+  if (!textCache.has(q.source)) textCache.set(q.source, normalizeText(await fetchTextWithRetry(q.source)));
   if (!textCache.get(q.source).includes(normalizeText(q.evidence))) unsupported.push(q);
 }
 unsupported.forEach((q) => console.log(`NO EVIDENCE [${q.id}] "${q.evidence}" not found in ${q.source}`));

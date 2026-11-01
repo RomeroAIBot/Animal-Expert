@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import { modeLabels, modeRoutes, storage } from '../utils/storage';
 import { toDateKey } from '../utils/seed';
+import { categoryLabel } from '../data/groups';
 
-const categoryLabels = { dogs: 'Dogs', snakes: 'Snakes', chickens: 'Chickens', cat: 'Cats', horse: 'Horses', mixed: 'Mixed' };
 
 export const describeResult = (item) => {
   if (item.mode === 'daily-trivia' || item.mode === 'new-trivia') {
@@ -30,7 +30,7 @@ function ArchivePage() {
           <article className="card" key={item.id}>
             <h3>{modeLabels[item.mode] || item.mode}</h3>
             <p>Date: {toDateKey(item.date) || item.date}</p>
-            <p>Category: {categoryLabels[item.category] || item.category}</p>
+            <p>Category: {categoryLabel(item.category)}</p>
             <p>Result: {describeResult(item)}</p>
             <Link className="button small" to={modeRoutes[item.mode] || '/'}>
               Play {modeLabels[item.mode] || 'again'}

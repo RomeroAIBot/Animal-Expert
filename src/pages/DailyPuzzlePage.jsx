@@ -57,7 +57,7 @@ function DailyPuzzlePage({ appContext }) {
         you play.
       </p>
       <div className="controls">
-        <CategoryPicker value={category} onChange={setCategory} />
+        <CategoryPicker value={category} onChange={setCategory} photoGame />
         <label className="field">
           <span>Grid</span>
           <select value={size} onChange={(event) => setSize(Number(event.target.value))}>

@@ -6,10 +6,14 @@ import { snakeQuestions } from './trivia/snakes.js';
 import { chickenQuestions } from './trivia/chickens.js';
 import { catQuestions } from './trivia/cats.js';
 import { horseQuestions } from './trivia/horses.js';
+import { cattleQuestions } from './trivia/cattle.js';
+import { pigQuestions } from './trivia/pigs.js';
+import { sheepQuestions } from './trivia/sheep.js';
+import { goatQuestions } from './trivia/goats.js';
 import { seededShuffle } from '../utils/seed.js';
 
 // Every question is hand-checked against a source (`npm run check:sources -- --rewritten`).
-// The original imported bank (importedTriviaQuestions.js) is fully replaced: each category file
+// The original imported bank was fully replaced and removed (it is in git history): each category file
 // lists which imported question each rewrite `replaces`, and why the rest were retired.
 
 const allBreedEntries = Object.entries(breeds).flatMap(([category, entries]) =>
@@ -39,7 +43,11 @@ const categorySets = [
   { category: 'snakes', questions: snakeQuestions },
   { category: 'chickens', questions: chickenQuestions },
   { category: 'cat', questions: catQuestions },
-  { category: 'horse', questions: horseQuestions }
+  { category: 'horse', questions: horseQuestions },
+  { category: 'cattle', questions: cattleQuestions },
+  { category: 'pigs', questions: pigQuestions },
+  { category: 'sheep', questions: sheepQuestions },
+  { category: 'goats', questions: goatQuestions }
 ];
 
 const handWritten = [

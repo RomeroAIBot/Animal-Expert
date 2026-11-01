@@ -1141,7 +1141,9 @@ export const snakeQuestions = [
     answer: 'Eastern coral snake',
     funFact: 'Its head is black from the snout to just behind the eyes, followed by a yellow band.',
     source: 'https://en.wikipedia.org/wiki/Micrurus_fulvius',
-    evidence: 'wide red and black rings separated by narrow yellow rings'
+    evidence: 'wide red and black rings separated by narrow yellow rings',
+    // Every option is a snake species; Copperhead also happens to be in the photo-game list.
+    allowChecks: ['off-topic-distractor']
   },
   {
     id: 'snakes-d06',

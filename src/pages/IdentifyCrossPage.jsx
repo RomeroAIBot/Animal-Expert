@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import confetti from 'canvas-confetti';
 import Crossword from '@jaredreisinger/react-crossword';
 import CategoryPicker from '../components/CategoryPicker';
+import { categoryNoun } from '../data/groups';
 import { playSound } from '../utils/audio';
 import { generateIdentifyCrossSession, getIdentifyCrossPool, identifyCrossRoundCounts } from '../utils/gameGenerators';
 import { fetchImagesForEntities } from '../utils/imageApi';
@@ -11,7 +12,6 @@ import { readJson, storage, upsertHistory, writeJson } from '../utils/storage';
 import '../styles/identifyCross.css';
 
 const keyboardLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-const categoryLabels = { dogs: 'dogs', snakes: 'snakes', chickens: 'chickens', cat: 'cats', horse: 'horses', mixed: 'animals' };
 
 // Photo round: 100 per animal, halved if you read the clue first, plus a streak bonus.
 const PHOTO_POINTS = 100;
@@ -548,7 +548,7 @@ function IdentifyCrossPage({ appContext }) {
             Set up your game
           </h3>
           <div className="ic-setup-grid">
-            <CategoryPicker value={category} onChange={setCategory} />
+            <CategoryPicker value={category} onChange={setCategory} photoGame />
             <fieldset className="ic-choice">
               <legend>Photos</legend>
               {identifyCrossRoundCounts.map((count) => (
@@ -587,7 +587,7 @@ function IdentifyCrossPage({ appContext }) {
             </fieldset>
           </div>
           <p className="ic-pool">
-            {poolSize} {categoryLabels[category]} have a checked photo and clue in this game.
+            {poolSize} {categoryNoun(category)} have a checked photo and clue in this game.
           </p>
           <ul className="ic-rules">
             <li>
@@ -890,8 +890,8 @@ function IdentifyCrossPage({ appContext }) {
           </h3>
           <p className="ic-best">
             {outcome.isBest
-              ? `New personal best for ${categoryLabels[session.category]}!`
-              : `Your best for ${categoryLabels[session.category]}: ${outcome.previousBest}.`}
+              ? `New personal best for ${categoryNoun(session.category)}!`
+              : `Your best for ${categoryNoun(session.category)}: ${outcome.previousBest}.`}
           </p>
           <dl className="ic-breakdown">
             <div>

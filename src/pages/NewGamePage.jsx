@@ -2,6 +2,7 @@ import { useCallback, useState } from 'react';
 import CategoryPicker from '../components/CategoryPicker';
 import PuzzleRun from '../components/PuzzleRun';
 import TriviaRun from '../components/TriviaRun';
+import { getEntitiesForCategory } from '../data/breeds';
 import { generatePuzzleDeck, generateRandomTrivia } from '../utils/gameGenerators';
 import { recordUsedIds, trackerKeys } from '../utils/questionTracker';
 import { getDateKey, randomSeed } from '../utils/seed';
@@ -52,6 +53,12 @@ function NewGamePage({ appContext }) {
     [category, size]
   );
 
+  // Cattle, pigs, sheep and goats are trivia-only for now, so switching to Puzzle moves to Mixed.
+  const changeMode = (nextMode) => {
+    if (nextMode === 'puzzle' && getEntitiesForCategory(category).length === 0) setCategory('mixed');
+    setMode(nextMode);
+  };
+
   const gameKey = mode === 'trivia' ? `practice-trivia:${category}` : `practice-puzzle:${category}:${size}`;
 
   return (
@@ -62,10 +69,10 @@ function NewGamePage({ appContext }) {
         week's daily questions.
       </p>
       <div className="controls">
-        <CategoryPicker value={category} onChange={setCategory} />
+        <CategoryPicker value={category} onChange={setCategory} photoGame={mode === 'puzzle'} />
         <label className="field">
           <span>Mode</span>
-          <select value={mode} onChange={(event) => setMode(event.target.value)}>
+          <select value={mode} onChange={(event) => changeMode(event.target.value)}>
             <option value="puzzle">Puzzle</option>
             <option value="trivia">Trivia</option>
           </select>
