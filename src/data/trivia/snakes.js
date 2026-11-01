@@ -1424,6 +1424,48 @@ export const snakeQuestions = [
     funFact: 'It is often shortened to VICC. Enzymes in the venom switch on the clotting factors until they run out.',
     source: 'https://en.wikipedia.org/wiki/Venom-induced_consumption_coagulopathy',
     evidence: 'coagulation factors are activated by the specific serine proteases in the venom'
+  },
+
+  // Added November 2026 from the user's reptile quiz pages, after dedupe and source checks.
+  {
+    id: 'snakes-n01',
+    topic: 'Species',
+    question: 'Ancient sources blamed the death of the Egyptian queen Cleopatra on the bite of which snake?',
+    options: ['Egyptian cobra', 'Black mamba', 'Saw-scaled viper', 'Puff adder'],
+    answer: 'Egyptian cobra',
+    funFact: 'The rearing cobra, or uraeus, was a symbol of the pharaohs\' power and was worn on their crowns.',
+    source: 'https://en.wikipedia.org/wiki/Egyptian_cobra',
+    evidence: 'most ancient sources attribute the deaths of the egyptian queen cleopatra'
+  },
+  {
+    id: 'snakes-n02',
+    topic: 'Venom',
+    question: 'Which snake causes the most snakebite deaths in Africa?',
+    options: ['Puff adder', 'Black mamba', 'Gaboon viper', 'Boomslang'],
+    answer: 'Puff adder',
+    funFact: 'It is common, widespread and often found near people, and it sits still rather than fleeing.',
+    source: 'https://en.wikipedia.org/wiki/Puff_adder',
+    evidence: 'it is responsible for causing the most snakebite fatalities in africa'
+  },
+  {
+    id: 'snakes-n03',
+    topic: 'Species',
+    question: 'Peringuey\'s adder, a small sidewinding viper, lives in the sand deserts of which countries?',
+    options: ['Namibia and southern Angola', 'Egypt and Libya', 'Saudi Arabia and Oman', 'Chile and Peru'],
+    answer: 'Namibia and southern Angola',
+    funFact: 'It often buries itself in the sand with only its eyes, set on top of its head, showing.',
+    source: "https://en.wikipedia.org/wiki/Peringuey's_adder",
+    evidence: 'the species is native to namibia and southern angola'
+  },
+  {
+    id: 'snakes-n04',
+    topic: 'Movement',
+    question: 'The "flying snakes" of South-East Asia travel between trees how?',
+    options: ['By gliding with a flattened body', 'By swinging on vines', 'By leaping with a coiled spring', 'By riding on birds'],
+    answer: 'By gliding with a flattened body',
+    funFact: 'They flatten and widen the body by spreading their ribs, turning themselves into a kind of wing.',
+    source: 'https://en.wikipedia.org/wiki/Flying_snake',
+    evidence: 'are known for their ability to glide between trees'
   }
 ];
 

@@ -391,5 +391,37 @@ export const cattleQuestions = [
     funFact: 'A resting horse breathes only 10 to 14 times a minute.',
     source: merck('resting-respiratory-rates'),
     evidence: 'dairy cow 26-50'
+  },
+
+  // Added November 2026 from the user's livestock quiz pages (FunTrivia, 4-H), checked the same way.
+  {
+    id: 'cattle-n01',
+    topic: 'Breeds',
+    question: 'The Belted Galloway, a hardy beef breed named for the white band around its middle, comes from which country?',
+    options: ['Scotland', 'Ireland', 'Wales', 'The Netherlands'],
+    answer: 'Scotland',
+    funFact: 'It comes from the Galloway region of south-western Scotland and was set up as a separate breed in 1921.',
+    source: wiki('Belted_Galloway'),
+    evidence: 'the belted galloway is a traditional scottish breed of beef cattle'
+  },
+  {
+    id: 'cattle-n02',
+    topic: 'Health',
+    question: 'How have the United States, Mexico and Central America worked to wipe out the screwworm fly, which lays eggs in livestock wounds?',
+    options: ['Releasing huge numbers of sterile male flies', 'Spraying every pasture with insecticide', 'Vaccinating all cattle', 'Setting sticky traps on every farm'],
+    answer: 'Releasing huge numbers of sterile male flies',
+    funFact: 'This is the sterile insect technique: females that mate with sterile males lay eggs that never hatch.',
+    source: wiki('Screwworm'),
+    evidence: 'to eradicate the fly via the sterile insect technique'
+  },
+  {
+    id: 'cattle-n03',
+    topic: 'Health',
+    question: 'In the 2001 foot-and-mouth disease outbreak in Britain, about how many cattle and sheep were slaughtered to stop it?',
+    options: ['Over 6 million', 'About 60,000', 'About 600,000', 'Over 60 million'],
+    answer: 'Over 6 million',
+    funFact: 'There were about 2,000 cases on farms, and the crisis hit both farming and tourism.',
+    source: wiki('2001_United_Kingdom_foot-and-mouth_outbreak'),
+    evidence: 'over 6 million cows and sheep were slaughtered'
   }
 ];

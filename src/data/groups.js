@@ -12,13 +12,24 @@ export const animalLabels = {
   goats: 'Goats',
   horse: 'Horses',
   chickens: 'Chickens',
-  snakes: 'Snakes'
+  poultry: 'Turkeys, Ducks & Geese',
+  snakes: 'Snakes',
+  lizards: 'Lizards',
+  turtles: 'Turtles & Tortoises',
+  crocodilians: 'Crocodiles & Alligators',
+  frogs: 'Frogs & Toads',
+  salamanders: 'Salamanders & Newts',
+  bees: 'Bees, Wasps & Ants',
+  butterflies: 'Butterflies & Moths',
+  bugs: 'Other Insects'
 };
 
 export const animalGroups = [
   { id: 'pets', label: 'Pets', animals: ['dogs', 'cat'] },
-  { id: 'livestock', label: 'Livestock', animals: ['cattle', 'pigs', 'sheep', 'goats', 'horse', 'chickens'] },
-  { id: 'reptiles', label: 'Reptiles & Amphibians', animals: ['snakes'] }
+  { id: 'livestock', label: 'Livestock', animals: ['cattle', 'pigs', 'sheep', 'goats', 'horse', 'chickens', 'poultry'] },
+  { id: 'reptiles', label: 'Reptiles', animals: ['snakes', 'lizards', 'turtles', 'crocodilians'] },
+  { id: 'amphibians', label: 'Amphibians', animals: ['frogs', 'salamanders'] },
+  { id: 'insects', label: 'Insects', animals: ['bees', 'butterflies', 'bugs'] }
 ];
 
 export const allAnimals = animalGroups.flatMap((group) => group.animals);
