@@ -1091,6 +1091,337 @@ export const snakeQuestions = [
     funFact: 'It is the reverse of the human XY system. In 2017, researchers found that pythons and boas use an XY system instead.',
     source: 'https://en.wikipedia.org/wiki/ZW_sex-determination_system',
     evidence: 'majority of snakes'
+  },
+  // Added from the user's October 2026 list after dedupe and source checks.
+  {
+    id: 'snakes-d01',
+    topic: 'Species',
+    question: 'The common kingsnake is famous for eating what kind of prey that most predators avoid?',
+    options: ['Venomous snakes', 'Scorpions', 'Poison dart frogs', 'Porcupines'],
+    answer: 'Venomous snakes',
+    funFact: 'It eats copperheads and even coral snakes, and if one bites it, the kingsnake is immune to the venom.',
+    source: 'https://en.wikipedia.org/wiki/Common_kingsnake',
+    evidence: 'lampropeltis getula eats other snakes, including venomous snakes'
+  },
+  {
+    id: 'snakes-d02',
+    topic: 'Species',
+    question: 'Which snake is the longest venomous snake in the world?',
+    options: ['King cobra', 'Black mamba', 'Inland taipan', 'Eastern brown snake'],
+    answer: 'King cobra',
+    funFact: 'The record is 5.85 meters (19.2 feet). Despite its name, it is not a true cobra of the genus Naja.',
+    source: 'https://en.wikipedia.org/wiki/King_cobra',
+    evidence: "it is the world's longest venomous snake"
+  },
+  {
+    id: 'snakes-d03',
+    topic: 'Anatomy',
+    question: 'Snakes have no movable eyelids. What is the clear scale that covers each eye called?',
+    options: ['Brille', 'Nictitating membrane', 'Rostral scale', 'Supraocular scale'],
+    answer: 'Brille',
+    funFact: 'It is also called the spectacle, and it is shed along with the rest of the skin.',
+    source: 'https://en.wikipedia.org/wiki/Snake',
+    evidence: 'scales, also known as brille'
+  },
+  {
+    id: 'snakes-d04',
+    topic: 'Anatomy',
+    question: 'Which bone forms the hinge between a snake\'s upper and lower jaws and helps it open its mouth so wide?',
+    options: ['Quadrate bone', 'Hyoid bone', 'Stapes', 'Dentary bone'],
+    answer: 'Quadrate bone',
+    funFact: 'The two halves of the lower jaw are joined only by an elastic ligament at the chin, so each side can move on its own.',
+    source: 'https://en.wikipedia.org/wiki/Snake',
+    evidence: 'connected by a bone hinge that is called the quadrate bone'
+  },
+  {
+    id: 'snakes-d05',
+    topic: 'Species',
+    question: 'Which venomous snake of the southeastern United States has wide red and black rings separated by narrow yellow rings?',
+    options: ['Eastern coral snake', 'Scarlet kingsnake', 'Copperhead', 'Eastern hognose snake'],
+    answer: 'Eastern coral snake',
+    funFact: 'Its head is black from the snout to just behind the eyes, followed by a yellow band.',
+    source: 'https://en.wikipedia.org/wiki/Micrurus_fulvius',
+    evidence: 'wide red and black rings separated by narrow yellow rings'
+  },
+  {
+    id: 'snakes-d06',
+    topic: 'Venom',
+    question: 'Cobra venom mainly attacks the nerves. What kind of venom do most vipers have instead?',
+    options: ['Hemotoxic', 'Neurotoxic', 'Cardiotoxic only', 'Nonvenomous saliva'],
+    answer: 'Hemotoxic',
+    funFact: 'Hemotoxic venom takes longer to bring prey down, so vipers often let go and track the bitten animal afterward.',
+    source: 'https://en.wikipedia.org/wiki/Viperidae',
+    evidence: 'hemotoxic venom takes more time than neurotoxic venom to immobilize prey'
+  },
+  {
+    id: 'snakes-d07',
+    topic: 'Behavior',
+    question: 'When its bluffing fails, what does an eastern hognose snake do to put off a predator?',
+    options: ['Rolls onto its back and plays dead', 'Sprays venom at the eyes', 'Rattles its tail against leaves', 'Drops off the end of its tail'],
+    answer: 'Rolls onto its back and plays dead',
+    funFact: 'It may let its tongue hang out and release a foul musk. One was seen playing dead for 45 minutes.',
+    source: 'https://en.wikipedia.org/wiki/Eastern_hognose_snake',
+    evidence: 'rolls onto its back and plays dead'
+  },
+  {
+    id: 'snakes-d08',
+    topic: 'Species',
+    question: 'The reticulated python is the longest snake. Which snake is the heaviest?',
+    options: ['Green anaconda', 'Burmese python', 'African rock python', 'Boa constrictor'],
+    answer: 'Green anaconda',
+    funFact: 'Like all boas, it is a nonvenomous constrictor. It lives in northern South America.',
+    source: 'https://en.wikipedia.org/wiki/Green_anaconda',
+    evidence: "the green anaconda is the world's heaviest"
+  },
+  {
+    id: 'snakes-d09',
+    topic: 'Species',
+    question: 'The eyelash viper of Central and South America gets its name from what?',
+    options: ['Raised scales above its eyes', 'Long hair-like bristles on its lips', 'Dark lines around its eyes', 'Fringed scales along its tail'],
+    answer: 'Raised scales above its eyes',
+    funFact: 'It is a small, tree-dwelling pit viper with keeled scales covering its body.',
+    source: 'https://en.wikipedia.org/wiki/Bothriechis_schlegelii',
+    evidence: 'scales above its eyes'
+  },
+  {
+    id: 'snakes-d10',
+    topic: 'Venom',
+    question: 'India\'s "Big Four" venomous snakes are the Indian cobra, common krait, Russell\'s viper and which other?',
+    options: ['Saw-scaled viper', 'King cobra', 'Banded krait', 'Hump-nosed viper'],
+    answer: 'Saw-scaled viper',
+    funFact: 'Together, these four cause most of the snakebite cases in India.',
+    source: 'https://en.wikipedia.org/wiki/Big_Four_(Indian_snakes)',
+    evidence: 'indian saw-scaled viper, echis carinatus'
+  },
+  {
+    id: 'snakes-d11',
+    topic: 'Movement',
+    question: 'Which North American rattlesnake is named for the looping way it moves across loose desert sand?',
+    options: ['Sidewinder', 'Mojave rattlesnake', 'Western diamondback', 'Timber rattlesnake'],
+    answer: 'Sidewinder',
+    funFact: 'It is also called the horned rattlesnake for the pointed scales over its eyes.',
+    source: 'https://en.wikipedia.org/wiki/Crotalus_cerastes',
+    evidence: 'the sidewinder, and the sidewinder rattlesnake'
+  },
+  {
+    id: 'snakes-d12',
+    topic: 'Venom',
+    question: 'Vipers have long, hollow fangs that fold against the roof of the mouth and swing forward to strike. What is this fang type called?',
+    options: ['Solenoglyphous', 'Proteroglyphous', 'Opisthoglyphous', 'Aglyphous'],
+    answer: 'Solenoglyphous',
+    funFact: 'The fangs can be half as long as the head. Cobras have shorter fixed front fangs, called proteroglyphous.',
+    source: 'https://en.wikipedia.org/wiki/Snake_skeleton',
+    evidence: 'are folded against the roof of the mouth, pointing posteriorly'
+  },
+  {
+    id: 'snakes-d13',
+    topic: 'Conservation',
+    question: 'Which snake, accidentally brought to the island of Guam, wiped out most of its native forest birds?',
+    options: ['Brown tree snake', 'Burmese python', 'Common tree snake', 'Brahminy blind snake'],
+    answer: 'Brown tree snake',
+    funFact: 'It is a mildly venomous, rear-fanged colubrid native to Australia, New Guinea and nearby islands.',
+    source: 'https://en.wikipedia.org/wiki/Brown_tree_snake',
+    evidence: 'responsible for extirpating the majority of the native bird population in guam'
+  },
+  {
+    id: 'snakes-d14',
+    topic: 'Venom',
+    question: 'Which Central and South American pit viper, often called the fer-de-lance, causes the most serious snakebites in its range?',
+    options: ['Bothrops asper', 'Bushmaster', 'Eyelash viper', 'South American rattlesnake'],
+    answer: 'Bothrops asper',
+    funFact: 'Despite its fearsome reputation, it avoids people and usually bites only when cornered.',
+    source: 'https://en.wikipedia.org/wiki/Bothrops_asper',
+    evidence: 'responsible for the most envenomated snakebite'
+  },
+  {
+    id: 'snakes-d15',
+    topic: 'Behavior',
+    question: 'The rinkhals, a cobra relative from southern Africa, defends itself by doing what?',
+    options: ['Spitting venom', 'Rattling its tail', 'Puffing up with air and popping', 'Burrowing headfirst into sand'],
+    answer: 'Spitting venom',
+    funFact: 'It spits from a reared position with its hood spread, aiming at an attacker\'s eyes.',
+    source: 'https://en.wikipedia.org/wiki/Rinkhals',
+    evidence: 'as a defense mechanism, the rinkhals will spit venom'
+  },
+  {
+    id: 'snakes-d16',
+    topic: 'Anatomy',
+    question: 'What do male boas and pythons use their cloacal spurs for?',
+    options: ['Courtship and mating', 'Digging nests', 'Gripping prey', 'Climbing tree bark'],
+    answer: 'Courtship and mating',
+    funFact: 'Males use the spurs to clasp and stimulate females during courtship.',
+    source: 'https://en.wikipedia.org/wiki/Pelvic_spur',
+    evidence: 'used in the clasping and stimulation of females by males during courtship'
+  },
+  {
+    id: 'snakes-d17',
+    topic: 'Species',
+    question: 'The golden lancehead, a critically endangered pit viper, lives only where?',
+    options: ['An island off the coast of Brazil', 'The Galápagos Islands', 'A single valley in Peru', 'The Florida Keys'],
+    answer: 'An island off the coast of Brazil',
+    funFact: 'The island, Ilha da Queimada Grande, is nicknamed Snake Island. Its snakes feed mainly on migrating birds.',
+    source: 'https://en.wikipedia.org/wiki/Golden_lancehead',
+    evidence: 'found exclusively on the island of ilha da queimada grande'
+  },
+  {
+    id: 'snakes-d18',
+    topic: 'Venom',
+    question: 'In 1957, herpetologist Karl Schmidt died after being bitten by which snake?',
+    options: ['Boomslang', 'Black mamba', 'Gaboon viper', 'Puff adder'],
+    answer: 'Boomslang',
+    funFact: 'It was a juvenile, and Schmidt doubted it could give a deadly dose. Boomslang venom stops blood from clotting.',
+    source: 'https://en.wikipedia.org/wiki/Boomslang',
+    evidence: 'karl schmidt died after having been bitten by a juvenile boomslang'
+  },
+  {
+    id: 'snakes-d19',
+    topic: 'Species',
+    question: 'What causes the rainbow sheen on a Brazilian rainbow boa\'s scales?',
+    options: ['Structural coloration of the scales', 'A layer of oil on the skin', 'Bright pigments in the scales', 'Light reflecting off shed skin'],
+    answer: 'Structural coloration of the scales',
+    funFact: 'Structural color comes from the scale surface bending light, not from pigment.',
+    source: 'https://en.wikipedia.org/wiki/Epicrates_cenchria',
+    evidence: 'iridescent/holographic sheen caused by structural coloration'
+  },
+  {
+    id: 'snakes-d20',
+    topic: 'Behavior',
+    question: 'The banded krait is a mainly nocturnal, highly venomous snake. What does it usually do when harassed?',
+    options: ['Hides its head under its coils', 'Rears up and spreads a hood', 'Strikes repeatedly', 'Vibrates its tail'],
+    answer: 'Hides its head under its coils',
+    funFact: 'Kraits are shy and rarely seen, and they do not usually try to bite.',
+    source: 'https://en.wikipedia.org/wiki/Bungarus_fasciatus',
+    evidence: 'they will usually hide their heads under their coils'
+  },
+  {
+    id: 'snakes-d21',
+    topic: 'Feeding',
+    question: 'How do African egg-eating snakes break the eggs they swallow whole?',
+    options: ['With bony points on their spine', 'With sharp front teeth', 'With strong stomach acid', 'By squeezing them against a rock'],
+    answer: 'With bony points on their spine',
+    funFact: 'The snake drinks the contents, then coughs up the crushed shell.',
+    source: 'https://en.wikipedia.org/wiki/Dasypeltis',
+    evidence: 'bony protrusions on the ventral side of their spine which are used to aid in breaking the shells of eggs'
+  },
+  {
+    id: 'snakes-d22',
+    topic: 'Venom',
+    question: 'Some Mojave rattlesnakes have venom with a powerful neurotoxin. What is that toxin called?',
+    options: ['Mojave toxin', 'Taipoxin', 'Alpha-bungarotoxin', 'Tetrodotoxin'],
+    answer: 'Mojave toxin',
+    funFact: 'It was isolated in 1975. Some populations lack it and have venom that mostly damages tissue instead.',
+    source: 'https://en.wikipedia.org/wiki/Crotalus_scutulatus',
+    evidence: 'this neurotoxin was isolated and described in 1975'
+  },
+  {
+    id: 'snakes-d23',
+    topic: 'Reproduction',
+    question: 'What are a male snake\'s hemipenes?',
+    options: ['A pair of reproductive organs', 'Scent glands near the tail', 'Enlarged belly scales', 'Spurs beside the vent'],
+    answer: 'A pair of reproductive organs',
+    funFact: 'They are held inside the tail and turned outward to mate. Lizards have them too.',
+    source: 'https://en.wikipedia.org/wiki/Hemipenis',
+    evidence: 'one of a pair of intromittent organs of male squamates'
+  },
+  {
+    id: 'snakes-d24',
+    topic: 'Venom',
+    question: 'The tiger keelback of East Asia stores toxins in glands on its neck. Where do those toxins come from?',
+    options: ['Toads it eats', 'Its venom glands', 'Plants it rubs against', 'Bacteria on its skin'],
+    answer: 'Toads it eats',
+    funFact: 'The toxins, called bufadienolides, are separate from its venom, which is made in glands in its mouth.',
+    source: 'https://en.wikipedia.org/wiki/Rhabdophis_tigrinus',
+    evidence: 'sequestered from the toads in their diet'
+  },
+  {
+    id: 'snakes-d25',
+    topic: 'Species',
+    question: 'Which Southeast Asian pit viper is nicknamed the temple viper because so many live around a temple in Malaysia?',
+    options: ['Wagler\'s pit viper', 'Malayan pit viper', 'White-lipped pit viper', 'Mangshan pit viper'],
+    answer: 'Wagler\'s pit viper',
+    funFact: 'The temple is the Temple of the Azure Cloud in Penang, often called the Snake Temple.',
+    source: 'https://en.wikipedia.org/wiki/Tropidolaemus_wagleri',
+    evidence: 'temple of the azure cloud in malaysia'
+  },
+  {
+    id: 'snakes-d26',
+    topic: 'Venom',
+    question: 'Which snake causes more snakebite deaths in Australia than any other?',
+    options: ['Eastern brown snake', 'Inland taipan', 'Tiger snake', 'Red-bellied black snake'],
+    answer: 'Eastern brown snake',
+    funFact: 'Between 2005 and 2015 it caused 15 of Australia\'s 19 snakebite deaths. It often lives near farms and towns.',
+    source: 'https://en.wikipedia.org/wiki/Eastern_brown_snake',
+    evidence: 'responsible for more deaths from snakebite in australia than any other species'
+  },
+  {
+    id: 'snakes-d27',
+    topic: 'Behavior',
+    question: 'The Narcisse Snake Dens in Manitoba, Canada, are the winter home of tens of thousands of which snake?',
+    options: ['Red-sided garter snake', 'Eastern fox snake', 'Western hognose snake', 'Prairie rattlesnake'],
+    answer: 'Red-sided garter snake',
+    funFact: 'The dens hold the largest gathering of snakes in the world. In spring they leave for nearby marshes.',
+    source: 'https://en.wikipedia.org/wiki/Narcisse_Snake_Dens',
+    evidence: 'tens of thousands of red-sided garter snakes'
+  },
+  {
+    id: 'snakes-d28',
+    topic: 'Species',
+    question: 'What shape are the dark markings across an eastern copperhead\'s back?',
+    options: ['Hourglasses', 'Diamonds', 'Straight stripes', 'Round spots'],
+    answer: 'Hourglasses',
+    funFact: 'The bands are wide on the sides and pinched narrow in the middle of the back.',
+    source: 'https://en.wikipedia.org/wiki/Agkistrodon_contortrix',
+    evidence: 'hourglass-shaped markings'
+  },
+  {
+    id: 'snakes-d29',
+    topic: 'Species',
+    question: 'Which venomous snake ranges as far north as the Arctic Circle?',
+    options: ['Common European adder', 'Asp viper', 'Nose-horned viper', 'Caspian whipsnake'],
+    answer: 'Common European adder',
+    funFact: 'Its range runs across Europe and Russia to the Pacific Ocean. It has a dark zigzag down its back.',
+    source: 'https://en.wikipedia.org/wiki/Vipera_berus',
+    evidence: 'north of the arctic circle'
+  },
+  {
+    id: 'snakes-d30',
+    topic: 'Anatomy',
+    question: 'Australia\'s black-headed python and woma lack which feature most pythons have?',
+    options: ['Heat-sensing lip pits', 'Cloacal spurs', 'A forked tongue', 'A left lung'],
+    answer: 'Heat-sensing lip pits',
+    funFact: 'Both belong to the genus Aspidites, found only in Australia.',
+    source: 'https://en.wikipedia.org/wiki/Aspidites',
+    evidence: 'these snakes lack the heat-sensitive pits between the labial scales'
+  },
+  {
+    id: 'snakes-d31',
+    topic: 'Behavior',
+    question: 'How did the cottonmouth get its name?',
+    options: ['It gapes to show the white lining of its mouth', 'It has white lips', 'It lives among cotton fields', 'Its venom foams white'],
+    answer: 'It gapes to show the white lining of its mouth',
+    funFact: 'It often stands its ground and gapes as a warning. It is also called the water moccasin.',
+    source: 'https://en.wikipedia.org/wiki/Agkistrodon_piscivorus',
+    evidence: 'exposing the white lining of its mouth'
+  },
+  {
+    id: 'snakes-d32',
+    topic: 'Movement',
+    question: 'What is the most common way snakes move over land, pushing side to side in S-shaped waves?',
+    options: ['Lateral undulation', 'Concertina movement', 'Rectilinear movement', 'Sidewinding'],
+    answer: 'Lateral undulation',
+    funFact: 'It is also the only way snakes swim.',
+    source: 'https://en.wikipedia.org/wiki/Snake_locomotion',
+    evidence: 'the most common mode of terrestrial locomotion'
+  },
+  {
+    id: 'snakes-d33',
+    topic: 'Venom',
+    question: 'Some snake venoms use up the blood\'s clotting factors, leaving the victim unable to stop bleeding. What is this called?',
+    options: ['Venom-induced consumption coagulopathy', 'Compartment syndrome', 'Rhabdomyolysis', 'Anaphylaxis'],
+    answer: 'Venom-induced consumption coagulopathy',
+    funFact: 'It is often shortened to VICC. Enzymes in the venom switch on the clotting factors until they run out.',
+    source: 'https://en.wikipedia.org/wiki/Venom-induced_consumption_coagulopathy',
+    evidence: 'coagulation factors are activated by the specific serine proteases in the venom'
   }
 ];
 
