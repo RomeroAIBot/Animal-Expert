@@ -60,16 +60,21 @@ Unsplash, which their terms require.
 - Horses: US Equestrian, AQHA, The Livestock Conservancy
 - Cattle, pigs, sheep and goats: Wikipedia breed and disease articles, and the Merck Veterinary Manual's
   reference tables for heart rate, temperature and breathing rate
+- Lizards, turtles, crocodilians, frogs, salamanders, insects, turkeys, ducks and geese: Wikipedia articles and
+  AmphibiaWeb's amphibian facts page; topics came from the quiz pages the user collected, reworded
 
 ## Animal groups
 
 Animals are organised in `src/data/groups.js`:
 - Pets: dogs, cats
-- Livestock: cattle, pigs, sheep, goats, horses, chickens
-- Reptiles & Amphibians: snakes
+- Livestock: cattle, pigs, sheep, goats, horses, chickens, turkeys/ducks/geese (id `poultry`)
+- Reptiles: snakes, lizards, turtles & tortoises, crocodiles & alligators
+- Amphibians: frogs & toads, salamanders & newts
+- Insects: bees, wasps & ants; butterflies & moths; other insects (id `bugs`, since `insects` is the group)
 
-Players can pick one animal, a whole group (questions drawn from every animal in it) or Mixed. Cattle,
-pigs, sheep and goats are trivia-only until they have checked breed photos, so the photo games hide them.
+Players can pick one animal, a whole group (questions drawn from every animal in it) or Mixed. Animals
+without checked breed photos (cattle, pigs, sheep, goats, turkeys/ducks/geese and every new reptile,
+amphibian and insect) are trivia-only, so the photo games hide them.
 To add an animal, add it to a group in `groups.js`, give it a question file in `src/data/trivia/`, list
 that file in `src/data/triviaQuestions.js`, and add its id to the `game_results` category check in a new
 Supabase migration.

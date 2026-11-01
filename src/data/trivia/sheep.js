@@ -383,5 +383,57 @@ export const sheepQuestions = [
     funFact: 'A resting dog breathes at almost the same rate, 18 to 34 a minute.',
     source: merck('resting-respiratory-rates'),
     evidence: 'sheep 16-34'
+  },
+
+  // Added November 2026 from the user's livestock quiz pages (FunTrivia, 4-H), checked the same way.
+  {
+    id: 'sheep-n01',
+    topic: 'Breeds',
+    question: 'Sheep of the original North Ronaldsay flock in Orkney live almost entirely on what?',
+    options: ['Seaweed', 'Heather', 'Hay', 'Kelp-fed fish'],
+    answer: 'Seaweed',
+    funFact: 'They are one of very few mammals that do this, kept on the shore by a stone wall built in the early 1800s.',
+    source: wiki('North_Ronaldsay_sheep'),
+    evidence: 'evolved to subsist almost entirely on seaweed'
+  },
+  {
+    id: 'sheep-n02',
+    topic: 'Breeds',
+    question: 'The hardy Herdwick sheep is native to which part of England?',
+    options: ['The Lake District', 'Cornwall', 'The Yorkshire Dales', 'The South Downs'],
+    answer: 'The Lake District',
+    funFact: 'Its name comes from the Old Norse "herdvyck", meaning sheep pasture.',
+    source: wiki('Herdwick'),
+    evidence: 'is a breed of domestic sheep native to the lake district'
+  },
+  {
+    id: 'sheep-n03',
+    topic: 'Breeds',
+    question: 'The Gentile di Puglia is a sheep breed from which country?',
+    options: ['Italy', 'Spain', 'Greece', 'Portugal'],
+    answer: 'Italy',
+    funFact: 'It comes from the Tavoliere di Foggia, a large plain in the north of Puglia.',
+    source: wiki('Gentile_di_Puglia'),
+    evidence: 'is an italian breed of domestic sheep indigenous to southern italy'
+  },
+  {
+    id: 'sheep-n04',
+    topic: 'Biology',
+    question: 'What shape are a sheep\'s pupils?',
+    options: ['Horizontal slits', 'Round', 'Vertical slits', 'W-shaped'],
+    answer: 'Horizontal slits',
+    funFact: 'They give sheep excellent side vision; a sheep can see behind itself without turning its head.',
+    source: wiki('Sheep'),
+    evidence: 'sheep have horizontal slit-shaped pupils, with excellent peripheral vision'
+  },
+  {
+    id: 'sheep-n05',
+    topic: 'Health',
+    question: 'Where does the sheep bot fly lay its larvae?',
+    options: ['In the sheep\'s nostrils', 'In open wounds', 'In the fleece', 'Between the hooves'],
+    answer: 'In the sheep\'s nostrils',
+    funFact: 'The larvae crawl up into the nasal sinuses, where they grow before dropping out to pupate.',
+    source: wiki('Oestrus_ovis'),
+    evidence: 'directly into a nostril of the host animal'
   }
 ];

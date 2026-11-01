@@ -2129,6 +2129,221 @@ export const dogQuestions = [
     funFact: 'The Kennel Club, which keeps breed pedigrees in the UK, was founded in 1873.',
     source: 'https://en.wikipedia.org/wiki/Dog_breed',
     evidence: 'most modern dog breeds are the products of the controlled breeding practices of the victorian era'
+  },
+
+  // Added November 2026 from the user's dog trivia pages (PetLab, Thought Catalog, Icebreaker Ideas
+  // and others), reworded, deduplicated against the questions above, and checked the same way.
+  {
+    id: 'dogs-x01',
+    topic: 'History',
+    question: 'Laika, the first animal to orbit the Earth, flew aboard which spacecraft in 1957?',
+    options: ['Sputnik 2', 'Vostok 1', 'Apollo 1', 'Explorer 1'],
+    answer: 'Sputnik 2',
+    funFact: 'She was a stray mongrel from the streets of Moscow.',
+    source: 'https://en.wikipedia.org/wiki/Laika',
+    evidence: 'she flew aboard the sputnik 2 spacecraft'
+  },
+  {
+    id: 'dogs-x02',
+    topic: 'Famous dogs',
+    question: 'Which breed is the cartoon detective dog Scooby-Doo?',
+    options: ['Great Dane', 'Saint Bernard', 'Bloodhound', 'Irish Wolfhound'],
+    answer: 'Great Dane',
+    funFact: 'He first appeared in 1969 in a Hanna-Barbera cartoon, as the companion of Shaggy Rogers.',
+    source: 'https://en.wikipedia.org/wiki/Scooby-Doo_(character)',
+    evidence: 'he is a male great dane'
+  },
+  {
+    id: 'dogs-x03',
+    topic: 'Famous dogs',
+    question: 'Toto in the 1939 film "The Wizard of Oz" was played by a female dog of which breed?',
+    options: ['Cairn Terrier', 'Scottish Terrier', 'West Highland White Terrier', 'Norwich Terrier'],
+    answer: 'Cairn Terrier',
+    funFact: 'Her real name was Terry, but her film credit read "Toto".',
+    source: 'https://en.wikipedia.org/wiki/Terry_(dog)',
+    evidence: 'was a female cairn terrier who appeared in many different movies'
+  },
+  {
+    id: 'dogs-x04',
+    topic: 'Famous dogs',
+    question: 'Fala, the dog of US President Franklin D. Roosevelt, was which breed?',
+    options: ['Scottish Terrier', 'Cocker Spaniel', 'Beagle', 'Boston Terrier'],
+    answer: 'Scottish Terrier',
+    funFact: 'Roosevelt took Fala to many places, and he is honoured with a statue at the Franklin Delano Roosevelt Memorial.',
+    source: 'https://en.wikipedia.org/wiki/Fala_(dog)',
+    evidence: 'a scottish terrier, was the dog of united states president franklin d. roosevelt'
+  },
+  {
+    id: 'dogs-x05',
+    topic: 'Famous dogs',
+    question: 'Rin Tin Tin, a 1920s film star, was rescued from a World War I battlefield. What breed was he?',
+    options: ['German Shepherd', 'Doberman Pinscher', 'Collie', 'Belgian Malinois'],
+    answer: 'German Shepherd',
+    funFact: 'An American soldier, Lee Duncan, found him in France and nicknamed him "Rinty".',
+    source: 'https://en.wikipedia.org/wiki/Rin_Tin_Tin',
+    evidence: 'was a male german shepherd born in flirey, france'
+  },
+  {
+    id: 'dogs-x06',
+    topic: 'Famous dogs',
+    question: 'Snoopy, Charlie Brown\'s dog in "Peanuts", is what breed?',
+    options: ['Beagle', 'Dalmatian', 'Bull Terrier', 'Jack Russell Terrier'],
+    answer: 'Beagle',
+    funFact: 'Charles Schulz based the first drawings on Spike, one of his childhood dogs.',
+    source: 'https://en.wikipedia.org/wiki/Snoopy',
+    evidence: 'a largely anthropomorphic beagle'
+  },
+  {
+    id: 'dogs-x07',
+    topic: 'Famous dogs',
+    question: 'Santa\'s Little Helper, the Simpson family\'s dog, is what breed?',
+    options: ['Greyhound', 'Whippet', 'Basset Hound', 'Labrador Retriever'],
+    answer: 'Greyhound',
+    funFact: 'He was introduced in the very first full episode of "The Simpsons".',
+    source: 'https://en.wikipedia.org/wiki/Santa%27s_Little_Helper',
+    evidence: 'he is the pet greyhound of the simpson family'
+  },
+  {
+    id: 'dogs-x08',
+    topic: 'Famous dogs',
+    question: 'In the 1992 family comedy "Beethoven", the dog named after the composer is what breed?',
+    options: ['Saint Bernard', 'Newfoundland', 'Great Pyrenees', 'Bernese Mountain Dog'],
+    answer: 'Saint Bernard',
+    funFact: 'The film was co-written by John Hughes under a pen name.',
+    source: 'https://en.wikipedia.org/wiki/Beethoven_(film)',
+    evidence: 'the film\'s plot centers on a st. bernard dog'
+  },
+  {
+    id: 'dogs-x09',
+    topic: 'Famous dogs',
+    question: 'In Disney\'s "Lady and the Tramp", Lady is what breed?',
+    options: ['Cocker Spaniel', 'Cavalier King Charles Spaniel', 'Shih Tzu', 'Maltese'],
+    answer: 'Cocker Spaniel',
+    funFact: 'The Tramp is a mutt from the other side of the tracks.',
+    source: 'https://en.wikipedia.org/wiki/Lady_and_the_Tramp',
+    evidence: 'the film follows lady, the pampered cocker spaniel'
+  },
+  {
+    id: 'dogs-x10',
+    topic: 'Famous dogs',
+    question: 'Balto, the famous sled dog of the 1925 "serum run" to Nome, Alaska, was which breed?',
+    options: ['Siberian Husky', 'Alaskan Malamute', 'Samoyed', 'Greenland Dog'],
+    answer: 'Siberian Husky',
+    funFact: 'He led the team on the final leg, carrying diphtheria medicine to the town.',
+    source: 'https://en.wikipedia.org/wiki/Balto',
+    evidence: 'was a siberian husky and sled dog'
+  },
+  {
+    id: 'dogs-x11',
+    topic: 'Famous dogs',
+    question: 'Nipper, the dog listening to a gramophone in the famous "His Master\'s Voice" painting, came from which country?',
+    options: ['England', 'France', 'Germany', 'The United States'],
+    answer: 'England',
+    funFact: 'The painting became a trademark used by record companies around the world.',
+    source: 'https://en.wikipedia.org/wiki/Nipper',
+    evidence: 'was a dog from england'
+  },
+  {
+    id: 'dogs-x12',
+    topic: 'Famous dogs',
+    question: 'Snowy, Tintin\'s loyal companion in the Belgian comics, is what kind of dog?',
+    options: ['Wire Fox Terrier', 'West Highland White Terrier', 'Bichon Frise', 'Maltese'],
+    answer: 'Wire Fox Terrier',
+    funFact: 'In the original French he is called Milou.',
+    source: 'https://en.wikipedia.org/wiki/Snowy_(character)',
+    evidence: 'snowy is a white wire fox terrier'
+  },
+
+  // Bodies and breeds
+  {
+    id: 'dogs-x13',
+    topic: 'Anatomy',
+    question: 'About how many teeth does an adult dog have?',
+    options: ['42', '28', '32', '50'],
+    answer: '42',
+    funFact: 'Puppies have 28 baby teeth, which are replaced by the adult set.',
+    source: 'https://en.wikipedia.org/wiki/Dog',
+    evidence: 'powerful jaws containing about 42 teeth'
+  },
+  {
+    id: 'dogs-x14',
+    topic: 'Anatomy',
+    question: 'A dog has a third eyelid in the inner corner of each eye. What is it informally called?',
+    options: ['The haw', 'The dewlap', 'The stop', 'The flews'],
+    answer: 'The haw',
+    funFact: 'Its proper name is the nictitating membrane; it sweeps across the eye to clean and protect it.',
+    source: 'https://en.wikipedia.org/wiki/Nictitating_membrane',
+    evidence: 'it is often informally called a third eyelid or haw'
+  },
+  {
+    id: 'dogs-x15',
+    topic: 'Anatomy',
+    question: 'What is a dog\'s dewclaw?',
+    options: ['A fifth digit higher up the leg', 'A claw that grows only in wet weather', 'The pad at the back of the paw', 'A spur on the tail'],
+    answer: 'A fifth digit higher up the leg',
+    funFact: 'Front dewclaws are attached by bone; back ones, when present, often are not.',
+    source: 'https://en.wikipedia.org/wiki/Dog',
+    evidence: 'a dog\'s dewclaw is the fifth digit in its forelimb and hind legs'
+  },
+  {
+    id: 'dogs-x16',
+    topic: 'Breeds',
+    question: 'The Shar Pei\'s Chinese name means what?',
+    options: ['Sand skin', 'Wrinkled lion', 'Little bear', 'Guard of the gate'],
+    answer: 'Sand skin',
+    funFact: 'It refers to the breed\'s short, rough, sandpaper-like coat.',
+    source: 'https://en.wikipedia.org/wiki/Shar_Pei',
+    evidence: 'lit. \'sand skin\''
+  },
+  {
+    id: 'dogs-x17',
+    topic: 'Breeds',
+    question: 'Which ancient Chinese breed is famous for its dark, blue-black tongue?',
+    options: ['Chow Chow', 'Pekingese', 'Lhasa Apso', 'Shih Tzu'],
+    answer: 'Chow Chow',
+    funFact: 'The breed is thought to have developed in central China thousands of years ago.',
+    source: 'https://en.wikipedia.org/wiki/Chow_Chow',
+    evidence: 'including its dark tongue'
+  },
+  {
+    id: 'dogs-x18',
+    topic: 'Breeds',
+    question: 'Which breed is called the "King of Terriers" because it is the largest terrier?',
+    options: ['Airedale Terrier', 'Kerry Blue Terrier', 'Bull Terrier', 'Irish Terrier'],
+    answer: 'Airedale Terrier',
+    funFact: 'It comes from the valley of the River Aire in Yorkshire, England.',
+    source: 'https://en.wikipedia.org/wiki/Airedale_Terrier',
+    evidence: 'it is traditionally called the "king of terriers" because it is the largest of the terrier breeds'
+  },
+  {
+    id: 'dogs-x19',
+    topic: 'Breeds',
+    question: 'Which small breed with a short tail and upright ears originated in the United States?',
+    options: ['Boston Terrier', 'French Bulldog', 'Pug', 'Brussels Griffon'],
+    answer: 'Boston Terrier',
+    funFact: 'The American Kennel Club accepted it in 1893.',
+    source: 'https://en.wikipedia.org/wiki/Boston_Terrier',
+    evidence: 'the boston terrier is a breed of dog originating in the united states of america'
+  },
+  {
+    id: 'dogs-x20',
+    topic: 'Records',
+    question: 'The smallest adult dog on record stood just 6.3 cm at the shoulder. What breed was it?',
+    options: ['Yorkshire Terrier', 'Chihuahua', 'Pomeranian', 'Toy Poodle'],
+    answer: 'Yorkshire Terrier',
+    funFact: 'It weighed only 113 grams. The heaviest dog on record, Zorba, was an English Mastiff of 142 kg.',
+    source: 'https://en.wikipedia.org/wiki/Dog_anatomy',
+    evidence: 'the smallest known adult dog was a yorkshire terrier'
+  },
+  {
+    id: 'dogs-x21',
+    topic: 'Behaviour',
+    question: 'What is the fear of dogs called?',
+    options: ['Cynophobia', 'Ailurophobia', 'Arachnophobia', 'Ophidiophobia'],
+    answer: 'Cynophobia',
+    funFact: 'It comes from the Greek "kýōn" (dog) and "phóbos" (fear). Ailurophobia is the fear of cats.',
+    source: 'https://en.wikipedia.org/wiki/Cynophobia',
+    evidence: 'is the fear of dogs, wolves and canines in general'
   }
 ];
 

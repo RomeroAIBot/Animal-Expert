@@ -926,6 +926,28 @@ export const horseQuestions = [
     funFact: 'Valegro is a Dutch Warmblood gelding, not a Hanoverian as is sometimes said.',
     source: wiki('Charlotte_Dujardin'),
     evidence: 'develop valegro, a novice dutch warmblood gelding'
+  },
+
+  // Added November 2026 from the user's livestock quiz pages (FunTrivia, 4-H), checked the same way.
+  {
+    id: 'horse-n01',
+    topic: 'Terms',
+    question: 'What is a castrated male horse called?',
+    options: ['A gelding', 'A stallion', 'A colt', 'A sire'],
+    answer: 'A gelding',
+    funFact: 'The word is also used for castrated donkeys, mules and even camels.',
+    source: 'https://en.wikipedia.org/wiki/Gelding',
+    evidence: 'is a castrated male horse or other equine'
+  },
+  {
+    id: 'horse-n02',
+    topic: 'Terms',
+    question: 'Strictly speaking, what is a "colt"?',
+    options: ['A male horse under four years old', 'Any young horse', 'A horse under one year old', 'A young female horse'],
+    answer: 'A male horse under four years old',
+    funFact: 'Calling every young horse a colt is a common mistake; a young female is a filly.',
+    source: 'https://en.wikipedia.org/wiki/Horse',
+    evidence: 'colt a male horse under the age of four'
   }
 ];
 

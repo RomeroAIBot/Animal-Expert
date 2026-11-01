@@ -10,6 +10,15 @@ import { cattleQuestions } from './trivia/cattle.js';
 import { pigQuestions } from './trivia/pigs.js';
 import { sheepQuestions } from './trivia/sheep.js';
 import { goatQuestions } from './trivia/goats.js';
+import { lizardQuestions } from './trivia/lizards.js';
+import { turtleQuestions } from './trivia/turtles.js';
+import { crocodilianQuestions } from './trivia/crocodilians.js';
+import { frogQuestions } from './trivia/frogs.js';
+import { salamanderQuestions } from './trivia/salamanders.js';
+import { beeQuestions } from './trivia/bees.js';
+import { butterflyQuestions } from './trivia/butterflies.js';
+import { insectQuestions } from './trivia/insects.js';
+import { poultryQuestions } from './trivia/poultry.js';
 import { seededShuffle } from '../utils/seed.js';
 
 // Every question is hand-checked against a source (`npm run check:sources -- --rewritten`).
@@ -47,7 +56,16 @@ const categorySets = [
   { category: 'cattle', questions: cattleQuestions },
   { category: 'pigs', questions: pigQuestions },
   { category: 'sheep', questions: sheepQuestions },
-  { category: 'goats', questions: goatQuestions }
+  { category: 'goats', questions: goatQuestions },
+  { category: 'lizards', questions: lizardQuestions },
+  { category: 'turtles', questions: turtleQuestions },
+  { category: 'crocodilians', questions: crocodilianQuestions },
+  { category: 'frogs', questions: frogQuestions },
+  { category: 'salamanders', questions: salamanderQuestions },
+  { category: 'bees', questions: beeQuestions },
+  { category: 'butterflies', questions: butterflyQuestions },
+  { category: 'bugs', questions: insectQuestions },
+  { category: 'poultry', questions: poultryQuestions }
 ];
 
 const handWritten = [

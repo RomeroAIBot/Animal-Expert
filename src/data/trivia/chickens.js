@@ -1621,6 +1621,18 @@ export const chickenQuestions = [
     funFact: 'Next, the isthmus adds the shell membranes.',
     source: 'https://en.wikipedia.org/wiki/Oviduct',
     evidence: 'magnum (formation of egg white)'
+  },
+
+  // Added November 2026 from the user's poultry quiz pages (FunTrivia, 4-H), checked the same way.
+  {
+    id: 'chickens-x01',
+    topic: 'Health',
+    question: 'Which strain of bird flu is especially feared for its potential to devastate poultry flocks?',
+    options: ['H5N1', 'H1N1', 'H3N2', 'H7N9'],
+    answer: 'H5N1',
+    funFact: 'An estimated half a billion farmed birds have been culled in efforts to contain it.',
+    source: 'https://en.wikipedia.org/wiki/Avian_influenza',
+    evidence: 'h5n1 (a/h5n1) has the potential to devastate domesticated poultry stocks'
   }
 ];
 

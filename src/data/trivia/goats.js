@@ -233,5 +233,27 @@ export const goatQuestions = [
     funFact: 'That is 38.5 to 39.7 °C.',
     source: merck('normal-rectal-temperature-ranges'),
     evidence: 'goat 38.5-39.7 101.3-103.5'
+  },
+
+  // Added November 2026 from the user's livestock quiz pages (FunTrivia, 4-H), checked the same way.
+  {
+    id: 'goats-n01',
+    topic: 'Biology',
+    question: 'Which goats can grow beards?',
+    options: ['Both males and females', 'Only males', 'Only females', 'Only goats over five years old'],
+    answer: 'Both males and females',
+    funFact: 'Many goats, especially dairy and pygmy goats, also have wattles: one dangling from each side of the neck.',
+    source: wiki('Goat'),
+    evidence: 'both male and female goats may have beards'
+  },
+  {
+    id: 'goats-n02',
+    topic: 'Breeds',
+    question: 'The Zalawadi goat, kept for milk, meat and fibre, comes from which Indian state?',
+    options: ['Gujarat', 'Kerala', 'Punjab', 'Assam'],
+    answer: 'Gujarat',
+    funFact: 'It comes from the Surendranagar and Rajkot regions and is also known locally as the Tara bakari.',
+    source: wiki('Zalawadi'),
+    evidence: 'from the surendranagar and rajkot regions of gujarat in india'
   }
 ];

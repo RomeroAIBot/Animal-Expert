@@ -323,5 +323,17 @@ export const pigQuestions = [
     funFact: 'That is faster than a dairy cow, at 26 to 50 breaths a minute.',
     source: merck('resting-respiratory-rates'),
     evidence: 'pig 32-58'
+  },
+
+  // Added November 2026 from the user's livestock quiz pages (FunTrivia, 4-H), checked the same way.
+  {
+    id: 'pigs-n01',
+    topic: 'Health',
+    question: 'Classical swine fever, a highly contagious pig disease, is also known by which older name?',
+    options: ['Hog cholera', 'Swine flu', 'Pig pox', 'Blue ear disease'],
+    answer: 'Hog cholera',
+    funFact: 'It is also sometimes called pig plague, from the German "Schweinepest".',
+    source: wiki('Classical_swine_fever'),
+    evidence: 'classical swine fever (csf) or hog cholera'
   }
 ];
