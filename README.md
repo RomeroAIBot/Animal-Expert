@@ -58,12 +58,29 @@ Unsplash, which their terms require.
 - Snakes: Merck Veterinary Manual, U.S. Fish & Wildlife Service, San Diego Zoo Wildlife Alliance
 - Chickens: The Livestock Conservancy heritage breed profiles
 - Horses: US Equestrian, AQHA, The Livestock Conservancy
+- Cattle, pigs, sheep and goats: Wikipedia breed and disease articles, and the Merck Veterinary Manual's
+  reference tables for heart rate, temperature and breathing rate
+
+## Animal groups
+
+Animals are organised in `src/data/groups.js`:
+- Pets: dogs, cats
+- Livestock: cattle, pigs, sheep, goats, horses, chickens
+- Reptiles & Amphibians: snakes
+
+Players can pick one animal, a whole group (questions drawn from every animal in it) or Mixed. Cattle,
+pigs, sheep and goats are trivia-only until they have checked breed photos, so the photo games hide them.
+To add an animal, add it to a group in `groups.js`, give it a question file in `src/data/trivia/`, list
+that file in `src/data/triviaQuestions.js`, and add its id to the `game_results` category check in a new
+Supabase migration.
 
 ## Growing the trivia bank
 
-The trivia bank now supports two source-backed paths:
-- `termBank` in `src/data/triviaQuestions.js` for expert terminology questions by category
-- `breedQuestionBank` in `src/data/triviaQuestions.js` for specific breed- and species-level multiple-choice questions with source URLs
+Each animal has its own hand-checked file in `src/data/trivia/` (for example `cattle.js`), plus
+`terms.js` for vocabulary and `breedClues.js` for one description question per photo breed. Every
+question needs a source link and an `evidence` phrase copied from that page:
+`npm run validate:trivia` checks the question itself, and `npm run check:sources -- --category=cattle --rewritten`
+confirms the phrase is on the source page.
 
 When adding more questions, keep each item shaped like:
 
@@ -152,4 +169,4 @@ The current app expects these filenames exactly:
 
 - Trivia question bank: `src/data/triviaQuestions.js`
 - Breed and entity list: `src/data/breeds.js`
-- Source registry: `src/data/sourceCatalog.js`
+- Checked breed photos: `src/data/photoManifest.json`

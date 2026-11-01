@@ -2,20 +2,14 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getDailyLeaderboard } from '../utils/cloud';
 import { getDateKey } from '../utils/seed';
+import CategoryPicker from '../components/CategoryPicker';
+import { getEntitiesForCategory } from '../data/breeds';
+import { categoryLabel } from '../data/groups';
 
 const games = [
   { id: 'trivia', label: 'Daily Trivia', mode: 'daily-trivia' },
   { id: 'puzzle-4', label: 'Daily Puzzle, 4x4', mode: 'daily-puzzle', size: 4 },
   { id: 'puzzle-6', label: 'Daily Puzzle, 6x6', mode: 'daily-puzzle', size: 6 }
-];
-
-const categories = [
-  { value: 'dogs', label: 'Dogs' },
-  { value: 'snakes', label: 'Snakes' },
-  { value: 'chickens', label: 'Chickens' },
-  { value: 'cat', label: 'Cats' },
-  { value: 'horse', label: 'Horses' },
-  { value: 'mixed', label: 'Mixed' }
 ];
 
 const daysAgo = (n) => {
@@ -33,6 +27,13 @@ function RankingsPage({ appContext }) {
   const [state, setState] = useState({ status: 'loading', rows: [] });
 
   const game = games.find((item) => item.id === gameId);
+
+  // Daily puzzles exist only for animals with photos, so a trivia-only pick moves to Mixed.
+  const changeGame = (nextId) => {
+    const next = games.find((item) => item.id === nextId);
+    if (next.mode === 'daily-puzzle' && getEntitiesForCategory(category).length === 0) setCategory('mixed');
+    setGameId(nextId);
+  };
   const date = daysAgo(day);
 
   useEffect(() => {
@@ -47,7 +48,7 @@ function RankingsPage({ appContext }) {
   }, [date, game.mode, game.size, category]);
 
   const isPuzzle = game.mode === 'daily-puzzle';
-  const caption = `${game.label}, ${categories.find((item) => item.value === category).label}, ${
+  const caption = `${game.label}, ${categoryLabel(category)}, ${
     day === 0 ? 'today' : 'yesterday'
   } (${date})`;
 
@@ -61,20 +62,13 @@ function RankingsPage({ appContext }) {
       <div className="controls">
         <label className="field">
           Game
-          <select value={gameId} onChange={(event) => setGameId(event.target.value)}>
+          <select value={gameId} onChange={(event) => changeGame(event.target.value)}>
             {games.map((item) => (
               <option key={item.id} value={item.id}>{item.label}</option>
             ))}
           </select>
         </label>
-        <label className="field">
-          Category
-          <select value={category} onChange={(event) => setCategory(event.target.value)}>
-            {categories.map((item) => (
-              <option key={item.value} value={item.value}>{item.label}</option>
-            ))}
-          </select>
-        </label>
+        <CategoryPicker value={category} onChange={setCategory} photoGame={isPuzzle} />
         <label className="field">
           Day
           <select value={day} onChange={(event) => setDay(Number(event.target.value))}>

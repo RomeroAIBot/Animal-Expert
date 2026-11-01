@@ -1,5 +1,6 @@
 import crosswordLayoutGenerator from 'crossword-layout-generator';
 import { breedClueDetails, entityClues, getEntitiesForCategory } from '../data/breeds';
+import { allCategoryValues, animalsInCategory } from '../data/groups';
 import { triviaQuestions } from '../data/triviaQuestions';
 import { hasApprovedPhoto, hasUsablePhoto } from './imageApi';
 import { getDateKey, randomSeed, seededShuffle, selectDailyItems } from './seed';
@@ -37,10 +38,10 @@ const normalizeCategory = (category) => {
   return category;
 };
 
+// A group or Mixed draws from every animal it covers.
 const filterTrivia = (category) => {
-  const normalized = normalizeCategory(category);
-  if (normalized === 'mixed') return triviaQuestions;
-  return triviaQuestions.filter((item) => item.category === normalized);
+  const animals = new Set(animalsInCategory(normalizeCategory(category)));
+  return triviaQuestions.filter((item) => animals.has(item.category));
 };
 
 // Distractors always come from the photographed animal's own category, so a dog photo
@@ -93,12 +94,13 @@ export const generateDailyTrivia = (category, date = new Date()) => {
   return { seed, dateKey, questions: shuffleForSession(questions, randomSeed()) };
 };
 
-const DAILY_CATEGORIES = ['dogs', 'snakes', 'chickens', 'cat', 'horse', 'mixed'];
 const DAY_MS = 24 * 60 * 60 * 1000;
 
 // Question ids that are (or will be) a daily question in the coming week, so practice never spoils them.
+// Any daily that shares an animal with this category counts (Cattle, Livestock and Mixed overlap).
 const getUpcomingDailyIds = (category, date) => {
-  const relevant = category === 'mixed' ? DAILY_CATEGORIES : [category, 'mixed'];
+  const animals = animalsInCategory(category);
+  const relevant = allCategoryValues.filter((value) => animalsInCategory(value).some((animal) => animals.includes(animal)));
   const ids = new Set();
   for (let offset = 0; offset < 7; offset += 1) {
     const day = new Date(date.getTime() + offset * DAY_MS);

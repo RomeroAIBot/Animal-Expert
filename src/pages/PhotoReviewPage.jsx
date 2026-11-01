@@ -2,8 +2,8 @@
 // src/data/photoManifest.json by the local API server (npm run server).
 import { useEffect, useMemo, useState } from 'react';
 import { categories } from '../data/breeds';
+import { animalLabels as categoryLabels } from '../data/groups';
 
-const categoryLabels = { dogs: 'Dogs', snakes: 'Snakes', chickens: 'Chickens', cat: 'Cats', horse: 'Horses' };
 const providerLabels = {
   wikipedia: 'Wikipedia article',
   commons: 'Wikimedia Commons',

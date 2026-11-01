@@ -1,5 +1,8 @@
 import { breedClues } from './trivia/breedClues.js';
+import { animalsInCategory } from './groups.js';
 
+// Animals that have breeds (and photos) for the photo games. Cattle, pigs, sheep and goats are
+// trivia-only until they get checked breed photos.
 export const categories = ['dogs', 'snakes', 'chickens', 'cat', 'horse'];
 
 // fallbackUrl is only kept when it is a specific photo of this exact breed. A generic
@@ -806,19 +809,9 @@ export const breeds = {
   ]
 };
 
-export const getEntitiesForCategory = (category) => {
-  if (category === 'mixed') {
-    return [
-      ...breeds.dogs,
-      ...breeds.snakes,
-      ...breeds.chickens,
-      ...breeds.cat,
-      ...breeds.horse
-    ];
-  }
-
-  return breeds[category] || [];
-};
+// Accepts an animal, a group or 'mixed'; animals without breeds simply contribute none.
+export const getEntitiesForCategory = (category) =>
+  animalsInCategory(category).flatMap((animal) => breeds[animal] || []);
 
 
 // Full clue entries (look-alike names, fun fact, source) for games that need more than the clue text.
