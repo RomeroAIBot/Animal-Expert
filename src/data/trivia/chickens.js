@@ -1365,6 +1365,262 @@ export const chickenQuestions = [
     funFact: 'Its thick smooth muscle also pushes the finished egg along.',
     source: 'https://en.wikipedia.org/wiki/Oviduct',
     evidence: 'contains the glands that secrete the egg shell'
+  },
+  // Added from the user's October 2026 list after dedupe and source checks.
+  {
+    id: 'chickens-d01',
+    topic: 'Breeds',
+    question: 'Which chicken breed is the state bird of Rhode Island?',
+    options: ['Rhode Island Red', 'New Hampshire', 'Dominique', 'Plymouth Rock'],
+    answer: 'Rhode Island Red',
+    funFact: 'It was developed in Rhode Island and Massachusetts in the late 1800s.',
+    source: 'https://en.wikipedia.org/wiki/Rhode_Island_Red',
+    evidence: 'it is the state bird of rhode island'
+  },
+  {
+    id: 'chickens-d02',
+    topic: 'Genetics',
+    question: 'Frizzled feathers, which curl outward, come from a mutation in which keratin gene?',
+    options: ['KRT75', 'KRT71', 'EDN3', 'FGF5'],
+    answer: 'KRT75',
+    funFact: 'The frizzle gene is incompletely dominant, and almost any breed can be frizzled.',
+    source: 'https://en.wikipedia.org/wiki/Frizzle_(chicken_plumage)',
+    evidence: 'mutation within the keratin gene krt75'
+  },
+  {
+    id: 'chickens-d03',
+    topic: 'Genetics',
+    question: 'Why don\'t all Araucanas show ear-tufts and rumplessness?',
+    options: [
+      'Both traits are caused by lethal genes',
+      'Both traits only appear in cold climates',
+      'Breeders trim the tufts and tails',
+      'Only roosters can carry them'
+    ],
+    answer: 'Both traits are caused by lethal genes',
+    funFact: 'In the United States the rumpless Araucana is sometimes called the South American Rumpless.',
+    source: 'https://en.wikipedia.org/wiki/Araucana',
+    evidence: 'both ear-tufts and rumplessness are caused by lethal genes'
+  },
+  {
+    id: 'chickens-d04',
+    topic: 'Genetics',
+    question: 'In an autosexing breed such as the Legbar, how can day-old chicks be sexed?',
+    options: [
+      'By the color and pattern of their down',
+      'By the length of their toes',
+      'By the shape of their beaks',
+      'By the sound of their peeping'
+    ],
+    answer: 'By the color and pattern of their down',
+    funFact: 'Female Legbar chicks usually have a broad, very dark brown stripe on the head and back.',
+    source: 'https://en.wikipedia.org/wiki/Autosexing',
+    evidence: 'day-old male chicks can be distinguished from day-old female chicks by the down colour and the pattern they form'
+  },
+  {
+    id: 'chickens-d05',
+    topic: 'Breeds',
+    question: 'The all-black Ayam Cemani comes from which country?',
+    options: ['Indonesia', 'India', 'Japan', 'Vietnam'],
+    answer: 'Indonesia',
+    funFact: '"Ayam" means chicken in Indonesian.',
+    source: 'https://en.wikipedia.org/wiki/Ayam_Cemani',
+    evidence: 'the ayam cemani is a rare breed of chicken from indonesia'
+  },
+  {
+    id: 'chickens-d06',
+    topic: 'Eggs',
+    question: 'An Australorp hen set a record by laying how many eggs in 365 days?',
+    options: ['364', '300', '250', '330'],
+    answer: '364',
+    funFact: 'Australorps are also known as good nest sitters and mothers.',
+    source: 'https://en.wikipedia.org/wiki/Australorp',
+    evidence: 'a new record was set when a hen laid 364'
+  },
+  {
+    id: 'chickens-d07',
+    topic: 'Anatomy',
+    question: 'A chicken\'s gizzard is also called what?',
+    options: ['The ventriculus', 'The proventriculus', 'The cecum', 'The crop'],
+    answer: 'The ventriculus',
+    funFact: 'Food reaches it after the proventriculus, the glandular "true stomach".',
+    source: 'https://en.wikipedia.org/wiki/Gizzard',
+    evidence: 'the gizzard, also referred to as the ventriculus'
+  },
+  {
+    id: 'chickens-d08',
+    topic: 'Breeds',
+    question: 'The Sussex, from the English county of the same name, was traditionally reared for what?',
+    options: ['Meat, as a table bird', 'Cockfighting', 'Show feathers only', 'Hatching duck eggs'],
+    answer: 'Meat, as a table bird',
+    funFact: 'In the early 1900s it was one of the main breeds kept for meat in Britain.',
+    source: 'https://en.wikipedia.org/wiki/Sussex_chicken',
+    evidence: 'the sussex was traditionally reared as a table bird, for meat production'
+  },
+  {
+    id: 'chickens-d09',
+    topic: 'Breeds',
+    question: 'The Buckeye is the only breed in the APA\'s American class with which kind of comb?',
+    options: ['Pea comb', 'Rose comb', 'Single comb', 'V-shaped comb'],
+    answer: 'Pea comb',
+    funFact: 'Its small pea comb and stocky build make it very cold hardy.',
+    source: 'https://en.wikipedia.org/wiki/Buckeye_chicken',
+    evidence: 'it is the only breed in the american class to have a pea comb'
+  },
+  {
+    id: 'chickens-d10',
+    topic: 'Breeds',
+    question: 'Which Dutch or German breed has a solid black head, neck hackle and tail on an otherwise white body?',
+    options: ['Lakenvelder', 'Campine', 'Hamburg', 'Sussex'],
+    answer: 'Lakenvelder',
+    funFact: 'The breed was first recorded in 1727.',
+    source: 'https://en.wikipedia.org/wiki/Lakenvelder',
+    evidence: 'the head, neck hackle and tail of the lakenvelder are solid black'
+  },
+  {
+    id: 'chickens-d11',
+    topic: 'Breeds',
+    question: 'Who bred the original Black Orpington in the late 1800s?',
+    options: ['William Cook', 'Nettie Metcalf', 'George Ellis', 'John Sebright'],
+    answer: 'William Cook',
+    funFact: 'The Australorp of Australia was developed from the Orpington.',
+    source: 'https://en.wikipedia.org/wiki/Orpington_chicken',
+    evidence: 'the original black orpington was bred by william cook'
+  },
+  {
+    id: 'chickens-d12',
+    topic: 'History',
+    question: 'Which Roman writer described five-toed hens, sometimes linked to the Dorking breed?',
+    options: ['Columella', 'Julius Caesar', 'Virgil', 'Ovid'],
+    answer: 'Columella',
+    funFact: 'It is not known whether the Romans actually brought five-toed chickens to Britain.',
+    source: 'https://en.wikipedia.org/wiki/Dorking_chicken',
+    evidence: 'the roman writer columella, active at that time, mentions five-toed hens'
+  },
+  {
+    id: 'chickens-d13',
+    topic: 'Breeds',
+    question: 'Despite its name, the Hamburg is a breed from which country?',
+    options: ['The Netherlands', 'Germany', 'Belgium', 'Denmark'],
+    answer: 'The Netherlands',
+    funFact: 'In the United Kingdom and Australia the name is often spelled Hamburgh.',
+    source: 'https://en.wikipedia.org/wiki/Hamburg_chicken',
+    evidence: 'german: hamburger, is a dutch breed of chicken'
+  },
+  {
+    id: 'chickens-d14',
+    topic: 'Breeds',
+    question: 'The Japanese word "shamo", used for Japan\'s game fowl, comes from the old name of which country?',
+    options: ['Siam (Thailand)', 'Burma (Myanmar)', 'Persia (Iran)', 'Ceylon (Sri Lanka)'],
+    answer: 'Siam (Thailand)',
+    funFact: 'Japan recognizes seven Shamo breeds, all designated natural monuments.',
+    source: 'https://en.wikipedia.org/wiki/Shamo_chicken',
+    evidence: 'the japanese word shamo derives from siam'
+  },
+  {
+    id: 'chickens-d15',
+    topic: 'Breeds',
+    question: 'What shape is the comb of the French La Flèche chicken?',
+    options: ['U- or V-shaped', 'Rose-shaped', 'Pea-shaped', 'Cup-shaped'],
+    answer: 'U- or V-shaped',
+    funFact: 'Its comb, face and wattles are a deep red.',
+    source: 'https://en.wikipedia.org/wiki/La_Fl%C3%A8che_chicken',
+    evidence: 'the comb is u- or v-shaped'
+  },
+  {
+    id: 'chickens-d16',
+    topic: 'Breeds',
+    question: 'Where does the Derbyshire Redcap get its name?',
+    options: [
+      'Its unusually large rose-type comb',
+      'Its red head feathers',
+      'A red hat worn by its first breeder',
+      'Its red earlobes'
+    ],
+    answer: 'Its unusually large rose-type comb',
+    funFact: 'The comb is covered in small fleshy points and ends in a spike pointing backward.',
+    source: 'https://en.wikipedia.org/wiki/Derbyshire_Redcap',
+    evidence: 'the name "redcap" derives from the breed\'s unusually large rose-type comb'
+  },
+  {
+    id: 'chickens-d17',
+    topic: 'Breeds',
+    question: 'Which Belgian true bantam is the only Belgian bantam breed not threatened with extinction?',
+    options: ['Barbu d\'Anvers', 'Barbu d\'Uccle', 'Barbu de Watermael', 'Barbu de Grubbe'],
+    answer: 'Barbu d\'Anvers',
+    funFact: 'It has no full-sized counterpart, and its tail-less variant is the Barbu de Grubbe.',
+    source: 'https://en.wikipedia.org/wiki/Barbu_d%27Anvers',
+    evidence: 'it is the only belgian bantam breed not threatened with extinction'
+  },
+  {
+    id: 'chickens-d18',
+    topic: 'Breeds',
+    question: 'The Asil, or Aseel, is a game chicken from which country?',
+    options: ['India', 'Japan', 'Malaysia', 'Thailand'],
+    answer: 'India',
+    funFact: 'It is distributed across much of India and has been bred for fighting.',
+    source: 'https://en.wikipedia.org/wiki/Asil_chicken',
+    evidence: 'is an indian breed or group of breeds of game chicken'
+  },
+  {
+    id: 'chickens-d19',
+    topic: 'Breeds',
+    question: 'George Ellis created the Delaware breed in 1940. What did he first call it?',
+    options: ['Indian Rivers', 'Delaware Whites', 'Ellis Rocks', 'Diamond State'],
+    answer: 'Indian Rivers',
+    funFact: 'He bred light-colored sports from crosses kept for producing broilers.',
+    source: 'https://en.wikipedia.org/wiki/Delaware_chicken',
+    evidence: 'he first chose to call them indian rivers'
+  },
+  {
+    id: 'chickens-d20',
+    topic: 'Breeds',
+    question: 'Which plumage pattern was the Plymouth Rock\'s original one, before other colors were added?',
+    options: ['Barred', 'Laced', 'Spangled', 'Solid buff'],
+    answer: 'Barred',
+    funFact: 'It has a single comb with five points and yellow, unfeathered legs.',
+    source: 'https://en.wikipedia.org/wiki/Plymouth_Rock_chicken',
+    evidence: 'barred plumage pattern was the original one'
+  },
+  {
+    id: 'chickens-d21',
+    topic: 'Anatomy',
+    question: 'What is the name of a bird\'s vocal organ, found at the base of its trachea?',
+    options: ['The syrinx', 'The larynx', 'The pharynx', 'The glottis'],
+    answer: 'The syrinx',
+    funFact: 'The name comes from the ancient Greek word for pan pipes.',
+    source: 'https://en.wikipedia.org/wiki/Syrinx_(bird_anatomy)',
+    evidence: 'located at the base of a bird\'s trachea'
+  },
+  {
+    id: 'chickens-d22',
+    topic: 'Health',
+    question: 'Which nervous sign often follows the early symptoms of Newcastle disease?',
+    options: ['Twisted heads', 'Swollen feet', 'Feather loss', 'Blue combs'],
+    answer: 'Twisted heads',
+    funFact: 'In flocks with good immunity the early respiratory and digestive signs are mild.',
+    source: 'https://en.wikipedia.org/wiki/Newcastle_disease',
+    evidence: 'nervous symptoms, especially twisted heads'
+  },
+  {
+    id: 'chickens-d23',
+    topic: 'Eggs',
+    question: 'Which pigment gives blue and green eggshells their color?',
+    options: ['Biliverdin', 'Protoporphyrin', 'Melanin', 'Carotene'],
+    answer: 'Biliverdin',
+    funFact: 'The shell gland makes the biliverdin itself; it is not taken from broken-down blood cells.',
+    source: 'https://en.wikipedia.org/wiki/Biliverdin',
+    evidence: 'biliverdin is an important pigment component in avian egg shells, especially blue and green shells'
+  },
+  {
+    id: 'chickens-d24',
+    topic: 'Eggs',
+    question: 'Which part of a hen\'s oviduct forms the egg white?',
+    options: ['The magnum', 'The infundibulum', 'The isthmus', 'The shell gland'],
+    answer: 'The magnum',
+    funFact: 'Next, the isthmus adds the shell membranes.',
+    source: 'https://en.wikipedia.org/wiki/Oviduct',
+    evidence: 'magnum (formation of egg white)'
   }
 ];
 
