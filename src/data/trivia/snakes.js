@@ -1466,6 +1466,308 @@ export const snakeQuestions = [
     funFact: 'They flatten and widen the body by spreading their ribs, turning themselves into a kind of wing.',
     source: 'https://en.wikipedia.org/wiki/Flying_snake',
     evidence: 'are known for their ability to glide between trees'
+  },
+
+  // Added November 2026 from the user's beginner snake list, corrected where sources disagreed; duplicates and unsupported claims dropped.
+  {
+    id: 'snakes-b01',
+    topic: 'Basics',
+    question: 'Do snakes have legs?',
+    options: ['No, snakes are limbless reptiles', 'Yes, all snakes have four tiny legs', 'Only male snakes have back legs', 'They hatch with legs that fall off'],
+    answer: 'No, snakes are limbless reptiles',
+    funFact: 'Pythons and boas still keep a tiny remnant of a pelvis.',
+    source: 'https://en.wikipedia.org/wiki/Snake',
+    evidence: 'snakes are limbless reptiles'
+  },
+  {
+    id: 'snakes-b02',
+    topic: 'Basics',
+    question: 'What does a snake flick in and out to pick up scents from the air?',
+    options: ['Its tongue', 'Its tail', 'Its ears', 'Its scales'],
+    answer: 'Its tongue',
+    funFact: 'The fork in the tongue gives the snake a sense of which direction a smell is coming from.',
+    source: 'https://en.wikipedia.org/wiki/Snake',
+    evidence: 'they collect particles from the air, ground, or water using their forked tongue'
+  },
+  {
+    id: 'snakes-b03',
+    topic: 'Basics',
+    question: 'Are snakes warm-blooded or cold-blooded?',
+    options: ['Cold-blooded (ectothermic)', 'Warm-blooded (endothermic)', 'Warm-blooded in summer only', 'Neither'],
+    answer: 'Cold-blooded (ectothermic)',
+    funFact: 'Their body temperature is mainly regulated by their surroundings.',
+    source: 'https://en.wikipedia.org/wiki/Snake',
+    evidence: 'snakes are ectothermic (often referred to as cold-blooded) reptiles'
+  },
+  {
+    id: 'snakes-b04',
+    topic: 'Basics',
+    question: 'What kind of diet do all snakes eat?',
+    options: ['Meat and other animals (carnivore)', 'Plants and leaves (herbivore)', 'Fruit and insects (omnivore)', 'Only soft fruit (frugivore)'],
+    answer: 'Meat and other animals (carnivore)',
+    funFact: 'Their prey ranges from lizards, frogs and small mammals to eggs, snails, worms and insects.',
+    source: 'https://en.wikipedia.org/wiki/Snake',
+    evidence: 'all snakes are strictly carnivorous'
+  },
+  {
+    id: 'snakes-b05',
+    topic: 'Basics',
+    question: 'What covers a snake\'s body instead of fur or feathers?',
+    options: ['Scales made of keratin', 'Slime and mucus', 'Hard shell plates', 'Soft hair'],
+    answer: 'Scales made of keratin',
+    funFact: 'Keratin is the same basic material that forms nails, claws and hair in mammals.',
+    source: 'https://en.wikipedia.org/wiki/Snake',
+    evidence: 'is formed of a substance called keratin'
+  },
+  {
+    id: 'snakes-b06',
+    topic: 'Basics',
+    question: 'Do snakes have external ears?',
+    options: ['No, they have no external ears', 'Yes, large floppy ears', 'Yes, small round holes on the sides', 'Only venomous snakes have ears'],
+    answer: 'No, they have no external ears',
+    funFact: 'Legless lizards can look like snakes, but they do have external ears and eyelids.',
+    source: 'https://en.wikipedia.org/wiki/Snake',
+    evidence: 'loss of external ears'
+  },
+  {
+    id: 'snakes-b07',
+    topic: 'Basics',
+    question: 'How do snakes usually move across the ground without legs?',
+    options: ['By slithering, using their muscles and scales', 'By rolling like a wheel', 'By hopping on their tails', 'By using suction cups on their bellies'],
+    answer: 'By slithering, using their muscles and scales',
+    funFact: 'This side-to-side movement is called lateral undulation.',
+    source: 'https://en.wikipedia.org/wiki/Snake',
+    evidence: 'terrestrial lateral undulation is the most common mode of terrestrial locomotion'
+  },
+  {
+    id: 'snakes-b08',
+    topic: 'Basics',
+    question: 'What is a baby snake that has just come out of its egg called?',
+    options: ['A hatchling', 'A pup', 'A chick', 'A kitten'],
+    answer: 'A hatchling',
+    funFact: 'A few species, such as the king cobra, build nests and stay near their hatchlings.',
+    source: 'https://en.wikipedia.org/wiki/Snake',
+    evidence: 'stay in the vicinity of the hatchlings'
+  },
+  {
+    id: 'snakes-b09',
+    topic: 'Basics',
+    question: 'Do all snakes lay eggs?',
+    options: ['No, some give birth to live young', 'Yes, all snakes lay eggs in nests', 'No, all snakes give birth to live young', 'No, snakes clone themselves'],
+    answer: 'No, some give birth to live young',
+    funFact: 'The boa constrictor and green anaconda both give birth to live young.',
+    source: 'https://en.wikipedia.org/wiki/Snake',
+    evidence: 'such as the boa constrictor and green anaconda, are fully viviparous'
+  },
+  {
+    id: 'snakes-b10',
+    topic: 'Basics',
+    question: 'Which American snake has a tail tip of hollow keratin segments that makes a loud noise when vibrated?',
+    options: ['Rattlesnake', 'Garter snake', 'Corn snake', 'Milk snake'],
+    answer: 'Rattlesnake',
+    funFact: 'The sound warns predators to stay away.',
+    source: 'https://en.wikipedia.org/wiki/Rattlesnake',
+    evidence: 'the rattle is composed of a series of hollow, interlocked segments made of keratin'
+  },
+  {
+    id: 'snakes-b11',
+    topic: 'Basics',
+    question: 'Do snakes chew their food?',
+    options: ['No, they swallow their prey whole', 'Yes, they chew it into small pieces', 'Only venomous snakes chew', 'They mash it with their tongues first'],
+    answer: 'No, they swallow their prey whole',
+    funFact: 'Snakes cannot tear their food to pieces.',
+    source: 'https://en.wikipedia.org/wiki/Snake',
+    evidence: 'must swallow their prey whole'
+  },
+  {
+    id: 'snakes-b12',
+    topic: 'Basics',
+    question: 'Which popular pet snake is usually orange or brown with large red blotches outlined in black?',
+    options: ['Corn snake', 'King cobra', 'Black mamba', 'Anaconda'],
+    answer: 'Corn snake',
+    funFact: 'Among pet snakes, only the ball python is more popular.',
+    source: 'https://en.wikipedia.org/wiki/Corn_snake',
+    evidence: 'the natural corn snake is usually orange or brown bodied with large red blotches'
+  },
+  {
+    id: 'snakes-b13',
+    topic: 'Basics',
+    question: 'Which venomous snake is famous for spreading a wide hood when threatened?',
+    options: ['Cobra', 'Python', 'Garter snake', 'Boa constrictor'],
+    answer: 'Cobra',
+    funFact: 'Many also rear upward as part of the display.',
+    source: 'https://en.wikipedia.org/wiki/Cobra',
+    evidence: 'many cobras are capable of rearing upwards and producing a hood when threatened'
+  },
+  {
+    id: 'snakes-b14',
+    topic: 'Basics',
+    question: 'Are garter snakes dangerous to people?',
+    options: ['No, they cannot seriously hurt humans', 'Yes, their bite is instantly fatal', 'Yes, they spit venom into your eyes', 'Only if they live near water'],
+    answer: 'No, they cannot seriously hurt humans',
+    funFact: 'They do make a mild venom, a discovery from the early 2000s, but they have no effective way of delivering it.',
+    source: 'https://en.wikipedia.org/wiki/Garter_snake',
+    evidence: 'garter snakes cannot seriously injure or kill humans'
+  },
+  {
+    id: 'snakes-b15',
+    topic: 'Basics',
+    question: 'Which continent has no snakes?',
+    options: ['Antarctica', 'Africa', 'Australia', 'South America'],
+    answer: 'Antarctica',
+    funFact: 'Snakes also live in the sea, and as high as 16,000 feet in the Himalayas.',
+    source: 'https://en.wikipedia.org/wiki/Snake',
+    evidence: 'found on every continent except antarctica'
+  },
+  {
+    id: 'snakes-b16',
+    topic: 'Basics',
+    question: 'What are the special teeth that deliver venom called?',
+    options: ['Fangs', 'Molars', 'Tusks', 'Incisors'],
+    answer: 'Fangs',
+    funFact: 'Snake venom is modified saliva, and fangs are hollow or grooved to carry it.',
+    source: 'https://en.wikipedia.org/wiki/Snake',
+    evidence: 'the venom is modified saliva, delivered through fangs'
+  },
+  {
+    id: 'snakes-b17',
+    topic: 'Basics',
+    question: 'How do snakes breathe?',
+    options: ['With lungs', 'With gills', 'Through their tail tips', 'They do not need to breathe'],
+    answer: 'With lungs',
+    funFact: 'Most snakes have only one working lung, because their bodies are so narrow.',
+    source: 'https://en.wikipedia.org/wiki/Snake',
+    evidence: 'most only have one functional lung'
+  },
+  {
+    id: 'snakes-b18',
+    topic: 'Basics',
+    question: 'Which popular pet python gets its name from curling up tightly when frightened?',
+    options: ['Ball python', 'Reticulated python', 'Burmese python', 'Carpet python'],
+    answer: 'Ball python',
+    funFact: 'It is also called the royal python.',
+    source: 'https://en.wikipedia.org/wiki/Ball_python',
+    evidence: 'refers to its tendency to curl into a ball when stressed or frightened'
+  },
+  {
+    id: 'snakes-b19',
+    topic: 'Basics',
+    question: 'Are most snake species venomous?',
+    options: ['No, most are non-venomous', 'Yes, most are venomous', 'Exactly half are venomous', 'No snakes are venomous'],
+    answer: 'No, most are non-venomous',
+    funFact: 'Many non-venomous snakes subdue their prey by constriction.',
+    source: 'https://en.wikipedia.org/wiki/Snake',
+    evidence: 'most species of snake are non-venomous'
+  },
+  {
+    id: 'snakes-b20',
+    topic: 'Basics',
+    question: 'What shape are the pupils of many nocturnal snakes?',
+    options: ['Slits', 'Round', 'Square', 'Triangular'],
+    answer: 'Slits',
+    funFact: 'Snakes active by day typically have round pupils, but pupil shape is not a safe way to tell whether a snake is venomous.',
+    source: 'https://en.wikipedia.org/wiki/Snake',
+    evidence: 'many nocturnal species have slit pupils'
+  },
+  {
+    id: 'snakes-b21',
+    topic: 'Basics',
+    question: 'Can some snakes live in water?',
+    options: ['Yes, such as sea snakes and water snakes', 'No, all snakes drown in water', 'Only pet snakes can swim', 'No, snakes avoid all water'],
+    answer: 'Yes, such as sea snakes and water snakes',
+    funFact: 'Sea snakes are widespread across the Indian and Pacific oceans, and water snakes are found worldwide.',
+    source: 'https://en.wikipedia.org/wiki/Snake',
+    evidence: 'secondarily aquatic groups such as the sea snakes'
+  },
+  {
+    id: 'snakes-b22',
+    topic: 'Basics',
+    question: 'Which harmless snake has bands of red, black and yellow that mimic the venomous coral snake?',
+    options: ['Scarlet kingsnake', 'King cobra', 'Green tree python', 'Rattlesnake'],
+    answer: 'Scarlet kingsnake',
+    funFact: 'A harmless animal copying a dangerous one is called Batesian mimicry.',
+    source: 'https://en.wikipedia.org/wiki/Scarlet_kingsnake',
+    evidence: 'appear to mimic the venomous coral snake'
+  },
+  {
+    id: 'snakes-b23',
+    topic: 'Basics',
+    question: 'Do snakes have bones?',
+    options: ['Yes, a skull, ribs and a long backbone', 'No, they have no bones at all', 'Only one bone down the center', 'Only a hard outer skeleton'],
+    answer: 'Yes, a skull, ribs and a long backbone',
+    funFact: 'Pythons and boas also keep small traces of a pelvis and rear limbs.',
+    source: 'https://en.wikipedia.org/wiki/Snake',
+    evidence: 'the skeleton of most snakes consists solely of the skull, hyoid, vertebral column, and ribs'
+  },
+  {
+    id: 'snakes-b24',
+    topic: 'Basics',
+    question: 'Which of these helps prevent snakebites?',
+    options: ['Wearing protective footwear', 'Walking barefoot in tall grass', 'Picking snakes up by the tail', 'Feeding wild snakes by hand'],
+    answer: 'Wearing protective footwear',
+    funFact: 'Avoiding areas where snakes live and not handling snakes also help.',
+    source: 'https://en.wikipedia.org/wiki/Snakebite',
+    evidence: 'prevention of snake bites can involve wearing protective footwear'
+  },
+  {
+    id: 'snakes-b25',
+    topic: 'Basics',
+    question: 'Are snakes slimy to the touch?',
+    options: ['No, their skin is smooth and dry', 'Yes, they feel like wet fish', 'Yes, they make slime to stay cool', 'Only when it rains'],
+    answer: 'No, their skin is smooth and dry',
+    funFact: 'The slimy idea may come from people confusing snakes with worms.',
+    source: 'https://en.wikipedia.org/wiki/Snake',
+    evidence: 'snakeskin has a smooth, dry texture'
+  },
+  {
+    id: 'snakes-b26',
+    topic: 'Basics',
+    question: 'What is an animal that is active at night called?',
+    options: ['Nocturnal', 'Diurnal', 'Crepuscular', 'Arboreal'],
+    answer: 'Nocturnal',
+    funFact: 'Animals active by day are called diurnal.',
+    source: 'https://en.wikipedia.org/wiki/Nocturnality',
+    evidence: 'characterized by being active during the night'
+  },
+  {
+    id: 'snakes-b27',
+    topic: 'Basics',
+    question: 'What do you call a snake that lives mostly in trees and bushes?',
+    options: ['An arboreal snake', 'A fossorial snake', 'An aquatic snake', 'A terrestrial snake'],
+    answer: 'An arboreal snake',
+    funFact: 'Tree-living snakes generally see better than burrowing ones.',
+    source: 'https://en.wikipedia.org/wiki/Arboreal_locomotion',
+    evidence: 'arboreal locomotion is the locomotion of animals in trees'
+  },
+  {
+    id: 'snakes-b28',
+    topic: 'Basics',
+    question: 'Do snakes dislocate their jaws to swallow big meals?',
+    options: ['No, their flexible jaws stretch wide instead', 'Yes, they pop their jawbones out of place', 'Yes, they break their jaws on purpose', 'Only pythons do'],
+    answer: 'No, their flexible jaws stretch wide instead',
+    funFact: 'The two halves of the lower jaw are not rigidly attached, which lets the mouth open very wide.',
+    source: 'https://en.wikipedia.org/wiki/Snake',
+    evidence: 'contrary to the popular belief that snakes can dislocate their jaws'
+  },
+  {
+    id: 'snakes-b29',
+    topic: 'Basics',
+    question: 'Which North American boa is named for its loose, wrinkled skin with small, smooth, shiny scales?',
+    options: ['Rubber boa', 'Rosy boa', 'Emerald tree boa', 'Boa constrictor'],
+    answer: 'Rubber boa',
+    funFact: 'It is considered one of the most docile boas, and is often used to help people overcome a fear of snakes.',
+    source: 'https://en.wikipedia.org/wiki/Rubber_boa',
+    evidence: 'the common name is derived from their skin'
+  },
+  {
+    id: 'snakes-b30',
+    topic: 'Basics',
+    question: 'What should you do if you meet a wild snake on a hiking trail?',
+    options: ['Leave it alone and do not touch it', 'Pick it up by the tail', 'Throw rocks at it', 'Try to trap it'],
+    answer: 'Leave it alone and do not touch it',
+    funFact: 'The CDC advises never trying to pick up or trap a snake.',
+    source: 'https://www.cdc.gov/niosh/outdoor-workers/about/venomous-snakes.html',
+    evidence: 'do not touch or handle any snake'
   }
 ];
 

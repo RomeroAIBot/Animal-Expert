@@ -255,5 +255,47 @@ export const goatQuestions = [
     funFact: 'It comes from the Surendranagar and Rajkot regions and is also known locally as the Tara bakari.',
     source: wiki('Zalawadi'),
     evidence: 'from the surendranagar and rajkot regions of gujarat in india'
+  },
+
+  // Added November 2026 from the user's beginner livestock and chicken list, checked the same way.
+  {
+    id: 'goats-n03',
+    topic: 'Husbandry',
+    question: 'What is a baby goat called?',
+    options: ['Kid', 'Calf', 'Fawn', 'Pup'],
+    answer: 'Kid',
+    funFact: 'The word comes from a Scandinavian language, such as Old Norse.',
+    source: wiki('Goat'),
+    evidence: 'juvenile goats are called kids'
+  },
+  {
+    id: 'goats-n04',
+    topic: 'Husbandry',
+    question: 'What is the word for a goat giving birth?',
+    options: ['Kidding', 'Lambing', 'Farrowing', 'Calving'],
+    answer: 'Kidding',
+    funFact: 'Twins are the usual result, with single and triplet births also common.',
+    source: wiki('Goat'),
+    evidence: 'birthing, known as kidding'
+  },
+  {
+    id: 'goats-n05',
+    topic: 'Husbandry',
+    question: 'What is an adult female goat called?',
+    options: ['Doe or nanny', 'Buck or billy', 'Sow or gilt', 'Ewe or lamb'],
+    answer: 'Doe or nanny',
+    funFact: 'Adult males are called bucks or billies.',
+    source: wiki('Goat'),
+    evidence: 'nanny goat (adult female)'
+  },
+  {
+    id: 'goats-n06',
+    topic: 'Biology',
+    question: 'Goats are the only ruminant to regularly do what?',
+    options: ['Climb trees', 'Swim across rivers', 'Dig burrows', 'Hunt small animals'],
+    answer: 'Climb trees',
+    funFact: 'They are so agile and good at balancing that they are notorious for escaping their pens.',
+    source: wiki('Goat'),
+    evidence: 'the only ruminant to regularly climb trees'
   }
 ];

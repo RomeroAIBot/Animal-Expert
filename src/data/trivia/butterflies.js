@@ -167,5 +167,27 @@ export const butterflyQuestions = [
     funFact: 'One species is even called the hummingbird hawk-moth.',
     source: wiki('Hawk_moth'),
     evidence: 'similar enough to that of hummingbirds as to be reliably mistaken for them'
+  },
+
+  // Added November 2026 from the user's intermediate insect list, corrected where sources disagreed; duplicates and unsupported claims dropped.
+  {
+    id: 'butterflies-b01',
+    topic: 'Basics',
+    question: 'What mouthpart do adult butterflies and moths use to drink nectar?',
+    options: ['Proboscis', 'Mandibles', 'Labium', 'Chelicerae'],
+    answer: 'Proboscis',
+    funFact: 'It is also known as the haustellum.',
+    source: wiki('Proboscis'),
+    evidence: 'this part is known as the proboscis'
+  },
+  {
+    id: 'butterflies-b02',
+    topic: 'Basics',
+    question: 'Which moth\'s larvae are a serious pest of clothing, especially wool?',
+    options: ['Webbing clothes moth', 'Peppered moth', 'Luna moth', 'Atlas moth'],
+    answer: 'Webbing clothes moth',
+    funFact: 'The larvae can also feed on stored foods.',
+    source: wiki('Tineola_bisselliella'),
+    evidence: 'they can derive nourishment from clothing'
   }
 ];

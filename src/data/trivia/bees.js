@@ -252,5 +252,47 @@ export const beeQuestions = [
     funFact: 'These "repletes" hang from the nest ceiling and feed their nestmates when food is scarce.',
     source: wiki('Honeypot_ant'),
     evidence: 'honey ants are unique in using their own bodies as living storage'
+  },
+
+  // Added November 2026 from the user's intermediate insect list, corrected where sources disagreed; duplicates and unsupported claims dropped.
+  {
+    id: 'bees-b01',
+    topic: 'Basics',
+    question: 'In a bee colony, what are the females that lack the queen\'s reproductive ability and do most of the hive\'s tasks called?',
+    options: ['Workers', 'Drones', 'Queens', 'Alates'],
+    answer: 'Workers',
+    funFact: 'They are considered female for anatomical and genetic reasons.',
+    source: wiki('Worker_bee'),
+    evidence: 'any female bee that lacks the reproductive capacity of the colony\'s queen bee'
+  },
+  {
+    id: 'bees-b02',
+    topic: 'Basics',
+    question: 'Ants, bees and wasps belong to which insect order?',
+    options: ['Hymenoptera', 'Coleoptera', 'Orthoptera', 'Hemiptera'],
+    answer: 'Hymenoptera',
+    funFact: 'It also includes the sawflies.',
+    source: wiki('Hymenoptera'),
+    evidence: 'comprising the sawflies, wasps, bees, and ants'
+  },
+  {
+    id: 'bees-b03',
+    topic: 'Basics',
+    question: 'In stinging wasps, bees and ants, the stinger is a modified form of which egg-laying organ?',
+    options: ['Ovipositor', 'Cercus', 'Labrum', 'Spiracle'],
+    answer: 'Ovipositor',
+    funFact: 'Because the stinger evolved from it, only females can sting.',
+    source: wiki('Stinger'),
+    evidence: 'the sting is a modified ovipositor'
+  },
+  {
+    id: 'bees-b04',
+    topic: 'Basics',
+    question: 'Which honey bee larvae are fed royal jelly?',
+    options: ['All larvae in the colony', 'Only future queens', 'Only drones', 'Only future workers'],
+    answer: 'All larvae in the colony',
+    funFact: 'It comes from glands in the heads of nurse bees. Larvae raised in queen cells are fed large amounts of it.',
+    source: wiki('Royal_jelly'),
+    evidence: 'fed to all larvae in the colony, regardless of sex or caste'
   }
 ];
