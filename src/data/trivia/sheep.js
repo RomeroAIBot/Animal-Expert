@@ -435,5 +435,67 @@ export const sheepQuestions = [
     funFact: 'The larvae crawl up into the nasal sinuses, where they grow before dropping out to pupate.',
     source: wiki('Oestrus_ovis'),
     evidence: 'directly into a nostril of the host animal'
+  },
+
+  // Added November 2026 from the user's beginner livestock and chicken list, checked the same way.
+  {
+    id: 'sheep-n06',
+    topic: 'Husbandry',
+    question: 'What is a young sheep called?',
+    options: ['Lamb', 'Kid', 'Calf', 'Piglet'],
+    answer: 'Lamb',
+    funFact: 'Its meat is also called lamb, while meat from older sheep is mutton.',
+    source: wiki('Sheep'),
+    evidence: 'and a young sheep as a lamb'
+  },
+  {
+    id: 'sheep-n07',
+    topic: 'Husbandry',
+    question: 'What do farmers shear from sheep to make sweaters and blankets?',
+    options: ['Wool', 'Silk', 'Cotton', 'Leather'],
+    answer: 'Wool',
+    funFact: 'It is the most widely used animal fiber.',
+    source: wiki('Sheep'),
+    evidence: 'a sheep\'s wool is the most widely used animal fiber, and is usually harvested by shearing'
+  },
+  {
+    id: 'sheep-n08',
+    topic: 'Biology',
+    question: 'What is the "baa" sound a sheep makes called?',
+    options: ['Bleating', 'Neighing', 'Lowing', 'Braying'],
+    answer: 'Bleating',
+    funFact: 'Sheep use it mostly to keep in contact, especially mothers and their lambs.',
+    source: wiki('Sheep'),
+    evidence: 'bleating ("baaing")'
+  },
+  {
+    id: 'sheep-n09',
+    topic: 'Husbandry',
+    question: 'What is an adult male sheep that has not been castrated called?',
+    options: ['Ram', 'Ewe', 'Wether', 'Lamb'],
+    answer: 'Ram',
+    funFact: 'A female is a ewe, and a castrated male is a wether.',
+    source: wiki('Sheep'),
+    evidence: 'an intact male as a ram'
+  },
+  {
+    id: 'sheep-n10',
+    topic: 'Husbandry',
+    question: 'What kind of dog lives with a flock of sheep to protect it from predators such as wolves?',
+    options: ['Livestock guardian dog', 'Scent hound', 'Toy companion dog', 'Retrieving gun dog'],
+    answer: 'Livestock guardian dog',
+    funFact: 'The 1970s saw a resurgence in their use on sheep farms.',
+    source: wiki('Livestock_guardian_dog'),
+    evidence: 'livestock guardian dogs stay with the group of animals they protect as a full-time member of the flock'
+  },
+  {
+    id: 'sheep-n11',
+    topic: 'Husbandry',
+    question: 'What is the word for a sheep giving birth?',
+    options: ['Lambing', 'Calving', 'Kidding', 'Farrowing'],
+    answer: 'Lambing',
+    funFact: 'Most lambs will begin standing within an hour of birth.',
+    source: wiki('Sheep'),
+    evidence: 'humans present at lambing can assist the ewe by extracting or repositioning lambs'
   }
 ];

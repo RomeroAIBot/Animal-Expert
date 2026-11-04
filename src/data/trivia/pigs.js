@@ -335,5 +335,57 @@ export const pigQuestions = [
     funFact: 'It is also sometimes called pig plague, from the German "Schweinepest".',
     source: wiki('Classical_swine_fever'),
     evidence: 'classical swine fever (csf) or hog cholera'
+  },
+
+  // Added November 2026 from the user's beginner livestock and chicken list, checked the same way.
+  {
+    id: 'pigs-n02',
+    topic: 'Husbandry',
+    question: 'What is a breeding female pig that has had a litter called?',
+    options: ['Sow', 'Gilt', 'Boar', 'Barrow'],
+    answer: 'Sow',
+    funFact: 'A young female that has not yet farrowed is called a gilt.',
+    source: wiki('Pig_farming'),
+    evidence: 'sow, breeding female, or female after first or second litter'
+  },
+  {
+    id: 'pigs-n03',
+    topic: 'Biology',
+    question: 'Why do pigs often wallow in mud?',
+    options: ['To cool down', 'To soften their hooves', 'To dry out their skin', 'To attract piglets'],
+    answer: 'To cool down',
+    funFact: 'Pigs have relatively few sweat glands, and wallowing may also protect them from sunburn.',
+    source: wiki('Pig'),
+    evidence: 'pigs lose heat by wallowing in mud or water'
+  },
+  {
+    id: 'pigs-n04',
+    topic: 'Biology',
+    question: 'Pigs will eat almost anything, including food scraps. What kind of eaters are they?',
+    options: ['Omnivores', 'Herbivores', 'Carnivores', 'Insectivores'],
+    answer: 'Omnivores',
+    funFact: 'Farmers have long fed them kitchen refuse known as swill.',
+    source: wiki('Pig'),
+    evidence: 'pigs are omnivorous and versatile in their feeding behaviour'
+  },
+  {
+    id: 'pigs-n05',
+    topic: 'Biology',
+    question: 'What does a pig use to dig into the soil for food?',
+    options: ['Its snout', 'Its tail', 'Its ears', 'Its hind legs'],
+    answer: 'Its snout',
+    funFact: 'This digging is called rooting, and it is also a way pigs communicate.',
+    source: wiki('Pig'),
+    evidence: 'the snout is used to dig into the soil to find food'
+  },
+  {
+    id: 'pigs-n06',
+    topic: 'Biology',
+    question: 'Which sound is a pig best known for?',
+    options: ['Oink', 'Baa', 'Moo', 'Cluck'],
+    answer: 'Oink',
+    funFact: 'Sows also grunt at slow, regular intervals while their piglets nurse.',
+    source: wiki('Oink'),
+    evidence: 'oink commonly refers to the sound made by a pig'
   }
 ];

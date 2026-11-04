@@ -1633,6 +1633,80 @@ export const chickenQuestions = [
     funFact: 'An estimated half a billion farmed birds have been culled in efforts to contain it.',
     source: 'https://en.wikipedia.org/wiki/Avian_influenza',
     evidence: 'h5n1 (a/h5n1) has the potential to devastate domesticated poultry stocks'
+  },
+
+  // Added November 2026 from the user's beginner livestock and chicken list, checked the same way.
+
+  // Added November 2026 from the user's beginner livestock and chicken list, checked the same way.
+  {
+    id: 'chickens-x02',
+    topic: 'Terms',
+    question: 'What is an adult female chicken called?',
+    options: ['Hen', 'Rooster', 'Pullet', 'Chick'],
+    answer: 'Hen',
+    funFact: 'A young female under a year old is called a pullet.',
+    source: 'https://en.wikipedia.org/wiki/Chicken',
+    evidence: 'hen: an adult female chicken'
+  },
+  {
+    id: 'chickens-x03',
+    topic: 'Terms',
+    question: 'What is an adult male chicken called in North America?',
+    options: ['Rooster', 'Hen', 'Pullet', 'Chick'],
+    answer: 'Rooster',
+    funFact: 'It is also known as a cock.',
+    source: 'https://en.wikipedia.org/wiki/Chicken',
+    evidence: 'rooster: a fertile adult male chicken, especially in north america'
+  },
+  {
+    id: 'chickens-x04',
+    topic: 'Terms',
+    question: 'What is a young bird called right after it hatches from a hen\'s egg?',
+    options: ['Chick', 'Pullet', 'Cockerel', 'Capon'],
+    answer: 'Chick',
+    funFact: 'It uses a small egg tooth to break out of the shell.',
+    source: 'https://en.wikipedia.org/wiki/Chicken',
+    evidence: 'the chick uses its egg tooth to break out of the shell'
+  },
+  {
+    id: 'chickens-x05',
+    topic: 'Anatomy',
+    question: 'What is the fleshy red growth on top of a chicken\'s head called?',
+    options: ['Comb', 'Wattle', 'Earlobe', 'Hackle'],
+    answer: 'Comb',
+    funFact: 'Wattles are the flaps of skin that hang under the beak.',
+    source: 'https://en.wikipedia.org/wiki/Comb_(anatomy)',
+    evidence: 'a comb is a fleshy growth or crest on the top of the head'
+  },
+  {
+    id: 'chickens-x06',
+    topic: 'Eggs',
+    question: 'What color eggs do Leghorn hens lay?',
+    options: ['White', 'Blue', 'Green', 'Dark brown'],
+    answer: 'White',
+    funFact: 'A Leghorn lays an average of about 280 eggs a year.',
+    source: 'https://en.wikipedia.org/wiki/Leghorn_chicken',
+    evidence: 'leghorns are good layers of white eggs'
+  },
+  {
+    id: 'chickens-x07',
+    topic: 'Behavior',
+    question: 'Why do chickens scratch at the soil?',
+    options: ['To search for seeds and insects', 'To sharpen their claws', 'To cool down their feet', 'To bury their eggs'],
+    answer: 'To search for seeds and insects',
+    funFact: 'Chickens are omnivores and can even catch animals as large as lizards.',
+    source: 'https://en.wikipedia.org/wiki/Chicken',
+    evidence: 'they scratch at the soil to search for seeds, insects'
+  },
+  {
+    id: 'chickens-x08',
+    topic: 'Terms',
+    question: 'What are chickens farmed mainly for their eggs called?',
+    options: ['Layer hens', 'Broilers', 'Capons', 'Bantams'],
+    answer: 'Layer hens',
+    funFact: 'Broilers are the breeds developed for meat.',
+    source: 'https://en.wikipedia.org/wiki/Chicken',
+    evidence: 'chickens farmed primarily for eggs are called layer hens'
   }
 ];
 

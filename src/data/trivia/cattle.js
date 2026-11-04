@@ -423,5 +423,67 @@ export const cattleQuestions = [
     funFact: 'There were about 2,000 cases on farms, and the crisis hit both farming and tourism.',
     source: wiki('2001_United_Kingdom_foot-and-mouth_outbreak'),
     evidence: 'over 6 million cows and sheep were slaughtered'
+  },
+
+  // Added November 2026 from the user's beginner livestock and chicken list, checked the same way.
+  {
+    id: 'cattle-n04',
+    topic: 'Husbandry',
+    question: 'What is an adult male of cattle that has not been castrated called?',
+    options: ['Bull', 'Steer', 'Cow', 'Heifer'],
+    answer: 'Bull',
+    funFact: 'A castrated male is called a steer.',
+    source: wiki('Bull'),
+    evidence: 'a bull is an intact (i.e., not castrated) adult male'
+  },
+  {
+    id: 'cattle-n05',
+    topic: 'Husbandry',
+    question: 'What is a female of cattle called once she has had a calf?',
+    options: ['Cow', 'Heifer', 'Steer', 'Bull'],
+    answer: 'Cow',
+    funFact: 'Before her first calf she is called a heifer.',
+    source: wiki('Heifer'),
+    evidence: 'a young cow before she has had her first calf'
+  },
+  {
+    id: 'cattle-n06',
+    topic: 'Husbandry',
+    question: 'What is the word for a cow giving birth?',
+    options: ['Calving', 'Farrowing', 'Lambing', 'Kidding'],
+    answer: 'Calving',
+    funFact: 'Cows seek out secluded areas to give birth.',
+    source: wiki('Calving'),
+    evidence: 'calving, the process of giving birth to a calf'
+  },
+  {
+    id: 'cattle-n07',
+    topic: 'Biology',
+    question: 'What do cattle mainly eat on pasture?',
+    options: ['Grass and other plants', 'Insects and worms', 'Corn grain only', 'Fish meal'],
+    answer: 'Grass and other plants',
+    funFact: 'Given the choice, they prefer about 70% clover and 30% grass.',
+    source: wiki('Cattle'),
+    evidence: 'specialized for processing plant material such as grass'
+  },
+  {
+    id: 'cattle-n08',
+    topic: 'Husbandry',
+    question: 'Dairy cows are bred mainly to produce what?',
+    options: ['Milk', 'Wool', 'Honey', 'Eggs'],
+    answer: 'Milk',
+    funFact: 'The Holstein Friesian is the best-known breed for high milk production.',
+    source: wiki('Dairy_cattle'),
+    evidence: 'cattle bred for the purpose of producing large quantities of milk'
+  },
+  {
+    id: 'cattle-n09',
+    topic: 'Biology',
+    question: 'How many compartments make up a cow\'s stomach?',
+    options: ['Four', 'One', 'Two', 'Six'],
+    answer: 'Four',
+    funFact: 'They are the rumen, reticulum, omasum and abomasum, which is why people often say cows have four stomachs.',
+    source: wiki('Cattle'),
+    evidence: 'one large stomach with four compartments'
   }
 ];
