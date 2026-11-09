@@ -51,6 +51,11 @@ const cycleCache = new Map();
 // The order for one cycle. Items used in the last week of the previous cycle move to the end,
 // so a question never comes back within a week of its last daily appearance (when the pool
 // is large enough; a pool under about eight days of items will still repeat sooner).
+// Cycles are chained in blocks of 64, each block starting from a plain shuffle. Chaining all the
+// way back to cycle 0 meant thousands of shuffles for small pools; this caps it at 64, and the
+// week gap can only be missed once per block.
+const CYCLE_BLOCK = 64;
+
 const getCycleOrder = (items, count, salt, cycle, perCycle) => {
   const cacheKey = `${salt}:${items.length}:${count}`;
   let cache = cycleCache.get(cacheKey);
@@ -59,15 +64,15 @@ const getCycleOrder = (items, count, salt, cycle, perCycle) => {
     cycleCache.set(cacheKey, cache);
   }
   let start = cycle;
-  while (start > 0 && !cache.has(start - 1)) start -= 1;
+  while (start % CYCLE_BLOCK !== 0 && !cache.has(start - 1)) start -= 1;
   for (let c = start; c <= cycle; c += 1) {
     if (cache.has(c)) continue;
     const order = seededShuffle(items, `${salt}:cycle:${c}`);
-    const previous = cache.get(c - 1);
-    if (!previous) {
+    if (c % CYCLE_BLOCK === 0) {
       cache.set(c, order);
       continue;
     }
+    const previous = cache.get(c - 1);
     const tailDays = Math.min(REPEAT_GAP_DAYS, perCycle);
     const recent = new Set(previous.slice((perCycle - tailDays) * count, perCycle * count));
     cache.set(c, [...order.filter((item) => !recent.has(item)), ...order.filter((item) => recent.has(item))]);

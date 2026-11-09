@@ -5,7 +5,7 @@ import { animalGroups, animalLabels, categoryLabel } from '../data/groups';
 // Photo games pass `photoGame` so animals without breed photos (and groups with none) are hidden; a
 // group keeps its "(all)" choice there whenever the full group has more than one animal, so switching
 // from trivia to a photo game never leaves the menu on a choice it no longer lists.
-function CategoryPicker({ value, onChange, includeMixed = true, photoGame = false }) {
+function CategoryPicker({ value, onChange, includeMixed = true, photoGame = false, placeholder, id }) {
   const groups = animalGroups
     .map((group) => ({
       ...group,
@@ -17,7 +17,12 @@ function CategoryPicker({ value, onChange, includeMixed = true, photoGame = fals
   return (
     <label className="field">
       <span>Category</span>
-      <select value={value} onChange={(event) => onChange(event.target.value)}>
+      <select id={id} value={value} onChange={(event) => onChange(event.target.value)}>
+        {placeholder && (
+          <option value="" disabled>
+            {placeholder}
+          </option>
+        )}
         {includeMixed && <option value="mixed">{categoryLabel('mixed')}</option>}
         {groups.map((group) => (
           <optgroup key={group.id} label={group.label}>
