@@ -1,14 +1,79 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { deleteAccount, getProfile, sendSignInLink, updateProfile } from '../utils/cloud';
+import { deleteAccount, getProfile, getSignedInUser, sendSignInLink, updateProfile, verifySignInCode } from '../utils/cloud';
+import { isInstalled } from '../utils/pwa';
 
 const NAME_PATTERN = /^[A-Za-z0-9 _.-]{2,24}$/;
 
-function SignInForm({ signInError }) {
+function CodeForm({ email, onSignedIn }) {
+  const [code, setCode] = useState('');
+  const [status, setStatus] = useState(null);
+  const [checking, setChecking] = useState(false);
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const digits = code.replace(/\D/g, '');
+    if (digits.length < 6) {
+      setStatus({ kind: 'error', text: 'Enter the code from the email. It is 6 or more digits.' });
+      return;
+    }
+    setChecking(true);
+    setStatus({ kind: 'info', text: 'Checking the code...' });
+    try {
+      await verifySignInCode(email, digits);
+      onSignedIn();
+    } catch (error) {
+      setStatus({
+        kind: 'error',
+        text:
+          error.status === 429
+            ? 'Too many tries. Wait a few minutes and try again.'
+            : 'That code did not work. It may be mistyped, already used, or more than an hour old. Check it, or send a new email.'
+      });
+      setChecking(false);
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className="account-form code-form">
+      <label htmlFor="account-code">Sign-in code from the email</label>
+      <input
+        ref={inputRef}
+        id="account-code"
+        type="text"
+        inputMode="numeric"
+        autoComplete="one-time-code"
+        maxLength={10}
+        aria-describedby="account-code-hint"
+        value={code}
+        onChange={(event) => setCode(event.target.value)}
+      />
+      <p id="account-code-hint" className="muted">
+        {isInstalled()
+          ? "You're in the home-screen app, so type the code here. The link in the email would open Safari instead, and Safari's sign-in isn't shared with this app."
+          : 'Typing the code signs you in right here. You can also open the link in the email instead.'}
+      </p>
+      <button type="submit" className="button" disabled={checking}>
+        Sign in with code
+      </button>
+      <p role="status" className={status?.kind === 'error' ? 'status-error' : 'muted'}>
+        {status?.text}
+      </p>
+    </form>
+  );
+}
+
+function SignInForm({ signInError, onSignedIn }) {
   const [email, setEmail] = useState('');
   const [displayName, setDisplayName] = useState('');
   const [status, setStatus] = useState(null);
   const [sending, setSending] = useState(false);
+  const [sentTo, setSentTo] = useState('');
 
   // A failed or expired link is reported after the page loads.
   useEffect(() => {
@@ -26,9 +91,10 @@ function SignInForm({ signInError }) {
     setStatus({ kind: 'info', text: 'Sending...' });
     try {
       await sendSignInLink(email.trim(), name);
+      setSentTo(email.trim());
       setStatus({
         kind: 'success',
-        text: `Check your email at ${email.trim()} for a sign-in link. Opening it signs you in on that device. The link works once and expires after an hour.`
+        text: `Sent. Check your email at ${email.trim()}. It has a sign-in code to type below, and a link. Both work once and expire after an hour.`
       });
     } catch (error) {
       const text =
@@ -45,8 +111,9 @@ function SignInForm({ signInError }) {
     <article className="card">
       <h3>Sign in or create an account</h3>
       <p>
-        Enter your email and we'll send you a sign-in link. There's no password. Signing in keeps your
-        streak and game history across devices, and lets you join the public daily rankings.
+        Enter your email and we'll send you a sign-in code and link. There's no password. Signing in keeps
+        your streak and game history across devices, and lets you join the public daily rankings. Once
+        you're signed in, you stay signed in on this device until you sign out.
       </p>
       <form onSubmit={handleSubmit} className="account-form">
         <label htmlFor="account-email">Email address</label>
@@ -73,12 +140,13 @@ function SignInForm({ signInError }) {
           dashes or underscores.
         </p>
         <button type="submit" className="button" disabled={sending}>
-          Email me a sign-in link
+          {sentTo ? 'Send a new email' : 'Email me a sign-in code'}
         </button>
       </form>
       <p role="status" className={status?.kind === 'error' ? 'status-error' : 'muted'}>
         {status?.text}
       </p>
+      {sentTo && <CodeForm key={sentTo} email={sentTo} onSignedIn={onSignedIn} />}
       <p className="muted">Without an account, your progress is saved in this browser only.</p>
     </article>
   );
@@ -211,7 +279,13 @@ function AccountPage({ appContext }) {
     return (
       <section>
         <h2>Account</h2>
-        <SignInForm signInError={signInError} />
+        <SignInForm
+          signInError={signInError}
+          onSignedIn={() => {
+            setUser(getSignedInUser());
+            syncNow();
+          }}
+        />
       </section>
     );
   }

@@ -26,6 +26,11 @@ function InstallHelp({ headingLevel = 3 }) {
             </li>
             <li>Scroll down the list of actions and tap "Add to Home Screen". If you don't see it, tap "Edit Actions" to add it.</li>
             <li>Leave the name as Animal Expert and tap "Add". The paw-print icon appears on your home screen.</li>
+            <li>
+              Open Animal Expert from the home screen and sign in once more on its Account page. iPhone keeps the
+              home-screen app separate from Safari, so it can't see Safari's sign-in. Ask for a sign-in email and type
+              the code from it into the app. After that, the app stays signed in every time you open it.
+            </li>
           </ol>
           <h4>On Android (Chrome)</h4>
           <p>Open the menu (three dots) and choose "Add to Home screen" or "Install app".</p>
