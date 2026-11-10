@@ -61,6 +61,30 @@ export const sendSignInLink = (email, displayName) =>
     body: { email, create_user: true, data: displayName ? { display_name: displayName } : {} }
   });
 
+// Remembers that a code was emailed, so the code box is still there after the player switches to
+// Mail and back. iPhone often reloads a home-screen app when it returns to the foreground, which
+// would otherwise lose the box.
+const PENDING_KEY = 'animalExpert:v1:pending-sign-in';
+const CODE_LIFETIME_MS = 60 * 60 * 1000;
+
+export const readPending = () => {
+  try {
+    const pending = JSON.parse(localStorage.getItem(PENDING_KEY));
+    return pending?.email && Date.now() - pending.sentAt < CODE_LIFETIME_MS ? pending : null;
+  } catch {
+    return null;
+  }
+};
+
+export const writePending = (pending) => {
+  try {
+    if (pending) localStorage.setItem(PENDING_KEY, JSON.stringify(pending));
+    else localStorage.removeItem(PENDING_KEY);
+  } catch {
+    // Storage blocked: the code box lasts for this page load only.
+  }
+};
+
 // The same email also carries a short code. Typing it in signs in this browser or app directly,
 // which the home-screen app on iPhone needs: it keeps its own storage, separate from Safari, and
 // links in emails always open in Safari.

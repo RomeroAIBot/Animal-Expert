@@ -1,31 +1,32 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { deleteAccount, getProfile, getSignedInUser, sendSignInLink, updateProfile, verifySignInCode } from '../utils/cloud';
+import { deleteAccount, getProfile, getSignedInUser, sendSignInLink, updateProfile, verifySignInCode, readPending, writePending } from '../utils/cloud';
 import { isInstalled } from '../utils/pwa';
 
 const NAME_PATTERN = /^[A-Za-z0-9 _.-]{2,24}$/;
 
-function CodeForm({ email, onSignedIn }) {
+function CodeForm({ email, sentAt, codeAlreadyHad, onSignedIn, onSendAgain, onChangeEmail, sending, notice }) {
   const [code, setCode] = useState('');
   const [status, setStatus] = useState(null);
   const [checking, setChecking] = useState(false);
-  const inputRef = useRef(null);
+  const headingRef = useRef(null);
 
   useEffect(() => {
-    inputRef.current?.focus();
+    headingRef.current?.focus();
   }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const digits = code.replace(/\D/g, '');
     if (digits.length < 6) {
-      setStatus({ kind: 'error', text: 'Enter the code from the email. It is 6 or more digits.' });
+      setStatus({ kind: 'error', text: 'Type the code from the email first. It is 8 digits.' });
       return;
     }
     setChecking(true);
     setStatus({ kind: 'info', text: 'Checking the code...' });
     try {
       await verifySignInCode(email, digits);
+      writePending(null);
       onSignedIn();
     } catch (error) {
       setStatus({
@@ -33,38 +34,58 @@ function CodeForm({ email, onSignedIn }) {
         text:
           error.status === 429
             ? 'Too many tries. Wait a few minutes and try again.'
-            : 'That code did not work. It may be mistyped, already used, or more than an hour old. Check it, or send a new email.'
+            : 'That code did not work. It may be mistyped, already used, or more than an hour old. Check it, or send a new code.'
       });
       setChecking(false);
     }
   };
 
+  const minutesAgo = sentAt && !codeAlreadyHad ? Math.max(0, Math.round((Date.now() - sentAt) / 60000)) : 0;
+
   return (
-    <form onSubmit={handleSubmit} className="account-form code-form">
-      <label htmlFor="account-code">Sign-in code from the email</label>
-      <input
-        ref={inputRef}
-        id="account-code"
-        type="text"
-        inputMode="numeric"
-        autoComplete="one-time-code"
-        maxLength={10}
-        aria-describedby="account-code-hint"
-        value={code}
-        onChange={(event) => setCode(event.target.value)}
-      />
-      <p id="account-code-hint" className="muted">
-        {isInstalled()
-          ? "You're in the home-screen app, so type the code here. The link in the email would open Safari instead, and Safari's sign-in isn't shared with this app."
-          : 'Typing the code signs you in right here. You can also open the link in the email instead.'}
+    <article className="card">
+      <h3 ref={headingRef} tabIndex={-1}>
+        Enter your sign-in code
+      </h3>
+      <p>
+        We emailed a sign-in code to {email}
+        {minutesAgo > 0 ? `, ${minutesAgo} minute${minutesAgo === 1 ? '' : 's'} ago` : ''}. Open the email, then come
+        back here and type the code. It works once and expires an hour after it was sent.
       </p>
-      <button type="submit" className="button" disabled={checking}>
-        Sign in with code
-      </button>
-      <p role="status" className={status?.kind === 'error' ? 'status-error' : 'muted'}>
-        {status?.text}
-      </p>
-    </form>
+      {notice && <p className="muted">{notice}</p>}
+      <form onSubmit={handleSubmit} className="account-form code-form">
+        <label htmlFor="account-code">Sign-in code</label>
+        <input
+          id="account-code"
+          type="text"
+          inputMode="numeric"
+          autoComplete="one-time-code"
+          maxLength={12}
+          aria-describedby="account-code-hint"
+          value={code}
+          onChange={(event) => setCode(event.target.value)}
+        />
+        <p id="account-code-hint" className="muted">
+          {isInstalled()
+            ? "Type the code here rather than opening the link in the email. The link opens Safari, and Safari's sign-in isn't shared with this home-screen app."
+            : 'You can also open the link in the email instead of typing the code.'}
+        </p>
+        <button type="submit" className="button" disabled={checking}>
+          Sign in with code
+        </button>
+        <p role="status" className={status?.kind === 'error' ? 'status-error' : 'muted'}>
+          {status?.text}
+        </p>
+      </form>
+      <div className="card-actions">
+        <button type="button" className="button ghost" onClick={onSendAgain} disabled={sending}>
+          Email me a new code
+        </button>
+        <button type="button" className="button ghost" onClick={onChangeEmail}>
+          Use a different email
+        </button>
+      </div>
+    </article>
   );
 }
 
@@ -73,12 +94,35 @@ function SignInForm({ signInError, onSignedIn }) {
   const [displayName, setDisplayName] = useState('');
   const [status, setStatus] = useState(null);
   const [sending, setSending] = useState(false);
-  const [sentTo, setSentTo] = useState('');
+  const [pending, setPending] = useState(readPending);
+  const [notice, setNotice] = useState('');
 
   // A failed or expired link is reported after the page loads.
   useEffect(() => {
     if (signInError) setStatus({ kind: 'error', text: signInError });
   }, [signInError]);
+
+  const send = async (address, name) => {
+    setSending(true);
+    setStatus({ kind: 'info', text: 'Sending...' });
+    try {
+      await sendSignInLink(address, name);
+      const next = { email: address, sentAt: Date.now() };
+      writePending(next);
+      setPending(next);
+      setNotice(`A new code was sent to ${address}. Use the newest email; older codes stop working.`);
+      setStatus(null);
+    } catch (error) {
+      const text =
+        error.status === 429
+          ? 'Too many sign-in emails were sent recently. Wait a few minutes and try again.'
+          : `Could not send the code: ${error.message}`;
+      setStatus({ kind: 'error', text });
+      if (pending) setNotice(text);
+    } finally {
+      setSending(false);
+    }
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -87,33 +131,51 @@ function SignInForm({ signInError, onSignedIn }) {
       setStatus({ kind: 'error', text: 'Display names are 2 to 24 letters, numbers, spaces, dots, dashes or underscores.' });
       return;
     }
-    setSending(true);
-    setStatus({ kind: 'info', text: 'Sending...' });
-    try {
-      await sendSignInLink(email.trim(), name);
-      setSentTo(email.trim());
-      setStatus({
-        kind: 'success',
-        text: `Sent. Check your email at ${email.trim()}. It has a sign-in code to type below, and a link. Both work once and expire after an hour.`
-      });
-    } catch (error) {
-      const text =
-        error.status === 429
-          ? 'Too many sign-in emails were sent recently. Wait a few minutes and try again.'
-          : `Could not send the link: ${error.message}`;
-      setStatus({ kind: 'error', text });
-    } finally {
-      setSending(false);
-    }
+    await send(email.trim(), name);
+    setNotice('');
   };
+
+  // For a code that arrived earlier, or on another device's request for the same email.
+  const haveCode = () => {
+    const address = email.trim();
+    if (!address || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(address)) {
+      setStatus({ kind: 'error', text: 'Type the email address the code was sent to first.' });
+      return;
+    }
+    const next = { email: address, sentAt: Date.now(), codeAlreadyHad: true };
+    writePending(next);
+    setPending(next);
+    setNotice('');
+  };
+
+  if (pending) {
+    return (
+      <CodeForm
+        key={`${pending.email}:${pending.sentAt}`}
+        email={pending.email}
+        sentAt={pending.sentAt}
+        codeAlreadyHad={Boolean(pending.codeAlreadyHad)}
+        onSignedIn={onSignedIn}
+        onSendAgain={() => send(pending.email, displayName.trim())}
+        onChangeEmail={() => {
+          writePending(null);
+          setPending(null);
+          setEmail(pending.email);
+          setNotice('');
+        }}
+        sending={sending}
+        notice={notice}
+      />
+    );
+  }
 
   return (
     <article className="card">
       <h3>Sign in or create an account</h3>
       <p>
-        Enter your email and we'll send you a sign-in code and link. There's no password. Signing in keeps
-        your streak and game history across devices, and lets you join the public daily rankings. Once
-        you're signed in, you stay signed in on this device until you sign out.
+        Enter your email and we'll send you a sign-in code. There's no password. Signing in keeps your streak and
+        game history across devices, and lets you join the public daily rankings. Once you're signed in, you stay
+        signed in on this device until you sign out.
       </p>
       <form onSubmit={handleSubmit} className="account-form">
         <label htmlFor="account-email">Email address</label>
@@ -140,13 +202,17 @@ function SignInForm({ signInError, onSignedIn }) {
           dashes or underscores.
         </p>
         <button type="submit" className="button" disabled={sending}>
-          {sentTo ? 'Send a new email' : 'Email me a sign-in code'}
+          Email me a sign-in code
         </button>
       </form>
       <p role="status" className={status?.kind === 'error' ? 'status-error' : 'muted'}>
         {status?.text}
       </p>
-      {sentTo && <CodeForm key={sentTo} email={sentTo} onSignedIn={onSignedIn} />}
+      <p>
+        <button type="button" className="button ghost" onClick={haveCode}>
+          I already have a code
+        </button>
+      </p>
       <p className="muted">Without an account, your progress is saved in this browser only.</p>
     </article>
   );
@@ -272,7 +338,9 @@ function AccountPage({ appContext }) {
   const [displayName, setDisplayName] = useState('');
 
   useEffect(() => {
-    if (user) getProfile().then((data) => setDisplayName(data?.display_name || '')).catch(() => {});
+    if (!user) return;
+    writePending(null);
+    getProfile().then((data) => setDisplayName(data?.display_name || '')).catch(() => {});
   }, [user]);
 
   if (!user) {

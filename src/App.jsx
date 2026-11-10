@@ -1,4 +1,4 @@
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Header from './components/Header';
 import DashboardPage from './pages/DashboardPage';
@@ -13,7 +13,7 @@ import RankingsPage from './pages/RankingsPage';
 import SettingsPage from './pages/SettingsPage';
 import WelcomeBack from './components/WelcomeBack';
 import { getCurrentStreak, storage, syncProgress } from './utils/storage';
-import { completeSignInFromUrl, getProfile, getSignedInUser, signOut as cloudSignOut } from './utils/cloud';
+import { completeSignInFromUrl, getProfile, getSignedInUser, readPending, signOut as cloudSignOut } from './utils/cloud';
 import { markShownToday, pickWelcomeItem, wasShownToday } from './utils/welcomeBack';
 
 // Photo review writes to repo files through the local API server, so it only exists in dev builds.
@@ -30,6 +30,7 @@ function App() {
   const syncingRef = useRef(false);
   const mainRef = useRef(null);
   const location = useLocation();
+  const navigate = useNavigate();
 
   // After moving to another page, start screen readers and keyboards at the game, not the header.
   const firstRender = useRef(true);
@@ -83,6 +84,12 @@ function App() {
       .catch(() => setSignInError('Sign-in failed. Send yourself a new link and try again.'))
       .finally(syncNow);
   }, [syncNow]);
+
+  // A player who asked for a sign-in code and then switched to Mail may come back to a restarted
+  // app on the home page (iPhone does this to home-screen apps); take them back to the code box.
+  useEffect(() => {
+    if (!getSignedInUser() && readPending() && location.pathname === '/') navigate('/account', { replace: true });
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Pick up games played on another device when the player comes back to this tab.
   useEffect(() => {
