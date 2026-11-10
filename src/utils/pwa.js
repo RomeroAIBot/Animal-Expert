@@ -1,7 +1,9 @@
 // Home-screen install and push-notification helpers.
+import { VAPID_PUBLIC_KEY_FROM_FILE } from './vapidPublicKey';
 
 // Public by design: browsers need it to subscribe. The private half lives only in Supabase secrets.
-export const VAPID_PUBLIC_KEY = import.meta.env.VITE_VAPID_PUBLIC_KEY || '';
+// Written by scripts/generate-vapid-keys.mjs; a Netlify VITE_VAPID_PUBLIC_KEY overrides it.
+export const VAPID_PUBLIC_KEY = import.meta.env.VITE_VAPID_PUBLIC_KEY || VAPID_PUBLIC_KEY_FROM_FILE;
 
 export const registerServiceWorker = () => {
   if (!('serviceWorker' in navigator)) return;

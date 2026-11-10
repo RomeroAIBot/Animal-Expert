@@ -141,19 +141,21 @@ can also get a notice the next morning if they miss a day. Subscriptions are sto
 player's own time zone (`supabase/functions/streak-reminders/logic.ts`, tested by
 `npm run test:reminders`).
 
-One-time setup (do these yourself, in this order):
-1. Run `node scripts/generate-vapid-keys.mjs` on your computer. Keep the private key secret.
-2. Apply the migration `supabase/migrations/20261109120000_settings_and_push_reminders.sql`.
-3. In Supabase, Edge Functions, Secrets: add `VAPID_PUBLIC_KEY`, `VAPID_PRIVATE_KEY`,
-   `VAPID_SUBJECT` (`mailto:romeroaibot@gmail.com`) and `CRON_SECRET` (any long random string).
+One-time setup, in this order:
+1. Run `node scripts/generate-vapid-keys.mjs` on your computer. It writes the public key to
+   `src/utils/vapidPublicKey.js` (commit that file) and puts two secret lines on the clipboard; the
+   private key is never shown or saved. It refuses to run a second time.
+2. Apply the migrations `20261109120000_settings_and_push_reminders.sql` (settings, subscriptions)
+   and `20261110120000_streak_reminders_schedule.sql` (the hourly job; its password is made
+   inside the database and kept in Vault, so nobody copies it).
+3. In Supabase, Edge Functions, Secrets: paste the two lines from the clipboard
+   (`VAPID_PUBLIC_KEY` and `VAPID_PRIVATE_KEY`). `VAPID_SUBJECT` is optional.
 4. Deploy the `streak-reminders` function with JWT verification turned off.
-5. In Netlify, Site configuration, Environment variables: add `VITE_VAPID_PUBLIC_KEY` (the public
-   key only), then redeploy the site.
-6. Run `supabase/setup/schedule-streak-reminders.sql` in the SQL editor, with your `CRON_SECRET`
-   in place of `CRON_SECRET_VALUE`.
+5. Deploy the site with the new `vapidPublicKey.js`. (A Netlify `VITE_VAPID_PUBLIC_KEY` setting
+   would override it; it isn't needed.)
 
-To see who would be notified without sending anything, POST to the function with
-`?dryRun=1` and the `x-cron-secret` header.
+To see who would be notified without sending anything, POST to the function with `?dryRun=1`
+and the `x-cron-secret` header (the value is in Vault as `streak_reminders_cron_secret`).
 
 ## Welcome back
 

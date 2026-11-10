@@ -2,13 +2,14 @@
 // by pg_cron (see supabase/setup/schedule-streak-reminders.sql); each player is checked in their
 // own time zone, so a reminder arrives at the hour they chose before their local midnight.
 //
-// Secrets (Supabase dashboard > Edge Functions > Secrets):
-//   VAPID_PUBLIC_KEY   same value as the site's VITE_VAPID_PUBLIC_KEY
+// Secrets (Supabase dashboard > Edge Functions > Secrets), made by scripts/generate-vapid-keys.mjs:
+//   VAPID_PUBLIC_KEY   same value as src/utils/vapidPublicKey.js
 //   VAPID_PRIVATE_KEY  the private half; never put it in the site or the repository
-//   VAPID_SUBJECT      contact for push services, e.g. mailto:romeroaibot@gmail.com
-//   CRON_SECRET        any long random string; the scheduler sends it in the x-cron-secret header
+//   VAPID_SUBJECT      optional contact for push services; defaults to mailto:romeroaibot@gmail.com
 //
-// Deploy with verify_jwt off (the scheduler authenticates with CRON_SECRET instead).
+// The scheduler proves itself with a random password that the database made and keeps in Vault
+// (migration 20261110120000); this function reads it back with the service role, so nobody has
+// to copy it. Deploy with verify_jwt off, since the scheduler sends no sign-in token.
 // POST ?dryRun=1 lists who would be notified this hour without sending anything.
 import { createClient } from 'npm:@supabase/supabase-js@2.45.4';
 import webpush from 'npm:web-push@3.6.7';
@@ -24,11 +25,14 @@ const timingSafeEqual = (a: string, b: string) => {
   return diff === 0;
 };
 
+const supabase = createClient(Deno.env.get('SUPABASE_URL')!, Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!);
+
 Deno.serve(async (req) => {
-  const secret = Deno.env.get('CRON_SECRET');
-  if (!secret || !timingSafeEqual(req.headers.get('x-cron-secret') || '', secret)) {
-    return json(401, { error: 'Not allowed.' });
-  }
+  const given = req.headers.get('x-cron-secret') || '';
+  if (!given) return json(401, { error: 'Not allowed.' });
+  const { data: secret, error: secretError } = await supabase.rpc('streak_reminders_cron_secret');
+  if (secretError) return json(500, { error: 'Could not check the scheduler password.' });
+  if (!secret || !timingSafeEqual(given, secret)) return json(401, { error: 'Not allowed.' });
 
   const dryRun = new URL(req.url).searchParams.get('dryRun') === '1';
   const publicKey = Deno.env.get('VAPID_PUBLIC_KEY');
@@ -38,7 +42,6 @@ Deno.serve(async (req) => {
     webpush.setVapidDetails(Deno.env.get('VAPID_SUBJECT') || 'mailto:romeroaibot@gmail.com', publicKey!, privateKey!);
   }
 
-  const supabase = createClient(Deno.env.get('SUPABASE_URL')!, Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!);
   const now = new Date();
 
   const { data: subs, error: subsError } = await supabase.from('push_subscriptions').select('*');
