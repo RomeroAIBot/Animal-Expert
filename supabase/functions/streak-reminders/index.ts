@@ -1,5 +1,5 @@
 // Sends streak reminders and missed-streak notices as web push notifications. Run once an hour
-// by pg_cron (see supabase/setup/schedule-streak-reminders.sql); each player is checked in their
+// by pg_cron (see migration 20261110120000_streak_reminders_schedule.sql); each player is checked in their
 // own time zone, so a reminder arrives at the hour they chose before their local midnight.
 //
 // Secrets (Supabase dashboard > Edge Functions > Secrets), made by scripts/generate-vapid-keys.mjs:
