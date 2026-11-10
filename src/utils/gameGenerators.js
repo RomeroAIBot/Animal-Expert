@@ -2,6 +2,7 @@ import crosswordLayoutGenerator from 'crossword-layout-generator';
 import { breedClueDetails, entityClues, getEntitiesForCategory } from '../data/breeds';
 import { allCategoryValues, animalsInCategory } from '../data/groups';
 import { triviaQuestions } from '../data/triviaQuestions';
+import { LEVELS } from '../data/triviaLevels';
 import { hasApprovedPhoto, hasUsablePhoto } from './imageApi';
 import { getDateKey, randomSeed, seededShuffle, selectDailyItems } from './seed';
 import { selectNoRepeatCombination, selectNoRepeatItems, trackerKeys } from './questionTracker';
@@ -84,27 +85,66 @@ const shuffleForSession = (questions, sessionSeed) =>
     options: seededShuffle(question.options, `${sessionSeed}:${question.id}`)
   }));
 
-// Everyone gets the same ten questions on a given day (needed for fair rankings); only the
-// order of questions and answers changes from load to load.
-export const generateDailyTrivia = (category, date = new Date()) => {
+export const DAILY_LEVELS = [...LEVELS, 'multi'];
+
+// When a level has fewer than ten questions for an animal, the rest come from the nearest levels.
+const borrowOrder = {
+  easy: ['intermediate', 'difficult'],
+  intermediate: ['easy', 'difficult'],
+  difficult: ['intermediate', 'easy']
+};
+
+// How many questions each level has for a category, for the setup screen.
+export const countTriviaByLevel = (category) => {
+  const pool = filterTrivia(normalizeCategory(category));
+  return Object.fromEntries([...LEVELS.map((level) => [level, pool.filter((q) => q.level === level).length]), ['multi', pool.length]]);
+};
+
+// The day's questions before shuffling. Multi keeps the original salt, so it is the same mix as before levels.
+const dailySelection = (category, level, dateKey) => {
+  const pool = filterTrivia(category);
+  if (level === 'multi' || !LEVELS.includes(level)) {
+    return { questions: selectDailyItems(pool, TRIVIA_COUNT, dateKey, `trivia:${category}`), borrowed: 0 };
+  }
+  const own = pool.filter((q) => q.level === level);
+  const questions = selectDailyItems(own, TRIVIA_COUNT, dateKey, `trivia:${category}:${level}`);
+  let borrowed = 0;
+  for (const other of borrowOrder[level]) {
+    const needed = TRIVIA_COUNT - questions.length;
+    if (needed <= 0) break;
+    const extra = selectDailyItems(pool.filter((q) => q.level === other), needed, dateKey, `trivia:${category}:${level}:borrow:${other}`);
+    questions.push(...extra.slice(0, needed));
+    borrowed += Math.min(needed, extra.length);
+  }
+  return { questions, borrowed };
+};
+
+// Everyone gets the same ten questions for a category and level on a given day (needed for fair
+// rankings); only the order of questions and answers changes from load to load.
+export const generateDailyTrivia = (category, level = 'multi', date = new Date()) => {
   const normalized = normalizeCategory(category);
   const dateKey = getDateKey(date);
-  const seed = `${dateKey}:trivia:${normalized}`;
-  const questions = selectDailyItems(filterTrivia(normalized), TRIVIA_COUNT, dateKey, `trivia:${normalized}`);
-  return { seed, dateKey, questions: shuffleForSession(questions, randomSeed()) };
+  const seed = `${dateKey}:trivia:${normalized}:${level}`;
+  const { questions, borrowed } = dailySelection(normalized, level, dateKey);
+  return { seed, dateKey, level, borrowed, questions: shuffleForSession(questions, randomSeed()) };
 };
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 
-// Question ids that are (or will be) a daily question in the coming week, so practice never spoils them.
+// Question ids that are (or will be) a daily question soon, so practice never spoils them.
 // Any daily that shares an animal with this category counts (Cattle, Livestock and Mixed overlap).
-const getUpcomingDailyIds = (category, date) => {
+// Multi dailies are held back for `days` days; the single-level dailies only for today, since
+// four levels a day for a week would cover nearly the whole bank.
+export const getUpcomingDailyIds = (category, date = new Date(), days = 7) => {
   const animals = animalsInCategory(category);
   const relevant = allCategoryValues.filter((value) => animalsInCategory(value).some((animal) => animals.includes(animal)));
   const ids = new Set();
-  for (let offset = 0; offset < 7; offset += 1) {
-    const day = new Date(date.getTime() + offset * DAY_MS);
-    relevant.forEach((cat) => generateDailyTrivia(cat, day).questions.forEach((question) => ids.add(question.id)));
+  for (let offset = 0; offset < days; offset += 1) {
+    const dayKey = getDateKey(new Date(date.getTime() + offset * DAY_MS));
+    const levels = offset === 0 ? DAILY_LEVELS : ['multi'];
+    relevant.forEach((cat) =>
+      levels.forEach((level) => dailySelection(cat, level, dayKey).questions.forEach((question) => ids.add(question.id)))
+    );
   }
   return ids;
 };

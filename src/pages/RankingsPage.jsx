@@ -5,6 +5,7 @@ import { getDateKey } from '../utils/seed';
 import CategoryPicker from '../components/CategoryPicker';
 import { getEntitiesForCategory } from '../data/breeds';
 import { categoryLabel } from '../data/groups';
+import { levelLabels } from '../data/triviaLevels';
 
 const games = [
   { id: 'trivia', label: 'Daily Trivia', mode: 'daily-trivia' },
@@ -96,6 +97,7 @@ function RankingsPage({ appContext }) {
                 <th scope="col">Player</th>
                 <th scope="col">Score</th>
                 {isPuzzle && <th scope="col">Time</th>}
+                {!isPuzzle && <th scope="col">Level</th>}
               </tr>
             </thead>
             <tbody>
@@ -105,6 +107,7 @@ function RankingsPage({ appContext }) {
                   <th scope="row">{row.display_name}</th>
                   <td>{isPuzzle ? `${row.score} pts` : `${row.score}%`}</td>
                   {isPuzzle && <td>{row.seconds !== null ? formatTime(row.seconds) : ''}</td>}
+                  {!isPuzzle && <td>{levelLabels[row.level] || 'Not recorded'}</td>}
                 </tr>
               ))}
             </tbody>

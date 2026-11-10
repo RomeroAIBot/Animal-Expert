@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { modeLabels, modeRoutes, storage } from '../utils/storage';
 import { toDateKey } from '../utils/seed';
 import { categoryLabel } from '../data/groups';
+import { levelLabels } from '../data/triviaLevels';
 
 
 export const describeResult = (item) => {
@@ -31,6 +32,7 @@ function ArchivePage() {
             <h3>{modeLabels[item.mode] || item.mode}</h3>
             <p>Date: {toDateKey(item.date) || item.date}</p>
             <p>Category: {categoryLabel(item.category)}</p>
+            {item.level && <p>Level: {levelLabels[item.level]}</p>}
             <p>Result: {describeResult(item)}</p>
             <Link className="button small" to={modeRoutes[item.mode] || '/'}>
               Play {modeLabels[item.mode] || 'again'}

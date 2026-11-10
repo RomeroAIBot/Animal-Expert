@@ -45,8 +45,8 @@ function DashboardPage({ appContext }) {
         <Link className="card link-card" to="/daily-trivia">
           <h3>Daily Trivia</h3>
           <p>
-            Ten multiple-choice questions in the category you pick. Everyone gets the same questions each day, in a
-            shuffled order. Your first complete run is your official score; after each answer you get a fun fact
+            Ten multiple-choice questions. Pick a category and a level (Easy, Intermediate, Difficult or Multi), then
+            start. Everyone gets the same questions each day, in a shuffled order. Your first complete run is your official score; after each answer you get a fun fact
             and its source.
           </p>
         </Link>
@@ -74,6 +74,13 @@ function DashboardPage({ appContext }) {
         <Link className="card link-card" to="/leaderboard">
           <h3>My Stats and Game History</h3>
           <p>Your streak, best and average scores for each game, and every result you've recorded.</p>
+        </Link>
+        <Link className="card link-card" to="/settings">
+          <h3>Settings and Home Screen</h3>
+          <p>
+            Change your name, pick a default trivia level, set streak reminders, and learn how to add Animal Expert to
+            your iPhone's home screen from Safari's Share menu.
+          </p>
         </Link>
         <Link className="card link-card" to="/account">
           <h3>Account</h3>

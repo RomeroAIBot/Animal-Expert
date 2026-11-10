@@ -20,6 +20,7 @@ import { butterflyQuestions } from './trivia/butterflies.js';
 import { insectQuestions } from './trivia/insects.js';
 import { poultryQuestions } from './trivia/poultry.js';
 import { seededShuffle } from '../utils/seed.js';
+import { levelForQuestion } from './triviaLevels.js';
 
 // Every question is hand-checked against a source (`npm run check:sources -- --rewritten`).
 // The original imported bank was fully replaced and removed (it is in git history): each category file
@@ -76,7 +77,8 @@ const handWritten = [
 
 export const triviaQuestions = handWritten.map((item) => ({
   ...item,
-  difficulty: 'expert',
+  // easy, intermediate or difficult (see triviaLevels.js).
+  level: levelForQuestion(item),
   type: 'multiple-choice',
   // Written answer-first for readability; shuffled so the answer's position gives nothing away.
   options: seededShuffle(item.options, `opts:${item.id}`)

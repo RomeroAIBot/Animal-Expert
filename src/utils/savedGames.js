@@ -49,3 +49,12 @@ export const markDailyAttempted = (entryId) => {
 };
 
 export const wasDailyAttempted = (entryId) => Boolean(read(ATTEMPTS_KEY)[entryId]);
+
+// Keys of saved games that start with `prefix`, newest first.
+export const listSavedGames = (prefix) => {
+  const now = Date.now();
+  return Object.entries(read(KEY))
+    .filter(([key, entry]) => key.startsWith(prefix) && now - entry.savedAt <= MAX_AGE_MS)
+    .sort((a, b) => b[1].savedAt - a[1].savedAt)
+    .map(([key, entry]) => ({ key, savedAt: entry.savedAt, state: entry.state }));
+};

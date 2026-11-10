@@ -4,6 +4,7 @@
 //        npm run validate:trivia -- --list --category=dogs
 import { breeds } from '../src/data/breeds.js';
 import { triviaQuestions } from '../src/data/triviaQuestions.js';
+import { LEVELS, overrideIds } from '../src/data/triviaLevels.js';
 
 const args = process.argv.slice(2);
 const listAll = args.includes('--list');
@@ -56,6 +57,12 @@ const checks = [
     message: 'a wrong option is a breed name but the answer is not a breed'
   },
   {
+    id: 'level',
+    severity: 'error',
+    test: (q) => !LEVELS.includes(q.level),
+    message: `needs a level: ${LEVELS.join(', ')}`
+  },
+  {
     id: 'length-giveaway',
     severity: 'warning',
     test: (q) => {
@@ -88,6 +95,11 @@ triviaQuestions
     if (problems.length) flagged.push({ q, problems });
   });
 
+// Every id in triviaLevels.js overrides must still match a question, so a typo can't silently do nothing.
+const allIds = new Set(triviaQuestions.map((q) => q.id));
+const staleOverrides = overrideIds.filter((id) => !allIds.has(id));
+staleOverrides.forEach((id) => console.log(`ERROR: triviaLevels.js lists ${id}, which is not a question`));
+
 const counts = {};
 flagged.forEach(({ problems }) =>
   problems.forEach((problem) => {
@@ -113,4 +125,4 @@ Object.entries(counts)
   .sort((a, b) => b[1] - a[1])
   .forEach(([id, count]) => console.log(`  ${id}: ${count}`));
 
-process.exit(withErrors > 0 ? 1 : 0);
+process.exit(withErrors > 0 || staleOverrides.length > 0 ? 1 : 0);

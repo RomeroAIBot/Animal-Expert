@@ -10,7 +10,10 @@
     "server": "node server/index.js",
     "validate:trivia": "node scripts/validate-trivia.mjs",
     "photos:candidates": "node scripts/fetch-photo-candidates.mjs",
-    "check:sources": "node scripts/check-trivia-sources.mjs"
+    "check:sources": "node scripts/check-trivia-sources.mjs",
+    "report:levels": "node scripts/trivia-levels-report.mjs",
+    "check:history": "node scripts/check-history-sources.mjs",
+    "test:reminders": "node scripts/test-reminder-logic.mjs"
   },
   "dependencies": {
     "@jaredreisinger/react-crossword": "^5.2.0",

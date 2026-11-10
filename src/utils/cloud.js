@@ -133,7 +133,8 @@ export const deleteAccount = async () => {
 export const getProfile = async () => {
   const session = await getSession();
   if (!session) return null;
-  const rows = await request(`/rest/v1/profiles?select=display_name,show_on_leaderboard&id=eq.${session.user.id}`, {
+  // select=* also returns settings columns once the settings migration is applied.
+  const rows = await request(`/rest/v1/profiles?select=*&id=eq.${session.user.id}`, {
     token: session.accessToken
   });
   return rows[0] || { display_name: null, show_on_leaderboard: false };
@@ -150,15 +151,89 @@ export const updateProfile = async ({ displayName, showOnLeaderboard }) => {
       body: { display_name: displayName || null, show_on_leaderboard: Boolean(showOnLeaderboard) }
     });
   } catch (error) {
-    if (error.code === '23505') throw new Error('That display name is already taken. Try another.');
-    if (error.code === '23514') throw new Error('Display names are 2 to 24 letters, numbers, spaces, dots, dashes or underscores.');
+    throw nameErrors(error);
+  }
+};
+
+const nameErrors = (error) => {
+  if (error.code === '23505') return new Error('That display name is already taken. Try another.');
+  if (error.code === '23514') return new Error('Display names are 2 to 24 letters, numbers, spaces, dots, dashes or underscores.');
+  return error;
+};
+
+export const updateDisplayName = async (displayName) => {
+  const session = await getSession();
+  if (!session) throw new Error('You are not signed in.');
+  try {
+    await request(`/rest/v1/profiles?id=eq.${session.user.id}`, {
+      method: 'PATCH',
+      token: session.accessToken,
+      headers: { Prefer: 'return=minimal' },
+      body: { display_name: displayName || null }
+    });
+  } catch (error) {
+    // The rankings need a name, so clearing it while opted in is refused by the database.
+    if (error.code === '23514' && !displayName) throw new Error('Turn off the public rankings on the Account page before removing your name.');
+    throw nameErrors(error);
+  }
+};
+
+// Settings stored with the account. Returns false if the database doesn't have the settings
+// columns yet (migration not applied), so the caller can keep them on this device only.
+export const updateAccountSettings = async ({ defaultLevel, reminderHoursBefore, missedStreakAlerts, timeZone }) => {
+  const session = await getSession();
+  if (!session) return false;
+  const body = {};
+  if (defaultLevel !== undefined) body.default_level = defaultLevel || null;
+  if (reminderHoursBefore !== undefined) body.reminder_hours_before = reminderHoursBefore;
+  if (missedStreakAlerts !== undefined) body.missed_streak_alerts = missedStreakAlerts;
+  if (timeZone !== undefined) body.time_zone = timeZone;
+  try {
+    await request(`/rest/v1/profiles?id=eq.${session.user.id}`, {
+      method: 'PATCH',
+      token: session.accessToken,
+      headers: { Prefer: 'return=minimal' },
+      body
+    });
+    return true;
+  } catch (error) {
+    if (error.code === 'PGRST204' || error.status === 400) return false;
     throw error;
   }
 };
 
+// --- Push notifications for streak reminders ---
+
+export const savePushSubscription = async (subscription, timeZone) => {
+  const session = await getSession();
+  if (!session) throw new Error('Sign in to turn on reminders.');
+  const { endpoint, keys } = subscription.toJSON();
+  await request('/rest/v1/rpc/save_push_subscription', {
+    method: 'POST',
+    token: session.accessToken,
+    body: {
+      p_endpoint: endpoint,
+      p_p256dh: keys.p256dh,
+      p_auth: keys.auth,
+      p_user_agent: navigator.userAgent.slice(0, 300),
+      p_time_zone: timeZone
+    }
+  });
+};
+
+export const deletePushSubscription = async (endpoint) => {
+  const session = await getSession();
+  if (!session || !endpoint) return;
+  await request(`/rest/v1/push_subscriptions?endpoint=eq.${encodeURIComponent(endpoint)}`, {
+    method: 'DELETE',
+    token: session.accessToken,
+    headers: { Prefer: 'return=minimal' }
+  });
+};
+
 // --- Game results ---
 
-const detailFields = ['correct', 'total', 'size', 'pairs', 'flips', 'seconds', 'identified', 'crosswordSolved'];
+const detailFields = ['level', 'correct', 'total', 'size', 'pairs', 'flips', 'seconds', 'identified', 'crosswordSolved'];
 
 const toRow = (entry) => ({
   entry_id: entry.id,

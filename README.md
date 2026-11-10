@@ -93,8 +93,7 @@ When adding more questions, keep each item shaped like:
 {
   id: 'unique-id',
   category: 'dogs',
-  difficulty: 'expert',
-  type: 'multiple-choice',
+  level: 'easy', // easy, intermediate or difficult
   question: 'Prompt text',
   options: ['A', 'B', 'C', 'D'],
   answer: 'A',
@@ -119,6 +118,52 @@ When adding more questions, keep each item shaped like:
   - `UNSPLASH_ACCESS_KEY`
   - `DOG_API_KEY`
   - `CAT_API_KEY`
+
+### Trivia levels
+
+Daily Trivia asks the player to pick a category and a level (Easy, Intermediate, Difficult, or Multi
+for a mix) before any question shows. Each question's level comes from its own `level` field, or
+from `src/data/triviaLevels.js` (defaults per id series plus overrides by id). Give new questions a
+`level` field. `npm run report:levels` counts questions per animal and level and lists the gaps;
+a level with fewer than ten questions for an animal borrows the rest from the nearest level.
+Each category still has one official daily score per day, at whichever level is played first.
+
+## Home-screen app and streak reminders
+
+The site installs as a web app: `public/manifest.webmanifest`, icons in `public/icons/` (drawn by
+`node scripts/make-icons.mjs`), Apple meta tags in `index.html`, and a service worker in
+`public/sw.js`. Settings explains how to add it from Safari's Share menu.
+
+Streak reminders use the Web Push API. iPhones only allow them from the home-screen app (iOS 16.4
+or later). Players turn them on in Settings and pick 1 to 8 hours before their local midnight; they
+can also get a notice the next morning if they miss a day. Subscriptions are stored in Supabase
+(`push_subscriptions`), and the `streak-reminders` edge function runs hourly and decides in each
+player's own time zone (`supabase/functions/streak-reminders/logic.ts`, tested by
+`npm run test:reminders`).
+
+One-time setup, in this order:
+1. Run `node scripts/generate-vapid-keys.mjs` on your computer. It writes the public key to
+   `src/utils/vapidPublicKey.js` (commit that file) and puts two secret lines on the clipboard; the
+   private key is never shown or saved. It refuses to run a second time.
+2. Apply the migrations `20261109120000_settings_and_push_reminders.sql` (settings, subscriptions)
+   and `20261110120000_streak_reminders_schedule.sql` (the hourly job; its password is made
+   inside the database and kept in Vault, so nobody copies it).
+3. In Supabase, Edge Functions, Secrets: paste the two lines from the clipboard
+   (`VAPID_PUBLIC_KEY` and `VAPID_PRIVATE_KEY`). `VAPID_SUBJECT` is optional.
+4. Deploy the `streak-reminders` function with JWT verification turned off.
+5. Deploy the site with the new `vapidPublicKey.js`. (A Netlify `VITE_VAPID_PUBLIC_KEY` setting
+   would override it; it isn't needed.)
+
+To see who would be notified without sending anything, POST to the function with `?dryRun=1`
+and the `x-cron-secret` header (the value is in Vault as `streak_reminders_cron_secret`).
+
+## Welcome back
+
+Signed-in players with an email get one short message a day, on the first page they open that
+isn't the home screen: a fun fact from the trivia bank (never one of today's daily questions),
+a "this day in animal history" item, or a note about their own streak, best category or
+milestones. History items live in `src/data/animalHistory.js`, each with a source and evidence
+phrases that `npm run check:history` confirms on the source page, like trivia.
 
 ## Accounts, sync and rankings (Supabase)
 

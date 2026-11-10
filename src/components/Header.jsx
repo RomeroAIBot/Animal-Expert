@@ -11,7 +11,8 @@ const links = [
   { to: '/new-game', label: 'Practice' },
   { to: '/rankings', label: 'Rankings' },
   { to: '/leaderboard', label: 'My Stats' },
-  { to: '/archive', label: 'Game History' }
+  { to: '/archive', label: 'Game History' },
+  { to: '/settings', label: 'Settings' }
 ];
 
 // The links live behind one Menu button, so every page starts with the game rather than a list of links.
