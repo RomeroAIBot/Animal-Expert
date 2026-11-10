@@ -61,6 +61,19 @@ export const sendSignInLink = (email, displayName) =>
     body: { email, create_user: true, data: displayName ? { display_name: displayName } : {} }
   });
 
+// The same email also carries a short code. Typing it in signs in this browser or app directly,
+// which the home-screen app on iPhone needs: it keeps its own storage, separate from Safari, and
+// links in emails always open in Safari.
+export const verifySignInCode = async (email, code) => {
+  const data = await request('/auth/v1/verify', {
+    method: 'POST',
+    body: { type: 'email', email, token: code }
+  });
+  const session = toSession(data);
+  writeSession(session);
+  return session;
+};
+
 // The emailed link returns here with the session (or an error) in the URL fragment.
 export const completeSignInFromUrl = async () => {
   const params = new URLSearchParams(window.location.hash.slice(1));
