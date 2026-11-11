@@ -2344,6 +2344,291 @@ export const dogQuestions = [
     funFact: 'It comes from the Greek "kýōn" (dog) and "phóbos" (fear). Ailurophobia is the fear of cats.',
     source: 'https://en.wikipedia.org/wiki/Cynophobia',
     evidence: 'is the fear of dogs, wolves and canines in general'
+  },
+
+  // November 2026: the user's Difficult and Intermediate dog lists (answers only), checked
+  // against the bank for repeats and against a source; options written to match each question.
+  {
+    id: 'dogs-v01',
+    level: 'intermediate',
+    topic: 'Working dogs',
+    question:
+      'Detection dogs are best known for finding drugs and explosives. Which of these have they also been trained to sniff out?',
+    options: ['Cancer', 'Carbon monoxide', 'Radio waves', 'Ultraviolet light'],
+    answer: 'Cancer',
+    funFact: 'They have also been trained to find bed bugs, currency and many other things by scent.',
+    source: 'https://en.wikipedia.org/wiki/Detection_dog',
+    evidence: 'Bed bugs Cancer'
+  },
+  {
+    id: 'dogs-v02',
+    level: 'difficult',
+    topic: 'History',
+    question:
+      'Which Latin warning, meaning "beware of the dog", appears in a mosaic at the House of the Tragic Poet in Pompeii?',
+    options: ['Cave canem', 'Carpe diem', 'Canis major', 'Cave lupum'],
+    answer: 'Cave canem',
+    funFact: 'The Roman writer Petronius also mentions the phrase painted in large letters on a wall in his Satyricon.',
+    source: 'https://en.wikipedia.org/wiki/Beware_of_the_dog',
+    evidence: 'contains a mosaic with the caption cave canem'
+  },
+  {
+    id: 'dogs-v03',
+    level: 'difficult',
+    topic: 'Breeds',
+    question:
+      'Which American terrier, common on family farms in the 1920s and 1930s, gained full AKC recognition in 2010?',
+    options: ['Rat Terrier', 'Boston Terrier', 'Parson Russell Terrier', 'Airedale Terrier'],
+    answer: 'Rat Terrier',
+    funFact: 'It is still considered a rare breed, and the United Kennel Club recognized it in 1999.',
+    source: 'https://en.wikipedia.org/wiki/Rat_Terrier',
+    evidence: 'The AKC recognized the Rat Terrier as a breed on July 1, 2010'
+  },
+  {
+    id: 'dogs-v04',
+    level: 'difficult',
+    topic: 'Breeds',
+    question: 'The Lagotto Romagnolo, an Italian water dog, is now best known for hunting what?',
+    options: ['Truffles', 'Ducks', 'Wild boar', 'Rabbits'],
+    answer: 'Truffles',
+    funFact: 'It once retrieved water birds, but turned to truffle hunting after the wetlands in its home region were drained.',
+    source: 'https://en.wikipedia.org/wiki/Lagotto_Romagnolo',
+    evidence: 'it came to be more often used to hunt for truffles'
+  },
+  {
+    id: 'dogs-v05',
+    level: 'intermediate',
+    topic: 'Body',
+    question: 'Dogs have few sweat glands in their skin. Besides panting, how do they cool down?',
+    options: ['Sweating through their paws', 'Sweating through their ears', 'Sweating through their tails', 'Sweating through their bellies'],
+    answer: 'Sweating through their paws',
+    funFact: 'Because they sweat so little, their breathing does much of the work of keeping them cool.',
+    source: 'https://en.wikipedia.org/wiki/Dog_anatomy',
+    evidence: 'panting and sweating via their paws'
+  },
+  {
+    id: 'dogs-v06',
+    level: 'difficult',
+    topic: 'Breeds',
+    question: 'Which spaniel, developed by hunters in the early 1900s, is the state dog of South Carolina?',
+    options: ['Boykin Spaniel', 'Clumber Spaniel', 'Field Spaniel', 'American Water Spaniel'],
+    answer: 'Boykin Spaniel',
+    funFact: "The American Water Spaniel is a state dog too, but of Wisconsin.",
+    source: 'https://en.wikipedia.org/wiki/Boykin_Spaniel',
+    evidence: 'It is the state dog of South Carolina'
+  },
+  {
+    id: 'dogs-v07',
+    level: 'easy',
+    topic: 'Breeds',
+    question: 'Which herding breed is often called the most intelligent dog breed?',
+    options: ['Border Collie', 'Basset Hound', 'Pug', 'Shih Tzu'],
+    answer: 'Border Collie',
+    funFact: 'Its intelligence has made it a favorite subject for research on how dogs learn.',
+    source: 'https://en.wikipedia.org/wiki/Border_Collie',
+    evidence: 'claimed to be the most intelligent breed of dog'
+  },
+  {
+    id: 'dogs-v08',
+    level: 'intermediate',
+    topic: 'Sayings',
+    question: 'In the old saying, how many dogs would you need in bed with you on a freezing cold night?',
+    options: ['Three', 'One', 'Five', 'Ten'],
+    answer: 'Three',
+    funFact: 'A colder night meant two dogs, and a freezing one was a "three dog night", which also became a band name.',
+    source: 'https://en.wikipedia.org/wiki/Three_Dog_Night',
+    evidence: 'they would sleep with two dogs and, if the night was freezing cold'
+  },
+  {
+    id: 'dogs-v09',
+    level: 'intermediate',
+    topic: 'Myths',
+    question: 'Do pit bulls have a special mechanism that locks their jaws when they bite?',
+    options: ['No, there is no locking mechanism', 'Yes, a bone hooks the jaws shut', 'Yes, but only in adults', 'Only when they are frightened'],
+    answer: 'No, there is no locking mechanism',
+    funFact: 'Refusing to let go is a behavior, not something built into the jaw.',
+    source: 'https://en.wikipedia.org/wiki/Pit_bull',
+    evidence: "there is no locking mechanism in a pit bull's jaws"
+  },
+  {
+    id: 'dogs-v10',
+    level: 'easy',
+    topic: 'Behavior',
+    question:
+      'A dog crouches with its front legs stretched out and its rear end and tail up, facing a playmate. What is this pose called?',
+    options: ['A play bow', 'A down stay', 'A sit pretty', 'A roll over'],
+    answer: 'A play bow',
+    funFact: 'It is the classic way a dog invites another dog, or a person, to play.',
+    source: 'https://en.wikipedia.org/wiki/Dog_communication',
+    evidence: 'classic "play-bow" to commence play'
+  },
+  {
+    id: 'dogs-v11',
+    level: 'easy',
+    topic: 'Breeds',
+    question: 'Which long, low breed is nicknamed the wiener dog in the US and the sausage dog in Britain?',
+    options: ['Dachshund', 'Corgi', 'Basset Hound', 'Beagle'],
+    answer: 'Dachshund',
+    funFact: 'Some Dachshunds even compete in races, such as the Wiener Nationals.',
+    source: 'https://en.wikipedia.org/wiki/Dachshund',
+    evidence: 'often nicknamed the wiener dog'
+  },
+
+  // Topics from the user's dog video list (including the 40-question quiz in one video's
+  // description) that the bank did not cover yet.
+  {
+    id: 'dogs-v12',
+    level: 'intermediate',
+    topic: 'Breeds',
+    question: 'What do Dalmatian puppies look like when they are born?',
+    options: ['Plain white, with spots coming later', 'Fully spotted like adults', 'Solid black', 'Brown with white patches'],
+    answer: 'Plain white, with spots coming later',
+    funFact: 'Their first spots usually show within 10 days.',
+    source: 'https://en.wikipedia.org/wiki/Dalmatian_(dog)',
+    evidence: 'Dalmatian puppies are born with plain white coats'
+  },
+  {
+    id: 'dogs-v13',
+    level: 'intermediate',
+    topic: 'Breeds',
+    question: 'Despite its name, the Great Dane is a breed from which country?',
+    options: ['Germany', 'Denmark', 'England', 'France'],
+    answer: 'Germany',
+    funFact: 'It descends from medieval hunting dogs used on bear, boar and deer, and guarded German noble houses.',
+    source: 'https://en.wikipedia.org/wiki/Great_Dane',
+    evidence: 'is a large German dog breed'
+  },
+  {
+    id: 'dogs-v14',
+    level: 'difficult',
+    topic: 'Names',
+    question: 'The breed name Bichon Frise comes from French words meaning what?',
+    options: ['Curly-haired small dog', 'Little white lion', 'Fluffy lap warmer', 'Dog of the court'],
+    answer: 'Curly-haired small dog',
+    funFact: '"Bichon" comes from an old French word for a small dog.',
+    source: 'https://en.wikipedia.org/wiki/Bichon_Frise',
+    evidence: 'curly haired small dog'
+  },
+  {
+    id: 'dogs-v15',
+    level: 'intermediate',
+    topic: 'Names',
+    question: 'What does the Welsh word "corgi" mean?',
+    options: ['Dwarf dog', 'Cattle dog', 'Short legs', 'Red fox'],
+    answer: 'Dwarf dog',
+    funFact: 'It joins the Welsh words "cor" (dwarf) and "ci" (dog).',
+    source: 'https://en.wikipedia.org/wiki/Pembroke_Welsh_Corgi',
+    evidence: 'meaning "dwarf" and "dog", respectively'
+  },
+  {
+    id: 'dogs-v16',
+    level: 'easy',
+    topic: 'Breeds',
+    question: 'What are the three accepted coat colors of the Labrador Retriever?',
+    options: ['Black, yellow and chocolate', 'Black, white and gray', 'Yellow, red and brindle', 'Chocolate, silver and cream'],
+    answer: 'Black, yellow and chocolate',
+    funFact: 'Chocolate Labs were first called "liver", and the first yellow Lab on record was born in 1899.',
+    source: 'https://en.wikipedia.org/wiki/Labrador_Retriever',
+    evidence: 'Acceptable colours are black, yellow, and chocolate'
+  },
+  {
+    id: 'dogs-v17',
+    level: 'intermediate',
+    topic: 'Famous dogs',
+    question: 'George Lucas based Chewbacca from Star Wars on his own dog. What breed was it?',
+    options: ['Alaskan Malamute', 'Old English Sheepdog', 'Newfoundland', 'Afghan Hound'],
+    answer: 'Alaskan Malamute',
+    funFact: 'The dog was named Indiana, and the name Chewbacca comes from "sobaka", Russian for dog.',
+    source: 'https://en.wikipedia.org/wiki/Chewbacca',
+    evidence: 'an Alaskan Malamute named Indiana'
+  },
+  {
+    id: 'dogs-v18',
+    level: 'difficult',
+    topic: 'Body',
+    question: "Many Chihuahuas have a soft spot on top of the skull, like a human baby's. What is it called?",
+    options: ['Molera', 'Occiput', 'Stop', 'Withers'],
+    answer: 'Molera',
+    funFact: "It is much like the fontanel, the soft spot in a newborn baby's skull.",
+    source: 'https://en.wikipedia.org/wiki/Chihuahua_(dog_breed)',
+    evidence: 'a feature on their heads called the molera'
+  },
+  {
+    id: 'dogs-v19',
+    level: 'difficult',
+    topic: 'Names',
+    question: 'What does the Belgian breed name "Schipperke" mean in Flemish?',
+    options: ['Little boatman', 'Little black devil', 'Little hunter', 'Little guard'],
+    answer: 'Little boatman',
+    funFact: 'It can also be read as "little captain", although the breed was only sometimes kept on barges.',
+    source: 'https://en.wikipedia.org/wiki/Schipperke',
+    evidence: 'means "little boatman"'
+  },
+  {
+    id: 'dogs-v20',
+    level: 'difficult',
+    topic: 'Famous dogs',
+    question: 'Which California mountain town "elected" a Golden Retriever named Max as its first mayor in 2012?',
+    options: ['Idyllwild', 'Carmel-by-the-Sea', 'Big Sur', 'Ojai'],
+    answer: 'Idyllwild',
+    funFact: 'The town has no local government, so the "election" was a fundraiser for an animal rescue group. Fourteen dogs and two cats ran.',
+    source: 'https://en.wikipedia.org/wiki/Mayor_Max_II',
+    evidence: "was elected as Idyllwild's first mayor"
+  },
+  {
+    id: 'dogs-v21',
+    level: 'intermediate',
+    topic: 'History',
+    question: 'Which was the first animal species people domesticated?',
+    options: ['The dog', 'The cat', 'The sheep', 'The horse'],
+    answer: 'The dog',
+    funFact: 'Dogs were domesticated from wolves more than 14,000 years ago, before farming began.',
+    source: 'https://en.wikipedia.org/wiki/Dog',
+    evidence: 'Dogs were the first species to be domesticated'
+  },
+  {
+    id: 'dogs-v22',
+    level: 'easy',
+    topic: 'Famous dogs',
+    question: "What is the name of the Grinch's dog?",
+    options: ['Max', 'Spot', 'Buddy', 'Rex'],
+    answer: 'Max',
+    funFact: 'Max helps the Grinch in his plan to steal Christmas from the Whos.',
+    source: 'https://en.wikipedia.org/wiki/Grinch',
+    evidence: 'Aided by his pet dog, Max'
+  },
+  {
+    id: 'dogs-v23',
+    level: 'intermediate',
+    topic: 'Puppies',
+    question: 'Puppies are born with their eyes closed. About when do they open them?',
+    options: ['9 to 11 days after birth', '1 to 2 days after birth', 'About 4 weeks after birth', 'About 8 weeks after birth'],
+    answer: '9 to 11 days after birth',
+    funFact: 'Puppies grow very quickly in their first three months, especially once their eyes and ears open.',
+    source: 'https://en.wikipedia.org/wiki/Puppy',
+    evidence: 'Puppies open their eyes about nine to eleven days following birth'
+  },
+  {
+    id: 'dogs-v24',
+    level: 'difficult',
+    topic: 'Body',
+    question: "What is a healthy dog's normal resting heart rate?",
+    options: ['70 to 120 beats per minute', '20 to 40 beats per minute', '200 to 300 beats per minute', '300 to 600 beats per minute'],
+    answer: '70 to 120 beats per minute',
+    funFact: 'A resting cat runs faster, at about 120 to 140 beats per minute.',
+    source: 'https://www.merckvetmanual.com/special-subjects/reference-guides/resting-heart-rates',
+    evidence: 'dog 70–120'
+  },
+  {
+    id: 'dogs-v25',
+    level: 'intermediate',
+    topic: 'Body',
+    question: "What is a dog's normal body temperature?",
+    options: ['99.5 to 102.5°F (37.5 to 39.2°C)', '96 to 97.5°F (35.6 to 36.4°C)', '104 to 106°F (40 to 41.1°C)', '92 to 95°F (33.3 to 35°C)'],
+    answer: '99.5 to 102.5°F (37.5 to 39.2°C)',
+    funFact: 'That is a little warmer than a person, which is why a dog feels warm to cuddle.',
+    source: 'https://www.merckvetmanual.com/special-subjects/reference-guides/normal-rectal-temperature-ranges',
+    evidence: 'dog 37.5–39.2 99.5–102.5'
   }
 ];
 

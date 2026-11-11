@@ -1355,6 +1355,132 @@ export const catQuestions = [
     funFact: 'Placing them in different areas helps every cat feel safe using a box.',
     source: 'https://www.humanesociety.org/resources/preventing-litter-box-problems',
     evidence: 'one litter box per cat, plus one extra'
+  },
+
+  // November 2026: the user's Difficult and Intermediate cat lists (answers only), checked
+  // against the bank for repeats and against a source; options written to match each question.
+  {
+    id: 'cat-v01',
+    level: 'intermediate',
+    topic: 'Names',
+    question: 'What is a group of cats called?',
+    options: ['A clowder', 'A pride', 'A pack', 'A herd'],
+    answer: 'A clowder',
+    funFact: 'A group of cats can also be called a glaring or a colony. A pride is a group of lions.',
+    source: 'https://en.wikipedia.org/wiki/Cat',
+    evidence: 'A group of cats can be referred to as a clowder'
+  },
+  {
+    id: 'cat-v02',
+    level: 'easy',
+    topic: 'Names',
+    question: 'What is a female cat called?',
+    options: ['A queen', 'A doe', 'A jenny', 'A sow'],
+    answer: 'A queen',
+    funFact: 'A spayed female is sometimes called a molly.',
+    source: 'https://en.wikipedia.org/wiki/Cat',
+    evidence: 'A female is called a queen'
+  },
+  {
+    id: 'cat-v03',
+    level: 'difficult',
+    topic: 'Breeding',
+    question: 'A single litter of kittens can have more than one father. What is this called?',
+    options: ['Superfecundation', 'Parthenogenesis', 'Polyembryony', 'Superfetation'],
+    answer: 'Superfecundation',
+    funFact: 'It happens when a queen mates with more than one tom while she is in heat. It is also common in dogs and sheep.',
+    source: 'https://en.wikipedia.org/wiki/Superfecundation',
+    evidence: 'Heteropaternal superfecundation is common in animals such as cats'
+  },
+  {
+    id: 'cat-v04',
+    level: 'intermediate',
+    topic: 'Health',
+    question: "Blackheads that form mainly on a cat's chin are a sign of what?",
+    options: ['Feline acne', 'Ringworm', 'Flea allergy', 'Ear mites'],
+    answer: 'Feline acne',
+    funFact: 'Mild cases look like dirt on the chin that will not brush off.',
+    source: 'https://en.wikipedia.org/wiki/Feline_acne',
+    evidence: "blackheads accompanied by inflammation on the cat's chin"
+  },
+  {
+    id: 'cat-v05',
+    level: 'difficult',
+    topic: 'Health',
+    question: 'What is the medical name for declawing a cat?',
+    options: ['Onychectomy', 'Onychomycosis', 'Ovariohysterectomy', 'Enucleation'],
+    answer: 'Onychectomy',
+    funFact: 'Declawing removes all or part of the end bone of each toe, not just the claw.',
+    source: 'https://en.wikipedia.org/wiki/Onychectomy',
+    evidence: 'Onychectomy, popularly known as declawing'
+  },
+  {
+    id: 'cat-v06',
+    level: 'difficult',
+    topic: 'Famous cats',
+    question: 'Stubbs the cat was the honorary mayor of which Alaska town for 20 years?',
+    options: ['Talkeetna', 'Nome', 'Skagway', 'Homer'],
+    answer: 'Talkeetna',
+    funFact: 'He held the post from 1997 until his death in 2017 and drew 30 to 40 visitors a day.',
+    source: 'https://en.wikipedia.org/wiki/Stubbs_(cat)',
+    evidence: 'honorary mayor of Talkeetna, Alaska'
+  },
+  {
+    id: 'cat-v07',
+    level: 'difficult',
+    topic: 'Famous cats',
+    question: 'Tama, a calico cat, is credited with saving which Japanese railway station from closure as its station master?',
+    options: ['Kishi Station', 'Shibuya Station', 'Kyoto Station', 'Nara Station'],
+    answer: 'Kishi Station',
+    funFact: 'Five female calico cats have since inherited the Tama name and worked at the station.',
+    source: 'https://en.wikipedia.org/wiki/Tama_(cat)',
+    evidence: 'station master and operating officer at Kishi Station'
+  },
+  {
+    id: 'cat-v08',
+    level: 'difficult',
+    topic: 'Famous cats',
+    question: 'In 1963, a Parisian cat named Félicette became the first cat to reach space. Which country launched her?',
+    options: ['France', 'The Soviet Union', 'The United States', 'China'],
+    answer: 'France',
+    funFact: 'She was one of 14 female cats bought for testing, chosen for their calm temperament.',
+    source: 'https://en.wikipedia.org/wiki/F%C3%A9licette',
+    evidence: 'as part of the French space program'
+  },
+  {
+    id: 'cat-v09',
+    level: 'intermediate',
+    topic: 'Behavior',
+    question: 'Adult cats rarely meow at other cats. Who do they mostly meow at?',
+    options: ['People', 'Other adult cats', 'Dogs', 'Birds they are hunting'],
+    answer: 'People',
+    funFact: 'Cats meow at people to ask for what they want, such as food, water, attention or play.',
+    source: 'https://en.wikipedia.org/wiki/Cat_communication',
+    evidence: 'They rarely meow to communicate with fellow cats or other animals'
+  },
+
+  // Topics from the user's cat video list that the bank did not cover yet.
+  {
+    id: 'cat-v10',
+    level: 'intermediate',
+    topic: 'Body',
+    question: "What is a healthy adult cat's normal resting heart rate?",
+    options: ['120 to 140 beats per minute', '60 to 80 beats per minute', '28 to 40 beats per minute', '250 to 300 beats per minute'],
+    answer: '120 to 140 beats per minute',
+    funFact: "That is well above a dog's 70 to 120 beats per minute.",
+    source: 'https://www.merckvetmanual.com/special-subjects/reference-guides/resting-heart-rates',
+    evidence: 'cat 120–140'
+  },
+  {
+    id: 'cat-v11',
+    level: 'intermediate',
+    topic: 'Body',
+    question: "What is a cat's normal body temperature?",
+    options: ['100.5 to 102.5°F (38.1 to 39.2°C)', '97 to 99°F (36.1 to 37.2°C)', '104 to 106°F (40 to 41.1°C)', '94 to 96°F (34.4 to 35.6°C)'],
+    answer: '100.5 to 102.5°F (38.1 to 39.2°C)',
+    funFact: 'A cat that feels warm to you is usually normal, since cats run a few degrees warmer than people.',
+    source: 'https://www.merckvetmanual.com/special-subjects/reference-guides/normal-rectal-temperature-ranges',
+    evidence: 'cat 38.1–39.2 100.5–102.5'
   }
 ];
 

@@ -1707,6 +1707,182 @@ export const chickenQuestions = [
     funFact: 'Broilers are the breeds developed for meat.',
     source: 'https://en.wikipedia.org/wiki/Chicken',
     evidence: 'chickens farmed primarily for eggs are called layer hens'
+  },
+
+  // November 2026: the user's Difficult and Intermediate chicken lists (answers only), checked
+  // against the bank for repeats and against a source; options written to match each question.
+  {
+    id: 'chickens-v01',
+    level: 'difficult',
+    topic: 'Dinosaur relatives',
+    question: 'Proteins recovered from a Tyrannosaurus rex bone most closely matched those of which living animal?',
+    options: ['Chicken', 'Alligator', 'Monitor lizard', 'Turtle'],
+    answer: 'Chicken',
+    funFact: 'Birds are living dinosaurs, so a chicken is a much closer relative of T. rex than any reptile is.',
+    source: 'https://en.wikipedia.org/wiki/Tyrannosaurus',
+    evidence: 'rex bone most closely match those reported in chickens'
+  },
+  {
+    id: 'chickens-v02',
+    level: 'intermediate',
+    topic: 'Body',
+    question: 'Like other birds, a chicken can sweep a clear third eyelid across its eye. What is it called?',
+    options: ['Nictitating membrane', 'Brille', 'Tapetum lucidum', 'Conjunctiva'],
+    answer: 'Nictitating membrane',
+    funFact: 'Birds can move it whenever they choose, to clean and moisten the eye.',
+    source: 'https://en.wikipedia.org/wiki/Nictitating_membrane',
+    evidence: 'Birds can actively control their nictitating membrane'
+  },
+  {
+    id: 'chickens-v03',
+    level: 'intermediate',
+    topic: 'Chickens and people',
+    question: 'What is a "chicken gun" used for?',
+    options: [
+      'Firing bird carcasses at aircraft parts to test them',
+      'Scaring hawks away from a flock',
+      'Launching feed across a large pasture',
+      'Vaccinating chicks at a hatchery'
+    ],
+    answer: 'Firing bird carcasses at aircraft parts to test them',
+    funFact: 'It simulates bird strikes. Chickens are used most often simply because they are easy to get.',
+    source: 'https://en.wikipedia.org/wiki/Chicken_gun',
+    evidence: 'used to fire bird carcasses at aircraft components'
+  },
+  {
+    id: 'chickens-v04',
+    level: 'difficult',
+    topic: 'Senses',
+    question:
+      'Like most birds, chickens have four types of color-sensing cone cells and can see ultraviolet light. What is this kind of color vision called?',
+    options: ['Tetrachromacy', 'Trichromacy', 'Dichromacy', 'Monochromacy'],
+    answer: 'Tetrachromacy',
+    funFact: 'People have three types of cone cells, and the lens of the human eye blocks most ultraviolet light.',
+    source: 'https://en.wikipedia.org/wiki/Tetrachromacy',
+    evidence: 'Most birds have retinas with four spectral types of cone cell'
+  },
+  {
+    id: 'chickens-v05',
+    level: 'difficult',
+    topic: 'Famous chickens',
+    question: 'Matilda, a hen who appeared in a magic act, was the first chicken to receive which Guinness World Records title?',
+    options: ["World's Oldest Living Chicken", "World's Smallest Chicken", 'Most Eggs Laid in a Year', 'Longest Chicken Flight'],
+    answer: "World's Oldest Living Chicken",
+    funFact: 'She got the title in 2004 at age 14, when most chickens live no more than seven or eight years.',
+    source: 'https://en.wikipedia.org/wiki/Matilda_(chicken)',
+    evidence: "first chicken to receive the title of World's Oldest Living Chicken"
+  },
+  {
+    id: 'chickens-v06',
+    level: 'intermediate',
+    topic: 'Famous chickens',
+    question: 'Mike the Headless Chicken survived for about how long after he was beheaded in 1945?',
+    options: ['18 months', '18 days', '18 hours', '18 years'],
+    answer: '18 months',
+    funFact: 'Most of his brain stem was left intact, and a blood clot stopped him from bleeding to death.',
+    source: 'https://en.wikipedia.org/wiki/Mike_the_Headless_Chicken',
+    evidence: 'lived for 18 months after he was beheaded'
+  },
+  {
+    id: 'chickens-v07',
+    level: 'easy',
+    topic: 'Diet',
+    question: 'What do chickens eat?',
+    options: ['Both plants and animals', 'Only seeds and grain', 'Only grass', 'Only insects'],
+    answer: 'Both plants and animals',
+    funFact: 'Chickens are omnivores. Besides seeds and insects, they will catch lizards, small snakes and young mice.',
+    source: 'https://en.wikipedia.org/wiki/Chicken',
+    evidence: 'Chickens are omnivores'
+  },
+  {
+    id: 'chickens-v08',
+    level: 'easy',
+    topic: 'Behavior',
+    question: 'What is the ranking of who is boss in a flock of chickens called?',
+    options: ['The pecking order', 'The roost list', 'The flock line', 'The feather rank'],
+    answer: 'The pecking order',
+    funFact: 'Dominant birds get first pick of food and nest sites.',
+    source: 'https://en.wikipedia.org/wiki/Chicken',
+    evidence: 'establishing a pecking order'
+  },
+  {
+    id: 'chickens-v09',
+    level: 'intermediate',
+    topic: 'Eggs',
+    question: 'About how many eggs a year can a hen bred for egg laying produce?',
+    options: ['Over 300', 'About 50', 'About 100', 'Over 1,000'],
+    answer: 'Over 300',
+    funFact: 'The record is 371 eggs in 364 days.',
+    source: 'https://en.wikipedia.org/wiki/Chicken',
+    evidence: 'can lay over 300 eggs per year'
+  },
+  {
+    id: 'chickens-v10',
+    level: 'easy',
+    topic: 'Eggs',
+    question: 'You put an egg in a bowl of water and it floats. What does that usually mean?',
+    options: ['It is very old and should not be eaten', 'It is very fresh', 'It has two yolks', 'It was laid by a young hen'],
+    answer: 'It is very old and should not be eaten',
+    funFact: 'As an egg ages, the air pocket inside it grows, which makes it float.',
+    source: 'https://en.wikipedia.org/wiki/Eggs_as_food',
+    evidence: 'A very old egg will float in the water'
+  },
+
+  // Topics from the user's chicken video list that the bank did not cover yet.
+  {
+    id: 'chickens-v11',
+    level: 'intermediate',
+    topic: 'History',
+    question: 'Genomic studies suggest chickens were first domesticated in Southeast Asia about how long ago?',
+    options: ['About 8,000 years ago', 'About 500 years ago', 'About 2,000 years ago', 'About 50,000 years ago'],
+    answer: 'About 8,000 years ago',
+    funFact: 'From Southeast Asia they spread to China and India some 2,000 to 3,000 years later.',
+    source: 'https://en.wikipedia.org/wiki/Chicken',
+    evidence: 'estimated that the chicken was domesticated 8,000 years ago in Southeast Asia'
+  },
+  {
+    id: 'chickens-v12',
+    level: 'easy',
+    topic: 'Basics',
+    question: 'How long can a chicken live?',
+    options: ['5 to 10 years', '1 to 2 years', '20 to 30 years', 'About 6 months'],
+    answer: '5 to 10 years',
+    funFact: 'It depends on the breed. Matilda, a famous hen, reached 16.',
+    source: 'https://en.wikipedia.org/wiki/Chicken',
+    evidence: 'A chicken may live for 5–10 years'
+  },
+  {
+    id: 'chickens-v13',
+    level: 'easy',
+    topic: 'Behavior',
+    question: 'When does a hen often cluck loudly?',
+    options: ['Right after laying an egg', 'Only at sunrise', 'Only when she is sick', 'Just before it rains'],
+    answer: 'Right after laying an egg',
+    funFact: 'Hens also cluck to call their chicks.',
+    source: 'https://en.wikipedia.org/wiki/Chicken',
+    evidence: 'Hens cluck loudly after laying an egg'
+  },
+  {
+    id: 'chickens-v14',
+    level: 'difficult',
+    topic: 'Body',
+    question: "What is an adult chicken's normal resting heart rate?",
+    options: ['250 to 300 beats per minute', '70 to 120 beats per minute', '30 to 50 beats per minute', '600 to 1,000 beats per minute'],
+    answer: '250 to 300 beats per minute',
+    funFact: 'That is more than twice as fast as a resting cat.',
+    source: 'https://www.merckvetmanual.com/special-subjects/reference-guides/resting-heart-rates',
+    evidence: 'chicken (adult) 250–300'
+  },
+  {
+    id: 'chickens-v15',
+    level: 'difficult',
+    topic: 'Body',
+    question: "What is a chicken's normal body temperature during the day?",
+    options: ['105 to 109.4°F (40.6 to 43°C)', '98.6°F (37°C)', '95 to 97°F (35 to 36.1°C)', '112 to 115°F (44.4 to 46.1°C)'],
+    answer: '105 to 109.4°F (40.6 to 43°C)',
+    funFact: 'Birds run much warmer than people, which is why a hen feels so warm in your hands.',
+    source: 'https://www.merckvetmanual.com/special-subjects/reference-guides/normal-rectal-temperature-ranges',
+    evidence: 'chicken (daylight) 40.6–43.0 105.0–109.4'
   }
 ];
 
