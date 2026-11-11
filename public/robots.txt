@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://animalexpert.netlify.app/sitemap.xml

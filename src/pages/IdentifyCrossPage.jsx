@@ -334,6 +334,12 @@ function IdentifyCrossPage({ appContext }) {
       }
     ]);
     playSound(correct ? 'correct' : 'wrong', appContext.soundEnabled);
+    const points = correct ? base + bonus : 0;
+    setAnnouncement(
+      `${correct ? `Correct! Plus ${points} points.` : `Not quite. This is a ${currentRound.entity.displayName}.`} Photo ${
+        roundIndex + 1
+      } of ${rounds.length}, score ${photoScore + points}.`
+    );
   };
 
   const nextRound = () => {
@@ -501,7 +507,7 @@ function IdentifyCrossPage({ appContext }) {
 
   return (
     <section className="identify-cross">
-      <h2>Identify &amp; Cross</h2>
+      <h1>Identify &amp; Cross</h1>
       <p className="muted">
         Name the animal in each photo, then solve a crossword of the same animals from expert clues. Every animal you
         name correctly gives you its first letter in the grid.
@@ -532,7 +538,7 @@ function IdentifyCrossPage({ appContext }) {
 
       {paused && activePhases.includes(phase) && (
         <article className="card ic-paused">
-          <h3>Game paused</h3>
+          <h2>Game paused</h2>
           <p>
             {phase === 'crossword'
               ? `The clock is stopped at ${seconds} seconds. `
@@ -544,9 +550,9 @@ function IdentifyCrossPage({ appContext }) {
 
       {phase === 'setup' && (
         <article className="card ic-setup">
-          <h3 id="ic-setup-heading" tabIndex={-1}>
+          <h2 id="ic-setup-heading" tabIndex={-1}>
             Set up your game
-          </h3>
+          </h2>
           <div className="ic-setup-grid">
             <CategoryPicker value={category} onChange={setCategory} photoGame />
             <fieldset className="ic-choice">
@@ -609,9 +615,9 @@ function IdentifyCrossPage({ appContext }) {
       {!paused && phase === 'identify' && currentRound && (
         <article className="card identify-card">
           <div className="ic-scorebar">
-            <h3 ref={headingRef} tabIndex={-1}>
+            <h2 ref={headingRef} tabIndex={-1}>
               Photo {roundIndex + 1} of {rounds.length}
-            </h3>
+            </h2>
             <p>
               Score {photoScore}
               {streak > 1 ? ` · Streak ${streak}` : ''}
@@ -673,7 +679,7 @@ function IdentifyCrossPage({ appContext }) {
             })}
           </div>
           {currentAnswer && (
-            <div className="trivia-feedback" role="status">
+            <div className="trivia-feedback">
               <p>
                 <strong>
                   {currentAnswer.correct
@@ -700,9 +706,9 @@ function IdentifyCrossPage({ appContext }) {
 
       {!paused && phase === 'bridge' && (
         <article className="card identify-results">
-          <h3 ref={headingRef} tabIndex={-1}>
+          <h2 ref={headingRef} tabIndex={-1}>
             Photo round complete: {identifiedCount} of {rounds.length} named, {photoScore} points
-          </h3>
+          </h2>
           <ul className="ic-result-list">
             {answers.map((item) => (
               <li key={item.roundId} className="identify-result-row">
@@ -743,9 +749,9 @@ function IdentifyCrossPage({ appContext }) {
       {!paused && phase === 'crossword' && (
         <article className="card">
           <div className="ic-scorebar">
-            <h3 ref={headingRef} tabIndex={-1}>
+            <h2 ref={headingRef} tabIndex={-1}>
               Crossword: {solvedKeys.size} of {entries.length} solved
-            </h3>
+            </h2>
             <p>
               Photo score {photoScore} · Time {seconds}s
               {revealedLetters ? ` · ${plural(revealedLetters, 'letter')} revealed` : ''}
@@ -753,7 +759,7 @@ function IdentifyCrossPage({ appContext }) {
           </div>
           {crosswordData ? (
             <>
-              <h4>Answer list</h4>
+              <h3>Answer list</h3>
               <p className="muted ic-list-help">
                 Type each answer and press Enter. Correct answers fill the grid too. Letters already known are shown as
                 a pattern.
@@ -824,7 +830,7 @@ function IdentifyCrossPage({ appContext }) {
                 })}
               </ol>
 
-              <h4>Grid</h4>
+              <h3>Grid</h3>
               <div
                 className="identify-crossword"
                 style={{ touchAction: 'manipulation' }}
@@ -885,9 +891,9 @@ function IdentifyCrossPage({ appContext }) {
 
       {phase === 'done' && outcome && (
         <article className="card ic-done">
-          <h3 ref={headingRef} tabIndex={-1}>
+          <h2 ref={headingRef} tabIndex={-1}>
             {outcome.solved ? 'Crossword solved!' : 'Answers revealed.'} Final score: {outcome.score}
-          </h3>
+          </h2>
           <p className="ic-best">
             {outcome.isBest
               ? `New personal best for ${categoryNoun(session.category)}!`
@@ -922,7 +928,7 @@ function IdentifyCrossPage({ appContext }) {
             </button>
           </div>
 
-          <h4>Your field guide</h4>
+          <h3>Your field guide</h3>
           <ul className="ic-guide">
             {rounds.map((round) => {
               const image = images[round.entity.id];
@@ -935,7 +941,7 @@ function IdentifyCrossPage({ appContext }) {
                     alt={`${round.entity.displayName}. ${image?.description || ''}`}
                   />
                   <div>
-                    <h5>{round.entity.displayName}</h5>
+                    <h4>{round.entity.displayName}</h4>
                     <p>{round.funFact}</p>
                     <p className="trivia-source">
                       <a href={round.source} target="_blank" rel="noreferrer">

@@ -62,7 +62,7 @@ function DailyTriviaSetup({ dateKey, category, setCategory, level, setLevel, onS
 
   return (
     <article className="card trivia-setup">
-      <h3 ref={headingRef} tabIndex={-1}>Set up today's game</h3>
+      <h2 ref={headingRef} tabIndex={-1}>Set up today's game</h2>
 
       {resumable.length > 0 && (
         <div className="resume-list">
@@ -184,7 +184,7 @@ function DailyTriviaPage({ appContext }) {
   if (!game) {
     return (
       <section>
-        <h2>Daily Trivia</h2>
+        <h1>Daily Trivia</h1>
         <p className="muted">
           Ten questions, the same for everyone today in each category and level, in a new order each time. Your first
           complete run of a category is your official score; ending or restarting after you answer makes later runs
@@ -212,10 +212,10 @@ function DailyTriviaPage({ appContext }) {
 
   return (
     <section>
-      <h2>Daily Trivia</h2>
-      <h3 ref={gameHeadingRef} tabIndex={-1}>
+      <h1>Daily Trivia</h1>
+      <h2 ref={gameHeadingRef} tabIndex={-1}>
         {categoryLabel(game.category)}, {levelLabels[game.level]}
-      </h3>
+      </h2>
       {borrowed > 0 && (
         <p className="muted">
           There aren't ten {levelLabels[game.level].toLowerCase()} questions for this category yet, so {borrowed} come from

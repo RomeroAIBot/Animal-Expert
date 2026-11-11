@@ -17,7 +17,7 @@ function InstallHelp({ headingLevel = 3 }) {
             Put Animal Expert on your iPhone's home screen so it opens like an app. It's also the only way an iPhone can
             get streak reminders.
           </p>
-          <h4>On iPhone or iPad (Safari)</h4>
+          <h3>On iPhone or iPad (Safari)</h3>
           <ol>
             <li>Open this site in Safari.</li>
             <li>
@@ -32,7 +32,7 @@ function InstallHelp({ headingLevel = 3 }) {
               the code from it into the app. After that, the app stays signed in every time you open it.
             </li>
           </ol>
-          <h4>On Android (Chrome)</h4>
+          <h3>On Android (Chrome)</h3>
           <p>Open the menu (three dots) and choose "Add to Home screen" or "Install app".</p>
           {isIos() && (
             <p className="muted">Reminders need iOS 16.4 or later, and only work from the home-screen app.</p>

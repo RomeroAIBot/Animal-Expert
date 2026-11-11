@@ -16,7 +16,23 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   </head>
   <body>
-    <div id="root"></div>
+    <!-- Shown until the app starts, and to search engines and browsers without JavaScript. React replaces it. -->
+    <div id="root">
+      <main style="max-width: 720px; margin: 0 auto; padding: 1rem; font-family: sans-serif; color: #1f241b">
+        <h1>Animal Expert</h1>
+        <p>Daily animal trivia, photo matching puzzles and crosswords. New games every day at midnight.</p>
+        <noscript>
+          <p><strong>Animal Expert needs JavaScript to run. Turn on JavaScript in your browser, then reload this page.</strong></p>
+        </noscript>
+        <ul>
+          <li><a href="/daily-trivia">Daily Trivia</a>: ten questions in the animal category and level you choose.</li>
+          <li><a href="/daily-puzzle">Daily Puzzle</a>: match each animal photo with its breed name.</li>
+          <li><a href="/identify-cross">Identify &amp; Cross</a>: name animals from photos, then solve a crossword.</li>
+          <li><a href="/new-game">Practice</a>: fresh trivia or puzzles any time.</li>
+          <li><a href="/rankings">Rankings</a>: today's top official scores.</li>
+        </ul>
+      </main>
+    </div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

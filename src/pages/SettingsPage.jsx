@@ -56,7 +56,7 @@ function NameSettings({ user, profile, setProfile }) {
 
   return (
     <article className="card">
-      <h3>Your name</h3>
+      <h2>Your name</h2>
       <p>
         {user
           ? 'Your display name appears in the rankings (if you join them) and in your welcome-back message. Your email is never shown.'
@@ -103,7 +103,7 @@ function LevelSettings({ user, settings, setSettings }) {
     <article className="card">
       <fieldset className="settings-fieldset">
         <legend>
-          <h3>Daily trivia level</h3>
+          <h2>Daily trivia level</h2>
         </legend>
         <p>Pick a level to have it chosen for you on the Daily Trivia setup screen, or choose each day.</p>
         {levelChoices.map((value) => (
@@ -201,7 +201,7 @@ function ReminderSettings({ user, settings, setSettings }) {
 
   return (
     <article className="card">
-      <h3>Streak reminders</h3>
+      <h2>Streak reminders</h2>
       <p>
         A notification on days you haven't played a daily game yet, so your streak doesn't end at midnight. Times
         follow this device's time zone{localTimeZone() ? ` (${localTimeZone().replace(/_/g, ' ')})` : ''}.
@@ -259,7 +259,7 @@ function SettingsPage({ appContext }) {
   const { user, profile, setProfile, settings, setSettings } = appContext;
   return (
     <section>
-      <h2>Settings</h2>
+      <h1>Settings</h1>
       <NameSettings user={user} profile={profile} setProfile={setProfile} />
       <LevelSettings user={user} settings={settings} setSettings={setSettings} />
       <ReminderSettings user={user} settings={settings} setSettings={setSettings} />

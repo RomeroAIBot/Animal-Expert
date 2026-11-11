@@ -109,7 +109,7 @@ function SignInForm({ signInError, onSignedIn }) {
 
   return (
     <article className="card">
-      <h3>Sign in or create an account</h3>
+      <h2>Sign in or create an account</h2>
       <p>
         Enter your email and we'll send you a sign-in code and link. There's no password. Signing in keeps
         your streak and game history across devices, and lets you join the public daily rankings. Once
@@ -198,7 +198,7 @@ function ProfileForm({ onSaved }) {
 
   return (
     <article className="card">
-      <h3>Public rankings</h3>
+      <h2>Public rankings</h2>
       <p>
         Only your official daily scores (your first run of each daily game) are ranked, under the name you
         choose. Your email is never shown.
@@ -248,7 +248,7 @@ function DeleteAccount({ onDeleted }) {
 
   return (
     <article className="card">
-      <h3>Delete account</h3>
+      <h2>Delete account</h2>
       <p>Deletes your account, profile and every result saved to it. Progress on this device stays.</p>
       {!confirming && (
         <button type="button" className="button button-reset" onClick={() => setConfirming(true)}>
@@ -278,7 +278,7 @@ function AccountPage({ appContext }) {
   if (!user) {
     return (
       <section>
-        <h2>Account</h2>
+        <h1>Account</h1>
         <SignInForm
           signInError={signInError}
           onSignedIn={() => {
@@ -292,9 +292,9 @@ function AccountPage({ appContext }) {
 
   return (
     <section>
-      <h2>Account</h2>
+      <h1>Account</h1>
       <article className="card">
-        <h3>Signed in</h3>
+        <h2>Signed in</h2>
         <p>
           You're signed in as {displayName ? `${displayName} (${user.email})` : user.email}.
         </p>

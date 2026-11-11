@@ -63,7 +63,7 @@ function NewGamePage({ appContext }) {
 
   return (
     <section>
-      <h2>Practice</h2>
+      <h1>Practice</h1>
       <p className="muted">
         Fresh games any time. Anything you've been shown is held back for a week, and practice never uses this
         week's daily questions.

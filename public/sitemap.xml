@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://animalexpert.netlify.app/</loc><changefreq>daily</changefreq></url>
+  <url><loc>https://animalexpert.netlify.app/daily-trivia</loc><changefreq>daily</changefreq></url>
+  <url><loc>https://animalexpert.netlify.app/daily-puzzle</loc><changefreq>daily</changefreq></url>
+  <url><loc>https://animalexpert.netlify.app/identify-cross</loc><changefreq>daily</changefreq></url>
+  <url><loc>https://animalexpert.netlify.app/new-game</loc></url>
+  <url><loc>https://animalexpert.netlify.app/rankings</loc><changefreq>daily</changefreq></url>
+  <url><loc>https://animalexpert.netlify.app/leaderboard</loc></url>
+  <url><loc>https://animalexpert.netlify.app/archive</loc></url>
+  <url><loc>https://animalexpert.netlify.app/account</loc></url>
+  <url><loc>https://animalexpert.netlify.app/settings</loc></url>
+</urlset>
