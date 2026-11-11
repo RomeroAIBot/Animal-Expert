@@ -1768,6 +1768,323 @@ export const snakeQuestions = [
     funFact: 'The CDC advises never trying to pick up or trap a snake.',
     source: 'https://www.cdc.gov/niosh/outdoor-workers/about/venomous-snakes.html',
     evidence: 'do not touch or handle any snake'
+  },
+
+  // November 2026: the user's Difficult and Intermediate snake lists (answers only), checked
+  // against the bank for repeats and against a source; options written to match each question.
+  {
+    id: 'snakes-v01',
+    level: 'intermediate',
+    topic: 'Places',
+    question:
+      "Brazil's Ilha da Queimada Grande, the only natural home of the golden lancehead, is better known by what nickname?",
+    options: ['Snake Island', 'Viper Rock', 'Serpent Key', 'Fang Island'],
+    answer: 'Snake Island',
+    funFact: 'The island lies in the Atlantic off the coast of Brazil, and its golden lanceheads feed mainly on birds.',
+    source: 'https://en.wikipedia.org/wiki/Ilha_da_Queimada_Grande',
+    evidence: 'more commonly referred to as Snake Island'
+  },
+  {
+    id: 'snakes-v02',
+    level: 'difficult',
+    topic: 'Names',
+    question: "The African boomslang's name comes from Dutch and Afrikaans. What does it mean?",
+    options: ['Tree snake', 'Green snake', 'Thunder snake', 'Bird killer'],
+    answer: 'Tree snake',
+    funFact: '"Boom" means tree and "slang" means snake.',
+    source: 'https://en.wikipedia.org/wiki/Boomslang',
+    evidence: 'Its common name means "tree snake" in Dutch and Afrikaans'
+  },
+  {
+    id: 'snakes-v03',
+    level: 'difficult',
+    topic: 'Anatomy',
+    question: 'With their long, narrow bodies, how many working lungs do most snakes have?',
+    options: ['One', 'Two', 'Three', 'None'],
+    answer: 'One',
+    funFact: 'In most snakes the left lung is small or missing, leaving the right lung to do the work.',
+    source: 'https://en.wikipedia.org/wiki/Snake',
+    evidence: 'In the majority of species, only one lung is functional'
+  },
+  {
+    id: 'snakes-v04',
+    level: 'intermediate',
+    topic: 'Prehistoric snakes',
+    question:
+      'Which giant snake, which lived after the dinosaurs died out, is the largest snake in the fossil record?',
+    options: ['Titanoboa', 'Gigantophis', 'Madtsoia', 'Sanajeh'],
+    answer: 'Titanoboa',
+    funFact:
+      "Scientists worked out its size from its vertebrae. It is far bigger than today's largest snakes, the green anaconda and the reticulated python.",
+    source: 'https://en.wikipedia.org/wiki/Titanoboa',
+    evidence: 'Titanoboa is the largest snake in the fossil record'
+  },
+  {
+    id: 'snakes-v05',
+    level: 'difficult',
+    topic: 'Venomous snakes',
+    question: 'The coastal, inland and Central Ranges species all belong to which group of Australian snakes?',
+    options: ['Taipans', 'Brown snakes', 'Tiger snakes', 'Death adders'],
+    answer: 'Taipans',
+    funFact:
+      'The Central Ranges taipan was found only recently, and its venom may be even stronger than that of the other two.',
+    source: 'https://en.wikipedia.org/wiki/Oxyuranus',
+    evidence: 'the Central Ranges taipan'
+  },
+  {
+    id: 'snakes-v06',
+    level: 'difficult',
+    topic: 'Record holders',
+    question:
+      'Which snake, found only on one Caribbean island, is thought to be one of the smallest snakes in the world?',
+    options: ['Barbados threadsnake', 'Brahminy blind snake', 'Texas blind snake', 'Ringneck snake'],
+    answer: 'Barbados threadsnake',
+    funFact: 'It is only about 10 cm long as an adult, and its babies are about half the length of their mother.',
+    source: 'https://en.wikipedia.org/wiki/Barbados_threadsnake',
+    evidence: 'thought to be one of the smallest snakes in the world'
+  },
+  {
+    id: 'snakes-v07',
+    level: 'difficult',
+    topic: 'Venomous snakes',
+    question:
+      'Which group of vipers includes some of the species blamed for the most snakebite cases and deaths in the world?',
+    options: ['Saw-scaled vipers', 'Rattlesnakes', 'Bush vipers', 'Tree vipers'],
+    answer: 'Saw-scaled vipers',
+    funFact: 'They warn enemies by rubbing their saw-edged scales together to make a sizzling sound.',
+    source: 'https://en.wikipedia.org/wiki/Echis',
+    evidence: 'responsible for causing the most snakebite cases and deaths in the world'
+  },
+  {
+    id: 'snakes-v08',
+    level: 'difficult',
+    topic: 'Venomous snakes',
+    question: 'About how many venomous snake species are there in the world?',
+    options: ['About 600', 'About 60', 'About 2,000', 'About 3,500'],
+    answer: 'About 600',
+    funFact: 'Many of them are too small, or their venom too weak, to seriously harm a person.',
+    source: 'https://en.wikipedia.org/wiki/Venomous_snake',
+    evidence: 'There are about 600 venomous snake species in the world'
+  },
+  {
+    id: 'snakes-v09',
+    level: 'intermediate',
+    topic: 'Record holders',
+    question: "The black mamba's speed is often exaggerated. About how fast can it really move over short distances?",
+    options: ['Up to about 10 mph (16 km/h)', 'About 30 mph (48 km/h)', 'About 45 mph (72 km/h)', 'About 2 mph (3 km/h)'],
+    answer: 'Up to about 10 mph (16 km/h)',
+    funFact: 'Even so, it is one of the fastest snakes in the world.',
+    source: 'https://en.wikipedia.org/wiki/Black_mamba',
+    evidence: 'it can move at speeds up to 16 km/h (10 mph) for short distances'
+  },
+  {
+    id: 'snakes-v10',
+    level: 'intermediate',
+    topic: 'Diet',
+    question: 'What does the king cobra mainly hunt?',
+    options: ['Other snakes', "Birds' eggs", 'Fish', 'Monkeys'],
+    answer: 'Other snakes',
+    funFact: 'It will even eat other king cobras, and only sometimes takes lizards or rodents.',
+    source: 'https://en.wikipedia.org/wiki/King_cobra',
+    evidence: 'It chiefly hunts other snakes'
+  },
+  {
+    id: 'snakes-v11',
+    level: 'intermediate',
+    topic: 'Hunting',
+    question: 'The spider-tailed horned viper waves the tip of its tail to lure birds. What does the tail tip look like?',
+    options: ['A spider', 'A caterpillar', 'A worm', 'A small lizard'],
+    answer: 'A spider',
+    funFact: 'The tip is a bulb edged with long, drooping scales that look like legs.',
+    source: 'https://en.wikipedia.org/wiki/Spider-tailed_horned_viper',
+    evidence: 'give it the appearance of a spider'
+  },
+  {
+    id: 'snakes-v12',
+    level: 'difficult',
+    topic: 'Classification',
+    question: 'Cobras, mambas and taipans all belong to which family of venomous snakes?',
+    options: ['Elapidae', 'Viperidae', 'Colubridae', 'Boidae'],
+    answer: 'Elapidae',
+    funFact: 'Elapids have short, fixed fangs at the front of the mouth, unlike the folding fangs of vipers.',
+    source: 'https://en.wikipedia.org/wiki/Elapidae',
+    evidence: 'Cobras, mambas, and taipans are mid- to large sized snakes'
+  },
+
+  // Topics from the user's snake video list (Quisition quiz, Mr. DeMaio, Living Zoology) that the
+  // bank did not cover yet, each checked against Wikipedia.
+  {
+    id: 'snakes-v13',
+    level: 'intermediate',
+    topic: 'Pet care',
+    question: 'With good care, how long do pet ball pythons regularly live?',
+    options: ['15 to 30 years', '3 to 5 years', '5 to 8 years', '50 to 70 years'],
+    answer: '15 to 30 years',
+    funFact: 'The oldest ball python on record lived to 62, 59 of those years at the Saint Louis Zoo.',
+    source: 'https://en.wikipedia.org/wiki/Ball_python',
+    evidence: 'regularly living for 15–30 years with good care'
+  },
+  {
+    id: 'snakes-v14',
+    level: 'difficult',
+    topic: 'Record holders',
+    question: 'About how many times per second do the "shaker" muscles in a rattlesnake\'s tail fire when it rattles?',
+    options: ['About 50', 'About 5', 'About 500', 'About 1'],
+    answer: 'About 50',
+    funFact: 'They are some of the fastest muscles known, and a rattlesnake can keep it up for as long as three hours.',
+    source: 'https://en.wikipedia.org/wiki/Rattlesnake',
+    evidence: 'firing 50 times per second on average'
+  },
+  {
+    id: 'snakes-v15',
+    level: 'easy',
+    topic: 'Names',
+    question: 'How did the corn snake most likely get its name?',
+    options: [
+      'It hunted mice and rats around stores of corn',
+      'It only eats corn kernels',
+      'It hides in cornfields to lay its eggs',
+      'Its skin feels like a corn husk'
+    ],
+    answer: 'It hunted mice and rats around stores of corn',
+    funFact: 'Another idea is that the checkered pattern on its belly looks like kernels of multicolored corn.',
+    source: 'https://en.wikipedia.org/wiki/Corn_snake',
+    evidence: "named for the species' regular presence near grain stores"
+  },
+  {
+    id: 'snakes-v16',
+    level: 'intermediate',
+    topic: 'Anatomy',
+    question: 'How can a green anaconda breathe and watch for prey while almost completely underwater?',
+    options: [
+      'Its eyes and nostrils are on top of its head',
+      'It can breathe through its skin',
+      'It stores air in a sac under its tail',
+      'Its eyes can see through murky water'
+    ],
+    answer: 'Its eyes and nostrils are on top of its head',
+    funFact: 'Even so, green anacondas sometimes climb trees after prey such as iguanas and sloths.',
+    source: 'https://en.wikipedia.org/wiki/Green_anaconda',
+    evidence: 'Its eyes and nostrils are located on the top of the head'
+  },
+  {
+    id: 'snakes-v17',
+    level: 'intermediate',
+    topic: 'Snakes and people',
+    question: "A snake charmer's cobra sways as the pungi plays. Why can't it be following the music?",
+    options: [
+      'Snakes have no outer ear to hear it',
+      'Cobras are completely deaf',
+      'The pungi plays too high for cobras',
+      'Cobras only hear sounds while hunting'
+    ],
+    answer: 'Snakes have no outer ear to hear it',
+    funFact: 'The cobra is reacting to the instrument being waved in front of it, which it sees as a threat.',
+    source: 'https://en.wikipedia.org/wiki/Snake_charming',
+    evidence: 'they lack the outer ear that would enable them to hear the music'
+  },
+  {
+    id: 'snakes-v18',
+    level: 'difficult',
+    topic: 'Defense',
+    question: 'Garter snakes are one of the few snakes that can be both venomous and poisonous. Where do the poisons come from?',
+    options: [
+      'Toxins from the amphibians they eat, stored in the liver',
+      'Glands that ooze toxins through their scales',
+      'Bacteria that live in their mouths',
+      'Plants they chew to coat their fangs'
+    ],
+    answer: 'Toxins from the amphibians they eat, stored in the liver',
+    funFact: 'Their venom is mild, and garter snakes are harmless to people.',
+    source: 'https://en.wikipedia.org/wiki/Garter_snake',
+    evidence: 'one of the few species of snakes in the world that can be both venomous and poisonous'
+  },
+  {
+    id: 'snakes-v19',
+    level: 'intermediate',
+    topic: 'Classification',
+    question: 'Which is the largest snake family, with about 249 genera?',
+    options: ['Colubridae', 'Elapidae', 'Viperidae', 'Pythonidae'],
+    answer: 'Colubridae',
+    funFact: 'Most colubrids lay eggs, but some give birth to live young.',
+    source: 'https://en.wikipedia.org/wiki/Colubridae',
+    evidence: 'With 249 genera, it is the largest snake family'
+  },
+  {
+    id: 'snakes-v20',
+    level: 'difficult',
+    topic: 'Movement',
+    question: 'Which is the slowest way a snake moves, creeping in a straight line without bending its body from side to side?',
+    options: ['Rectilinear', 'Concertina', 'Sidewinding', 'Lateral undulation'],
+    answer: 'Rectilinear',
+    funFact: "It is sometimes called caterpillar movement, because waves pass along the snake's belly instead of its sides.",
+    source: 'https://en.wikipedia.org/wiki/Snake',
+    evidence: 'The slowest mode of snake locomotion is rectilinear locomotion'
+  },
+  {
+    id: 'snakes-v21',
+    level: 'intermediate',
+    topic: 'Anatomy',
+    question: 'What happens when a snake loses or breaks a tooth?',
+    options: [
+      'It is replaced, since snake teeth are replaced all through life',
+      'The gap stays for the rest of its life',
+      'The tooth regrows only after a shed',
+      'The snake has to swallow food in smaller pieces'
+    ],
+    answer: 'It is replaced, since snake teeth are replaced all through life',
+    funFact: 'Animals whose teeth are continuously replaced are called polyphyodonts.',
+    source: 'https://en.wikipedia.org/wiki/Snake',
+    evidence: 'Snakes are polyphyodonts with teeth that are continuously replaced'
+  },
+  {
+    id: 'snakes-v22',
+    level: 'difficult',
+    topic: 'Diet',
+    question: 'Snakes of the family Pareidae mostly eat snails. What is unusual about their teeth?',
+    options: [
+      'They have more teeth on the right side of the mouth',
+      'They have no teeth at all',
+      'Their teeth are made of shell',
+      'They have teeth on the roof of the mouth only'
+    ],
+    answer: 'They have more teeth on the right side of the mouth',
+    funFact: 'Most snail shells spiral clockwise, and the lopsided teeth help pull the snail out.',
+    source: 'https://en.wikipedia.org/wiki/Snake',
+    evidence: 'more teeth on the right side of their mouths than on the left'
+  },
+  {
+    id: 'snakes-v23',
+    level: 'intermediate',
+    topic: 'Classification',
+    question: 'About how many species of snake are known today?',
+    options: ['More than 4,000', 'About 400', 'About 1,000', 'More than 40,000'],
+    answer: 'More than 4,000',
+    funFact: 'They are grouped into about 30 families and some 520 genera.',
+    source: 'https://en.wikipedia.org/wiki/Snake',
+    evidence: 'more than 4,170 species'
+  },
+  {
+    id: 'snakes-v24',
+    level: 'intermediate',
+    topic: 'Places',
+    question: 'Snakes live on every continent except Antarctica. Which of these islands has no native snakes?',
+    options: ['Ireland', 'Great Britain', 'Japan', 'Madagascar'],
+    answer: 'Ireland',
+    funFact: 'Iceland, Greenland and the islands of New Zealand have no native snakes either.',
+    source: 'https://en.wikipedia.org/wiki/Snake',
+    evidence: 'exceptions include Ireland, Iceland, Greenland and the islands of New Zealand'
+  },
+  {
+    id: 'snakes-v25',
+    level: 'difficult',
+    topic: 'Gliding snakes',
+    question: 'The "flying snakes" of Southeast Asia glide between trees. How many species are in their genus, Chrysopelea?',
+    options: ['Five', 'One', 'Twelve', 'Thirty'],
+    answer: 'Five',
+    funFact: 'To glide, a flying snake flattens its belly and keeps making S-shaped waves in the air.',
+    source: 'https://en.wikipedia.org/wiki/Chrysopelea',
+    evidence: 'There are five species within the genus'
   }
 ];
 
