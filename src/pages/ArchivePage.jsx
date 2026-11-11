@@ -18,18 +18,22 @@ export const describeResult = (item) => {
   return `${item.score} pts · ${item.flips} flips · ${item.seconds}s${item.size ? ` · ${item.size}x${item.size}` : ''}`;
 };
 
-function ArchivePage() {
+function ArchivePage({ appContext }) {
   const history = storage.getHistory();
 
   return (
     <section>
-      <h2>Game History</h2>
-      <p className="muted">Your last 365 results on this device.</p>
-      {history.length === 0 && <p>No games played yet.</p>}
+      <h1>Game History</h1>
+      <p className="muted">
+        {appContext?.user
+          ? 'Your last 365 results. They are saved on this device and in your account, so games from your other devices show here after a sync.'
+          : 'Your last 365 results. Without an account they are saved on this device only.'}
+      </p>
+      {history.length === 0 && <p>No games played yet. Play a game and it will show up here.</p>}
       <div className="archive-list">
         {history.map((item) => (
           <article className="card" key={item.id}>
-            <h3>{modeLabels[item.mode] || item.mode}</h3>
+            <h2>{modeLabels[item.mode] || item.mode}</h2>
             <p>Date: {toDateKey(item.date) || item.date}</p>
             <p>Category: {categoryLabel(item.category)}</p>
             {item.level && <p>Level: {levelLabels[item.level]}</p>}

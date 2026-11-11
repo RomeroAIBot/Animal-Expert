@@ -54,7 +54,7 @@ function LeaderboardPage({ appContext }) {
 
   return (
     <section>
-      <h2>My Stats</h2>
+      <h1>My Stats</h1>
       {signedIn ? (
         <p className="muted">Synced to your account ({appContext.user.email}).</p>
       ) : (
@@ -63,14 +63,14 @@ function LeaderboardPage({ appContext }) {
         </p>
       )}
       <div className="panel-grid">
-        <article className="card"><h3>Games Played</h3><p>{history.length}</p></article>
-        <article className="card"><h3>Days with a Daily Game</h3><p>{dailyDays}</p></article>
-        <article className="card"><h3>Current Streak</h3><p>{streak.count}</p></article>
+        <article className="card"><h2>Games Played</h2><p>{history.length}</p></article>
+        <article className="card"><h2>Days with a Daily Game</h2><p>{dailyDays}</p></article>
+        <article className="card"><h2>Current Streak</h2><p>{streak.count}</p></article>
       </div>
 
       <article className="card">
         <div className="card-actions">
-          <h3>By Game Mode</h3>
+          <h2>By Game Mode</h2>
           {/* Signed-in history lives in the account too, so it's removed by deleting the account. */}
           {!signedIn && history.length > 0 && !confirming && (
             <button type="button" className="button button-reset" onClick={() => setConfirming(true)}>

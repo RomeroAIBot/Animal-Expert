@@ -105,7 +105,7 @@ function PuzzleRun({ gameKey, createDeck, onFinish, onAbandon, soundEnabled }) {
 
   return (
     <div>
-      <p role="status" className="muted">{status}</p>
+      <p role="status" className="muted run-status">{status}</p>
       {inProgress && (
         <div className="game-controls">
           <button type="button" className="button ghost" onClick={togglePause}>
@@ -130,7 +130,7 @@ function PuzzleRun({ gameKey, createDeck, onFinish, onAbandon, soundEnabled }) {
 
       {inProgress && paused && (
         <article className="card">
-          <h3>Paused</h3>
+          <h2>Paused</h2>
           <p>
             {progressRef.current?.matched?.length || 0} of {game.deck.entities.length} pairs found,{' '}
             {progressRef.current?.flips || 0} flips, {progressRef.current?.seconds || 0} seconds.
@@ -166,7 +166,7 @@ function PuzzleRun({ gameKey, createDeck, onFinish, onAbandon, soundEnabled }) {
 
       {ended && (
         <article className="card result">
-          <h3>Game ended</h3>
+          <h2>Game ended</h2>
           <p>No score was saved.</p>
           <button type="button" className="button" onClick={() => startOver('New board dealt.')} autoFocus>
             Start a new game

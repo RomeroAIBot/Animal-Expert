@@ -55,7 +55,7 @@ function RankingsPage({ appContext }) {
 
   return (
     <section>
-      <h2>Daily Rankings</h2>
+      <h1>Daily Rankings</h1>
       <p className="muted">
         Official scores only: each player's first complete run of the daily game. Players appear here only if
         they opt in from their account.

@@ -42,7 +42,7 @@ function ReportProblem({ game, questionId, category, question, answer, signedInE
 
   return (
     <form className="report-form" onSubmit={submit} aria-labelledby={`${id}-title`}>
-      <h4 id={`${id}-title`}>Report inaccurate information</h4>
+      <h3 id={`${id}-title`}>Report inaccurate information</h3>
       <p>
         <strong>Question:</strong> {question}
       </p>

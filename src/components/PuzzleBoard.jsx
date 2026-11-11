@@ -24,6 +24,7 @@ function PuzzleBoard({ deck, soundEnabled, onComplete, initialState, onProgress 
   const [started, setStarted] = useState(Boolean(initialState?.started));
   const [images, setImages] = useState({});
   const [loadingImages, setLoadingImages] = useState(true);
+  const [announcement, setAnnouncement] = useState('');
   const completedRef = useRef(false);
 
   const cards = deck.cards;
@@ -44,6 +45,10 @@ function PuzzleBoard({ deck, soundEnabled, onComplete, initialState, onProgress 
       if (cancelled) return;
       setImages(next);
       setLoadingImages(false);
+      // Face-down cards hold no photo, so load the photos now and they show at once when flipped.
+      Object.values(next).forEach((image) => {
+        if (image?.url) new Image().src = image.url;
+      });
     });
     return () => {
       cancelled = true;
@@ -58,13 +63,34 @@ function PuzzleBoard({ deck, soundEnabled, onComplete, initialState, onProgress 
     if (!finished || completedRef.current) return;
     completedRef.current = true;
     confetti({ particleCount: 120, spread: 65, origin: { y: 0.6 } });
+    setAnnouncement(`Puzzle complete! All ${deck.entities.length} pairs found in ${flips} flips and ${seconds} seconds.`);
     const score = scorePuzzle({ flips, seconds, pairs: deck.entities.length });
     onComplete({ flips, seconds, score, pairs: deck.entities.length, comboId: deck.comboId });
   }, [finished, flips, seconds, deck.entities.length, deck.comboId, onComplete]);
 
-  const handleCardClick = (card) => {
+  // What a face-up card shows, in words: the breed name, or the photo's description.
+  const describeCard = (card) =>
+    card.type === 'name'
+      ? card.entity.displayName
+      : `Photo: ${(images[card.entity.id]?.description || 'animal photo').replace(/[.\s]+$/, '')}`;
+
+  const handleCardClick = (card, position) => {
     if (finished || flipped.length === 2 || flipped.includes(card.id) || matched.includes(card.pairId)) {
       return;
+    }
+
+    // Screen readers don't re-read a button's new name after a press, so say what was turned over.
+    if (flipped.length === 0) {
+      setAnnouncement(`Card ${position}: ${describeCard(card)}.`);
+    } else {
+      const first = cards.find((item) => item.id === flipped[0]);
+      const isMatch = first.pairId === card.pairId;
+      const pairsNow = matched.length + (isMatch ? 1 : 0);
+      setAnnouncement(
+        `Card ${position}: ${describeCard(card)}. ${
+          isMatch ? `Match! ${card.entity.displayName}, ${pairsNow} of ${deck.entities.length} pairs.` : 'No match.'
+        }`
+      );
     }
 
     playSound('flip', soundEnabled);
@@ -107,39 +133,44 @@ function PuzzleBoard({ deck, soundEnabled, onComplete, initialState, onProgress 
         <span>Pairs: {matched.length}/{deck.entities.length}</span>
         <span>{loadingImages ? 'Loading photos...' : 'Photos ready'}</span>
       </div>
+      <p className="sr-only" role="status" aria-live="polite">
+        {announcement}
+      </p>
       {missingPhotos.length > 0 && (
         <div className="facts facts-warning">
           <strong>Photo unavailable:</strong> {missingPhotos.join(', ')}
         </div>
       )}
       <div className={`puzzle-grid ${gridClass}`}>
-        {cards.map((card) => {
+        {cards.map((card, index) => {
           const isOpen = flipped.includes(card.id) || matched.includes(card.pairId);
+          const isMatched = matched.includes(card.pairId);
           const image = images[card.entity.id];
+          const position = index + 1;
+          // A face-down card holds nothing but its "?", so its answer can't be read before it is flipped.
           return (
             <button
               key={card.id}
               type="button"
               className={`flip-card ${isOpen ? 'open' : ''}`}
-              onClick={() => handleCardClick(card)}
+              onClick={() => handleCardClick(card, position)}
               aria-label={
                 isOpen
-                  ? card.type === 'name'
-                    ? card.entity.displayName
-                    : `Photo: ${image?.description || 'animal photo'}`
-                  : 'Hidden card'
+                  ? `Card ${position} of ${cards.length}: ${describeCard(card)}${isMatched ? ', matched' : ''}`
+                  : `Hidden card ${position} of ${cards.length}`
               }
             >
-              <span className="flip-card-inner">
+              <span className="flip-card-inner" aria-hidden="true">
                 <span className="flip-card-front">?</span>
                 <span className="flip-card-back">
-                  {card.type === 'name' ? (
-                    <strong>{card.entity.displayName}</strong>
-                  ) : image ? (
-                    <img src={image.url} alt="" loading="lazy" />
-                  ) : (
-                    <span className="image-loading">{loadingImages ? 'Loading photo' : 'Photo unavailable'}</span>
-                  )}
+                  {isOpen &&
+                    (card.type === 'name' ? (
+                      <strong>{card.entity.displayName}</strong>
+                    ) : image ? (
+                      <img src={image.url} alt="" />
+                    ) : (
+                      <span className="image-loading">{loadingImages ? 'Loading photo' : 'Photo unavailable'}</span>
+                    ))}
                 </span>
               </span>
             </button>
@@ -149,7 +180,7 @@ function PuzzleBoard({ deck, soundEnabled, onComplete, initialState, onProgress 
 
       {matchedEntities.length > 0 && (
         <div className="facts">
-          <h3>Matched Fun Facts</h3>
+          <h2>Matched Fun Facts</h2>
           {matchedEntities.slice(-4).map((entity) => (
             <div key={entity.id}>
               <p>
