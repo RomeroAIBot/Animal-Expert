@@ -51,7 +51,7 @@ function DailyPuzzlePage({ appContext }) {
 
   return (
     <section>
-      <h2>Daily Matching Puzzle</h2>
+      <h1>Daily Matching Puzzle</h1>
       <p className="muted">
         Match each photo to its breed name. Everyone gets the same animals today, with the cards shuffled each time
         you play.

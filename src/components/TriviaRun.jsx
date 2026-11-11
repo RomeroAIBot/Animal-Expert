@@ -40,6 +40,7 @@ function TriviaRun({ gameKey, createQuestions, onFinish, onAbandon, soundEnabled
   const [ended, setEnded] = useState(false);
   const [confirmingEnd, setConfirmingEnd] = useState(false);
   const [status, setStatus] = useState(() => (loadGame(gameKey) ? 'Welcome back. Your game was resumed.' : ''));
+  const [answerNews, setAnswerNews] = useState('');
 
   const question = run.questions[run.index];
   const total = run.questions.length;
@@ -80,6 +81,16 @@ function TriviaRun({ gameKey, createQuestions, onFinish, onAbandon, soundEnabled
     if (!question || run.answers[question.id]) return;
     const correct = option === question.answer;
     playSound(correct ? 'correct' : 'wrong', soundEnabled);
+    const correctNow = run.correct + (correct ? 1 : 0);
+    const streakNow = correct ? run.streak + 1 : 0;
+    // Spoken by screen readers: the result first, then the running score.
+    setAnswerNews(
+      `${correct ? 'Correct!' : 'Not quite.'} The answer is ${question.answer}. Question ${run.index + 1} of ${total}, ${correctNow} of ${
+        answeredCount + 1
+      } correct${showStreak ? `, streak ${streakNow}` : ''}.${
+        question.funFact && question.funFact !== question.answer ? ` ${question.funFact}` : ''
+      }`
+    );
     setRun((prev) => ({
       ...prev,
       answers: { ...prev.answers, [question.id]: option },
@@ -89,6 +100,7 @@ function TriviaRun({ gameKey, createQuestions, onFinish, onAbandon, soundEnabled
   };
 
   const handleNext = () => {
+    setAnswerNews('');
     if (run.index < total - 1) {
       setRun((prev) => ({ ...prev, index: prev.index + 1 }));
       return;
@@ -128,14 +140,15 @@ function TriviaRun({ gameKey, createQuestions, onFinish, onAbandon, soundEnabled
 
   return (
     <div>
-      <p role="status" className="muted">{status}</p>
+      <p role="status" className="muted run-status">{status}</p>
+      <p className="sr-only" role="status" aria-live="polite">{answerNews}</p>
 
       {inProgress && question && (
         <>
           {controls}
           {run.paused ? (
             <article className="card">
-              <h3>Paused</h3>
+              <h2>Paused</h2>
               <p>Question {run.index + 1} of {total}. Your answers so far are saved.</p>
               <button type="button" className="button" onClick={() => setPaused(false)} autoFocus>
                 Resume
@@ -143,9 +156,9 @@ function TriviaRun({ gameKey, createQuestions, onFinish, onAbandon, soundEnabled
             </article>
           ) : (
             <>
-              <p>
-                Question {run.index + 1}/{total} | Correct: {run.correct}/{answeredCount}
-                {showStreak && ` | Streak: ${run.streak}`}
+              <p className="trivia-progress">
+                Question {run.index + 1} of {total}. Correct: {run.correct} of {answeredCount}.
+                {showStreak && ` Streak: ${run.streak}.`}
               </p>
               <TriviaQuestionCard
                 question={question}
@@ -162,7 +175,7 @@ function TriviaRun({ gameKey, createQuestions, onFinish, onAbandon, soundEnabled
 
       {result && (
         <article className="card result">
-          <h3>Game complete</h3>
+          <h2>Game complete</h2>
           <p>
             Correct answers: {result.correct}/{result.total} ({toPercent(result.correct, result.total)}%)
           </p>
@@ -175,7 +188,7 @@ function TriviaRun({ gameKey, createQuestions, onFinish, onAbandon, soundEnabled
 
       {ended && (
         <article className="card result">
-          <h3>Game ended</h3>
+          <h2>Game ended</h2>
           <p>No score was saved.</p>
           <button type="button" className="button" onClick={() => startOver('New game started.')} autoFocus>
             Start a new game

@@ -8,7 +8,7 @@ function TriviaQuestionCard({ question, selected, onAnswer, onNext, nextLabel = 
   return (
     <article className="card trivia-card">
       <p className="trivia-meta">Multiple choice</p>
-      <h3>{question.question}</h3>
+      <h2>{question.question}</h2>
       <div className="options-grid">
         {question.options.map((option) => {
           const isChosen = selected === option;
@@ -28,7 +28,7 @@ function TriviaQuestionCard({ question, selected, onAnswer, onNext, nextLabel = 
         })}
       </div>
       {selected && (
-        <div className="trivia-feedback" role="status">
+        <div className="trivia-feedback">
           <p>
             <strong>{answeredCorrectly ? 'Correct!' : 'Not quite.'}</strong> The answer is {question.answer}.
           </p>

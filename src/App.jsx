@@ -1,4 +1,4 @@
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Header from './components/Header';
 import DashboardPage from './pages/DashboardPage';
@@ -11,6 +11,7 @@ import IdentifyCrossPage from './pages/IdentifyCrossPage';
 import AccountPage from './pages/AccountPage';
 import RankingsPage from './pages/RankingsPage';
 import SettingsPage from './pages/SettingsPage';
+import NotFoundPage from './pages/NotFoundPage';
 import WelcomeBack from './components/WelcomeBack';
 import { getCurrentStreak, storage, syncProgress } from './utils/storage';
 import { completeSignInFromUrl, getProfile, getSignedInUser, signOut as cloudSignOut } from './utils/cloud';
@@ -18,6 +19,30 @@ import { markShownToday, pickWelcomeItem, wasShownToday } from './utils/welcomeB
 
 // Photo review writes to repo files through the local API server, so it only exists in dev builds.
 const PhotoReviewPage = import.meta.env.DEV ? lazy(() => import('./pages/PhotoReviewPage')) : null;
+
+// Each page gets its own browser-tab title, which screen readers read when the page changes.
+const pageTitles = {
+  '/': 'Animal Expert: daily animal trivia and puzzles',
+  '/daily-trivia': 'Daily Trivia',
+  '/daily-puzzle': 'Daily Puzzle',
+  '/identify-cross': 'Identify & Cross',
+  '/new-game': 'Practice',
+  '/rankings': 'Rankings',
+  '/leaderboard': 'My Stats',
+  '/archive': 'Game History',
+  '/account': 'Account',
+  '/settings': 'Settings',
+  '/review-photos': 'Photo review',
+  '/identify': 'Identify & Cross',
+  '/practice': 'Practice',
+  '/stats': 'My Stats',
+  '/history': 'Game History'
+};
+const titleFor = (pathname) => {
+  const path = pathname.length > 1 ? pathname.replace(/\/+$/, '') : pathname;
+  if (path === '/') return pageTitles['/'];
+  return `${pageTitles[path] || 'Page not found'} - Animal Expert`;
+};
 
 function App() {
   const [settings, setSettings] = useState(storage.getSettings());
@@ -34,6 +59,7 @@ function App() {
   // After moving to another page, start screen readers and keyboards at the game, not the header.
   const firstRender = useRef(true);
   useEffect(() => {
+    document.title = titleFor(location.pathname);
     if (firstRender.current) {
       firstRender.current = false;
       return;
@@ -179,12 +205,17 @@ function App() {
           <Route path="/daily-puzzle" element={<DailyPuzzlePage appContext={context} />} />
           <Route path="/daily-trivia" element={<DailyTriviaPage appContext={context} />} />
           <Route path="/identify-cross" element={<IdentifyCrossPage appContext={context} />} />
-          <Route path="/archive" element={<ArchivePage />} />
+          <Route path="/archive" element={<ArchivePage appContext={context} />} />
           <Route path="/new-game" element={<NewGamePage appContext={context} />} />
           <Route path="/leaderboard" element={<LeaderboardPage appContext={context} />} />
           <Route path="/rankings" element={<RankingsPage appContext={context} />} />
           <Route path="/account" element={<AccountPage appContext={context} />} />
           <Route path="/settings" element={<SettingsPage appContext={context} />} />
+          {/* Short addresses people may type or remember. */}
+          <Route path="/identify" element={<Navigate to="/identify-cross" replace />} />
+          <Route path="/practice" element={<Navigate to="/new-game" replace />} />
+          <Route path="/stats" element={<Navigate to="/leaderboard" replace />} />
+          <Route path="/history" element={<Navigate to="/archive" replace />} />
           {PhotoReviewPage && (
             <Route
               path="/review-photos"
@@ -195,6 +226,7 @@ function App() {
               }
             />
           )}
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
     </div>

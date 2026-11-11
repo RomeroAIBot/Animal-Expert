@@ -12,7 +12,7 @@
   border: 0;
 }
 
-.identify-cross h3[tabindex='-1']:focus {
+.identify-cross h2[tabindex='-1']:focus {
   outline: none;
 }
 
@@ -21,7 +21,7 @@
   gap: 0.9rem;
 }
 
-.ic-setup h3 {
+.ic-setup h2 {
   margin: 0;
 }
 
@@ -54,7 +54,7 @@
   display: block;
   margin-left: 1.5rem;
   font-size: 0.85rem;
-  color: #6a624e;
+  color: #4f4a3a;
 }
 
 .ic-pool {
@@ -84,7 +84,7 @@
   gap: 0.5rem;
 }
 
-.ic-scorebar h3,
+.ic-scorebar h2,
 .ic-scorebar p {
   margin: 0;
 }
@@ -220,7 +220,7 @@
 }
 
 .ic-entry-form input:focus-visible {
-  outline: 3px solid rgba(212, 160, 23, 0.45);
+  outline: 3px solid var(--forest);
   border-color: var(--amber);
 }
 
@@ -247,8 +247,8 @@
   gap: 0.8rem;
 }
 
-.ic-done h3,
-.ic-done h4 {
+.ic-done h2,
+.ic-done h3 {
   margin: 0;
 }
 
@@ -300,7 +300,7 @@
   padding: 0.6rem;
 }
 
-.ic-guide-card h5 {
+.ic-guide-card h4 {
   margin: 0;
   font-size: 1.05rem;
 }
@@ -330,7 +330,7 @@
   margin-bottom: 0.75rem;
 }
 
-.ic-paused h3 {
+.ic-paused h2 {
   margin-top: 0;
 }
 

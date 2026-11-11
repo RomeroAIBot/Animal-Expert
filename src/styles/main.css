@@ -256,7 +256,7 @@ main {
   padding: 0.7rem;
 }
 
-.trivia-card h3 {
+.trivia-card h2 {
   margin-top: 0;
 }
 
@@ -273,12 +273,34 @@ main {
   padding: 0.65rem;
   text-align: left;
   cursor: pointer;
+  color: var(--ink);
+  font: inherit;
 }
 
 .option.selected,
-.option:hover {
+.option:not(:disabled):hover {
   border-color: var(--rust);
   background: #ffeccf;
+}
+
+/* Answered questions disable their buttons. Browsers grey out disabled text, so keep it dark and readable. */
+.option:disabled {
+  color: var(--ink);
+  opacity: 1;
+  cursor: default;
+}
+
+/* The tick and cross are a second signal beside the colour; screen readers get the result from the feedback text. */
+.trivia-card .option.correct::after {
+  content: ' \2713' / '';
+  font-weight: 800;
+  color: var(--forest);
+}
+
+.trivia-card .option.wrong::after {
+  content: ' \2717' / '';
+  font-weight: 800;
+  color: var(--rust);
 }
 
 .result {
@@ -410,7 +432,7 @@ main {
 
 .trivia-meta {
   margin: 0 0 0.35rem;
-  color: #6a624e;
+  color: #4f4a3a;
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -427,7 +449,7 @@ main {
 }
 
 .trivia-source {
-  color: #6a624e;
+  color: #4f4a3a;
   font-size: 0.9rem;
   word-break: break-word;
 }
@@ -450,7 +472,7 @@ main {
   height: 100%;
   padding: 0.75rem;
   font-weight: 700;
-  color: #6a624e;
+  color: #4f4a3a;
 }
 .button:focus-visible,
 .option:focus-visible,
@@ -459,7 +481,7 @@ main {
 nav a:focus-visible,
 .field input:focus-visible,
 .field select:focus-visible {
-  outline: 3px solid rgba(212, 160, 23, 0.45);
+  outline: 3px solid var(--forest);
   outline-offset: 2px;
   box-shadow: 0 0 0 3px rgba(45, 80, 22, 0.2);
 }
@@ -516,7 +538,7 @@ nav a:active {
 }
 
 .muted {
-  color: #6a624e;
+  color: #4f4a3a;
   margin-top: -0.4rem;
 }
 
@@ -524,7 +546,7 @@ nav a:active {
   display: grid;
   place-items: center;
   background: var(--cream);
-  color: #6a624e;
+  color: #4f4a3a;
   min-height: 12rem;
   border-radius: 12px;
   text-align: center;
@@ -586,7 +608,7 @@ nav a:active {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  color: #6a624e;
+  color: #4f4a3a;
 }
 
 .review-badge {
@@ -720,8 +742,8 @@ main:focus {
 }
 
 /* Daily trivia setup */
-.trivia-setup h3:focus,
-.trivia-setup h3:focus-visible {
+.trivia-setup h2:focus,
+.trivia-setup h2:focus-visible {
   outline: none;
 }
 
@@ -766,7 +788,7 @@ main:focus {
 }
 
 .level-button:focus-visible {
-  outline: 3px solid rgba(212, 160, 23, 0.6);
+  outline: 3px solid var(--forest);
   outline-offset: 2px;
 }
 
@@ -795,7 +817,7 @@ main:focus {
   padding: 0;
 }
 
-.settings-fieldset legend h3 {
+.settings-fieldset legend h2 {
   margin-bottom: 0.25rem;
 }
 
@@ -808,4 +830,89 @@ main:focus {
 
 .welcome-back h2 {
   margin-top: 0;
+}
+
+/* Page headings. Each page has one h1, and the sizes keep the look the pages had before. */
+main h1 {
+  font-size: 1.6rem;
+  margin: 0.6rem 0 0.75rem;
+}
+
+main h2 {
+  font-size: 1.25rem;
+}
+
+main h3 {
+  font-size: 1.08rem;
+}
+
+main h4 {
+  font-size: 1rem;
+}
+
+.dashboard .card h1 {
+  margin-top: 0;
+}
+
+/* Programmatic focus on a heading, for example after starting a game, needs no ring. */
+h1[tabindex='-1']:focus,
+h2[tabindex='-1']:focus {
+  outline: none;
+}
+
+/* Read by screen readers, hidden on screen. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Every control shows a clear ring when reached by keyboard, including ones not listed above. */
+:where(a, button, input, select, textarea, summary, [tabindex]:not([tabindex='-1'])):focus-visible {
+  outline: 3px solid var(--forest);
+  outline-offset: 2px;
+}
+
+/* On the dark green header, the ring is light gold so it stands out. */
+.site-header :focus-visible,
+.site-header .button:focus-visible,
+.site-header nav a:focus-visible {
+  outline: 3px solid #ffd65c;
+  outline-offset: 2px;
+  box-shadow: none;
+}
+
+.link-list {
+  display: grid;
+  gap: 0.5rem;
+  padding-left: 1.2rem;
+}
+
+.link-list a {
+  text-decoration: underline;
+}
+
+/* The page-wide tip under a page title is regular-size text, so it never relies on small pale type. */
+.trivia-meta {
+  font-size: 0.9rem;
+}
+
+/* Game status lines sit under buttons, so they must not use the muted text's pull-up margin. */
+.run-status {
+  margin-top: 0.5rem;
+}
+
+/* The home-page name box wraps under its label on narrow phones instead of squeezing the label. */
+form.field.inline {
+  flex-wrap: wrap;
+}
+
+form.field.inline label {
+  white-space: nowrap;
 }
