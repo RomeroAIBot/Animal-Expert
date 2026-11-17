@@ -6,6 +6,7 @@ import { levelLabels } from '../data/triviaLevels';
 import { countTriviaByLevel, DAILY_LEVELS, generateDailyTrivia } from '../utils/gameGenerators';
 import { listSavedGames, markDailyAttempted, wasDailyAttempted } from '../utils/savedGames';
 import { getDateKey } from '../utils/seed';
+import { usePageBackground } from '../utils/pageBackground';
 import { getCurrentStreak, getOfficialDailyResult, updateStreak, upsertHistory } from '../utils/storage';
 
 const toPercent = (correct, total) => Math.round((correct / Math.max(total, 1)) * 100);
@@ -134,6 +135,7 @@ function DailyTriviaPage({ appContext }) {
   const dateKey = getDateKey();
   const [, refresh] = useState(0);
   const gameHeadingRef = useRef(null);
+  usePageBackground(game ? game.category : category);
 
   // A default chosen in Settings while this page is open applies if no level is picked yet.
   useEffect(() => {

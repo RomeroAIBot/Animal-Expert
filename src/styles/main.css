@@ -1,20 +1,48 @@
+/* Jewel-tone and jungle greens. Dark greens carry white text; light greens carry the dark ink. */
 :root {
-  --forest: #2d5016;
-  --cream: #f5f0e8;
-  --amber: #d4a017;
-  --rust: #8b3a3a;
-  --ink: #1f241b;
+  --emerald: #0b5d40;
+  --malachite: #0f7a55;
+  --viridian: #1f6f63;
+  --jade: #3fbf85;
+  --fern: #4f7942;
+  --leaf: #a5d86b;
+  --moss: #c9e7c2;
+  --mint: #eef8f1;
+  --rust: #9b2c2c;
+  --ink: #0f2a20;
+  --page-photo: url('/backgrounds/jungle.webp');
 }
 
 * {
   box-sizing: border-box;
 }
 
+html {
+  background: #0a3b2c;
+}
+
 body {
   margin: 0;
   font-family: 'Trebuchet MS', 'Segoe UI', sans-serif;
   color: var(--ink);
-  background: radial-gradient(circle at top right, #fff8e9, #f4ede0 46%, #e3ddce 100%);
+  background: transparent;
+}
+
+/* The close-up photo of the animal being played fills the screen behind everything, under a green
+   wash so the content panel and header stand out. Pages swap it through --page-photo. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(160deg, rgba(4, 48, 32, 0.25), rgba(4, 40, 28, 0.55)), var(--page-photo) center / cover no-repeat;
+  transition: background-image 0.6s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::before {
+    transition: none;
+  }
 }
 
 a {
@@ -24,11 +52,14 @@ a {
 
 .app-shell {
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .site-header {
-  background: linear-gradient(125deg, var(--forest), #436f27);
+  background: linear-gradient(125deg, #08402d, var(--emerald) 45%, var(--viridian));
   color: #fff;
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.3);
   padding: 1rem 1.25rem;
   position: sticky;
   top: 0;
@@ -56,7 +87,7 @@ a {
   left: 0.5rem;
   top: -3rem;
   padding: 0.5rem 0.75rem;
-  background: var(--amber);
+  background: var(--jade);
   color: #1b1b1b;
   border-radius: 8px;
   z-index: 20;
@@ -86,22 +117,66 @@ nav a {
 
 nav a.active,
 nav a:hover {
-  background: var(--amber);
-  color: #1b1b1b;
+  background: var(--leaf);
+  color: var(--ink);
 }
 
+/* The content sits on a frosted mint panel; the photo shows around it and blurred through it. */
 main {
-  padding: 1rem;
+  padding: 1rem 1.25rem 1.25rem;
+  width: calc(100% - 2rem);
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 1.5rem auto 0.5rem;
+  background: rgba(238, 248, 241, 0.74);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 18px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+  flex: 1 0 auto;
+}
+
+.site-footer {
+  width: calc(100% - 2rem);
+  max-width: 1200px;
+  margin: 0 auto 1rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 10px;
+  background: rgba(4, 40, 28, 0.72);
+  color: #e6f7ec;
+  font-size: 0.85rem;
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+.site-footer a {
+  text-decoration: underline;
+}
+
+.site-footer :focus-visible {
+  outline: 3px solid #ffd65c;
+}
+
+@media (max-width: 720px) {
+  main,
+  .site-footer {
+    width: calc(100% - 1rem);
+  }
+
+  main {
+    margin-top: 0.75rem;
+    padding: 0.75rem;
+  }
 }
 
 .card {
-  background: var(--cream);
-  border: 1px solid #d6cdbf;
+  background: rgba(246, 252, 248, 0.96);
+  border: 1px solid #b9dcc6;
   border-radius: 14px;
   padding: 1rem;
-  box-shadow: 0 5px 20px rgba(43, 32, 11, 0.07);
+  box-shadow: 0 5px 20px rgba(4, 40, 28, 0.18);
 }
 
 .panel-grid {
@@ -119,11 +194,28 @@ main {
   transform: translateY(-3px);
 }
 
+/* Dashboard cards each wear a different green along the top. */
+.panel-grid > .card {
+  border-top: 5px solid var(--emerald);
+}
+
+.panel-grid > .card:nth-child(4n + 2) {
+  border-top-color: var(--jade);
+}
+
+.panel-grid > .card:nth-child(4n + 3) {
+  border-top-color: var(--fern);
+}
+
+.panel-grid > .card:nth-child(4n + 4) {
+  border-top-color: var(--viridian);
+}
+
 .button {
-  background: var(--amber);
+  background: var(--jade);
   border: 0;
   border-radius: 8px;
-  color: #1f1f1f;
+  color: var(--ink);
   cursor: pointer;
   padding: 0.6rem 0.85rem;
   font-weight: 600;
@@ -134,8 +226,8 @@ main {
 }
 
 .button.ghost {
-  background: transparent;
-  color: var(--forest);
+  background: rgba(255, 255, 255, 0.55);
+  color: var(--viridian);
   border: 1px solid currentColor;
 }
 
@@ -167,7 +259,7 @@ main {
 
 .field input,
 .field select {
-  border: 1px solid #b8ae9f;
+  border: 1px solid #7fb497;
   border-radius: 8px;
   padding: 0.5rem;
   min-width: 180px;
@@ -227,7 +319,7 @@ main {
 }
 
 .flip-card-front {
-  background: linear-gradient(130deg, var(--forest), #395f20);
+  background: linear-gradient(130deg, var(--emerald), var(--viridian));
   color: #fff;
   font-weight: 800;
   font-size: 1.1rem;
@@ -236,7 +328,7 @@ main {
 .flip-card-back {
   transform: rotateY(180deg);
   background: #fff;
-  border: 1px solid #d6cab7;
+  border: 1px solid #b9dcc6;
   text-align: center;
   padding: 0.45rem;
 }
@@ -250,8 +342,8 @@ main {
 
 .facts {
   margin-top: 1rem;
-  background: #fff5d8;
-  border: 1px solid #ead58f;
+  background: #eaf6dc;
+  border: 1px solid #a9d47c;
   border-radius: 10px;
   padding: 0.7rem;
 }
@@ -267,9 +359,9 @@ main {
 }
 
 .option {
-  border: 1px solid #bea56a;
+  border: 1px solid #5aa982;
   border-radius: 10px;
-  background: #fff8e7;
+  background: #f3fbf6;
   padding: 0.65rem;
   text-align: left;
   cursor: pointer;
@@ -280,7 +372,7 @@ main {
 .option.selected,
 .option:not(:disabled):hover {
   border-color: var(--rust);
-  background: #ffeccf;
+  background: #d9f2e3;
 }
 
 /* Answered questions disable their buttons. Browsers grey out disabled text, so keep it dark and readable. */
@@ -294,7 +386,7 @@ main {
 .trivia-card .option.correct::after {
   content: ' \2713' / '';
   font-weight: 800;
-  color: var(--forest);
+  color: var(--emerald);
 }
 
 .trivia-card .option.wrong::after {
@@ -305,7 +397,7 @@ main {
 
 .result {
   margin-top: 1rem;
-  border-left: 5px solid var(--amber);
+  border-left: 5px solid var(--jade);
 }
 
 .archive-list {
@@ -327,7 +419,7 @@ main {
   object-fit: cover;
   object-position: center;
   border-radius: 12px;
-  border: 1px solid #d6cab7;
+  border: 1px solid #b9dcc6;
 }
 
 .identify-result-row {
@@ -336,7 +428,7 @@ main {
   gap: 0.75rem;
   align-items: center;
   padding: 0.6rem 0;
-  border-top: 1px solid #ddd3c6;
+  border-top: 1px solid #c3e3cf;
 }
 
 .identify-result-row img {
@@ -353,7 +445,7 @@ main {
 }
 
 .result-icon.success {
-  color: var(--forest);
+  color: var(--emerald);
 }
 
 .result-icon.fail {
@@ -377,9 +469,9 @@ main {
 
 .vk-key {
   min-height: 44px;
-  border: 1px solid #bea56a;
+  border: 1px solid #5aa982;
   border-radius: 8px;
-  background: #fff8e7;
+  background: #f3fbf6;
   font-weight: 700;
 }
 
@@ -399,10 +491,10 @@ main {
 .modal-card {
   max-width: 360px;
   width: 100%;
-  background: var(--cream);
+  background: var(--mint);
   border-radius: 14px;
   padding: 1rem;
-  border: 1px solid #d6cab7;
+  border: 1px solid #b9dcc6;
 }
 
 @media (max-width: 720px) {
@@ -432,7 +524,7 @@ main {
 
 .trivia-meta {
   margin: 0 0 0.35rem;
-  color: #4f4a3a;
+  color: #2f4a3d;
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -441,7 +533,7 @@ main {
 .trivia-feedback {
   margin-top: 0.9rem;
   padding-top: 0.8rem;
-  border-top: 1px solid #d6cdbf;
+  border-top: 1px solid #b9dcc6;
 }
 
 .trivia-feedback p {
@@ -449,14 +541,14 @@ main {
 }
 
 .trivia-source {
-  color: #4f4a3a;
+  color: #2f4a3d;
   font-size: 0.9rem;
   word-break: break-word;
 }
 
 .option.correct {
-  border-color: var(--forest);
-  background: #edf5e7;
+  border-color: var(--emerald);
+  background: #d3f1dc;
 }
 
 .facts-warning {
@@ -472,7 +564,7 @@ main {
   height: 100%;
   padding: 0.75rem;
   font-weight: 700;
-  color: #4f4a3a;
+  color: #2f4a3d;
 }
 .button:focus-visible,
 .option:focus-visible,
@@ -481,15 +573,15 @@ main {
 nav a:focus-visible,
 .field input:focus-visible,
 .field select:focus-visible {
-  outline: 3px solid var(--forest);
+  outline: 3px solid var(--emerald);
   outline-offset: 2px;
-  box-shadow: 0 0 0 3px rgba(45, 80, 22, 0.2);
+  box-shadow: 0 0 0 3px rgba(11, 93, 64, 0.25);
 }
 
 .button:hover,
 .button:focus-visible,
 .button:active {
-  background: #e2b43a;
+  background: #2fa872;
 }
 
 .button:active,
@@ -497,26 +589,26 @@ nav a:focus-visible,
 .flip-card:active,
 .vk-key:active,
 nav a:active {
-  background: #f0ddad;
+  background: #bfe8cf;
   border-color: var(--rust);
   transform: translateY(1px);
 }
 
 .flip-card:focus-visible .flip-card-front,
 .flip-card:active .flip-card-front {
-  background: linear-gradient(130deg, #3b6a20, #547f34);
+  background: linear-gradient(130deg, var(--malachite), #2b9a6c);
 }
 
 nav a:focus-visible,
 nav a:active {
-  background: #ead08a;
+  background: #c8f0a0;
   color: #1b1b1b;
 }
 
 .field input:focus-visible,
 .field select:focus-visible {
-  border-color: var(--amber);
-  background: #fff9ed;
+  border-color: var(--jade);
+  background: #f3fbf6;
 }
 
 .card-actions {
@@ -529,7 +621,7 @@ nav a:active {
 }
 
 .button-reset {
-  background: #d9b85d;
+  background: #9fd8b5;
 }
 
 .option.wrong {
@@ -538,15 +630,15 @@ nav a:active {
 }
 
 .muted {
-  color: #4f4a3a;
+  color: #2f4a3d;
   margin-top: -0.4rem;
 }
 
 .photo-placeholder {
   display: grid;
   place-items: center;
-  background: var(--cream);
-  color: #4f4a3a;
+  background: var(--mint);
+  color: #2f4a3d;
   min-height: 12rem;
   border-radius: 12px;
   text-align: center;
@@ -568,7 +660,7 @@ nav a:active {
 .stats-table td {
   text-align: left;
   padding: 0.45rem 0.5rem;
-  border-bottom: 1px solid #e4dccb;
+  border-bottom: 1px solid #c3e3cf;
 }
 
 .review-grid {
@@ -579,15 +671,15 @@ nav a:active {
 
 .review-candidate {
   margin: 0;
-  border: 2px solid #e4dccb;
+  border: 2px solid #c3e3cf;
   border-radius: 12px;
   overflow: hidden;
-  background: #fffdf7;
+  background: #f6fcf8;
 }
 
 .review-candidate.chosen {
-  border-color: var(--forest);
-  box-shadow: 0 0 0 2px var(--forest);
+  border-color: var(--emerald);
+  box-shadow: 0 0 0 2px var(--emerald);
 }
 
 .review-candidate img {
@@ -608,15 +700,15 @@ nav a:active {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  color: #4f4a3a;
+  color: #2f4a3d;
 }
 
 .review-badge {
   font-size: 0.75rem;
   padding: 0.15rem 0.5rem;
   border-radius: 999px;
-  background: #edf5e7;
-  color: var(--forest);
+  background: #d3f1dc;
+  color: var(--emerald);
   vertical-align: middle;
 }
 
@@ -677,7 +769,7 @@ nav a:active {
 .account-form input[type='email'],
 .account-form input[type='text'] {
   width: 100%;
-  border: 1px solid #b8ae9f;
+  border: 1px solid #7fb497;
   border-radius: 8px;
   padding: 0.55rem;
   font-size: 1rem;
@@ -724,14 +816,14 @@ main:focus {
   gap: 0.4rem;
   margin: 0.75rem 0;
   padding: 0.75rem;
-  border: 1px solid #d8cfbd;
+  border: 1px solid #b9dcc6;
   border-radius: 8px;
-  background: #fffaf0;
+  background: #f6fcf8;
 }
 
 .report-form textarea,
 .report-form input {
-  border: 1px solid #b8ae9f;
+  border: 1px solid #7fb497;
   border-radius: 8px;
   padding: 0.5rem;
   font: inherit;
@@ -762,9 +854,9 @@ main:focus {
   display: grid;
   gap: 0.25rem;
   text-align: left;
-  border: 2px solid #bea56a;
+  border: 2px solid #5aa982;
   border-radius: 10px;
-  background: #fff8e7;
+  background: #f3fbf6;
   color: var(--ink);
   padding: 0.7rem;
   cursor: pointer;
@@ -778,17 +870,17 @@ main:focus {
 
 .level-button .level-help {
   font-size: 0.9rem;
-  color: #5a5240;
+  color: #2f4a3d;
 }
 
 .level-button.selected {
-  border-color: var(--forest);
-  background: #e6f0dc;
-  box-shadow: 0 0 0 2px var(--forest);
+  border-color: var(--emerald);
+  background: #d3f1dc;
+  box-shadow: 0 0 0 2px var(--emerald);
 }
 
 .level-button:focus-visible {
-  outline: 3px solid var(--forest);
+  outline: 3px solid var(--emerald);
   outline-offset: 2px;
 }
 
@@ -823,8 +915,8 @@ main:focus {
 
 /* Welcome back */
 .welcome-back {
-  border-left: 6px solid var(--forest);
-  background: #f2f7ec;
+  border-left: 6px solid var(--emerald);
+  background: #e3f5ea;
   margin-bottom: 1rem;
 }
 
@@ -875,7 +967,7 @@ h2[tabindex='-1']:focus {
 
 /* Every control shows a clear ring when reached by keyboard, including ones not listed above. */
 :where(a, button, input, select, textarea, summary, [tabindex]:not([tabindex='-1'])):focus-visible {
-  outline: 3px solid var(--forest);
+  outline: 3px solid var(--emerald);
   outline-offset: 2px;
 }
 
@@ -915,4 +1007,56 @@ form.field.inline {
 
 form.field.inline label {
   white-space: nowrap;
+}
+
+
+/* In Mixed and group games, each question says which animal it is about. The pill's green follows the group. */
+.animal-tag {
+  display: inline-block;
+  margin: 0 0 0.5rem;
+  padding: 0.2rem 0.75rem;
+  border-radius: 999px;
+  background: var(--emerald);
+  color: #fff;
+  font-weight: 700;
+}
+
+.animal-tag:is([data-animal='cattle'], [data-animal='pigs'], [data-animal='sheep'], [data-animal='goats'], [data-animal='horse'], [data-animal='chickens'], [data-animal='poultry']) {
+  background: var(--fern);
+}
+
+.animal-tag:is([data-animal='snakes'], [data-animal='lizards'], [data-animal='turtles'], [data-animal='crocodilians']) {
+  background: var(--viridian);
+}
+
+.animal-tag:is([data-animal='frogs'], [data-animal='salamanders']) {
+  background: var(--jade);
+  color: var(--ink);
+}
+
+.animal-tag:is([data-animal='bees'], [data-animal='butterflies'], [data-animal='bugs']) {
+  background: var(--leaf);
+  color: var(--ink);
+}
+
+/* Varied greens for the game pieces. */
+.flip-card-front {
+  background: linear-gradient(130deg, var(--malachite), var(--viridian));
+}
+
+.level-button {
+  border-color: var(--fern);
+}
+
+.result {
+  border-left-color: var(--leaf);
+}
+
+.welcome-back {
+  border-left-color: var(--jade);
+}
+
+.trivia-progress {
+  font-weight: 600;
+  color: var(--emerald);
 }

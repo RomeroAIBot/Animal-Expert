@@ -13,6 +13,7 @@ import RankingsPage from './pages/RankingsPage';
 import SettingsPage from './pages/SettingsPage';
 import NotFoundPage from './pages/NotFoundPage';
 import WelcomeBack from './components/WelcomeBack';
+import PhotoCredit from './components/PhotoCredit';
 import { getCurrentStreak, storage, syncProgress } from './utils/storage';
 import { completeSignInFromUrl, getProfile, getSignedInUser, readPending, signOut as cloudSignOut } from './utils/cloud';
 import { markShownToday, pickWelcomeItem, wasShownToday } from './utils/welcomeBack';
@@ -236,6 +237,7 @@ function App() {
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
+      <PhotoCredit />
     </div>
   );
 }

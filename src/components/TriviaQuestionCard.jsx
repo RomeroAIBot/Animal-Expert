@@ -1,13 +1,18 @@
 import ReportProblem from './ReportProblem';
 import { getSignedInUser } from '../utils/cloud';
 
-function TriviaQuestionCard({ question, selected, onAnswer, onNext, nextLabel = 'Next question', game = 'trivia' }) {
+function TriviaQuestionCard({ question, selected, onAnswer, onNext, nextLabel = 'Next question', game = 'trivia', animalLabel = '' }) {
   const answeredCorrectly = selected === question.answer;
   const hasLinkSource = /^https?:\/\//.test(question.source || '');
 
   return (
     <article className="card trivia-card">
       <p className="trivia-meta">Multiple choice</p>
+      {animalLabel && (
+        <p className="animal-tag" data-animal={question.category}>
+          Category: {animalLabel}
+        </p>
+      )}
       <h2>{question.question}</h2>
       <div className="options-grid">
         {question.options.map((option) => {

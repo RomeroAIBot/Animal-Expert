@@ -8,6 +8,7 @@ import { generateIdentifyCrossSession, getIdentifyCrossPool, identifyCrossRoundC
 import { fetchImagesForEntities } from '../utils/imageApi';
 import { recordUsedIds, trackerKeys } from '../utils/questionTracker';
 import { getDateKey } from '../utils/seed';
+import { usePageBackground } from '../utils/pageBackground';
 import { readJson, storage, upsertHistory, writeJson } from '../utils/storage';
 import '../styles/identifyCross.css';
 
@@ -118,6 +119,7 @@ function IdentifyCrossPage({ appContext }) {
   const [roundCount, setRoundCount] = useState(saved?.roundCount ?? 6);
   const [difficulty, setDifficulty] = useState(saved?.difficulty ?? 'standard');
   const [session, setSession] = useState(saved?.session ?? null);
+  usePageBackground(category);
   const [gameId, setGameId] = useState(saved?.gameId ?? null);
   const [phase, setPhase] = useState(saved?.phase ?? 'setup');
   const [roundIndex, setRoundIndex] = useState(saved?.roundIndex ?? 0);

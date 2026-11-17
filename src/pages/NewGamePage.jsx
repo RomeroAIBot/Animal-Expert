@@ -7,6 +7,7 @@ import { generatePuzzleDeck, generateRandomTrivia } from '../utils/gameGenerator
 import { recordUsedIds, trackerKeys } from '../utils/questionTracker';
 import { getDateKey, randomSeed } from '../utils/seed';
 import { upsertHistory } from '../utils/storage';
+import { usePageBackground } from '../utils/pageBackground';
 
 const toPercent = (correct, total) => Math.round((correct / Math.max(total, 1)) * 100);
 
@@ -14,6 +15,7 @@ function NewGamePage({ appContext }) {
   const [category, setCategory] = useState('mixed');
   const [mode, setMode] = useState('puzzle');
   const [size, setSize] = useState(4);
+  usePageBackground(category);
 
   // A board counts as seen as soon as it is dealt, so it isn't dealt again for a week.
   const createDeck = () => {

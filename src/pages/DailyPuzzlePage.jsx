@@ -4,12 +4,14 @@ import PuzzleRun from '../components/PuzzleRun';
 import { generateDailyPuzzleDeck } from '../utils/gameGenerators';
 import { markDailyAttempted, wasDailyAttempted } from '../utils/savedGames';
 import { getDateKey } from '../utils/seed';
+import { usePageBackground } from '../utils/pageBackground';
 import { getCurrentStreak, getOfficialDailyResult, updateStreak, upsertHistory } from '../utils/storage';
 
 function DailyPuzzlePage({ appContext }) {
   const [category, setCategory] = useState('dogs');
   const [size, setSize] = useState(4);
   const [, refresh] = useState(0);
+  usePageBackground(category);
 
   const dateKey = getDateKey();
   const entryId = `${dateKey}:daily:puzzle:${category}:${size}`;
