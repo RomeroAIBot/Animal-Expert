@@ -1060,3 +1060,194 @@ form.field.inline label {
   font-weight: 600;
   color: var(--emerald);
 }
+
+/* ===== See-through glass =====
+   The animal photo is the star: there is no panel over the page, and cards are thin tinted glass.
+   Text on the photo or the glass is near-white with a dark halo so it stays readable on bright photos
+   (white fleece, yellow honeycomb) as well as dark ones. Typing boxes and menus stay solid white. */
+:root {
+  --text: #f4fcf7;
+  --text-muted: #d2ecdc;
+  --glass: rgba(4, 34, 24, 0.42);
+  --glass-strong: rgba(4, 34, 24, 0.62);
+  --glass-line: rgba(200, 240, 215, 0.4);
+  --halo: 0 0 2px rgba(0, 0, 0, 0.95), 0 1px 3px rgba(0, 0, 0, 0.9), 0 0 12px rgba(0, 0, 0, 0.6);
+}
+
+body::before {
+  background: linear-gradient(160deg, rgba(3, 30, 20, 0.28), rgba(3, 30, 20, 0.42)), var(--page-photo) center / cover no-repeat;
+}
+
+.site-header {
+  background: linear-gradient(125deg, rgba(8, 64, 45, 0.82), rgba(11, 93, 64, 0.72) 45%, rgba(31, 111, 99, 0.68));
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+main {
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: 0;
+  box-shadow: none;
+  color: var(--text);
+  text-shadow: var(--halo);
+}
+
+.site-footer {
+  background: var(--glass-strong);
+  text-shadow: var(--halo);
+}
+
+.card,
+.welcome-back,
+.review-candidate,
+.report-form,
+.photo-placeholder,
+.ic-entry,
+.ic-guide-card {
+  background: var(--glass);
+  border-color: var(--glass-line);
+  color: var(--text);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+.card {
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
+}
+
+.trivia-meta,
+.trivia-source,
+.muted,
+.level-button .level-help,
+.image-loading,
+.photo-placeholder,
+.review-candidate figcaption span,
+.ic-help {
+  color: var(--text-muted);
+}
+
+.ic-pool,
+.ic-scorebar p,
+.ic-solved,
+.result-icon.success,
+.trivia-card .option.correct::after {
+  color: var(--leaf);
+}
+
+.status-error,
+.result-icon.fail,
+.ic-entry-feedback,
+.ic-best,
+.trivia-card .option.wrong::after {
+  color: #ffb8b8;
+}
+
+.trivia-feedback,
+.identify-result-row,
+.stats-table th,
+.stats-table td {
+  border-color: var(--glass-line);
+}
+
+/* Solid buttons keep dark text, so no halo. */
+.button,
+.review-badge,
+.animal-tag:is([data-animal='frogs'], [data-animal='salamanders'], [data-animal='bees'], [data-animal='butterflies'], [data-animal='bugs']) {
+  text-shadow: none;
+}
+
+.button.ghost {
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.7);
+  text-shadow: var(--halo);
+}
+
+.option,
+.level-button,
+.vk-key {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(165, 216, 107, 0.75);
+  color: var(--text);
+  text-shadow: var(--halo);
+}
+
+.option:disabled {
+  color: var(--text);
+}
+
+.option.selected,
+.option:not(:disabled):hover,
+.level-button:hover,
+.option:active,
+.vk-key:active {
+  background: rgba(165, 216, 107, 0.28);
+  border-color: var(--leaf);
+}
+
+.level-button.selected {
+  background: rgba(63, 191, 133, 0.38);
+  border-color: var(--leaf);
+  box-shadow: 0 0 0 2px var(--leaf);
+}
+
+.option.correct {
+  background: rgba(63, 191, 133, 0.45);
+  border-color: var(--leaf);
+}
+
+.option.wrong {
+  background: rgba(155, 44, 44, 0.55);
+  border-color: #ffb8b8;
+}
+
+.facts,
+.ic-clue {
+  background: rgba(165, 216, 107, 0.2);
+  border-color: var(--leaf);
+}
+
+.facts-warning {
+  background: rgba(255, 170, 90, 0.22);
+  border-color: #ffc78a;
+}
+
+.ic-choice {
+  border-color: var(--glass-line);
+}
+
+.ic-progress {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.ic-entry.solved {
+  background: rgba(63, 191, 133, 0.35);
+  border-color: var(--leaf);
+}
+
+.modal-card {
+  background: rgba(4, 34, 24, 0.92);
+  border-color: var(--glass-line);
+  color: var(--text);
+}
+
+/* Typing boxes, menus and puzzle tiles stay solid white with dark text. */
+.trivia-progress {
+  color: #fff;
+}
+
+main input,
+main select,
+main textarea,
+.ic-tile {
+  background-color: #fff;
+  color: var(--ink);
+  text-shadow: none;
+}
+
+/* Focus rings are gold so they show on the glass and on any photo. */
+main :is(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline-color: #ffd65c !important;
+}
