@@ -4,6 +4,8 @@ import { triviaQuestions } from '../data/triviaQuestions';
 import { playSound } from '../utils/audio';
 import { markSeen } from '../utils/questionTracker';
 import { clearGame, loadGame, saveGame } from '../utils/savedGames';
+import { usePageBackground } from '../utils/pageBackground';
+import { animalLabels } from '../data/groups';
 
 const questionsById = new Map(triviaQuestions.map((question) => [question.id, question]));
 
@@ -46,6 +48,10 @@ function TriviaRun({ gameKey, createQuestions, onFinish, onAbandon, soundEnabled
   const total = run.questions.length;
   const answeredCount = Object.keys(run.answers).length;
   const inProgress = !result && !ended;
+  // Mixed and group games draw from several animals, so each question shows which animal it is about
+  // and the background changes to that animal's photo.
+  const multiAnimal = new Set(run.questions.map((item) => item.category)).size > 1;
+  usePageBackground(multiAnimal && inProgress && question ? question.category : null);
 
   // Save after every move; a finished or ended game is removed.
   useEffect(() => {
@@ -167,6 +173,7 @@ function TriviaRun({ gameKey, createQuestions, onFinish, onAbandon, soundEnabled
                 onNext={handleNext}
                 nextLabel={run.index === total - 1 ? 'See results' : 'Next question'}
                 game={game}
+                animalLabel={multiAnimal ? animalLabels[question.category] || question.category : ''}
               />
             </>
           )}

@@ -33,7 +33,7 @@
 }
 
 .ic-choice {
-  border: 1px solid #d6cdbf;
+  border: 1px solid #b9dcc6;
   border-radius: 10px;
   padding: 0.5rem 0.75rem 0.75rem;
   margin: 0;
@@ -54,13 +54,13 @@
   display: block;
   margin-left: 1.5rem;
   font-size: 0.85rem;
-  color: #4f4a3a;
+  color: #2f4a3d;
 }
 
 .ic-pool {
   margin: 0;
   font-weight: 700;
-  color: var(--forest);
+  color: var(--emerald);
 }
 
 .ic-rules {
@@ -91,20 +91,20 @@
 
 .ic-scorebar p {
   font-weight: 700;
-  color: var(--forest);
+  color: var(--emerald);
 }
 
 .ic-progress {
   height: 8px;
   border-radius: 999px;
-  background: #e6dccb;
+  background: #d6eedf;
   overflow: hidden;
 }
 
 .ic-progress span {
   display: block;
   height: 100%;
-  background: linear-gradient(90deg, var(--forest), var(--amber));
+  background: linear-gradient(90deg, var(--emerald), var(--jade));
   transition: width 0.3s ease;
 }
 
@@ -137,8 +137,8 @@
 .ic-clue {
   margin: 0;
   padding: 0.6rem 0.75rem;
-  background: #fff3d6;
-  border-left: 4px solid var(--amber);
+  background: #eaf6dc;
+  border-left: 4px solid var(--jade);
   border-radius: 8px;
 }
 
@@ -165,15 +165,15 @@
 }
 
 .ic-entry {
-  border: 1px solid #d6cdbf;
+  border: 1px solid #b9dcc6;
   border-radius: 10px;
   padding: 0.6rem 0.75rem;
-  background: #fffaf0;
+  background: #f6fcf8;
 }
 
 .ic-entry.solved {
-  border-color: var(--forest);
-  background: #edf5e7;
+  border-color: var(--emerald);
+  background: #d3f1dc;
 }
 
 .ic-entry p {
@@ -191,7 +191,7 @@
   height: 1.6rem;
   display: grid;
   place-items: center;
-  border: 1px solid #b8ae9f;
+  border: 1px solid #7fb497;
   border-radius: 4px;
   background: #fff;
   font-weight: 700;
@@ -199,7 +199,7 @@
 }
 
 .ic-entry.solved .ic-tile {
-  border-color: var(--forest);
+  border-color: var(--emerald);
 }
 
 .ic-entry-form {
@@ -210,7 +210,7 @@
 }
 
 .ic-entry-form input {
-  border: 1px solid #b8ae9f;
+  border: 1px solid #7fb497;
   border-radius: 8px;
   padding: 0.45rem 0.6rem;
   min-width: 12rem;
@@ -220,8 +220,8 @@
 }
 
 .ic-entry-form input:focus-visible {
-  outline: 3px solid var(--forest);
-  border-color: var(--amber);
+  outline: 3px solid var(--emerald);
+  border-color: var(--jade);
 }
 
 .ic-entry-feedback:empty {
@@ -234,7 +234,7 @@
 }
 
 .ic-solved {
-  color: var(--forest);
+  color: var(--emerald);
   font-weight: 700;
 }
 
@@ -294,8 +294,8 @@
 .ic-guide-card {
   display: grid;
   gap: 0.5rem;
-  background: #fffaf0;
-  border: 1px solid #d6cdbf;
+  background: #f6fcf8;
+  border: 1px solid #b9dcc6;
   border-radius: 12px;
   padding: 0.6rem;
 }
