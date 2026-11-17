@@ -48,10 +48,10 @@ export const backgrounds = {
   },
   goats: {
     file: '/backgrounds/goats.webp',
-    description: "A goat's eye with its sideways pupil",
-    artist: 'Sumbria.vikramaditya',
-    license: 'CC0',
-    source: 'https://commons.wikimedia.org/wiki/File:Horizontal_Rectangular_Pupil_of_a_Goat.jpg'
+    description: 'A horned white and brown goat in close-up',
+    artist: 'André Karwath (Aka)',
+    license: 'CC BY-SA 2.5',
+    source: 'https://commons.wikimedia.org/wiki/File:Domestic_Goat_Portrait_(aka).jpg'
   },
   horse: {
     file: '/backgrounds/horse.webp',
