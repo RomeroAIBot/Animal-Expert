@@ -188,6 +188,10 @@ Supabase dashboard settings that the app needs (Authentication section):
   warns that Gmail is meant for personal mail, so if sign-in emails start landing in spam, move to a
   transactional email service.
 
+## Contact
+
+The site footer lists play@blindradioguy.com as the contact email (`CONTACT_EMAIL` in `src/components/PhotoCredit.jsx`).
+
 ## Question reports
 
 Under each answer explanation (and each puzzle fun fact) players can report inaccurate information.

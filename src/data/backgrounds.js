@@ -1,7 +1,8 @@
 // Close-up photos used as page backgrounds. Each animal has its own; groups, Mixed and pages with no
-// category use the jungle leaf. All are from Wikimedia Commons under free licenses, were checked by eye
-// for watermarks, and are cropped and compressed copies (WebP, 1920x1280) in public/backgrounds.
-// The CC BY and CC BY-SA licenses need credit, which the page footer shows for the photo on screen.
+// category use the jungle leaf. Most are from Wikimedia Commons under free licenses, checked by eye for
+// watermarks, and stored as compressed WebP copies in public/backgrounds. The CC BY and CC BY-SA
+// licenses need credit, which the page footer shows for the photo on screen. Photos the site owner
+// supplied have artist, license and source set to null, and the footer shows only the description.
 
 export const backgrounds = {
   jungle: {
@@ -55,10 +56,11 @@ export const backgrounds = {
   },
   horse: {
     file: '/backgrounds/horse.webp',
-    description: 'A pale tousled horse mane',
-    artist: 'George Hiles hilesy',
-    license: 'CC0',
-    source: 'https://commons.wikimedia.org/wiki/File:Tousled_horse_mane_(Unsplash).jpg'
+    description: "A bay horse's muzzle",
+    // Supplied by the site owner in November 2026; no outside credit on file.
+    artist: null,
+    license: null,
+    source: null
   },
   chickens: {
     file: '/backgrounds/chickens.webp',
@@ -76,17 +78,19 @@ export const backgrounds = {
   },
   snakes: {
     file: '/backgrounds/snakes.webp',
-    description: 'A coiled green tree python',
-    artist: 'Bernard DUPONT from FRANCE',
-    license: 'CC BY-SA 2.0',
-    source: 'https://commons.wikimedia.org/wiki/File:Green_Tree_Python_(Morelia_viridis)_close-up_(10248734806).jpg'
+    description: 'A black mangrove pit viper coiled on black',
+    // Supplied by the site owner in November 2026; no outside credit on file.
+    artist: null,
+    license: null,
+    source: null
   },
   lizards: {
     file: '/backgrounds/lizards.webp',
-    description: 'Iguana scales',
-    artist: 'Kresnanta',
-    license: 'CC BY-SA 4.0',
-    source: 'https://commons.wikimedia.org/wiki/File:Iguana%27s_Skin.jpg'
+    description: 'Bearded dragon scales in orange and gray',
+    // Supplied by the site owner in November 2026; no outside credit on file.
+    artist: null,
+    license: null,
+    source: null
   },
   turtles: {
     file: '/backgrounds/turtles.webp',
@@ -97,10 +101,11 @@ export const backgrounds = {
   },
   crocodilians: {
     file: '/backgrounds/crocodilians.webp',
-    description: 'Alligator skin',
-    artist: 'Hans Hillewaert',
-    license: 'CC BY-SA 3.0',
-    source: 'https://commons.wikimedia.org/wiki/File:Alligator_mississipiensis_(skin).jpg'
+    description: 'Crocodile skin',
+    // Supplied by the site owner in November 2026; no outside credit on file.
+    artist: null,
+    license: null,
+    source: null
   },
   frogs: {
     file: '/backgrounds/frogs.webp',
@@ -118,17 +123,19 @@ export const backgrounds = {
   },
   bees: {
     file: '/backgrounds/bees.webp',
-    description: 'Honeycomb with a honey bee',
-    artist: 'Matthew T Rader',
-    license: 'CC BY-SA 4.0',
-    source: 'https://commons.wikimedia.org/wiki/File:Western_honey_bee_on_a_honeycomb.jpg'
+    description: 'A honey bee on lavender',
+    // Supplied by the site owner in November 2026; no outside credit on file.
+    artist: null,
+    license: null,
+    source: null
   },
   butterflies: {
     file: '/backgrounds/butterflies.webp',
-    description: 'Peacock butterfly wing scales',
-    artist: 'Franz van Duns',
-    license: 'CC BY-SA 4.0',
-    source: 'https://commons.wikimedia.org/wiki/File:2021-08-16_-_Peacock_butterfly_(Aglais_io)_-_eyespot_on_forewing_-_colourful_scales_-_DSG3404-1_(magnif._ratio_2.2x,_HiRes_focus_stack).jpg'
+    description: 'A white moth with orange spots on tree bark',
+    // Supplied by the site owner in November 2026; no outside credit on file.
+    artist: null,
+    license: null,
+    source: null
   },
   bugs: {
     file: '/backgrounds/bugs.webp',
